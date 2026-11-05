@@ -181,3 +181,20 @@ test('K-1190 SD32-005: braved attack sends an opposing core to the Reserve, then
     return { fc: BS.CARDS['SD32-005'].partial === false, w: w.cores, v: P.void, t: t.cores, rs: O.reserve.n - rs }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.t, 1, JSON.stringify(r)); assert.equal(r.w, 3, JSON.stringify(r)); assert.equal(r.v, 2, JSON.stringify(r));
 });
+
+test('K-1191 SD32-007: Burst refreshes one Spirit per symbol colour; Flash returns an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const ids = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels.length > 0).slice(0, 8);
+    P.spirits = ids.map(k => { const x = BS.mkInst(k); x.cores = 1; x.exhausted = true; return x; });
+    const cols = Object.values(symbolsOn(P)).filter(Boolean).length, ex0 = P.spirits.filter(s => s.exhausted).length;
+    const fx = BS.CARDS['SD32-007'].burst;
+    await BS.runActions({ p: P, opp: O, src: P.spirits[0], ctx: {} }, fx);
+    const ex1 = P.spirits.filter(s => s.exhausted).length;
+    const t = BS.mkInst(ids[0]); t.cores = 1; O.spirits = [t]; O.hand = [];
+    const m = BS.mkInst('SD32-007'); P.hand = [m]; P.reserve.n = 9; G.step = 5; G.active = O.key;
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { fc: BS.CARDS['SD32-007'].partial === false, cols, ex0, ex1, opp: O.spirits.length, oh: O.hand.length }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ex0 - r.ex1, Math.min(r.cols, r.ex0), JSON.stringify(r));
+  assert.equal(r.opp, 0, JSON.stringify(r)); assert.equal(r.oh, 1, JSON.stringify(r));
+});

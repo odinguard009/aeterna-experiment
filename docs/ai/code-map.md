@@ -86,7 +86,7 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (147 lines, ~3.3k tokens)
+## packages/engine/src/02w-effects-indra.js (162 lines, ~3.5k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)

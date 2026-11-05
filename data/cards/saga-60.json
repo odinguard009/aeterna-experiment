@@ -58680,13 +58680,46 @@
   "image": "SD32-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|s|After an opposing Spirit attacks}} For each symbol color you have, refresh a Spirit you control. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash Return an opposing Spirit to the Hand. While Soul Core is on your Red/Purple Spirit, also, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "kind": "spirit",
+     "to": "hand"
+    },
+    {
+     "do": "DRAW",
+     "n": 1,
+     "if": {
+      "ctrl": {
+       "type": "Spirit",
+       "colors": [
+        "red",
+        "purple"
+       ],
+       "soul": true
+      }
+     }
+    }
+   ]
+  },
+  "burst": {
+   "when": "OPP_ATTACK",
+   "actions": [
+    {
+     "do": "REFRESH_PER_SYMCOLOR"
+    }
+   ],
+   "thenFlash": true
+  }
  },
  {
   "id": "SD32-X01",

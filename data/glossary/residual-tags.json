@@ -93487,18 +93487,8 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "SD32-005": [
-  "A_VOID",
-  "M_THEN",
-  "T_ATTACKS"
- ],
  "SD32-006": [
   "C_LEVEL"
- ],
- "SD32-007": [
-  "A_REFRESH",
-  "K_BURST",
-  "M_THEN"
  ],
  "SD33-005": [
   "A_BP_PLUS",

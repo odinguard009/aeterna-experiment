@@ -145,3 +145,18 @@ Object.assign(FX_ACTIONS, {
       }
       io.view({ type: 'board' });
     } } });
+
+/* v558 REFRESH_PER_SYMCOLOR: "for each colour of your symbols, refresh a Spirit you control" (SD32-007 Burst). */
+Object.assign(FX_ACTIONS, {
+  REFRESH_PER_SYMCOLOR: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'for each colour of your symbols, refresh a Spirit you control', can: c => c.p.spirits.some(s => s.exhausted),
+    run: async (c, a) => {
+      const n = COLORS.filter(k => (symbolsOn(c.p)[k] || 0) >= 1).length; let done = 0;
+      for (let j = 0; j < n; j++) {
+        const L = c.p.spirits.filter(s => s.exhausted); if (!L.length) break;
+        const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your exhausted Spirit to refresh (${j + 1}/${n}).`);
+        if (!t) break;
+        t.exhausted = false; done++; log(`${CARDS[t.id].name} is refreshed.`);
+      }
+      if (!done) c.ctx.did = false; io.view({ type: 'board' });
+    } } });
