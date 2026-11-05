@@ -107,7 +107,7 @@ const FX_ACTIONS = {
       return (k.type === 'Spirit' || k.type === 'Nexus') && fxMatch(k, a.match) && (a.costLe == null || k.cost <= a.costLe) && canPlaceBy(c.p, h, a.pay, a.noTribute); }),
     can: (c, a) => FX_ACTIONS.SUMMON_HAND.cands(c, a).length > 0,
     run: async (c, a) => {
-      const L = FX_ACTIONS.SUMMON_HAND.cands(c, a); if (!L.length) return;
+      const L = FX_ACTIONS.SUMMON_HAND.cands(c, a); if (!L.length) { c.ctx.did = false; return; }      // v570: "when you've done so" (prev) must read false when nothing was summoned
       let t;
       if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
       else {

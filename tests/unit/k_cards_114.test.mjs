@@ -25,3 +25,14 @@ test('K-1212 BS72-051: Main LV2 exhausts a Contractor Nuadha Nexus and braves a 
     return { fc: BS.CARDS['BS72-051'].partial === false, bid, lowCount, brave: sp.brave && sp.brave.uid === b.uid, ex: nx.exhausted, trash: P.trash.length }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.lowCount, { brave: false, ex: false }, JSON.stringify(r)); assert.equal(r.brave, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
 });
+
+test('K-1213 BS72-X07 Burst: summons itself, braves a Scalostle Brave from Hand/Trash, then destroys the highest-cost opposing Spirit (no Brave: no destroy)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 1).sort((a, b) => BS.CARDS[a].cost - BS.CARDS[b].cost);
+    const lo = sp[0], hi = sp[sp.length - 1];
+    const run = async withBrave => { const a = BS.mkInst(lo), b = BS.mkInst(hi); a.cores = b.cores = 1; P.spirits = [a, b]; O.spirits = []; O.nexus = []; O.trash = withBrave ? [BS.mkInst('BS71-063')] : []; O.hand = []; O.burst = BS.mkInst('BS72-X07'); O.count = 5; O.reserve = O.reserve || [];
+      const fired = await BS.maybeBurst(O, 'OPP_SUMMON_FX', {}); return { fired, highGone: !P.spirits.some(s => s.uid === b.uid), lowStays: P.spirits.some(s => s.uid === a.uid), self: O.spirits.length }; };
+    return { none: await run(false), one: await run(true) }; })()`);
+  assert.equal(r.none.highGone, false, JSON.stringify(r)); assert.equal(r.one.highGone, true, JSON.stringify(r)); assert.equal(r.one.lowStays, true, JSON.stringify(r));
+});
