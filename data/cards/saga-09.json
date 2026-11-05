@@ -25154,15 +25154,44 @@
   "bicon": [
    "5"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card in Trash is unaffected by any effect.",
-   "{{Burst|s|After your Life is reduced}}",
-   "You can summon a \"God-Sechs\" Spirit card from your Hand/Trash, treating all reduction symbols as being fulfilled. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash",
-   "Immediately end the Attack Step."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "trashUnaffected": true,
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_HAND",
+     "from": "handOrTrash",
+     "types": [
+      "Spirit"
+     ],
+     "match": {
+      "name": [
+       "God-Sechs"
+      ]
+     },
+     "pay": true,
+     "reduceAll": true
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_NOW"
+    }
+   ]
+  },
+  "mechanics": [
+   "Burst"
+  ]
  },
  {
   "id": "BSC32-039",

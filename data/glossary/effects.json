@@ -1548,5 +1548,25 @@
     "status": "wired",
     "example": "{\"do\":\"DESTROY_PIERCE_ARMOR\",\"costLe\":4}",
     "rule": "Engine: a target is skipped only when it is immune and carries an Armor, Heavy Armor or Ultra Heavy Armor keyword; every other immunity is pierced."
+  },
+  {
+    "id": "K_END_ATTACK_NOW",
+    "kind": "phrase",
+    "meaning": "Immediately end the Attack Step",
+    "pattern": "immediately end the attack step",
+    "engine": "END_ATTACK_NOW",
+    "status": "wired",
+    "example": "{\"do\":\"END_ATTACK_NOW\"}",
+    "rule": "Engine: sets the Attack Step as ended for this turn unless an active NO_END_ATTACK lock applies; the running battle still resolves."
+  },
+  {
+    "id": "K_SUMMON_REDUCE_ALL",
+    "kind": "phrase",
+    "meaning": "Summon a card treating all its reduction symbols as fulfilled",
+    "pattern": "treating all reduction symbols as being fulfilled",
+    "engine": "SUMMON_HAND",
+    "status": "wired",
+    "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"handOrTrash\",\"pay\":true,\"reduceAll\":true}",
+    "rule": "Engine: pays the printed cost minus every reduction symbol of the card."
   }
 ]

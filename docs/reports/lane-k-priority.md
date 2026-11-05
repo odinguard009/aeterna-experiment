@@ -2,13 +2,11 @@
 
 Standing list (owner 2026-11-04): groups top to bottom, all before the Grandwalker queue. Edit data/kb/lane-k-priority.json with the tool (`--add`, `--top`, `--after`, `--remove`).
 
-## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 13 of 53 complete
+## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 15 of 53 complete
 Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.
 
 | Card | Name | State |
 |---|---|---|
-| BS73-X05 | The HeadAttendant Forest-Orchid | OPEN |
-| BS74-059 | The Six Heaven Hatamochi | OPEN |
 | BSC32-038 | Turn End, Worm. End your Turn. | OPEN |
 | BSC48-009 | The HeavenlyDemonKing God-Sechs LT -Type Flame- | OPEN |
 | BSC48-010 | The Wandering Armor LT | OPEN |

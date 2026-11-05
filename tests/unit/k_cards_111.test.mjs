@@ -176,3 +176,17 @@ test('K-1159 BS74-059: deploys a cost 4 or less Vassal Nexus from the Hand/Trash
     return { deployed, destroyed: O.spirits.length === 0, trig: E[1].trigger, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.destroyed, true, JSON.stringify(r));
 });
+
+test('K-1160 BSC32-038: Burst summons a God-Sechs Spirit from the Hand/Trash treating reductions as met, Flash ends the Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC32-038'];
+    const gs = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].name.includes('God-Sechs') && BS.CARDS[k].cost <= 7);
+    const t = BS.mkInst(gs); P.hand = []; P.trash = [t]; P.spirits = []; P.void = 8; P.reserve.n = Math.max(P.reserve.n, 8);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BSC32-038'), ctx: {} }, { actions: K.burst.actions });
+    const summoned = P.spirits.includes(t);
+    const att = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)); O.spirits = [att]; G.attacker = att; G.active = O.key;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BSC32-038'), ctx: {} }, { actions: K.magic.actions });
+    return { summoned, ended: G.attackEnded === G.turnNo, tu: K.trashUnaffected, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.ended, true, JSON.stringify(r));
+});

@@ -29484,13 +29484,6 @@
   "K_GRANDWALKER",
   "K_ULTIMATE"
  ],
- "BSC32-038": [
-  "A_END_ATTACK",
-  "K_BURST",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S_UNAFFECTED"
- ],
  "BSC32-039": [
   "A_BP_PLUS",
   "K_CRUSH",

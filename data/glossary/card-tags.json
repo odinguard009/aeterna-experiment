@@ -36820,7 +36820,8 @@
   "S_UNAFFECTED",
   "K_BURST",
   "M_OPTIONAL",
-  "M_THEN"
+  "M_THEN",
+  "K_SUMMON_REDUCE_ALL"
  ],
  "BSC32-039": [
   "T_ALLY_LIFE_HIT",

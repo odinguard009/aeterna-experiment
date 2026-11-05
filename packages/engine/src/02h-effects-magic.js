@@ -58,6 +58,13 @@ Object.assign(FX_ACTIONS, {
       if (!go || !(await soulToNexus(c.p, T[0]))) { c.ctx.did = false; return; }
       for (const x of a.then) { if (G.over) return; if (!FX_ACTIONS[x.do].can || FX_ACTIONS[x.do].can(c, x)) await FX_ACTIONS[x.do].run(c, x); }
     } },
+  /* v540 END_ATTACK_NOW: "immediately end the Attack Step" (BSC32-038 Flash). Same lock as END_ATTACK_AFTER_BATTLE; the battle in progress still resolves, then the loops stop. */
+  END_ATTACK_NOW: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'immediately end the Attack Step',
+    can: c => !!G.attacker && !endAttackLocked(c.p),
+    run: async c => {
+      if (!G.attacker || endAttackLocked(c.p)) { c.ctx.did = false; log(`${_pn(c)}: the Attack Step can't be ended via effects now.`); return; }
+      G.attackEnded = G.turnNo; log(`${_pn(c)}: the Attack Step ends.`);
+    } },
   END_ATTACK_AFTER_BATTLE: { chk: () => true, txt: () => 'when this battle ends, end the Attack Step',
     can: c => !!G.attacker && !endAttackLocked(c.p),
     run: async c => {
