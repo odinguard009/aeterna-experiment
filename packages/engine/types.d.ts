@@ -17,7 +17,7 @@ interface MagicSpec {
   actions?: any[]; alsoMagic?: any; summonAfter?: any; summonOnce?: any; by?: Record<string, MagicVariant>;
 }
 /** `costAlt`: a lower cost while a condition holds. */
-interface CostAlt { cost: number; once: boolean; if?: any }
+interface CostAlt { cost: number; once: boolean; if?: any; exhaust?: any }
 /** `costPer`: -n cost per matching Spirit you control, at most -max. */
 interface CostPer { family: string; n: number; max: number }
 /** `tribute`: after paying the summon cost, send all cores of one of your matching Spirits to the Trash/Void. */
