@@ -23,13 +23,13 @@ packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, I
 ## packages/engine/src/02a-effects-base.js (493 lines, ~15k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, oppAttackLock, symZeroLocked, burstLocked, cantAttack, canBlockState, drawLocked, fxIf, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, CHARGE_KINDS, chargeSum, chargeAction, flagActiveField, coreSafeMode, coreTakeCap, costDestroyBonus, coresSent, rumblePlusOf, staticBp, blocksAsAtkOn, exhaustCostRelief, activeLowAtk, lowAtkLocked, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
-## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
+## packages/engine/src/02b-effects-actions.js (146 lines, ~6.4k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (366 lines, ~12.8k tokens)
+## packages/engine/src/02c-effects-parse.js (367 lines, ~12.8k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
-## packages/engine/src/02d-effects-resolve.js (457 lines, ~10.5k tokens)
+## packages/engine/src/02d-effects-resolve.js (459 lines, ~10.5k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, advNexus, doContractAdvent, adventFieldCores, manifestTargets, maniAlt, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, handDiscardedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
 ## packages/engine/src/02e-effects-removed.js (169 lines, ~4.6k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".

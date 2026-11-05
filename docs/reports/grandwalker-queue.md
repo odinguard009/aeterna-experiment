@@ -6,7 +6,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 |--:|---|---|---|---|--:|--:|---|
 | 1 | small | BS75-CX03 The HeavenlyThunderContractor Indra | complete | Thunderive | 23 | 23 | done |
 | 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 34 | 34 | done |
-| 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 25 | 23 | open |
+| 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 25 | 25 | done |
 | 4 | small | BS73-CX01 The ForestMasterContractor Yum-Kaax | complete | Fungal Tree | 23 | 18 | open |
 | 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 24 | 18 | open |
 | 6 | small | BS73-CX03 The CycleForceContractor Yamato Takeru | OPEN, first | Machine, Force Fighter | 38 | 4 | open |
@@ -14,7 +14,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 8 | small | BS72-CX02 The NightlyDarknessContractor Nyx | complete | Darkling | 32 | 12 | open |
 | 9 | small | BS72-CX03 The MoonlightContractor Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 10 | small | BS71-CX02 The SkyContractor Ra-Harakhti | OPEN, first | Weapon Insect | 32 | 1 | open |
-| 11 | small | BS71-CX03 The SilverArmContractor Nuadha | OPEN, first | Scalostle | 27 | 8 | open |
+| 11 | small | BS71-CX03 The SilverArmContractor Nuadha | complete | Scalostle | 27 | 27 | done |
 | 12 | small | BS70-CX02 The SilverWheelContractor Brigit | OPEN, first | Frostling | 27 | 1 | open |
 | 13 | small | BS70-CX03 The AstralNightContractor Uranus | OPEN, first | Cloudbuilt | 24 | 1 | open |
 | 14 | small | BS69-CX01 The AstralMaterContractor Gaia | complete | Reptile Beast | 41 | 21 | open |
@@ -46,13 +46,13 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 40 | large | BS68-CX01 The SorcererContractor Hades | OPEN, first | Infernal Lord | 57 | 4 | open |
 | 41 | large | BS68-CX02 The SteelContractor Athena | OPEN, first | Android | 81 | 5 | open |
 | 42 | large | BS62-X09 Grandwalker Kukulkan | OPEN, first | Dark Snake | 72 | 6 | open |
-| 43 | large | BS55-X09 Grandwalkers Izanagi & Izanami | OPEN, first | Spiritual Beast, Plant Spirit | 83 | 9 | open |
+| 43 | large | BS55-X09 Grandwalkers Izanagi & Izanami | OPEN, first | Spiritual Beast, Plant Spirit | 83 | 10 | open |
 | 44 | large | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 59 | 5 | open |
 | 45 | large | BS51-X08 Grandwalker Amaterasu | OPEN, first | War Dragon, Clever Machine, Vassal, Lord | 63 | 10 | open |
 | 46 | large | BS51-X09 Grandwalker Dionysus | OPEN, first | Zombie | 70 | 7 | open |
 | 47 | large | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 53 | 3 | open |
 | 48 | large | BS50-X10 Grandwalker Anubis | OPEN, first | Terra Dragon | 63 | 8 | open |
-| 49 | large | BS50-X11 Grandwalker Tsukuyomi | OPEN, first | Evil Shadow, Youkai | 144 | 11 | open |
+| 49 | large | BS50-X11 Grandwalker Tsukuyomi | OPEN, first | Evil Shadow, Youkai | 144 | 15 | open |
 | 50 | large | BS50-X12 Grandwalker of Preservation Vishnu | complete | Armored Dragon | 62 | 7 | open |
 | 51 | large | BS50-X13 Grandwalker Hephaestus | OPEN, first | Artificial Soldier | 107 | 7 | open |
 | 52 | large | BS50-XX02 Grandwalker Zeus-Lolo | OPEN, first | Worldswalker | 229 | 14 | open |

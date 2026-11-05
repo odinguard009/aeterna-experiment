@@ -4492,7 +4492,14 @@
    "yellow": 1
   },
   "symbols": 1,
-  "levels": [],
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 2
+   }
+  ],
   "families": [
    "Grandwalker",
    "Vulrica"
@@ -4504,21 +4511,146 @@
   "mechanics": [
    "Neo-Core Charge"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Neo-Core Charge:",
-   "◆When your target Spirit is summoned, you can +1 core to this Nexus.",
-   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash.",
-   "For each target card among them, +1 core to this Nexus.",
-   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
-   "{{cs|2}} [LV1][LV2] Flash",
-   "(Once per turn, send two cores from this Nexus to the Void) Your counters +2.",
-   "Then, you can return an opposing LV1 Spirit, or an opposing LV3 Ultimate to the Hand.",
-   "Contract Field [LV2] (Your Attack Step)",
-   "While your \"Puppet Beast\" family Spirit is attacking, the opponent can't end the Attack Step via effects.",
-   "Also, (Can't Stack) when your Life increases via \"Holy Life\"-named effects, you can send an opposing Life to the Reserve."
+  "fxComplete": true,
+  "note": "Assumptions: the printed text hides the Neo-Core Charge target, taken as Puppet Beast/Devotee/Concluser Spirits/Ultimates with cost 3+ (copied from the sibling Yum-Kaax shape). Flash is wired as the ACTIVATE shape of the sibling Nexus (once per turn, no timing check). The 'Holy Life'-named effect is the Holy Life keyword (VOID_TO_LIFE answering ALLY_LIFE_HIT); other Life gains do not trigger it. The Flash return is applied whenever a legal target exists (the printed 'you can' is not asked).",
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "anyOf": [
+      {
+       "family": [
+        "Puppet Beast",
+        "Devotee",
+        "Concluser"
+       ],
+       "costGe": 3,
+       "type": "Spirit"
+      },
+      {
+       "family": [
+        "Puppet Beast",
+        "Devotee",
+        "Concluser"
+       ],
+       "costGe": 3,
+       "type": "Ultimate"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "do": "CORE_TO_SELF",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "anyOf": [
+        {
+         "family": [
+          "Puppet Beast",
+          "Devotee",
+          "Concluser"
+         ],
+         "costGe": 3,
+         "type": "Spirit"
+        },
+        {
+         "family": [
+          "Puppet Beast",
+          "Devotee",
+          "Concluser"
+         ],
+         "costGe": 3,
+         "type": "Ultimate"
+        }
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "cost": {
+     "nexusToVoid": 2
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 2,
+      "max": 10
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "lv": [
+       1
+      ],
+      "ultLv": [
+       3
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "NO_END_ATTACK",
+    "to": "own",
+    "match": {
+     "family": [
+      "Puppet Beast"
+     ]
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    }
+   },
+   {
+    "trigger": "LIFE_UP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "viaHoly": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "revive": true
  },
  {
   "id": "BS68-NX01",

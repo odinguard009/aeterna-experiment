@@ -62,7 +62,7 @@ Object.assign(FX_ACTIONS, {
       if (a.lifeLe != null && c.p.life > a.lifeLe) { c.ctx.did = false; return; }
       const m = takeFromVoid(c.p, a.n); if (!m) { c.ctx.did = false; return; }
       c.p.life += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} move from the Void to ${who(c.p)}${c.p.cpu ? "'s" : 'r'} Life.`); io.view({ type: 'board' });
-      await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
+      await fireFx(c.p, 'LIFE_UP', null, c.trg === 'ALLY_LIFE_HIT' ? { holyLife: true } : {});      // v191 "When your Life increases"
     } },
   /* v191 "send a core (not the Soul Core) from your Reserve to your Life" */
   RESERVE_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve to your Life`,

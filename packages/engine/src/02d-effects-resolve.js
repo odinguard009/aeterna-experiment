@@ -6,6 +6,7 @@ async function runActions(c, e, trg) {
   if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); if (text && CARDS[c.src.id]) log(`Effect · ${who(c.p)}: ${CARDS[c.src.id].name}${trg ? ' (' + String(trg).toLowerCase().replace(/_/g, ' ') + ')' : ''} — ${text}`); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
+    c.trg = trg;      // v578 which trigger this effect answers (VOID_TO_LIFE marks Holy Life)
     c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC; if (c.ctx.viaHS == null && c.src) c.ctx.viaHS = !!c.src.viaHS; if (c.ctx.viaLegacy == null && c.src) c.ctx.viaLegacy = (c.src.legacyN || 0) > 0; if (c.ctx.viaMagirrate == null && c.src) c.ctx.viaMagirrate = !!c.src.viaMagirrate;
     if (!fieldList(c.p).includes(c.src) && trg !== 'SUMMONED' && a.do === 'REFRESH') continue;
     if (a.if && !fxIf(c.p, c.opp, a.if, c.src ? Object.assign({}, c.ctx, { selfUid: c.src.uid, selfInst: c.src }) : c.ctx)) continue;
@@ -70,6 +71,7 @@ function fxValid(it) {
   if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
   if (e.attackingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && !ctx.attacking) return false;     // v0.72 (During Attack) battle result: only as the attacker
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
+  if (e.viaHoly && !ctx.holyLife) return false;      // v578 "Holy Life"-named effects only
   if (trg === 'OPP_SUMMONED' && !(subj && fxMatch(CARDS[subj.id], e.match, subj) && (!e.costLeCounters || CARDS[subj.id].cost <= owner.count))) return false;      // v515 costLeCounters: cost <= your counters
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"

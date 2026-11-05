@@ -5417,7 +5417,6 @@
     "P033"
    ],
    "order_cards": [
-    "BS68-CX03",
     "BS67-X08",
     "BS68-047",
     "BS68-049",
@@ -32570,7 +32569,7 @@
     "name": "The ToolcraftContractor Kinich-Ahau",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-CX03",

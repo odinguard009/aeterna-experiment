@@ -67249,26 +67249,6 @@
   "T_ACTIVATE",
   "T_ALLY_SUMMONED"
  ],
- "BS68-CX03": [
-  "A_CORE_TO_SELF",
-  "A_END_ATTACK",
-  "A_LIFE_TO_RESERVE",
-  "A_MILL",
-  "A_SOUL_STATE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "F_OTHER_NOSTACK",
-  "K_CONTRACT",
-  "K_HOLY_LIFE",
-  "K_REVIVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UNSTACKABLE",
-  "T_ACTIVATE",
-  "T_ALLY_SUMMONED"
- ],
  "BS68-NX01": [
   "A_VOID"
  ],

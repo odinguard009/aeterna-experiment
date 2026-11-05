@@ -2040,5 +2040,7 @@
     "status": "partial",
     "example": "BS71-072",
     "rule": "Engine: unaffected is enforced through the immunity wrapper on Trash-pick actions; unwrapped Trash-pick sites are not covered."
-  }
+  },
+  {"id": "BOUNCE_OPP_ULTLV", "kind": "action", "meaning": "Return an opposing Spirit of listed levels, or an opposing Ultimate of other listed levels.", "pattern": "return an opposing LV1 Spirit, or an opposing LV3 Ultimate to the Hand", "engine": "BOUNCE_OPP lv + ultLv (02b)", "status": "done", "example": "BS68-CX03", "rule": "Engine: ultLv replaces lv for Ultimates only."},
+  {"id": "LIFE_UP_VIA_HOLY", "kind": "trigger", "meaning": "When your Life increases via a Holy Life effect.", "pattern": "when your Life increases via \"Holy Life\"-named effects", "engine": "LIFE_UP trigger viaHoly:true; ctx.holyLife set by VOID_TO_LIFE under ALLY_LIFE_HIT", "status": "partial", "example": "BS68-CX03", "rule": "Engine: only the Holy Life keyword is recognised, not other effects that share the name."}
 ]
