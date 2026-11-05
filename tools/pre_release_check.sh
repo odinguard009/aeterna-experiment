@@ -8,6 +8,7 @@ names=(); i=0
 run() { local n="$1"; shift; names[$i]="$n"; ( "$@" >"$tmp/$i.log" 2>&1; echo $? >"$tmp/$i.rc" ) & i=$((i+1)); }
 run "import_fandom --check" python3 tools/import_fandom.py --check
 run "staging_sync --check"  python3 tools/staging_sync.py --check
+run "grandwalker_data --check" python3 tools/grandwalker_data.py --check
 run "audit_heads"           python3 tools/audit_heads.py
 run "compiler_wiring --check" node tools/compiler_wiring.mjs --check
 run "engine_load_order + destroy_filters" node --test tests/unit/engine_load_order.test.mjs tests/unit/destroy_filters.test.mjs

@@ -5,78 +5,78 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | Order | Group | Grandwalker Nexus | Nexus card | Own families | Cards SD44+ | Complete | State |
 |--:|---|---|---|---|--:|--:|---|
 | 1 | small | BS75-CX03 The HeavenlyThunderContractor Indra | complete | Thunderive | 23 | 23 | done |
-| 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 32 | 32 | done |
-| 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 23 | 23 | done |
-| 4 | small | BS73-CX01 The ForestMasterContractor Yum-Kaax | complete | Fungal Tree | 18 | 18 | done |
-| 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 18 | 18 | done |
-| 6 | small | BS73-CX03 The CycleForceContractor Yamato Takeru | OPEN, first | Machine, Force Fighter | 34 | 3 | open |
-| 7 | small | BS72-CX01 The MartialArtsContractor Lugh | OPEN, first | Martial | 26 | 1 | open |
-| 8 | small | BS72-CX02 The NightlyDarknessContractor Nyx | complete | Darkling | 30 | 12 | open |
+| 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 34 | 34 | done |
+| 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 25 | 23 | open |
+| 4 | small | BS73-CX01 The ForestMasterContractor Yum-Kaax | complete | Fungal Tree | 23 | 18 | open |
+| 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 24 | 18 | open |
+| 6 | small | BS73-CX03 The CycleForceContractor Yamato Takeru | OPEN, first | Machine, Force Fighter | 38 | 4 | open |
+| 7 | small | BS72-CX01 The MartialArtsContractor Lugh | OPEN, first | Martial | 27 | 1 | open |
+| 8 | small | BS72-CX02 The NightlyDarknessContractor Nyx | complete | Darkling | 32 | 12 | open |
 | 9 | small | BS72-CX03 The MoonlightContractor Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 10 | small | BS71-CX02 The SkyContractor Ra-Harakhti | OPEN, first | Weapon Insect | 31 | 1 | open |
-| 11 | small | BS71-CX03 The SilverArmContractor Nuadha | OPEN, first | Scalostle | 26 | 8 | open |
-| 12 | small | BS70-CX02 The SilverWheelContractor Brigit | OPEN, first | Frostling | 26 | 1 | open |
+| 10 | small | BS71-CX02 The SkyContractor Ra-Harakhti | OPEN, first | Weapon Insect | 32 | 1 | open |
+| 11 | small | BS71-CX03 The SilverArmContractor Nuadha | OPEN, first | Scalostle | 27 | 8 | open |
+| 12 | small | BS70-CX02 The SilverWheelContractor Brigit | OPEN, first | Frostling | 27 | 1 | open |
 | 13 | small | BS70-CX03 The AstralNightContractor Uranus | OPEN, first | Cloudbuilt | 24 | 1 | open |
-| 14 | small | BS69-CX01 The AstralMaterContractor Gaia | complete | Reptile Beast | 35 | 21 | open |
+| 14 | small | BS69-CX01 The AstralMaterContractor Gaia | complete | Reptile Beast | 41 | 21 | open |
 | 15 | small | BS69-CX02 The SwiftContractor Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 16 | small | BS69-CX03 The RagingGaleContractor Huracan | OPEN, first | Roaring Azure | 38 | 1 | open |
-| 17 | small | BS68-CX01 The SorcererContractor Hades | OPEN, first | Infernal Lord | 45 | 4 | open |
-| 18 | small | BS68-CX03 The ToolcraftContractor Kinich-Ahau | OPEN, first | Puppet Beast | 26 | 1 | open |
-| 19 | small | BS61-X09 Grandwalker Tezcatlipoca | OPEN, first | Armored Beast | 33 | 2 | open |
-| 20 | small | BS59-X09 Grandwalker Chronos | OPEN, first | Chrownos | 20 | 1 | open |
-| 21 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 42 | 4 | open |
-| 22 | small | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 50 | 5 | open |
-| 23 | small | BS52-X07 Grandwalker Demeter | OPEN, first | Dark Artes | 33 | 0 | open |
-| 24 | small | BS52-X08 The GuideGirl Vina | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 25 | small | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 44 | 3 | open |
-| 26 | small | BS51-XX03 Grandwalker Alex-Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 27 | small | BS50-CP01 Soaring Grandwalker Alex | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 28 | small | BS50-X10 Grandwalker Anubis | OPEN, first | Terra Dragon | 49 | 7 | open |
-| 29 | small | BS50-X12 Grandwalker of Preservation Vishnu | complete | Armored Dragon | 48 | 6 | open |
-| 30 | small | BS49-X09 Grandwalker Krishna | complete | Armored Dragon | 48 | 6 | open |
-| 31 | small | BS48-X09 Grandwalker of Destruction Shiva | complete | Death Dragon | 32 | 2 | open |
-| 32 | small | BS48-X10 Grandwalker Aphrodite | OPEN, first | Fairy | 30 | 0 | open |
-| 33 | small | BS48-XX02 Grandwalker Lilia | OPEN, first | Astral Deity, Galaxian, Astral Soul | 40 | 0 | open |
-| 34 | small | BS47-XX02 Grandwalker Manaka | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 35 | small | BS47-XX03 Grandwalker Kei | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 36 | small | BS46-CP01 Hinobori Hajime | OPEN, first | Dragon Warrior, Supreme Hero | 36 | 2 | open |
-| 37 | small | BS46-CP02 Rekka Yukimura | OPEN, first | War Dragon, Vassal, Lord | 47 | 6 | open |
-| 38 | small | BS46-XX02 Grandwalker Antarc | complete | Investigator | 9 | 9 | done |
-| 39 | small | BS45-X07 Grandwalker Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 40 | small | BS45-XX02 Grandwalker Alex | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 41 | small | BS44-CP02 The YoungGrandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 42 | small | BS44-X09 Grandwalker Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 43 | small | BS44-XX02 Grandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 44 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 61 | 31 | open |
-| 45 | large | BS74-CX02 The NetherContractor Dionysus | OPEN, first | Zombie | 65 | 6 | open |
-| 46 | large | BS71-CX01 The ThunderboltContractor Zeus | OPEN, first | Emperor Beast | 84 | 3 | open |
-| 47 | large | BS70-CX01 The CurseConsortContractor Hera | OPEN, first | Ogre Wizard | 79 | 3 | open |
-| 48 | large | SD69-CX01 The GenesisContractor Brahma | OPEN, first | Ancient Dragon | 56 | 2 | open |
-| 49 | large | BS68-CX02 The SteelContractor Athena | OPEN, first | Android | 74 | 5 | open |
-| 50 | large | BS62-X09 Grandwalker Kukulkan | OPEN, first | Dark Snake | 65 | 6 | open |
-| 51 | large | BS55-X09 Grandwalkers Izanagi & Izanami | OPEN, first | Spiritual Beast, Plant Spirit | 73 | 9 | open |
-| 52 | large | BS51-X08 Grandwalker Amaterasu | OPEN, first | War Dragon, Clever Machine, Vassal, Lord | 51 | 7 | open |
-| 53 | large | BS51-X09 Grandwalker Dionysus | OPEN, first | Zombie | 65 | 6 | open |
-| 54 | large | BS50-X11 Grandwalker Tsukuyomi | OPEN, first | Evil Shadow, Youkai | 108 | 8 | open |
-| 55 | large | BS50-X13 Grandwalker Hephaestus | OPEN, first | Artificial Soldier | 81 | 6 | open |
-| 56 | large | BS50-XX02 Grandwalker Zeus-Lolo | OPEN, first | Worldswalker | 200 | 14 | open |
-| 57 | large | BS49-X08 Grandwalker Ares | OPEN, first | Parasite, Shellman | 82 | 6 | open |
-| 58 | large | BS49-X10 Grandwalker Susanoo | OPEN, first | Terra Dragon, Ocean Emperor | 83 | 8 | open |
-| 59 | large | BS49-XX02 Grandwalker Guren | OPEN, first | Ancient Dragon | 56 | 2 | open |
-| 60 | large | BS48-SP01 Bashin Dan | OPEN, first | Astral Dragon, Astral Soul, Astral Deity, Galaxian | 101 | 5 | open |
-| 61 | large | BS48-SP02 The Moonlight Barone | OPEN, first | Armed Machine, Astral Soul, Astral Deity, Galaxian | 127 | 4 | open |
-| 62 | large | BS48-X08 Grandwalker of Creation Brahma | complete | Ancient Dragon | 56 | 2 | open |
-| 63 | large | BS47-CP07 Clash King Dan | OPEN, first | Reptile Beast, Terra Dragon, Winged Dragon, Ancient Dragon, Astral Dragon | 232 | 38 | open |
-| 64 | large | BS47-X07 Grandwalker Horus | OPEN, first | Winged Beast | 71 | 13 | open |
-| 65 | large | BS47-X08 Grandwalker Thoth | OPEN, first | Armed Machine | 89 | 4 | open |
-| 66 | large | BS47-X09 Grandwalker Poseidon | OPEN, first | Fusion Beast | 63 | 1 | open |
-| 67 | large | BS46-X09 Grandwalker Zeus | OPEN, first | Emperor Beast | 84 | 3 | open |
-| 68 | large | BS46-X10 Grandwalker Hera | OPEN, first | Ogre Wizard | 79 | 3 | open |
-| 69 | large | BS46-X11 Grandwalker Athena | OPEN, first | Android | 74 | 5 | open |
-| 70 | large | BS46-X12 Grandwalker Ra | OPEN, first | Imaginary Beast | 57 | 4 | open |
-| 71 | large | BS45-CP01 Bashin Toppa | OPEN, first | Ancient Dragon | 56 | 2 | open |
-| 72 | large | BS45-CP02 Rei the Number One Star | OPEN, first | Incarnate, Dragon | 53 | 6 | open |
-| 73 | large | BS45-X08 Grandwalker Isis | OPEN, first | Divine Spirit | 81 | 4 | open |
-| 74 | large | BS45-X09 Grandwalker Set | OPEN, first | Beast Head | 90 | 5 | open |
-| 75 | large | BS44-X07 Grandwalker Apollon | OPEN, first | Astral Dragon | 65 | 5 | open |
-| 76 | large | BS44-X08 Grandwalker Osiris | OPEN, first | Dark Snake | 65 | 6 | open |
+| 16 | small | BS69-CX03 The RagingGaleContractor Huracan | OPEN, first | Roaring Azure | 40 | 1 | open |
+| 17 | small | BS68-CX03 The ToolcraftContractor Kinich-Ahau | OPEN, first | Puppet Beast | 28 | 1 | open |
+| 18 | small | BS61-X09 Grandwalker Tezcatlipoca | OPEN, first | Armored Beast | 33 | 2 | open |
+| 19 | small | BS59-X09 Grandwalker Chronos | OPEN, first | Chrownos | 29 | 1 | open |
+| 20 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 46 | 4 | open |
+| 21 | small | BS52-X07 Grandwalker Demeter | OPEN, first | Dark Artes | 44 | 0 | open |
+| 22 | small | BS52-X08 The GuideGirl Vina | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
+| 23 | small | BS51-XX03 Grandwalker Alex-Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 24 | small | BS50-CP01 Soaring Grandwalker Alex | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 25 | small | BS48-X09 Grandwalker of Destruction Shiva | complete | Death Dragon | 44 | 2 | open |
+| 26 | small | BS48-X10 Grandwalker Aphrodite | OPEN, first | Fairy | 35 | 0 | open |
+| 27 | small | BS47-XX02 Grandwalker Manaka | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 28 | small | BS47-XX03 Grandwalker Kei | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 29 | small | BS46-XX02 Grandwalker Antarc | complete | Investigator | 9 | 9 | done |
+| 30 | small | BS45-X07 Grandwalker Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
+| 31 | small | BS45-XX02 Grandwalker Alex | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 32 | small | BS44-CP02 The YoungGrandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 33 | small | BS44-X09 Grandwalker Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
+| 34 | small | BS44-XX02 Grandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
+| 35 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 65 | 31 | open |
+| 36 | large | BS74-CX02 The NetherContractor Dionysus | OPEN, first | Zombie | 70 | 7 | open |
+| 37 | large | BS71-CX01 The ThunderboltContractor Zeus | OPEN, first | Emperor Beast | 105 | 6 | open |
+| 38 | large | BS70-CX01 The CurseConsortContractor Hera | OPEN, first | Ogre Wizard | 81 | 3 | open |
+| 39 | large | SD69-CX01 The GenesisContractor Brahma | OPEN, first | Ancient Dragon | 91 | 2 | open |
+| 40 | large | BS68-CX01 The SorcererContractor Hades | OPEN, first | Infernal Lord | 57 | 4 | open |
+| 41 | large | BS68-CX02 The SteelContractor Athena | OPEN, first | Android | 81 | 5 | open |
+| 42 | large | BS62-X09 Grandwalker Kukulkan | OPEN, first | Dark Snake | 72 | 6 | open |
+| 43 | large | BS55-X09 Grandwalkers Izanagi & Izanami | OPEN, first | Spiritual Beast, Plant Spirit | 83 | 9 | open |
+| 44 | large | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 59 | 5 | open |
+| 45 | large | BS51-X08 Grandwalker Amaterasu | OPEN, first | War Dragon, Clever Machine, Vassal, Lord | 63 | 10 | open |
+| 46 | large | BS51-X09 Grandwalker Dionysus | OPEN, first | Zombie | 70 | 7 | open |
+| 47 | large | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 53 | 3 | open |
+| 48 | large | BS50-X10 Grandwalker Anubis | OPEN, first | Terra Dragon | 63 | 8 | open |
+| 49 | large | BS50-X11 Grandwalker Tsukuyomi | OPEN, first | Evil Shadow, Youkai | 144 | 11 | open |
+| 50 | large | BS50-X12 Grandwalker of Preservation Vishnu | complete | Armored Dragon | 62 | 7 | open |
+| 51 | large | BS50-X13 Grandwalker Hephaestus | OPEN, first | Artificial Soldier | 107 | 7 | open |
+| 52 | large | BS50-XX02 Grandwalker Zeus-Lolo | OPEN, first | Worldswalker | 229 | 14 | open |
+| 53 | large | BS49-X08 Grandwalker Ares | OPEN, first | Parasite, Shellman | 96 | 8 | open |
+| 54 | large | BS49-X09 Grandwalker Krishna | complete | Armored Dragon | 62 | 7 | open |
+| 55 | large | BS49-X10 Grandwalker Susanoo | OPEN, first | Terra Dragon, Ocean Emperor | 100 | 9 | open |
+| 56 | large | BS49-XX02 Grandwalker Guren | OPEN, first | Ancient Dragon | 91 | 2 | open |
+| 57 | large | BS48-SP01 Bashin Dan | OPEN, first | Astral Dragon, Astral Soul, Astral Deity, Galaxian | 183 | 8 | open |
+| 58 | large | BS48-SP02 The Moonlight Barone | OPEN, first | Armed Machine, Astral Soul, Astral Deity, Galaxian | 199 | 7 | open |
+| 59 | large | BS48-X08 Grandwalker of Creation Brahma | complete | Ancient Dragon | 91 | 2 | open |
+| 60 | large | BS48-XX02 Grandwalker Lilia | OPEN, first | Astral Deity, Galaxian, Astral Soul | 83 | 1 | open |
+| 61 | large | BS47-CP07 Clash King Dan | OPEN, first | Reptile Beast, Terra Dragon, Winged Dragon, Ancient Dragon, Astral Dragon | 333 | 42 | open |
+| 62 | large | BS47-X07 Grandwalker Horus | OPEN, first | Winged Beast | 87 | 13 | open |
+| 63 | large | BS47-X08 Grandwalker Thoth | OPEN, first | Armed Machine | 123 | 6 | open |
+| 64 | large | BS47-X09 Grandwalker Poseidon | OPEN, first | Fusion Beast | 74 | 1 | open |
+| 65 | large | BS46-CP01 Hinobori Hajime | OPEN, first | Dragon Warrior, Supreme Hero | 56 | 2 | open |
+| 66 | large | BS46-CP02 Rekka Yukimura | OPEN, first | War Dragon, Vassal, Lord | 58 | 8 | open |
+| 67 | large | BS46-X09 Grandwalker Zeus | OPEN, first | Emperor Beast | 105 | 6 | open |
+| 68 | large | BS46-X10 Grandwalker Hera | OPEN, first | Ogre Wizard | 81 | 3 | open |
+| 69 | large | BS46-X11 Grandwalker Athena | OPEN, first | Android | 81 | 5 | open |
+| 70 | large | BS46-X12 Grandwalker Ra | OPEN, first | Imaginary Beast | 72 | 4 | open |
+| 71 | large | BS45-CP01 Bashin Toppa | OPEN, first | Ancient Dragon | 91 | 2 | open |
+| 72 | large | BS45-CP02 Rei the Number One Star | OPEN, first | Incarnate, Dragon | 92 | 12 | open |
+| 73 | large | BS45-X08 Grandwalker Isis | OPEN, first | Divine Spirit | 94 | 4 | open |
+| 74 | large | BS45-X09 Grandwalker Set | OPEN, first | Beast Head | 100 | 5 | open |
+| 75 | large | BS44-X07 Grandwalker Apollon | OPEN, first | Astral Dragon | 106 | 7 | open |
+| 76 | large | BS44-X08 Grandwalker Osiris | OPEN, first | Dark Snake | 72 | 6 | open |

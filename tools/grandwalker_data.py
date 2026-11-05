@@ -4,7 +4,7 @@
 Every Grandwalker Nexus (family 創界神, type Nexus) and every Contract Grandwalker Nexus (type missing in the official
 fields, 《真・神託》) with its Oracle / Contract Oracle target (the 〔families＆cost〕 brackets after 《神託》), the two Core
 Charge triggers, the products it was printed in, and for every target family the cards of BS44-BS77 / SD44-SD70 in the
-library (data/cards), oldest first, with their completion state.
+library (data/cards) (cards missing from the official fields are matched by their English family list), oldest first, with their completion state.
 
   python3 tools/grandwalker_data.py            -> data/kb/grandwalker-nexus.json + docs/reports/grandwalker-families.md
   python3 tools/grandwalker_data.py --check    -> exit 1 when the committed files are out of date
@@ -21,6 +21,7 @@ OUT_JSON = os.path.join(ROOT, 'data/kb/grandwalker-nexus.json')
 OUT_MD = os.path.join(ROOT, 'docs/reports/grandwalker-families.md')
 OUT_TAB = os.path.join(ROOT, 'docs/reports/grandwalker-family-table.md')
 MIN_SET = 44
+PROMO_MIN = 25     # P25 is the first Saga-era promo set carrying Grandwalker families (P25-04, P25-05)
 SHARED_FRAC = 0.3   # a family targeted by this share of the Nexus cards of one kind is generic support (化神, 界渡, 眷属, 締皇), not the card's own family
 ORACLE = re.compile(r'《(真・神託|新神託|神託)》((?:〔[^〕]*〕)+)')
 
@@ -36,6 +37,14 @@ def load_cards():
 def set_key(code):
     m = re.match(r'(BS|SD)(\d+)$', code)
     return (int(m.group(2)), 0 if m.group(1) == 'BS' else 1) if m else None
+
+
+def card_key(cid):
+    # sort/filter key of a card number: BS/SD sets, plus Saga-era promo cards (P25 and later); None = not counted (collab boxes BSC, old promos)
+    k = set_key(cid.split('-')[0])
+    if k: return k
+    m = re.match(r'P(\d+)$', cid.split('-')[0])
+    return (1000 + int(m.group(1)), 0) if m and int(m.group(1)) >= PROMO_MIN else None
 
 
 def products(rec):
@@ -112,12 +121,19 @@ def build():
             for t in g['families_jp']:
                 fam_cards.setdefault(t, None)
     for t in fam_cards:
-        lst = []
+        lst = []; en = en_of(t)
         for cid, rec in off.items():
             if t not in (rec.get('familiesJp') or '').split('・'): continue
-            s = set_key(cid.split('-')[0]); c = lib.get(cid)
+            s = card_key(cid); c = lib.get(cid)
             if not s or s[0] < MIN_SET or not c: continue
             lst.append((s, cid, c))
+        have = {x[1] for x in lst}
+        # RULE (owner 2026-11-05): official-fields does not list every library card (AX/TX/CP/P cards and some BS73-BS77 numbers are missing),
+        # so a library card that has no family in official-fields (absent, or listed without familiesJp) is matched by its English family list, never dropped.
+        for cid, c in lib.items():
+            if (off.get(cid) or {}).get('familiesJp') or cid in have or not en or en not in (c.get('families') or []): continue
+            s = card_key(cid)
+            if s and s[0] >= MIN_SET: lst.append((s, cid, c))
         lst.sort(key=lambda x: (x[0], x[1]))
         fam_cards[t] = [{'id': cid, 'name': c['name'], 'type': c['type'], 'cost': c.get('cost'), 'complete': bool(c.get('fxComplete'))} for _, cid, c in lst]
     for r in rows:
@@ -133,7 +149,7 @@ def build():
         ids = {}
         for t in own:
             for c in fam_cards[t]: ids.setdefault(c['id'], c)
-        order_ids = sorted(ids, key=lambda i: (set_key(i.split('-')[0]), i))
+        order_ids = sorted(ids, key=lambda i: (card_key(i), i))
         r['deck_cards'] = order_ids
         r['revival_open'] = [x['id'] for x in rev if not x['complete'] and set(x['families_jp']) & set(own)]   # open Revival cards in the Nexus' own families
         r['deck_incomplete'] = [i for i in order_ids if not ids[i]['complete']]
@@ -143,6 +159,24 @@ def build():
     data = {'source': 'official card database fields (data/sources/official-fields.json)', 'count': len(rows),
             'nexus': rows, 'shared_families_jp': sorted(shared), 'revival_cards': rev, 'family_en': {t: en_of(t) for t in fam_cards}, 'family_cards': fam_cards}
     return data
+
+
+_OFF = {}
+def load_off():
+    if not _OFF: _OFF.update(json.load(open(OFF)))
+    return _OFF
+
+
+def coverage_gaps(d):
+    # Guard: every library card (BS/SD/promo >= MIN_SET) whose English family list names a target family must be in that family's list.
+    lib = load_cards(); gaps = []
+    for t, en in d['family_en'].items():
+        have = {c['id'] for c in d['family_cards'][t]}
+        for cid, c in lib.items():
+            k = card_key(cid)
+            if (load_off().get(cid) or {}).get('familiesJp'): continue
+            if en and k and k[0] >= MIN_SET and en in (c.get('families') or []) and cid not in have: gaps.append((t, cid))
+    return gaps
 
 
 def family_table(d):
@@ -201,6 +235,9 @@ def report(d):
 
 if __name__ == '__main__':
     d = build(); js = json.dumps(d, ensure_ascii=False, indent=1) + '\n'; md = report(d); tab = family_table(d)
+    gaps = coverage_gaps(d)
+    if gaps:
+        print('COVERAGE GAP (library card with a target family missing from the KB):', gaps); sys.exit(2)
     if '--check' in sys.argv:
         ok = os.path.exists(OUT_JSON) and open(OUT_JSON).read() == js and os.path.exists(OUT_MD) and open(OUT_MD).read() == md and os.path.exists(OUT_TAB) and open(OUT_TAB).read() == tab
         sys.exit(0 if ok else 1)
