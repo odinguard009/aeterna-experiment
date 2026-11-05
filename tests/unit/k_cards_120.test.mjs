@@ -95,3 +95,31 @@ test('K-1712 Prismwing cards BS73-043/048/051 (+B) and P25-04 are complete; Rebi
   assert.deepEqual(r.incomplete, [], j);
   assert.equal(r.hits, 2, j);
 });
+
+test('K-1713 BS73-TX04: FLASH_RESOLVED gives +1 core, flips at 4+ cores and trims the new Spirit to its LV1 cost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${setup}
+    const n = BS.mkInst('BS73-TX04'); n.cores = 3; P.nexus = [n]; P.spirits = []; P.reserve.n = 3; P.void = 0; P.count = 0;
+    await BS.fireFx(P, 'FLASH_RESOLVED', null, { subject: BS.mkInst('BS73-051') });
+    const b = P.spirits.find(s => s.id === 'BS73-TX04B');
+    return { flipped: !!b, nexusLeft: P.nexus.length, cores: b ? b.cores : -1, voidN: P.void, complete: BS.CARDS['BS73-TX04'].partial === false && BS.CARDS['BS73-TX04B'].partial === false };
+  })()`);
+  const j = JSON.stringify(r);
+  assert.ok(r.complete, j); assert.ok(r.flipped, j); assert.equal(r.nexusLeft, 0, j); assert.equal(r.cores, 1, j);
+});
+
+test('K-1714 BS73-TX04B: NO_LOSE_NEXT_TURN once per game, SELF_UNAFFECTED_TURN marks the Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${setup}
+    const s = BS.mkInst('BS73-TX04B'); s.cores = 2; P.spirits = [s];
+    const c = { p: P, opp: O, src: s, ctx: {} };
+    await BS.FX_ACTIONS.NO_LOSE_NEXT_TURN.run(c, { do: 'NO_LOSE_NEXT_TURN' });
+    const first = P.noLoseThru; P.noLoseThru = 0;
+    const c2 = { p: P, opp: O, src: s, ctx: {} };
+    await BS.FX_ACTIONS.NO_LOSE_NEXT_TURN.run(c2, { do: 'NO_LOSE_NEXT_TURN' });
+    await BS.FX_ACTIONS.SELF_UNAFFECTED_TURN.run({ p: P, opp: O, src: s, ctx: {} }, { do: 'SELF_UNAFFECTED_TURN' });
+    return { first: first === G.turnNo + 2, second: P.noLoseThru, did2: c2.ctx.did, un: s.unaffTurn === G.turnNo };
+  })()`);
+  const j = JSON.stringify(r);
+  assert.ok(r.first, j); assert.equal(r.second, 0, j); assert.equal(r.did2, false, j); assert.ok(r.un, j);
+});

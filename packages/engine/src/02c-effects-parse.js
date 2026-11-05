@@ -157,6 +157,7 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2000) return { error: 'CHARGE needs a whole-number "n"' };
         o.kind = e.kind; o.n = e.n; if (e.noUlt === true) o.noUlt = true;
       }
+      if (e.flag === 'FREE_REDUCTION' && e.oppAtk != null) { if (!Number.isInteger(e.oppAtk) || e.oppAtk < 1 || e.oppAtk > 5) return { error: 'FREE_REDUCTION "oppAtk" must be 1-5' }; o.oppAtk = e.oppAtk; }      // v582 more symbols in the opposing Attack Step
       if (e.flag === 'TREAT_LV3' && e.n != null) { if (e.n !== 2) return { error: 'TREAT_LV3 "n" must be 2 (default 3)' }; o.n = 2; }      // v0.184 "treated as being at LV2"
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
         if (!Number.isInteger(e.n) || e.n < 0 || e.n > 30) return { error: 'HAND_COST needs a whole-number "n" (0-30)' };

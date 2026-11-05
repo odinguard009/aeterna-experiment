@@ -26,7 +26,7 @@ function ignoreSumCond(p, card) {
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'IGNORE_SUMMON_COND' && (!e.lv || e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) return true; }
   return false;
 }
-/* v384 STATIC ALSO_TREATED (to self): "this Spirit's color and symbol are also treated as <colours>": symbol:true adds those attributes to every symbol of the card, color:true adds them to its colours (fxMatch colour tests and "unaffected by opposing <colour> effects"); level-gated, no condition, Field only */
+/* v384 STATIC ALSO_TREATED (to self): "this Spirit's color and symbol are also treated as <colours>": symbol:true / color:true add them to the symbols / colours; level-gated, Field only */
 function alsoTreated(i, what) {      // v417: a STATIC ALSO_TREATED may carry an `if` ("while you control a Purple Grandstone Nexus")
   if (!G || !i || !CARDS[i.id] || !(fieldList(G.p.player).includes(i) || fieldList(G.p.opponent).includes(i))) return [];
   const L = lvNo(i), out = [], own = fieldList(G.p.player).includes(i) ? G.p.player : G.p.opponent;
@@ -641,6 +641,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     p.magicTurn = (p.magicTurn && p.magicTurn.turn === G.turnNo) ? p.magicTurn : { turn: G.turnNo, cards: [] };
     p.magicTurn.cards.push(inst.id);
     await fireFx(p, 'MAGIC_USED', null, { subject: inst });
+    if (ch.ctx === 'flash') await fireFx(p, 'FLASH_RESOLVED', null, { subject: inst });      // v582 "after your Flash effect resolves" (Release)
     await fireFx(opp, 'OPP_MAGIC_USED', null, { subject: inst });      // v284 "when the opponent uses a Magic card"
   }
   checkDepletion(p); checkDepletion(opp);

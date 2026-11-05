@@ -230,9 +230,9 @@ Object.assign(FX_ACTIONS, {
 /* v572 (Lane K) REBIRTH_FLIP {ask, lifeTrashSym, countLe}: Rebirth, "you can flip this card" (the flip itself is rebirthFlip in 03b-rebirth.js).
    ask: you can (the human is asked, the CPU always flips). lifeTrashSym N: when you have N or more symbol colours, also send an opposing Life to the Trash ("instead, you can flip it, sending an opposing Life to the Trash":
    the flip happens either way, the Life only with the colours). countLe N: only while you have N or fewer counters ("Six Heaven Rebirth: 5 or less Counters"). After the flip the owner gets Count +1 (one core from the Void becomes a counter, fires COUNTER_UP) and the back face's (When Reborn) effects fire. Not enforced: "only one Rebirth can be used at a time". */
-FX_ACTIONS.REBIRTH_FLIP = { chk: a => (a.ask == null || a.ask === true) && (a.lifeTrashSym == null || (Number.isInteger(a.lifeTrashSym) && a.lifeTrashSym >= 2 && a.lifeTrashSym <= 6)) && (a.countLe == null || (Number.isInteger(a.countLe) && a.countLe >= 0 && a.countLe <= 30)) && Object.keys(a).every(k => ['do', 'if', 'cost', 'ask', 'lifeTrashSym', 'countLe'].includes(k)),
-  txt: a => `${a.ask ? 'you can ' : ''}flip this card (Rebirth${a.countLe != null ? ': ' + a.countLe + ' or fewer counters' : ''})${a.lifeTrashSym ? `; with ${a.lifeTrashSym} or more symbol colours, also send an opposing Life to the Trash` : ''}`,
-  can: (c, a) => !!c.src && !!rebirthTarget(c.src) && (a == null || a.countLe == null || c.p.count <= a.countLe) && (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)),
+FX_ACTIONS.REBIRTH_FLIP = { chk: a => (a.ask == null || a.ask === true) && (a.lifeTrashSym == null || (Number.isInteger(a.lifeTrashSym) && a.lifeTrashSym >= 2 && a.lifeTrashSym <= 6)) && (a.countLe == null || (Number.isInteger(a.countLe) && a.countLe >= 0 && a.countLe <= 30)) && (a.coresGe == null || (Number.isInteger(a.coresGe) && a.coresGe >= 1 && a.coresGe <= 9)) && (a.trimLv1 == null || a.trimLv1 === true) && Object.keys(a).every(k => ['do', 'if', 'cost', 'ask', 'lifeTrashSym', 'countLe', 'coresGe', 'trimLv1'].includes(k)),
+  txt: a => `${a.ask ? 'you can ' : ''}flip this card (Rebirth${a.coresGe != null ? ' with ' + a.coresGe + '+ cores' : ''}${a.countLe != null ? ': ' + a.countLe + ' or fewer counters' : ''})${a.lifeTrashSym ? `; with ${a.lifeTrashSym} or more symbol colours, also send an opposing Life to the Trash` : ''}`,
+  can: (c, a) => !!c.src && !!rebirthTarget(c.src) && (a == null || a.countLe == null || c.p.count <= a.countLe) && (a == null || a.coresGe == null || c.src.cores >= a.coresGe) && (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)),
   run: async (c, a) => {
     if (!FX_ACTIONS.REBIRTH_FLIP.can(c, a)) { c.ctx.did = false; return; }
     if (a.ask && !c.p.cpu) {
@@ -240,6 +240,7 @@ FX_ACTIONS.REBIRTH_FLIP = { chk: a => (a.ask == null || a.ask === true) && (a.li
       if (!yes) { c.ctx.did = false; return; }
     }
     const src = c.src; if (!rebirthFlip(c.p, src)) { c.ctx.did = false; return; }
+    if (a.trimLv1) { const k = CARDS[src.id].levels[0].cores, x = src.cores - k; if (x > 0) { src.cores = k; c.p.void += x; log(`${CARDS[src.id].name}: ${x} cores on it are sent to the Void (Rebirth).`); } }      // v582 "send the cores on it to the Void so the number equals the Reborn Spirit's LV1 cost"
     if (a.lifeTrashSym && fxIf(c.p, c.opp, { symColorsGe: a.lifeTrashSym }, { selfInst: src }) && FX_ACTIONS.OPP_LIFE_TO_TRASH) await FX_ACTIONS.OPP_LIFE_TO_TRASH.run({ p: c.p, opp: c.opp, src, ctx: { did: true } }, { do: 'OPP_LIFE_TO_TRASH', n: 1 });
     c.ctx.did = true; await rebirthAfter(c.p, src);
   } };

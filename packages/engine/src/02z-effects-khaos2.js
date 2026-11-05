@@ -327,3 +327,10 @@ function exhUnprev(c) {
   const k = CARDS[c.src.id]; if (!k || !((k.families || []).includes('Fungal Tree') || k.name === 'Contractor Yum-Kaax')) return false;
   return fieldList(c.p).some(s => !s.noFx && fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'EXHAUST_UNPREVENTABLE' && (!e.lv || e.lv.includes(lvNo(s)))));
 }
+
+/* v582 SELF_UNAFFECTED_TURN: "during this turn, this Spirit is unaffected by opposing effects" (mark read by fxImmune). BS73-TX04B */
+FX_ACTIONS.SELF_UNAFFECTED_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'this Spirit is unaffected by opposing effects during this turn', can: () => true,
+  run: async c => { c.src.unaffTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name} is unaffected by opposing effects during this turn.`); } };
+/* v582 NO_LOSE_NEXT_TURN: "(Once per Game: Same Name) until the End Step of your next turn, even if your deck is zero or your Life becomes zero, you won't lose the game" (win() in 07-turn reads noLoseThru). BS73-TX04B */
+FX_ACTIONS.NO_LOSE_NEXT_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "until the End Step of your next turn you won't lose even if your deck or Life is zero (once per game, same name)", can: c => !(c.p.onceGame && c.p.onceGame['noLose:' + CARDS[c.src.id].name]),
+  run: async c => { const k = 'noLose:' + CARDS[c.src.id].name; c.p.onceGame = c.p.onceGame || {}; if (c.p.onceGame[k]) { c.ctx.did = false; return; } c.p.onceGame[k] = true; c.p.noLoseThru = G.turnNo + 2; c.ctx.did = true; log(`${poss(c.p)} won't lose until the End Step of the next turn.`); } };

@@ -11376,18 +11376,51 @@
    "12"
   ],
   "rebirthTo": "BS73-TX04B",
-  "fxComplete": false,
-  "residual": [
-   "Release:",
-   "◆When the Release condition is fulfilled, you can +1 core to this Nexus.",
-   "[LV1] Rebirth4m",
-   "When the number of cores on this Nexus becomes four or more, this Nexus can be flipped.",
-   "(Send the cores on it to the Void such that the number of cores becomes the same as the LV1 cost of the Reborn Spirit.)",
-   "Grand Mystery [LV1]",
-   "(Can't Stack) When you're summoning/deploying/using any \"Prismwing\" family card, fulfill one of its reduction symbols.",
-   "If it's the opposing Attack Step, instead, fulfill three of its reduction symbols."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "Assumed: Release is modelled as 'after your own Flash Magic resolves or a Flash Invoke effect resolves' (FLASH_RESOLVED); the Rebirth check (4+ cores, flip, extra cores sent to the Void down to the Reborn Spirit's LV1 cost) is made right after the +1 core. \"Can't Stack\" is not modelled. Grand Mystery: 1 reduction symbol fulfilled, 3 in the opposing Attack Step.",
+  "effects": [
+   {
+    "trigger": "FLASH_RESOLVED",
+    "lv": [
+     1
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CORE_TO_SELF",
+      "n": 1
+     },
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true,
+      "coresGe": 4,
+      "trimLv1": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "FREE_REDUCTION",
+    "n": 1,
+    "oppAtk": 3,
+    "match": {
+     "family": [
+      "Prismwing"
+     ]
+    },
+    "lv": [
+     1
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-X01",

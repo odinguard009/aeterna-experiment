@@ -609,3 +609,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v579 (Lane K): trigger `OPP_END_STEP` ("(Opposing End Step)", fired in `endStep` for the player whose turn is not ending), condition key `bedsGe N` (N or more Fungal Beds under your control), and `rebirthLeave` now honours the STATIC `REBIRTH_ON_LEAVE` effect `if`.
 - v580 (Lane K): trigger BED_SENT (a Fungal Bed Token is sent out; SEND_TOKEN wrapper in 02z), STATIC flag FLASH_COST_LOCK (Magic only), action REVEAL_BED_SUMMON {n, match} (BS73-TX02 / TX02B).
 - v581 (Lane K): STATIC flag EXHAUST_UNPREVENTABLE (BS75-CP03; EXHAUST_OPP / HEAVY_EXHAUST_OPP ignore Soul State immunity for Fungal Tree sources / Yum-Kaax).
+- v582 (Lane K): trigger FLASH_RESOLVED (after your Flash Magic / Flash Invoke effect resolves; Release), REBIRTH_FLIP keys `coresGe` and `trimLv1`, FREE_REDUCTION key `oppAtk`, actions SELF_UNAFFECTED_TURN and NO_LOSE_NEXT_TURN (BS73-TX04 / TX04B).

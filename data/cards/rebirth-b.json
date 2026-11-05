@@ -880,5 +880,101 @@
     ]
    }
   ]
+ },
+ {
+  "id": "BS73-TX04B",
+  "name": "The JewelEmpress Bijour-Joyaux",
+  "name_jp": "宝石の女皇帝ビジュール・ジュワイオー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 9,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 2,
+    "bp": 15000
+   },
+   {
+    "cores": 6,
+    "bp": 24000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Prismwing"
+  ],
+  "text": "Count +1\n\n{{Unleash|1}} [LV1][LV2][LV3] (When Reborn)\nBy sending one core from any of your Yellow Grandwalker Nexuses to this Spirit, during this turn, this Spirit is unaffected by opposing effects, and all your Spirits can't be blocked. \n\n[LV2][LV3] (When Attacks)\nYou can +2 cores to one of your Yellow-only Grandwalker Nexuses. When you've done so, (Once per Game: Same Name) if you have five counters or more, until the End Step of your next turn, even if your deck is zero, or your Life becomes zero, you won't lose the game.",
+  "image": "BS73-TX04b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Rebirth back face. Assumed: 'all your Spirits can't be blocked' affects the Spirits on the field when it resolves; the 5-counter check is made after the +2 cores.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "NEXUS_CORES_TO_SELF",
+       "n": 1,
+       "match": {
+        "family": [
+         "Grandwalker"
+        ],
+        "color": "yellow"
+       }
+      },
+      "then": [
+       {
+        "do": "SELF_UNAFFECTED_TURN"
+       },
+       {
+        "do": "UNBLOCKABLE_PICK",
+        "all": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 2,
+      "match": {
+       "family": [
+        "Grandwalker"
+       ],
+       "color": "yellow",
+       "mono": true
+      }
+     },
+     {
+      "do": "NO_LOSE_NEXT_TURN",
+      "if": {
+       "prev": true,
+       "counterGe": 5
+      }
+     }
+    ]
+   }
+  ]
  }
 ]

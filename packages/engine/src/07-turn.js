@@ -45,6 +45,7 @@ async function endStep(key) {
 }
 function win(key, why) {
   if (G.over) return;
+  const lo = G.p[other(key)]; if (lo && lo.noLoseThru >= G.turnNo && /Life|deck/i.test(why)) { log(`${poss(lo)} would lose (${why}) but does not (BS73-TX04B).`); return; }      // v582 NO_LOSE_NEXT_TURN
   G.over = true; G.winner = key; G.busy = true;
   log(`${who(G.p[key])} ${G.p[key].cpu || key === 'opponent' ? 'wins' : 'win'}: ${why}.`);
   if (G.rec) G.rec.final = matchSummary();
