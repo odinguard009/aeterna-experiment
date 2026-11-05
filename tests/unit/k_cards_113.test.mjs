@@ -116,3 +116,15 @@ test('K-1202 BSC48-054: Life reduced by the opponent lets the set Magic be disca
     return { fc: k.partial === false, setLeft: !!P.burst, inTrash: P.trash.includes(b), tt: !!k.trashTrigger, lf: k.lifeFlash === true }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.setLeft, false, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r)); assert.equal(r.tt, true, JSON.stringify(r)); assert.equal(r.lf, true, JSON.stringify(r));
 });
+
+test("K-1203 BS72-066: a Nexus holding this Brave taxes opposing low-cost attacks by one Reserve core; the braved Spirit cannot have its attack ended", async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = BS.STEPS ? BS.STEPS.indexOf('ATTACK') : 3;
+    const k = BS.CARDS['BS72-066']; const nid = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Nexus'); const nx = BS.mkInst(nid); nx.brave = BS.mkInst('BS72-066'); P.nexus = [nx];
+    const cheap = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && BS.CARDS[x].cost <= 3);
+    const att = BS.mkInst(cheap); att.cores = 1; O.spirits = [att]; O.reserve.n = 0;
+    const broke = await BS.payAtkTax(O, P, att); O.reserve.n = 2; const paid = await BS.payAtkTax(O, P, att);
+    nx.brave = null; O.reserve.n = 2; const free = await BS.payAtkTax(O, P, att);
+    return { fc: k.partial === false, broke, paid, free, left: O.reserve.n }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.broke, false, JSON.stringify(r)); assert.equal(r.paid, true, JSON.stringify(r)); assert.equal(r.free, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
+});

@@ -482,7 +482,7 @@ const blockTaxOK = (D, att, s) => { const q = att.blockTax; return !q || q.battl
 /* v223 STATIC ATK_TAX on the defender's field: the attacker's owner sends N Reserve cores to the Trash or the attack is cancelled. */
 async function payAtkTax(A, D, att) {
   let q = null;
-  if (D) for (const f of fieldList(D)) { const L = lvNo(f); for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'ATK_TAX'
+  if (D) for (const f of fieldList(D)) { const L = lvNo(f); for (const { e } of actList(f)) if (e.trigger === 'STATIC' && e.flag === 'ATK_TAX'
     && (!e.lv || e.lv.includes(L)) && (e.costLe != null ? CARDS[att.id].cost <= e.costLe : e.lvLimit === lvNo(att)) && (!e.oc || ocActive(f)) && fxIf(D, A, e.if || {}, { selfInst: f })) { q = { pay: e.pay }; break; } if (q) break; }
   if (!q) return true;
   const need = q.pay || 1;

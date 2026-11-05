@@ -1888,5 +1888,15 @@
   "status": "done",
   "example": "{\"lifeFlash\":true}",
   "rule": "Engine: after a Life reduction by the opponent, if the set card was not used as a Burst, the owner may discard it from the Burst Area to cast its Flash effect without paying the cost."
+ },
+ {
+  "id": "K_ATK_TAX_NEXUS_BRAVE",
+  "kind": "condition",
+  "meaning": "while this Brave is combined with a Nexus, the Nexus makes opposing low-cost attackers pay a Reserve core",
+  "pattern": "[While Combined with a Nexus] when an opposing cost N or less Spirit attacks, its owner sends a core from the Reserve to the Trash or the attack is cancelled",
+  "engine": "STATIC ATK_TAX with nexusBrave:true",
+  "status": "done",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"ATK_TAX\",\"nexusBrave\":true,\"costLe\":30,\"pay\":1}",
+  "rule": "Engine: the Nexus reads the Brave's nexusBrave effects; payAtkTax checks them on the defender's fields before an attack."
  }
 ]
