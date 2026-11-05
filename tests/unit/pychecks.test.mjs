@@ -11,7 +11,8 @@ const src = srcParts().map(p => readFileSync(p.rel, 'utf8')).join('\n');
 // engine names known statically: FX_TRIGGERS entries and every "NAME: {" key inside FX_ACTIONS blocks (v21 adds three flags by hand)
 const trig = (src.match(/const FX_TRIGGERS = \[([^\]]*)\]/) || ['', ''])[1].match(/'([A-Z_]+)'/g).map(s => s.slice(1, -1));
 const acts = [...src.matchAll(/^\s{2}([A-Z][A-Z0-9_]{2,}):\s*\{/gm)].map(m => m[1]);
-const known = new Set([...trig, ...acts, 'MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW']);
+const dotActs = [...src.matchAll(/FX_ACTIONS\.([A-Z][A-Z0-9_]{2,})\s*=/g)].map(m => m[1]);   // actions registered by assignment in the later engine parts
+const known = new Set([...trig, ...acts, ...dotActs, 'MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW']);
 
 test('P01 glossary: unique ids and required fields (v21)', () => {
   assert.equal(new Set(G.map(g => g.id)).size, G.length);

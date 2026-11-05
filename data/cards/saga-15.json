@@ -19739,8 +19739,8 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image. God reduction icon from Fandom (official list did not load BS71/BS72), v0.44.7.",
+  "fxComplete": true,
+  "note": "Lane K priority list (Nuadha). Remaining revealed cards go to the decktop or deckbottom (rest either); the Brave is summoned as a Spirit. 'Discard a Magic card on the opposing Field' = DISCARD_FIELD_MAGIC (no persistent Magic zone in the engine, so it finds nothing, as for BS69-024).",
   "manifest": {
    "name": "Contractor Nuadha",
    "counterGe": 2,
@@ -19767,7 +19767,8 @@
        ]
       },
       "pay": false,
-      "allowBrave": true
+      "allowBrave": true,
+      "rest": "either"
      }
     ]
    },
@@ -19791,14 +19792,26 @@
        ]
       },
       "pay": false,
-      "allowBrave": true
+      "allowBrave": true,
+      "rest": "either"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "subjBraved": "Scalostle",
+    "optional": true,
+    "actions": [
+     {
+      "do": "DISCARD_FIELD_MAGIC",
+      "costLe": 99
      }
     ]
    }
-  ],
-  "residual": [
-   "LV2/LV3 (Your Attack Step): when your Scalostle Brave Spirit attacks, you can discard a Magic card on the opposing Field",
-   "Revealed cards that are not summoned return to the bottom of the Deck only; the Brave is summoned as a Spirit (not directly combined)"
   ],
   "bicon": [
    "11"
@@ -22253,16 +22266,13 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image. God reduction icon from Fandom (official list did not load BS71/BS72), v0.44.7.",
+  "fxComplete": true,
+  "note": "Lane K priority list (Nuadha). The Lv2-3 'cannot block unless the opponent discards a Magic card' effect is decided once at the start of the Attack Step (Attack Step timing effects activate once when the step begins); reaching Lv2 later in the step does not start it.",
   "manifest": {
    "name": "Contractor Nuadha",
    "counterGe": 6,
    "turn": "YOURS"
   },
-  "residual": [
-   "House reading (v0.45): the Lv2-3 lock is decided once at the start of your Attack Step (the opponent discards then or not); reaching Lv2 later in that step does not start it"
-  ],
   "effects": [
    {
     "trigger": "ALLY_ATTACKS",

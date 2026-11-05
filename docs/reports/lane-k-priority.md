@@ -2,12 +2,8 @@
 
 Standing list (owner 2026-11-04): groups top to bottom, all before the Grandwalker queue. Edit data/kb/lane-k-priority.json with the tool (`--add`, `--top`, `--after`, `--remove`).
 
-## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 52 of 53 complete
+## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 53 of 53 complete - DONE
 Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.
-
-| Card | Name | State |
-|---|---|---|
-| SD57-X02 | The HeavenlyDemonKing God-Sechs -Type Shadow- | OPEN |
 
 ## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 26 of 26 complete - DONE
 Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.json.
@@ -15,13 +11,11 @@ Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.
 ## 3. Awakened Dragon family (awakened-dragon-family): 0 of 0 complete - DONE
 Added 2026-11-05. Every card whose families list holds Awakened Dragon (not cards that only have it in the name).
 
-## 4. Grandwalker Nuadha + Scalostle family (nuadha): 23 of 28 complete
+## 4. Grandwalker Nuadha + Scalostle family (nuadha): 25 of 28 complete
 Added 2026-11-05. owner 2026-11-05
 
 | Card | Name | State |
 |---|---|---|
-| BS71-058 | The ArmyMedic Dian | OPEN |
 | BS71-072 | Nuadha's Bulwark Temple | OPEN |
-| BS71-X09 | The SilverArmDivineEmperor Agateram | OPEN |
 | BS74-064 | The Dana Sniper | OPEN |
 | BS71-CX03 | The SilverArmContractor Nuadha | OPEN |

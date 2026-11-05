@@ -1575,7 +1575,7 @@
   "meaning": "destroys one opposing Spirit or Nexus whose symbol count is at most the given number.",
   "pattern": "[Dd]estroy an opposing Spirit/Nexus with \\d+ symbols? or fewer",
   "engine": "DESTROY_ANY_SYMBOLS",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-009",
   "rule": "Engine: destroys one opposing Spirit or Nexus whose symbol count is at most the given number."
  },
@@ -1585,7 +1585,7 @@
   "meaning": "once per turn per card name, discard a family card and draw N cards.",
   "pattern": "[Dd]iscard (one|a) card from your Hand\\. If it is a .* family card, draw",
   "engine": "DISCARD_DRAW_FAMILY",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-011",
   "rule": "Engine: once per turn per card name, discard a family card and draw N cards."
  },
@@ -1595,7 +1595,7 @@
   "meaning": "moves N Cores from the opponent Reserve to their Trash.",
   "pattern": "core from the opposing Reserve to the Trash",
   "engine": "OPP_RESERVE_CORES_TO_TRASH",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-010",
   "rule": "Engine: moves N Cores from the opponent Reserve to their Trash."
  },
@@ -1605,7 +1605,7 @@
   "meaning": "condition true while a Level 2 Spirit of yours has that name part.",
   "pattern": "[Ii]f you control any LV2 \\\".*\\\"",
   "engine": "controlLv2",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-010",
   "rule": "Engine: condition true while a Level 2 Spirit of yours has that name part."
  },
@@ -1615,7 +1615,7 @@
   "meaning": "the Core count equals the number of different symbol colours you control.",
   "pattern": "for each .* symbol colou?r.* Nexus.* Void",
   "engine": "NEXUS_CORES_TO_VOID perSymColor",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-011",
   "rule": "Engine: the Core count equals the number of different symbol colours you control."
  },
@@ -1625,7 +1625,7 @@
   "meaning": "summon any number of matching Spirits from the Trash up to a total cost",
   "pattern": "summon any number of .* from your Trash, up to a total of Cost \\d+",
   "engine": "SUMMON_TRASH_TOTAL",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-012",
   "rule": "Engine: the player picks Spirits from the Trash one at a time while the sum of printed costs stays within N."
  },
@@ -1635,7 +1635,7 @@
   "meaning": "put N cores in total from the Void on matching Nexuses",
   "pattern": "\\+\\d+ cores? in total of any of your .* Nexuses",
   "engine": "VOID_TO_NEXUS_TOTAL",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-013",
   "rule": "Engine: each core is put on a Nexus of your choice among the matching ones, any split."
  },
@@ -1645,7 +1645,7 @@
   "meaning": "summon this card when an opposing effect would discard from the Deck",
   "pattern": "would be discarded by an opposing \"Deck-discarding effect\", before sending it to the Trash, you can summon it",
   "engine": "card.deckSummon (MILL_OPP)",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-014",
   "rule": "Engine: before an opposing MILL_OPP resolves, flagged cards in the Hand/Trash and among the discarded cards can be summoned without paying the cost."
  },
@@ -1655,7 +1655,7 @@
   "meaning": "give -N BP, destroy at 0 BP and draw from the deckbottom",
   "pattern": "destroy it, and draw a card from the deckbottom",
   "engine": "BP_MINUS zeroDestroy drawN drawBottom",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-021",
   "rule": "Engine: after the BP loss, a target at 0 BP is destroyed and the player draws N cards from the bottom of the Deck."
  },
@@ -1665,7 +1665,7 @@
   "meaning": "can't be blocked by opposing Spirits without a Soul Core",
   "pattern": "can't be blocked by opposing Spirits/Ultimates without \\(Soul Core\\)",
   "engine": "STATIC UNBLOCKABLE_LOW noSoul",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-048",
   "rule": "Engine: while active, only opposing Spirits holding a Soul Core may block the matching attacker."
  },
@@ -1675,7 +1675,7 @@
   "meaning": "cost becomes lower by exhausting one of your Grandwalker Nexuses",
   "pattern": "by exhausting one of your .* Grandwalker Nexuses?, this card becomes Cost \\d+",
   "engine": "costAlt.exhaust",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-056",
   "rule": "Engine: the alternate cost applies only if an untapped matching Grandwalker Nexus exists; casting exhausts it."
  },
@@ -1685,7 +1685,7 @@
   "meaning": "send one opposing core to the Reserve for each symbol color you have",
   "pattern": "For each symbol color you have, send a core from any opposing Spirits/Ultimates to the Reserve",
   "engine": "OPP_CORES_TO_RESERVE perSource ownSymColors",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-055",
   "rule": "Engine: counts your distinct symbol colors on the Field and takes that many cores, one at a time, from opposing Spirits."
  },
@@ -1695,7 +1695,7 @@
   "meaning": "Grand Field: fulfills one symbol color for Six Heaven Rush/Rebirth conditions",
   "pattern": "Fulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth",
   "engine": "STATIC SIX_HEAVEN_COLOR",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-CP03",
   "rule": "Engine: each active Nexus with this flag adds one symbol color to every symbol-color-count condition (symColorsGe), except those marked symColorsPlain."
  },
@@ -1705,7 +1705,7 @@
   "meaning": "During this turn, while your named Spirit attacks, the opponent cannot use Magic unless they send their Soul Core to the Trash",
   "pattern": "while your .{1,30} is attacking, unless the opponent sends their .{0,12}Soul Core.{0,3} to the Trash, they can't use Magic cards",
   "engine": "MAGIC_SOUL_TAX_TURN",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-CX02",
   "rule": "Engine: sets a per-turn lock read by the Magic-usable check; the first Magic cast while it applies pays the Soul Core once, which lifts the lock for the turn."
  },
@@ -1715,7 +1715,7 @@
   "meaning": "Condition: every card in your Trash matches a description",
   "pattern": "While every card in your Trash is .{1,60}(God-Sechs|family)",
   "engine": "if trashAllMatch",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-CX02",
   "rule": "Engine: true for an empty Trash as well."
  },
@@ -1725,7 +1725,7 @@
   "meaning": "Opposing Spirits/Ultimates/Nexuses can't refresh while this applies",
   "pattern": "(Every )?opposing .{1,60} can't refresh",
   "engine": "STATIC NO_REFRESH to:opp",
-  "status": "full",
+  "status": "wired",
   "example": "BSC48-X08",
   "rule": "Engine: refreshOne skips any card an active opposing NO_REFRESH static matches, in the Refresh Step and in refresh effects."
  },
@@ -1735,7 +1735,7 @@
   "meaning": "Condition: a Spirit of yours has a Soul Core on it",
   "pattern": "When a Soul Core is on a .{1,30}Spirit of yours( other than this Spirit)?",
   "engine": "if ctrl {type:Spirit, soul:true, other?, colors?}",
-  "status": "full",
+  "status": "wired",
   "example": "SD32-003",
   "rule": "Engine: ctrlCount counts only your Spirits that carry a Soul Core when the entry has soul:true; other:true leaves out the source Spirit."
  },
@@ -1745,7 +1745,7 @@
   "meaning": "During Brave: while braved to a Spirit with a given name",
   "pattern": "While braved to an? .{1,40}-named Spirit",
   "engine": "braved:true + if selfNameHas",
-  "status": "full",
+  "status": "wired",
   "example": "SD57-005",
   "rule": "Engine: a Brave effect marked braved:true reads the host Spirit as its context; selfNameHas checks that Spirit's name."
  },
@@ -1755,7 +1755,7 @@
   "meaning": "Besides this Spirit, destroy all your Spirits and Nexuses",
   "pattern": "Besides this Spirit, destroy all your Spirits and Nexuses",
   "engine": "DESTROY_OWN_ALL besides+nexus",
-  "status": "full",
+  "status": "wired",
   "example": "P16-16",
   "rule": "Engine: every own Spirit except the source and every own Nexus is destroyed; the source stays."
  },
@@ -1765,7 +1765,7 @@
   "meaning": "This Spirit can't Brave",
   "pattern": "can't attack nor Brave",
   "engine": "STATIC CANT_BRAVE",
-  "status": "full",
+  "status": "wired",
   "example": "P16-16",
   "rule": "Engine: no Brave card can be combined with this Spirit (braveFits refuses it). The 'can't be negated' rider has nothing to negate."
  },
@@ -1775,7 +1775,7 @@
   "meaning": "While a condition holds, change this Spirit's symbols to N symbols of one colour",
   "pattern": "change this Spirit's symbols to",
   "engine": "EXTRA_SYMBOL replace:true",
-  "status": "full",
+  "status": "wired",
   "example": "PB17-X02",
   "rule": "Engine: while the condition holds the printed symbols no longer count and N symbols of the colour count instead."
  },
@@ -1785,7 +1785,7 @@
   "meaning": "For each colour of your symbols, return one opposing Spirit to the Hand",
   "pattern": "for each color of your symbols, return",
   "engine": "BOUNCE_PER_SYMCOLOR",
-  "status": "full",
+  "status": "wired",
   "example": "SD32-X01",
   "rule": "Engine: counts your symbol colours, lets you pick that many opposing Spirits one by one, and returns them; with the Soul Core used for the summon cost their cores go to the Trash."
  },
@@ -1795,7 +1795,7 @@
   "meaning": "Put cores from several opposing Spirits to the opposing Trash, then Life per removed Spirit",
   "pattern": "cores each from two opposing Spirits to the opposing Trash",
   "engine": "OPP_SPIRITS_CORES_TRASH",
-  "status": "full",
+  "status": "wired",
   "example": "SJ15-20",
   "rule": "Engine: picks up to the listed number of opposing Spirits and moves the listed cores from each; with the chain condition met each Spirit that ends with no cores costs the opponent one Life core."
  },
@@ -1805,7 +1805,7 @@
   "meaning": "For each colour of your symbols, refresh one of your Spirits",
   "pattern": "for each symbol color you have, refresh a Spirit",
   "engine": "REFRESH_PER_SYMCOLOR",
-  "status": "full",
+  "status": "wired",
   "example": "SD32-007",
   "rule": "Engine: counts your symbol colours and refreshes that many of your exhausted Spirits, one pick each."
  },
@@ -1815,7 +1815,7 @@
   "meaning": "When this Spirit destroys an opposing Spirit (by its effect or in battle)",
   "pattern": "When this Spirit destroys any opposing Spirit/Ultimate",
   "engine": "OPP_DESTROYED_FX bySrc.self + ALLY_DESTROYS self",
-  "status": "done",
+  "status": "wired",
   "example": "BS71-057",
   "rule": "Engine: fires for the Spirit that caused the destruction, through its own effect or a battle win."
  },
@@ -1825,7 +1825,7 @@
   "meaning": "Discard cards from your Hand until it is N or less",
   "pattern": "discard cards from your Hand until your Hand is three or less",
   "engine": "DISCARD_DOWN_TO n",
-  "status": "done",
+  "status": "wired",
   "example": "BS72-074",
   "rule": "Engine: the owner picks the cards to discard (the CPU throws away the cheapest) until the Hand holds at most n cards."
  },
@@ -1835,7 +1835,7 @@
   "meaning": "Look at the entire opposing Hand and discard cards from it",
   "pattern": "look at the entire opposing Hand, and discard two cards from among them",
   "engine": "OPP_HAND_DISCARD_LOOK n",
-  "status": "done",
+  "status": "wired",
   "example": "BS71-NX03",
   "rule": "Engine: the owner of the effect looks at the opposing Hand and chooses the cards to discard (the CPU takes the most expensive)."
  },
@@ -1845,7 +1845,7 @@
   "meaning": "You control a matching card with N or more cores on it",
   "pattern": "five or more cores on one of your Blue \"Contractor\"",
   "engine": "if.coresOnGe {n, match}",
-  "status": "done",
+  "status": "wired",
   "example": "BS71-NX03",
   "rule": "Engine: true when one card on your field that matches has at least N cores on it."
  },
@@ -1855,7 +1855,7 @@
   "meaning": "Cost N or less, +1 for each of your <family> family Braves",
   "pattern": "increase this \"Cost Destruction effect\" limit by \\+1",
   "engine": "DESTROY costLeBraves",
-  "status": "done",
+  "status": "wired",
   "example": "{\"do\":\"DESTROY\",\"costLeBraves\":{\"base\":3,\"family\":[\"Scalostle\"]}}",
   "rule": "Engine: the cost limit of the destruction is the base plus the number of your Braves of that family attached to your Spirits or Nexuses."
  },
@@ -1865,7 +1865,7 @@
   "meaning": "summon the discarded card instead of leaving it in the Trash",
   "pattern": "would be discarded by your effect, you can summon it instead",
   "engine": "SUMMON_DISCARDED",
-  "status": "done",
+  "status": "wired",
   "example": "{\"trigger\":\"OWN_DISCARD\",\"actions\":[{\"do\":\"SUMMON_DISCARDED\",\"match\":{\"type\":\"Brave\"}}]}",
   "rule": "Engine: runs from OWN_DISCARD after the discard; the first matching discarded card is summoned from the Trash without paying its cost."
  },
@@ -1875,7 +1875,7 @@
   "meaning": "look at the opposing Burst; if it's a Spirit card, discard it and send a Life to the Reserve",
   "pattern": "Look at the contents of an opposing Burst, and if it's a Spirit card, discard it",
   "engine": "BURST_SPIRIT_PUNISH",
-  "status": "done",
+  "status": "wired",
   "example": "{\"do\":\"BURST_SPIRIT_PUNISH\"}",
   "rule": "Engine: looks at the opposing set Burst; only a Spirit card is discarded, and then one opposing Life goes to the Reserve."
  },
@@ -1885,7 +1885,7 @@
   "meaning": "when your Life is reduced by the opponent, discard this set Magic to use its Flash effect for free",
   "pattern": "when your Life is reduced by the opponent, by discarding it, immediately activate its Flash effect without paying the cost",
   "engine": "card field lifeFlash",
-  "status": "done",
+  "status": "wired",
   "example": "{\"lifeFlash\":true}",
   "rule": "Engine: after a Life reduction by the opponent, if the set card was not used as a Burst, the owner may discard it from the Burst Area to cast its Flash effect without paying the cost."
  },
@@ -1895,7 +1895,7 @@
   "meaning": "while this Brave is combined with a Nexus, the Nexus makes opposing low-cost attackers pay a Reserve core",
   "pattern": "[While Combined with a Nexus] when an opposing cost N or less Spirit attacks, its owner sends a core from the Reserve to the Trash or the attack is cancelled",
   "engine": "STATIC ATK_TAX with nexusBrave:true",
-  "status": "done",
+  "status": "wired",
   "example": "{\"trigger\":\"STATIC\",\"flag\":\"ATK_TAX\",\"nexusBrave\":true,\"costLe\":30,\"pay\":1}",
   "rule": "Engine: the Nexus reads the Brave's nexusBrave effects; payAtkTax checks them on the defender's fields before an attack."
  },
@@ -1905,7 +1905,7 @@
   "meaning": "when summoned, return every other Spirit on both Fields to the bottom of its owner's deck",
   "pattern": "When this Spirit is summoned, return all other Spirits to the bottom of the deck",
   "engine": "SUMMONED BOUNCE_ALL_OTHERS",
-  "status": "done",
+  "status": "wired",
   "example": "{\"trigger\":\"SUMMONED\",\"action\":\"BOUNCE_ALL_OTHERS\",\"optional\":true}",
   "rule": "Engine: bounceCard to deckBottom for each other Spirit; no-return cards stay and immune opposing cards are skipped."
  },
@@ -1915,7 +1915,7 @@
   "meaning": "this Spirit is unaffected by effects of other cards, only its own effects still apply",
   "pattern": "This Spirit is unaffected by the effects of other Spirits",
   "engine": "STATIC UNAFFECTED with exceptOwn:true",
-  "status": "done",
+  "status": "wired",
   "example": "{\"trigger\":\"STATIC\",\"flag\":\"UNAFFECTED\",\"exceptOwn\":true}",
   "rule": "Engine: the immunity filter in the target pick also drops candidates that carry this flag, even when the source is a friendly card."
  },
@@ -1945,7 +1945,7 @@
   "meaning": "Return an opposing Spirit, an Ultimate and a Nexus (one of each) to the deckbottom.",
   "pattern": "return opposing Spirit/Ultimate/Nexus, one of each, to the deckbottom",
   "engine": "RETURN_OPP_SUN",
-  "status": "done",
+  "status": "wired",
   "example": "BSC48-XX01",
   "rule": "Engine: each class is chosen separately and may be skipped; opposing immunity still applies."
  },
@@ -1955,7 +1955,7 @@
   "meaning": "If the opposing Hand + Removed Zone hold five or more cards in total, the opponent discards from both until three or less remain.",
   "pattern": "If the opposing Hand + Removed Zone has a total of five or more cards, the opponent must discard cards from their Hand + Removed Zone until three or less cards remain in total.",
   "engine": "DISCARD_OPP_HAND_REMOVED {geTotal, leaveTotal}",
-  "status": "done",
+  "status": "wired",
   "example": "BS72-X07",
   "rule": "Engine: the opponent chooses which cards go to the Trash; Hand cards unaffected by effects stay, and the check happens once when the effect starts."
  },
@@ -1965,7 +1965,7 @@
   "meaning": "Exhaust a named Grandwalker Nexus, then summon a Brave from the Trash (cost at most your counters) straight onto a Spirit/Grandwalker Nexus.",
   "pattern": "You can exhaust one of your Grandwalker Nexuses. When you have done so, summon a Brave from your Trash without paying the cost, directly braving it to your Spirit/Grandwalker Nexus.",
   "engine": "EXHAUST_NEXUS_BRAVE_TRASH {nexusName, match}",
-  "status": "done",
+  "status": "wired",
   "example": "BS72-051",
   "rule": "Engine: only offered when a Nexus can be exhausted and a Brave from the Trash can combine; the Brave then triggers its Brave-summoned effects."
  },
@@ -1975,7 +1975,7 @@
   "meaning": "Six Heaven Rebirth: flip this card to its back face.",
   "pattern": "Six Heaven Rebirth: N or less Counters. When this Spirit attacks, you can flip it.",
   "engine": "REBIRTH_FLIP {ask, lifeTrashSym, countLe} + trigger REBORN",
-  "status": "done",
+  "status": "wired",
   "example": "SD57-TX01",
   "rule": "Engine: the card is swapped for its back face (keeps cores and exhaust state), the owner gets Count +1, then the back face's When Reborn effects run; the face reverts when the card leaves the Field. Only one Rebirth at a time is not enforced."
  },
@@ -1985,7 +1985,7 @@
   "meaning": "Rebirth replacement: when this card would leave the Field due to an opposing effect, it flips (and is deployed) instead.",
   "pattern": "When this Nexus would leave the Field by an opposing effect, you can flip this Nexus. / Return to Prime: When it would leave the Field due to an opposing effect, you can flip and deploy it.",
   "engine": "STATIC REBIRTH_ON_LEAVE",
-  "status": "done",
+  "status": "wired",
   "example": "SD57-006",
   "rule": "Engine: checked in removeNexus (destroyed) and leaveHook (destroyed/depleted/returned) when the opposing effect acts; a Nexus becomes its Spirit back face (Soul Core put onto it), a flipped Spirit goes back to its Nexus front. The choice is automatic (no prompt). Count +1 and the back face's When Reborn effects resolve right after the effect."
  },
@@ -1995,7 +1995,7 @@
   "meaning": "Destroy a number of opposing Grandwalker Nexuses of other families.",
   "pattern": "Destroy five opposing non-\"Primal\" family Grandwalker Nexuses.",
   "engine": "DESTROY_OPP_GW_NEXUS {n, notFamily}",
-  "status": "done",
+  "status": "wired",
   "example": "SD57-006B",
   "rule": "Engine: up to N matching opposing Nexuses are destroyed, the ones with most cores first; not a target."
  },
@@ -2005,7 +2005,7 @@
   "meaning": "Summon this card from the Hand when an opposing effect targets one of your family Spirits, then redirect the effect.",
   "pattern": "When your \"Heavenly Demon King\" family Spirit(s) are targeted by an opposing effect, you can summon this card from the Hand. Then, change the target to this Spirit only, or change \"opponent\" to \"you\".",
   "engine": "targetSummon {family}",
-  "status": "done",
+  "status": "wired",
   "example": "SD57-X02",
   "rule": "Engine: checked where an effect picks its target; once per effect; the redirected target is not re-validated against the action filters."
  }
