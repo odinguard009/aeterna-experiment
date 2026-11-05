@@ -142,3 +142,16 @@ test('K-1187 PB17-X02: six Pentan-named Spirits turn its symbols into six Yellow
     return { fc: BS.CARDS['PB17-X02'].partial === false, solo, yellow: six.yellow }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.ok(r.yellow >= 6, JSON.stringify(r));
 });
+
+test('K-1188 SD32-X01: summon returns one opposing Spirit per symbol colour; Soul Core payment sends their cores to the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const me = BS.mkInst('SD32-X01'); me.cores = 4; me.soulPaid = true; P.spirits = [me];
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels.length > 0).slice(0, 3);
+    O.spirits = sp.map(k => { const x = BS.mkInst(k); x.cores = 2; return x; }); O.trashCores.n = 0; O.reserve.n = 0;
+    const colors = Object.values(symbolsOn(P)).filter(Boolean).length;
+    await BS.fireFx(P, 'SUMMONED', me, {});
+    return { fc: BS.CARDS['SD32-X01'].partial === false, colors, left: O.spirits.length, hand: O.hand.length, trash: O.trashCores.n, reserve: O.reserve.n }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.left, Math.max(0, 3 - r.colors), JSON.stringify(r));
+  assert.equal(r.reserve, 0, JSON.stringify(r)); assert.equal(r.trash, 2 * Math.min(3, r.colors), JSON.stringify(r));
+});

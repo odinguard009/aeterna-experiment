@@ -100,3 +100,21 @@ function symReplaced(p, i) {
   const L = lvNo(i), opp = G.p[other(p.key)];
   return fxEntries(i).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'EXTRA_SYMBOL' && e.replace === true && !(e.lv && !e.lv.includes(L)) && fxIf(p, opp, e.if, { selfInst: i }));
 }
+
+/* v556 BOUNCE_PER_SYMCOLOR: "for each colour of your symbols, return 1 opposing Spirit/Ultimate to the Hand" (SD32-X01); trashCoresIf:'soulPaid' = with (Soul Core) used for the summon cost the returned Spirits' cores go to the Trash instead. */
+Object.assign(FX_ACTIONS, {
+  BOUNCE_PER_SYMCOLOR: { chk: a => (a.trashCoresIf == null || a.trashCoresIf === 'soulPaid') && Object.keys(a).every(k => ['do', 'if', 'trashCoresIf'].includes(k)),
+    txt: () => 'for each colour of your symbols, return 1 opposing Spirit to the Hand', can: () => true,
+    run: async (c, a) => {
+      const n = COLORS.filter(k => (symbolsOn(c.p)[k] || 0) >= 1).length, got = [], trash = a.trashCoresIf === 'soulPaid' && !!c.src.soulPaid;
+      for (let j = 0; j < n; j++) {
+        const rest = c.opp.spirits.filter(t => !got.includes(t) && !fxImmune(c.opp, t)); if (!rest.length) break;
+        const t = await fxPickTarget(c, rest, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to return (${j + 1}/${n}).`); if (!t) break;
+        got.push(t);
+      }
+      for (const t of got) {
+        if (trash) { c.opp.trashCores.n += t.cores; t.cores = 0; if (t.soul) { t.soul = false; c.opp.trashCores.soul = true; } }
+        bounceCard(c.opp, t, 'hand');
+      }
+      if (!got.length) c.ctx.did = false; checkDepletion(c.opp); io.view({ type: 'board' });
+    } } });

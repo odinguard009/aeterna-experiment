@@ -58698,13 +58698,43 @@
   "image": "SD32-X01.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) For each color of your symbols, return 1 opposing Spirit/Ultimate to the Hand. If a {soulcore} (Soul Core) was used for the summon cost, all cores on the opposing Spirits/Ultimates returned to the hand by this effect are placed in the Trash instead of the opposing Reserve.",
-   "[LV2][LV3] (When Attacks) Once per turn, destroy an Exhausted opposing Spirit, and this Spirit Refreshes."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_PER_SYMCOLOR",
+      "trashCoresIf": "soulPaid"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "exhaustedOnly": true
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD32-X02",

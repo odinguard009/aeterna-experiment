@@ -1778,5 +1778,15 @@
     "status": "full",
     "example": "PB17-X02",
     "rule": "Engine: while the condition holds the printed symbols no longer count and N symbols of the colour count instead."
+  },
+  {
+    "id": "K_BOUNCE_PER_SYMCOLOR",
+    "kind": "effect",
+    "meaning": "For each colour of your symbols, return one opposing Spirit to the Hand",
+    "pattern": "for each color of your symbols, return",
+    "engine": "BOUNCE_PER_SYMCOLOR",
+    "status": "full",
+    "example": "SD32-X01",
+    "rule": "Engine: counts your symbol colours, lets you pick that many opposing Spirits one by one, and returns them; with the Soul Core used for the summon cost their cores go to the Trash."
   }
 ]
