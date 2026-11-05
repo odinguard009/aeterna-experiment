@@ -265,3 +265,26 @@ test('K-1166 BSC48-014: summoned for free when an opposing Deck-discarding effec
     return { summoned: O.spirits.includes(me), inTrash: O.trash.includes(me), ds: K.deckSummon, hu: K.handUnaffected, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.inTrash, false, JSON.stringify(r));
 });
+
+test('K-1167 BSC48-016: Cost 8/9 God-Sechs become Cost 6, also Red, Dairokuten Maou shields HDK Spirits from Red/White/Blue', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-016'];
+    const gs = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].name.includes('God-Sechs') && (BS.CARDS[k].families || []).includes('Heavenly Demon King') && [8, 9].includes(BS.CARDS[k].cost));
+    const me = BS.mkInst('BSC48-016'); me.cores = 2; P.spirits = [me]; P.nexus = [];
+    const g = BS.mkInst(gs); P.hand = [g]; P.trash = [];
+    const base = BS.CARDS[gs].cost, now = BS.handCostSet(P, BS.CARDS[gs]);
+    return { base, now, n: K.effects.length, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.now, 6, JSON.stringify(r)); assert.equal(r.n, 5, JSON.stringify(r));
+});
+
+test('K-1168 BSC48-017: a core from the Void to the Trash, then a core to itself with a Level 2 Dairokuten Maou', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-017'], E = K.effects;
+    const me = BS.mkInst('BSC48-017'); me.cores = 1; P.spirits = [me]; P.void = 3; const t = P.trashCores.n;
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[1].actions });
+    return { trashed: P.trashCores.n - t, cores: me.cores, void: P.void, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.trashed, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+});

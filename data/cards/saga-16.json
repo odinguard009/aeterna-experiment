@@ -29105,17 +29105,129 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2]",
-   "This Spirit's symbol is also treated as Red.",
-   "[LV1][LV2]",
-   "Every originally Cost 8/9 \"HeavenlyDemonKing God-Sechs\" in your Hand/Trash becomes Cost 6.",
-   "[LV2]",
-   "While you control any \"Contractor Dairokuten Maou\", this Spirit and all your \"Heavenly Demon King\" family Spirits/Grandwalker Nexuses are unaffected by opposing Red/White/Blue Spirit/Ultimate/Nexus/Magic effects."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "HAND_COST",
+    "lv": [
+     1,
+     2
+    ],
+    "n": 6,
+    "match": {
+     "family": [
+      "Heavenly Demon King"
+     ],
+     "name": [
+      "God-Sechs"
+     ],
+     "costIn": [
+      8,
+      9
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Dairokuten Maou"
+    },
+    "from": {
+     "colors": [
+      "red",
+      "white",
+      "blue"
+     ],
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "own",
+    "lv": [
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Dairokuten Maou"
+    },
+    "from": {
+     "colors": [
+      "red",
+      "white",
+      "blue"
+     ],
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    },
+    "match": {
+     "family": [
+      "Heavenly Demon King"
+     ],
+     "type": "Spirit"
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "own",
+    "lv": [
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Dairokuten Maou"
+    },
+    "from": {
+     "colors": [
+      "red",
+      "white",
+      "blue"
+     ],
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    },
+    "match": {
+     "family": [
+      "Grandwalker"
+     ],
+     "type": "Nexus"
+    }
+   }
+  ]
  },
  {
   "id": "BSC48-017",
@@ -29150,17 +29262,70 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "You can put a core from the Void to your Trash. Then, (Once per Turn: Same Name), if you control any LV2 \"Contracter Dairokuten Maou\", you can put a core from the Void to this Spirit.",
-   "[LV1][LV2]",
-   "This Spirit's symbol is also treated as Red.",
-   "[LV2]",
-   "This Spirit's symbol is also treated as Yellow."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "if": {
+     "controlLv2": "Dairokuten Maou"
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "to": "self",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "colors": [
+     "yellow"
+    ],
+    "symbol": true
+   }
+  ]
  },
  {
   "id": "BSC48-018",
