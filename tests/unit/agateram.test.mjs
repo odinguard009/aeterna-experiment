@@ -22,7 +22,7 @@ const unleash = `await BS.fireFx(P, 'ALLY_ATTACKS', att, { attacker: att });`;
 
 test('AG01 Agateram now has two effects; the only residual is the Lv2 timing house reading', async () => {
   const r = await g.page.evaluate(i => { const c = BS.CARDS[i]; return [Array.isArray(c.effects) && c.effects.length, (c.residual || []).length, (c.residual || []).some(x => /Unleash/i.test(x))]; }, AGA);
-  assert.deepEqual(r, [2, 1, false]);
+  assert.deepEqual(r, [2, 0, false]);   // Lane K completed it (no residual left)
 });
 test('AG02 Unleash effect: ALLY_ATTACKS, Lv1-3, subjBraved Scalostle, optional, BY Nuadha cores then discard-or then Life to Trash', async () => {
   const r = await g.page.evaluate(i => { const e = BS.CARDS[i].effects[0]; return [e.trigger, e.lv.join(''), e.subjBraved, !!e.optional, e.actions[0].do, e.actions[0].cost.do, e.actions[0].cost.n, e.actions[0].then.map(x => x.do).join('>')]; }, AGA);

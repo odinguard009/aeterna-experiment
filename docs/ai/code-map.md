@@ -86,10 +86,10 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (285 lines, ~6.4k tokens)
-symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect
+## packages/engine/src/02w-effects-indra.js (309 lines, ~7k tokens)
+symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect, BURST_TYPES
 
-## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
+## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.5k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
 ## packages/engine/src/02y-effects-khaos.js (465 lines, ~15k tokens)
@@ -125,7 +125,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (85 lines, ~1.7k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endMainHas, endMainFx, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (244 lines, ~6.4k tokens) — BATTLE
+## packages/engine/src/08-battle.js (245 lines, ~6.4k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, lifeFlashDiscard, maybeBurst1, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (175 lines, ~3.1k tokens) — CPU

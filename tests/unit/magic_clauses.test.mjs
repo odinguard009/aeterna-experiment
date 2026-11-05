@@ -22,7 +22,7 @@ const ev = body => g.page.evaluate(`(async () => { ${PRE}\n${body} })()`);
 
 test('M01 data: five Magic cards are complete; Dana Draw keeps one residual (Burst on depletion)', async () => {
   const r = await g.page.evaluate(ids => ids.map(id => [id, BS.CARDS[id].fxComplete !== false && !(BS.CARDS[id].residual || []).length]), [WT, TC, LT, PW, HD, DD]);
-  assert.deepEqual(r.filter(x => !x[1]).map(x => x[0]), [DD]);
+  assert.deepEqual(r.filter(x => !x[1]).map(x => x[0]), []);   // Dana Draw was completed in Lane K (Burst on depletion or destruction)
 });
 test('M02 Whirling Tide sent from the Deck by Contractor Nuadha: added to the Hand, +1 core from the Void to Nuadha', async () => {
   const r = await ev(`const n = nx('${NUA}'); const w = top('${WT}'); const v = P.void; await run(n, [mill]); return [P.hand.includes(w), P.trash.includes(w), n.cores, v - P.void];`);

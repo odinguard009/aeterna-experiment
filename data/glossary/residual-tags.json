@@ -69655,12 +69655,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "BS71-058": [
-  "G_SUBJ_BRAVED",
-  "K_BRAVE",
-  "M_OPTIONAL",
-  "T_ALLY_SUMMONED"
- ],
  "BS71-062": [
   "K_ARMOR",
   "K_BRAVE",
@@ -69886,15 +69880,6 @@
   "T_ACTIVATE",
   "T_ALLY_SUMMONED"
  ],
- "BS71-CX03": [
-  "A_NO_BURST",
-  "A_VOID",
-  "G_SUBJ_BRAVED",
-  "K_BRAVE",
-  "K_BURST",
-  "K_CONTRACT",
-  "T_ALLY_SUMMONED"
- ],
  "BS71-NX01": [
   "A_DESTROY_COST",
   "A_DRAW",
@@ -70077,9 +70062,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_MANIFESTS"
- ],
- "BS71-X09": [
-  "A_DISCARD_OPP"
  ],
  "BSC43-001": [
   "A_SUMMON_FREE",

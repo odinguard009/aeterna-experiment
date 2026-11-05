@@ -19740,7 +19740,7 @@
    "Manifest"
   ],
   "fxComplete": true,
-  "note": "Lane K priority list (Nuadha). Remaining revealed cards go to the decktop or deckbottom (rest either); the Brave is summoned as a Spirit. 'Discard a Magic card on the opposing Field' = DISCARD_FIELD_MAGIC (no persistent Magic zone in the engine, so it finds nothing, as for BS69-024).",
+  "note": "Lane K priority list (Nuadha). Remaining revealed cards go to the decktop or deckbottom (rest either); the Brave is summoned as a Spirit. 'Discard a Magic card on the opposing Field' = DISCARD_FIELD_MAGIC (no persistent Magic zone in the engine, so it finds nothing, as for BS69-024). God reduction icon from Fandom.",
   "manifest": {
    "name": "Contractor Nuadha",
    "counterGe": 2,
@@ -21229,8 +21229,8 @@
    "Revive",
    "Contract Field"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Lane K priority list (Nuadha). Contract Field core-from-Void part is a separate optional once-per-turn trigger on a Scalostle Brave summon (it also fires when the Neo-Core Charge itself was declined; house reading). A Brave summoned directly combined fires no summon trigger (as for Brahma), so only a Brave summoned as a Spirit counts.",
   "contract": true,
   "revive": true,
   "effects": [
@@ -21299,12 +21299,42 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "match": {
+     "family": [
+      "Scalostle"
+     ],
+     "type": "Brave"
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_BRAVE_SPIRIT",
+      "family": "Scalostle"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "subjBraved": "Scalostle",
+    "actions": [
+     {
+      "do": "NO_BURST_TYPE_BATTLE"
+     }
+    ]
    }
-  ],
-  "residual": [
-   "Contract Field: after the Neo-Core Charge of a Brave summon, put a core from the Void to a Scalostle Brave Spirit you control",
-   "Contract Field LV2 (Your Attack Step): when your Scalostle Brave Spirit attacks, choose a card type; the opponent cannot activate Burst effects of that type this battle",
-   "Neo-Core Charge from a Brave works only for a Brave summoned as a Spirit (a Brave summoned directly combined fires no summon trigger, as for Brahma)"
   ],
   "icons_verified": "symbols: the Contract Grandwalker has one symbol like BS74-CX03/SD69-CX01 (the Fandom export lists none)",
   "bicon": [
@@ -22267,7 +22297,7 @@
    "Manifest"
   ],
   "fxComplete": true,
-  "note": "Lane K priority list (Nuadha). The Lv2-3 'cannot block unless the opponent discards a Magic card' effect is decided once at the start of the Attack Step (Attack Step timing effects activate once when the step begins); reaching Lv2 later in the step does not start it.",
+  "note": "Lane K priority list (Nuadha). The Lv2-3 'cannot block unless the opponent discards a Magic card' effect is decided once at the start of the Attack Step (Attack Step timing effects activate once when the step begins); reaching Lv2 later in the step does not start it. God reduction icon from Fandom.",
   "manifest": {
    "name": "Contractor Nuadha",
    "counterGe": 6,

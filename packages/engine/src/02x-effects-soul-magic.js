@@ -106,7 +106,7 @@ Object.assign(FX_ACTIONS, {
   /* v438 ACTIVATE_SET_BURST {thenSet}: "Immediately activate one of your set Bursts" (Grandwalker Kei): ignores the Burst's own timing (force), its other conditions still apply; thenSet = "after that Burst activates, you can set a Burst card from your Hand" */
   ACTIVATE_SET_BURST: { chk: a => Object.keys(a).every(k => ['do', 'if', 'thenSet'].includes(k)) && (a.thenSet == null || a.thenSet === true),
     txt: a => 'immediately activate your set Burst' + (a.thenSet ? '; after that you can set a Burst card from your Hand' : ''),
-    can: c => !!c.p.burst && !c.p.burst.mirage && !!CARDS[c.p.burst.id].burst && !burstLocked(c.p) && G.noBurst !== c.p.key,
+    can: c => !!c.p.burst && !c.p.burst.mirage && !!CARDS[c.p.burst.id].burst && !burstLocked(c.p) && G.noBurst !== c.p.key && !(G.noBurstType && G.noBurstType.key === c.p.key && CARDS[c.p.burst.id].type === G.noBurstType.type),
     run: async (c, a) => {
       const b = c.p.burst; if (!b || b.mirage) { c.ctx.did = false; return; }
       const ok = await maybeBurst1(c.p, 'FORCE', { force: true }); c.ctx.did = ok; if (!ok || !a.thenSet || G.over) return;

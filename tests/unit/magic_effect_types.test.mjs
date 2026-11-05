@@ -55,7 +55,7 @@ test('M09 Dana Draw (Main): draw three, discard three; each Contractor Nuadha co
 });
 test('M10 Dana Draw Burst: cost destruction up to Cost 6, +4 with five counters', async () => {
   const r = await g.page.evaluate(i => { const b = BS.CARDS[i].burst; return [b.when, b.actions[0].do, b.actions[0].total, b.actions[0].boost]; }, DANA);
-  assert.deepEqual(r, ['ALLY_DESTROYED', 'DESTROY_TOTAL', 6, { counterGe: 5, n: 4 }]);
+  assert.deepEqual(r, ['ALLY_LOST', 'DESTROY_TOTAL', 6, { counterGe: 5, n: 4 }]);
 });
 
 test('M11 the card text of each wired Magic card is built from its actions', async () => {

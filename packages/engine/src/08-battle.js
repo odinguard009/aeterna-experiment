@@ -24,7 +24,7 @@ function battleEndAttack() {                          // v0.43 "when this battle
   G.attackEnded = G.turnNo; log('The battle ends, and with it the Attack Step.');
 }
 const attackStepOver = () => !!G && G.attackEnded === G.turnNo;
-async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; G.noFlash = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.symBattle = 0; f.symLockBattle = null; f.symLockN = 0; } } } }
+async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; G.noBurstType = null; G.noFlash = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.symBattle = 0; f.symLockBattle = null; f.symLockN = 0; } } } }
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall
@@ -131,6 +131,7 @@ async function maybeBurst1(owner, trigger, ctx) {
   const b = (ctx && ctx.fromSoul) || owner.burst; if (!b || b.mirage || !G || G.over) return false;
   if (G.noBurst === owner.key) return false;           // v0.38 "the opponent can't activate Burst effects" (this battle)
   if (burstLocked(owner)) return false;      // v340 static NO_OPP_BURST
+  if (G.noBurstType && G.noBurstType.key === owner.key && CARDS[b.id].type === G.noBurstType.type) return false;      // v575 per-type lock (BS71-CX03)
   const def = CARDS[b.id].burst, opp = G.p[other(owner.key)];
   if (def && def.when === 'LIFE_ANY' && (trigger === 'LIFE_DECREASE' || trigger === 'OPP_LIFE_DECREASE')) trigger = 'LIFE_ANY'; else if (trigger === 'OPP_LIFE_DECREASE') return false;
   const when = def && ((def.when === 'OPP_SUMMON_ADV_FX' && (trigger === 'OPP_SUMMON_FX' || trigger === 'OPP_ADVENT_FX')) || (def.when === 'ALLY_LOST' && (trigger === 'ALLY_DESTROYED' || trigger === 'ALLY_LOST'))) ? def.when : trigger;   // v0.71 "(When Summoned/Advents)" Burst condition

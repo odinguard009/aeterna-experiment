@@ -2000,6 +2000,26 @@
   "rule": "Engine: up to N matching opposing Nexuses are destroyed, the ones with most cores first; not a target."
  },
  {
+  "id": "VOID_TO_BRAVE_SPIRIT",
+  "kind": "action",
+  "meaning": "Put a core from the Void to a Brave Spirit of a family you control.",
+  "pattern": "put a core from the Void to any \"Scalostle\" family Brave Spirit you control",
+  "engine": "VOID_TO_BRAVE_SPIRIT {family}",
+  "status": "wired",
+  "example": "BS71-CX03",
+  "rule": "Engine: candidates are your Spirits that carry a Brave where the Spirit or the Brave has the family; the human taps one, the CPU takes the highest BP."
+ },
+ {
+  "id": "NO_BURST_TYPE_BATTLE",
+  "kind": "action",
+  "meaning": "Choose a card type; the opponent can't activate Burst effects of that type this battle.",
+  "pattern": "you can target a card type. During this battle, the opponent can't activate Burst effects of that card type",
+  "engine": "NO_BURST_TYPE_BATTLE",
+  "status": "wired",
+  "example": "BS71-CX03",
+  "rule": "Engine: sets G.noBurstType {key, type} for the current battle (cleared with the battle); checked before a Burst card of that type is activated, in the battle and from the manual Burst check."
+ },
+ {
   "id": "TARGET_SUMMON",
   "kind": "card field",
   "meaning": "Summon this card from the Hand when an opposing effect targets one of your family Spirits, then redirect the effect.",

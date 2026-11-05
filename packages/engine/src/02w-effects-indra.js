@@ -283,3 +283,27 @@ async function tenmaRedirect(c, t) {
   }
   return t;
 }
+
+/* v575 BS71-CX03 Contract Field.
+   VOID_TO_BRAVE_SPIRIT {family}: "put a core from the Void to any <family> family Brave Spirit you control" (a Spirit that carries a Brave, the Spirit or the Brave being of the family).
+   NO_BURST_TYPE_BATTLE: "target a card type; during this battle the opponent can't activate Burst effects of that card type" (G.noBurstType, cleared with the battle, read in maybeBurst1 and the manual Burst check). */
+const BURST_TYPES = ['Spirit', 'Magic', 'Nexus', 'Brave', 'Ultimate'];
+FX_ACTIONS.VOID_TO_BRAVE_SPIRIT = { chk: a => typeof a.family === 'string' && !!a.family && Object.keys(a).every(k => ['do', 'if', 'family'].includes(k)),
+  txt: a => `put a core from the Void to a "${a.family}" family Brave Spirit you control`,
+  cands: (c, a) => c.p.spirits.filter(s => s.brave && ((CARDS[s.id].families || []).includes(a.family) || (CARDS[s.brave.id].families || []).includes(a.family))),
+  can: (c, a) => FX_ACTIONS.VOID_TO_BRAVE_SPIRIT.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.VOID_TO_BRAVE_SPIRIT.cands(c, a); c.ctx.did = false; if (!L.length) return;
+    const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the "${esc(a.family)}" Brave Spirit that gets a core from the Void.`);
+    if (!t) return;
+    const k = takeFromVoid(c.p, 1); t.cores += k; c.ctx.did = k > 0; log(`${CARDS[c.src.id].name}: ${k} core from the Void to ${CARDS[t.id].name}.`); io.view({ type: 'board' });
+  } };
+FX_ACTIONS.NO_BURST_TYPE_BATTLE = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "choose a card type; during this battle, the opponent can't activate Burst effects of that card type",
+  can: () => !!G && !!G.attacker,
+  run: async c => {
+    let ty;
+    if (c.p.cpu) { const n = {}; for (const b of c.opp.hand.concat(c.opp.burst ? [c.opp.burst] : [])) { const t = CARDS[b.id].type; n[t] = (n[t] || 0) + 1; } ty = c.opp.burst ? CARDS[c.opp.burst.id].type : (BURST_TYPES.slice().sort((x, y) => (n[y] || 0) - (n[x] || 0))[0]); }
+    else ty = await ask({ title: `✨ ${CARDS[c.src.id].name}`, html: "Choose a card type: the opponent can't activate Burst effects of that type this battle.", buttons: BURST_TYPES.map(t => ({ label: t, cls: 'primary', value: t })) });
+    if (!ty) return; G.noBurstType = { key: c.opp.key, type: ty }; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${ty} Burst effects cannot be activated during this battle.`);
+  } };
