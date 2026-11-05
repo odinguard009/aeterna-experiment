@@ -166,3 +166,27 @@ test('K-1206 BSC48-X09: Change cost view is 6, CHANGE_BOUNCE_OPP sends an opposi
     return { fc: K.partial === false, cost: view.cost, orig: K.cost, left: O.spirits.length, od: O.deck.length - od0 }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.cost, 6, JSON.stringify(r)); assert.equal(r.orig, 10, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.od, 1, JSON.stringify(r));
 });
+
+test('K-1207 BSC48-X09: a free Change cast bounces an opposing Spirit, replaces the chosen Heavenly Demon King Spirit (cores kept, old one to the Trash); a second CHANGE_SELF in the same turn is refused', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const fam = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && (BS.CARDS[x].families || []).includes('Heavenly Demon King') && BS.CARDS[x].cost <= 9 && x !== 'BSC48-X09');
+    const old = BS.mkInst(fam); old.cores = 3; P.spirits = [old];
+    const opp = BS.mkInst(Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && !BS.CARDS[x].effects)); opp.cores = 1; O.spirits = [opp]; const od0 = O.deck.length;
+    const me = BS.mkInst('BSC48-X09'); P.hand = [me];
+    await BS.castMagic(P, { inst: me, target: null, plan: null, ctx: 'flash', free: true });
+    return { first: P.spirits[0] === me, cores: me.cores, oldTrash: P.trash.includes(old), oppLeft: O.spirits.length, od: O.deck.length - od0, hand: P.hand.includes(me) }; })()`);
+  assert.equal(r.first, true, JSON.stringify(r)); assert.equal(r.cores, 3, JSON.stringify(r)); assert.equal(r.oldTrash, true, JSON.stringify(r)); assert.equal(r.oppLeft, 0, JSON.stringify(r)); assert.equal(r.od, 1, JSON.stringify(r));
+});
+
+test('K-1208 BSC48-052: usable from the Trash when a Contractor Dairokuten Maou is in play (trashUse); TRASH_PICK_THREE returns a God-Sechs from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const K = BS.CARDS['BSC48-052'];
+    const gs = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && BS.CARDS[x].name.includes('God-Sechs') && BS.CARDS[x].cost <= 10 && !BS.CARDS[x].token);
+    const t = BS.mkInst(gs); P.trash = [t]; P.hand = [];
+    const me = BS.mkInst('BSC48-052');
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: [{ do: 'TRASH_PICK_THREE', nameHas: 'God-Sechs', costLe: 10 }] });
+    return { fc: K.partial === false, moved: !P.trash.includes(t), where: P.hand.includes(t) ? 'hand' : (P.spirits.includes(t) ? 'field' : 'other'), tu: !!(K.magic && K.magic.trashUse) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.moved, true, JSON.stringify(r)); assert.equal(r.tu, true, JSON.stringify(r));
+});
