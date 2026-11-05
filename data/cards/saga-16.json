@@ -24999,17 +24999,67 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{UMani|\"Contractor Yum-Kaax\" & C7 or more|(Your Turn)}}",
-   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
-   "[LV1][LV2][LV3]",
-   "The \"exhaustion effects\" of your \"Fungal Tree\" family Spirits/Nexuses and your \"Contractor Yum-Kaax\" can't be prevented by opposing effects.",
-   "[LV2][LV3] Flash - (Either Attack Step)",
-   "By exhausting two \"Fungal Bed\" you control, either heavy exhaust an opposing Spirit/Ultimate, or refresh one of your Spirits/Ultimates."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "EXHAUST_UNPREVENTABLE (v581): overrides the only modelled exhaustion prevention (Soul State UNAFFECTED) for exhaustion by Fungal Tree family cards and Contractor Yum-Kaax. Assumed: the Flash heavy-exhaust targets Spirits only, the refresh targets Spirits only (no Ultimate in the engine).",
+  "rcode": "CP",
+  "manifest": {
+   "name": "Contractor Yum-Kaax",
+   "counterGe": 7,
+   "turn": "YOURS",
+   "ultra": true
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "EXHAUST_UNPREVENTABLE",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "lv": [
+     2,
+     3
+    ],
+    "cost": {
+     "exhaustOwn": {
+      "kind": "nexus",
+      "n": 2,
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "CHOOSE_ONE",
+      "options": [
+       [
+        {
+         "do": "HEAVY_EXHAUST_OPP",
+         "n": 1
+        }
+       ],
+       [
+        {
+         "do": "REFRESH_SPIRIT"
+        }
+       ]
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS75-CP04",

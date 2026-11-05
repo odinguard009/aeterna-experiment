@@ -78957,18 +78957,6 @@
   "M_THEN",
   "T_MANIFESTS"
  ],
- "BS75-CP03": [
-  "A_CORE_TO_SELF",
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_COUNTER",
-  "C_LEVEL",
-  "C_ONCE",
-  "C_OPP_TURN",
-  "K_ULTIMATE",
-  "M_BY_DOING",
-  "S_CANT_PREVENT"
- ],
  "BS75-CP04": [
   "A_CORE_TO_SELF",
   "C_CONTROL",

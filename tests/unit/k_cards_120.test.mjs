@@ -67,3 +67,18 @@ test('K-1710 BS73-TX02B FLASH_COST_LOCK: Magic with cost <= counters is unusable
   assert.ok(r.lo && r.hi, j);
   assert.deepEqual(r.res.lock, [false, false], j); assert.equal(r.res.hi, true, j); assert.equal(r.res.off, true, j);
 });
+
+test('K-1711 BS75-CP03 is complete and EXHAUST_UNPREVENTABLE only applies to Fungal Tree / Contractor Yum-Kaax sources', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${setup}
+    const tree = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Spirit' && (BS.CARDS[id].families || []).includes('Fungal Tree') && id !== 'BS75-CP03');
+    const other = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Spirit' && !(BS.CARDS[id].families || []).includes('Fungal Tree') && BS.CARDS[id].name !== 'Contractor Yum-Kaax');
+    const s = BS.mkInst('BS75-CP03'); s.cores = 3; P.spirits = [s];
+    const a = BS.mkInst(tree), b = BS.mkInst(other);
+    const res = { complete: BS.CARDS['BS75-CP03'].partial === false, tree: !!BS.exhUnprev({ p: P, opp: O, src: a }), other: !!BS.exhUnprev({ p: P, opp: O, src: b }) };
+    P.spirits = []; res.none = !!BS.exhUnprev({ p: P, opp: O, src: a });
+    return res;
+  })()`);
+  const j = JSON.stringify(r);
+  assert.deepEqual(r, { complete: true, tree: true, other: false, none: false }, j);
+});

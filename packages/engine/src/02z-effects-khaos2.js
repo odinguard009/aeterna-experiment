@@ -320,3 +320,10 @@ FX_ACTIONS.REVEAL_BED_SUMMON = { chk: a => Number.isInteger(a.n) && a.n >= 1 && 
     const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
     if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} returned to the deckbottom.`);
   } };
+/* v581 STATIC EXHAUST_UNPREVENTABLE (BS75-CP03): "the exhaustion effects of your Fungal Tree Spirits/Nexuses and your Contractor Yum-Kaax can't be prevented by opposing effects". The only exhaustion prevention the engine models is the Soul State "unaffected" (fxImmune without a source); EXHAUST_OPP / HEAVY_EXHAUST_OPP candidate lists read exhUnprev(c) to ignore it. */
+STATIC_FLAGS.push('EXHAUST_UNPREVENTABLE');
+function exhUnprev(c) {
+  if (!c || !c.p || !c.src || !G) return false;
+  const k = CARDS[c.src.id]; if (!k || !((k.families || []).includes('Fungal Tree') || k.name === 'Contractor Yum-Kaax')) return false;
+  return fieldList(c.p).some(s => !s.noFx && fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'EXHAUST_UNPREVENTABLE' && (!e.lv || e.lv.includes(lvNo(s)))));
+}
