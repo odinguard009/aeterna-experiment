@@ -83,3 +83,13 @@ async function mirageSummonOffer(p) {
   if (await summonPaid(p, m)) { log(`${CARDS[m.id].name}: the set Mirage is summoned.`); return; }
   removeFrom(p.hand, m); m.mirage = true; p.mirage = m;      // could not be paid: it stays set
 }
+
+/* v554 DESTROY_OWN_ALL {besides, nexus}: "Besides this Spirit, destroy all your Spirits and Nexuses" (P16-16). */
+Object.assign(FX_ACTIONS, {
+  DESTROY_OWN_ALL: { chk: a => a.besides === true && a.nexus === true && Object.keys(a).every(k => ['do', 'if', 'besides', 'nexus'].includes(k)),
+    txt: () => 'besides this Spirit, destroy all your Spirits and Nexuses', can: () => true,
+    run: async (c, a) => {
+      for (const s of c.p.spirits.filter(x => x !== c.src)) removeSpirit(c.p, s, 'destroyed', false);
+      for (const n of c.p.nexus.slice()) removeNexus(c.p, n, 'destroyed');
+      checkDepletion(c.p); log(`${CARDS[c.src.id].name}: ${poss(c.p)} other Spirits and Nexuses are destroyed.`); io.view({ type: 'board' });
+    } } });

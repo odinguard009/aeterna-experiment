@@ -177,7 +177,7 @@ Object.assign(FX_ACTIONS, {
 Object.assign(FX_ACTIONS, {
   /* v537 BOUNCE_DECKBOTTOM_PIERCE {pierceName}: "return an opposing Spirit/Nexus to the deckbottom; if you control any LV2 <name>, this effect can only be prevented by Heavy Armor/Ultra Heavy Armor" (BS73-X05). With the LV2 card on the Field a target is skipped only when it is immune AND has Heavy Armor / Ultra Heavy Armor (other immunity is ignored); otherwise a plain immunity check. The CPU returns the highest BP Spirit. */
   /* v542 SUMMON_TRASH_TOTAL {match, totalLe}: "summon any number of <match> Spirit cards from your Trash, up to a total of Cost N, without paying the cost" (BSC48-012). */
-  SUMMON_TRASH_TOTAL: { chk: a => hasMatch(a.match) && Number.isInteger(a.totalLe) && a.totalLe >= 1 && a.totalLe <= 20 && Object.keys(a).every(k => ['do', 'if', 'match', 'totalLe'].includes(k)),
+  SUMMON_TRASH_TOTAL: { chk: a => hasMatch(a.match) && Number.isInteger(a.totalLe) && a.totalLe >= 1 && a.totalLe <= 99 && Object.keys(a).every(k => ['do', 'if', 'match', 'totalLe'].includes(k)),
     txt: a => `summon any number of matching Spirit cards from your Trash, up to a total of Cost ${a.totalLe}, without paying the cost`,
     cands: (c, a, left) => c.p.trash.filter(h => { const k = CARDS[h.id]; return k.type === 'Spirit' && !k.token && fxMatch(k, a.match) && k.cost <= left && canPlaceBy(c.p, h, false); }),
     can: (c, a) => FX_ACTIONS.SUMMON_TRASH_TOTAL.cands(c, a, a.totalLe).length > 0,

@@ -92,6 +92,7 @@ function braveFits(b, s) {
   const bc = CARDS[b.id].brave, k = CARDS[s.id];
   if (!bc || b === s || s.brave) return false;
   if (k.type === 'Nexus') return !!bc.nexus && (k.families || []).includes('Grandwalker') && fxMatch(k, { name: bc.nexus.name });
+  if (k.type === 'Spirit' && (k.effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'CANT_BRAVE' && (!e.lv || e.lv.includes(lvNo(s))))) return false;      // v554 "can't Brave"
   return k.type === 'Spirit' && fxMatch(k, { name: bc.name, family: bc.family, costGe: bc.costGe, costLe: bc.costLe });
 }
 const braveTargets = (p, b) => p.spirits.concat(p.nexus).filter(s => braveFits(b, s));

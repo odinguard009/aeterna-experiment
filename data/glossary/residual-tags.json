@@ -86683,12 +86683,6 @@
   "K_ULTIMATE",
   "S_UNAFFECTED"
  ],
- "P16-16": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_SUMMONED"
- ],
  "P16-17": [
   "A_BOUNCE",
   "A_REVEAL_DECK",
@@ -96153,45 +96147,10 @@
   "S_UNAFFECTED",
   "T_ATTACKS"
  ],
- "SD57-001": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "SD57-002": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_HIGH_SPEED",
-  "T_SUMMONED"
- ],
- "SD57-003": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "SD57-006": [
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
- ],
- "SD57-CP01": [
-  "A_MILL",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "K_SIX_HEAVEN_COLOR",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
  ],
  "SD57-RV004": [
   "A_RETURN_TRASH",

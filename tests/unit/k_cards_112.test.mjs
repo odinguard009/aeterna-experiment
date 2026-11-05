@@ -120,3 +120,14 @@ test('K-1185 SD57-002: Flash-capable; summon voids a core onto each of two Purpl
     return { fc: BS.CARDS['SD57-002'].partial === false, hs: !!BS.CARDS['SD57-002'].highSpeed, a: a.cores, b: b.cores }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r));
 });
+
+test('K-1186 P16-16: destroys the rest of the board; with six symbol colours revives Heavenly Demon King Spirits; cannot attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const me = BS.mkInst('P16-16'); me.cores = 3; const a = BS.mkInst('SD32-002'); a.cores = 1; P.spirits = [me, a]; P.nexus = [BS.mkInst('SD57-CP01')];
+    const hk = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Heavenly Demon King') && BS.CARDS[k].levels.length > 0 && k !== 'P16-16');
+    P.trash = [BS.mkInst(hk)];
+    await BS.fireFx(P, 'SUMMONED', me, {});
+    return { fc: BS.CARDS['P16-16'].partial === false, spirits: P.spirits.map(x => x.id), nexus: P.nexus.length, atk: cantAttack(P, me) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.nexus, 0, JSON.stringify(r)); assert.ok(r.spirits.includes('P16-16') && !r.spirits.includes('SD32-002'), JSON.stringify(r)); assert.equal(r.atk, true, JSON.stringify(r));
+});

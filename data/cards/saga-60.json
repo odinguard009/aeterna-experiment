@@ -16853,17 +16853,55 @@
    "yellow",
    "blue"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2]",
-   "This Spirit can't attack nor Brave. This effect can't be negated.",
-   "[LV1][LV2] (When Summoned)",
-   "Besides this Spirit, destroy all your Spirits and Nexuses.",
-   "{{Six Heaven Rush|6}}",
-   "If you have six symbol colors, summon any number of \"Heavenly Demon King\" family Spirit cards from your Trash, without paying the cost."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "Lane K priority list. 'This effect can't be negated' has no engine effect (nothing negates STATIC flags). 'Any number' = SUMMON_TRASH_TOTAL totalLe 99 (slots limit it). Six Heaven Rush 6 = symColorsGe 6.",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_BRAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_OWN_ALL",
+      "besides": true,
+      "nexus": true
+     },
+     {
+      "do": "SUMMON_TRASH_TOTAL",
+      "match": {
+       "family": [
+        "Heavenly Demon King"
+       ]
+      },
+      "totalLe": 99,
+      "if": {
+       "symColorsGe": 6
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "P16-17",

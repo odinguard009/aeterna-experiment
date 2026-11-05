@@ -1748,5 +1748,25 @@
     "status": "full",
     "example": "SD57-005",
     "rule": "Engine: a Brave effect marked braved:true reads the host Spirit as its context; selfNameHas checks that Spirit's name."
+  },
+  {
+    "id": "K_DESTROY_OWN_ALL_BESIDES",
+    "kind": "effect",
+    "meaning": "Besides this Spirit, destroy all your Spirits and Nexuses",
+    "pattern": "Besides this Spirit, destroy all your Spirits and Nexuses",
+    "engine": "DESTROY_OWN_ALL besides+nexus",
+    "status": "full",
+    "example": "P16-16",
+    "rule": "Engine: every own Spirit except the source and every own Nexus is destroyed; the source stays."
+  },
+  {
+    "id": "K_CANT_BRAVE",
+    "kind": "effect",
+    "meaning": "This Spirit can't Brave",
+    "pattern": "can't attack nor Brave",
+    "engine": "STATIC CANT_BRAVE",
+    "status": "full",
+    "example": "P16-16",
+    "rule": "Engine: no Brave card can be combined with this Spirit (braveFits refuses it). The 'can't be negated' rider has nothing to negate."
   }
 ]
