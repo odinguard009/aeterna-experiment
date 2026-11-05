@@ -91541,7 +91541,8 @@
   "K_BURST",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "A_NO_BURST"
+  "A_NO_BURST",
+  "K_UNBLOCKABLE_NO_SOUL"
  ],
  "BSC48-049": [],
  "BSC48-050": [

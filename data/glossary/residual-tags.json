@@ -79898,10 +79898,6 @@
   "T_OPP_HAND_UP",
   "T_OPP_REMOVED"
  ],
- "BSC48-039": [
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BSC48-040": [
   "A_OPP_CORES_TO_RESERVE",
   "C_LEVEL",
@@ -79973,15 +79969,6 @@
   "K_BURST",
   "K_ULTIMATE",
   "M_THEN"
- ],
- "BSC48-048": [
-  "A_NO_BURST",
-  "C_CONTROL",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
  ],
  "BSC48-049": [],
  "BSC48-050": [

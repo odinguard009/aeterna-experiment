@@ -30772,16 +30772,69 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Once per Turn: Same Name) At the start of your Attack Step, if you control any Cost 8 or more \"God-Sechs\", you can deploy this card from the Trash.",
-   "[LV1][LV2] (Your Attack Step)",
-   "While your \"God-Sechs\" is attacking, the opponent can't activate Burst effects.",
-   "[LV2] (Your Attack Step)",
-   "Your \"God-Sechs\" can't be blocked by opposing Spirits/Ultimates without (Soul Core) on them."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Effects authored by hand (Lane K, priority list God-Sech group).",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "START_ATTACK",
+    "zone": "trash",
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "if": {
+     "ctrl": {
+      "type": "Both",
+      "name": [
+       "God-Sechs"
+      ],
+      "costGe": 8
+     }
+    },
+    "actions": [
+     {
+      "do": "DEPLOY_SELF",
+      "fromTrash": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_OPP_BURST",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "mode": "attacking",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNBLOCKABLE_LOW",
+    "to": "own",
+    "noSoul": true,
+    "lv": [
+     2
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "BSC48-049",

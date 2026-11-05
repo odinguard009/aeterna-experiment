@@ -317,3 +317,13 @@ test('K-1170 BSC48-039: Draw Step +1 card; discard 1 unless six counters and a s
     return { lowCount, h1, h2: P.hand.length, plus, partial: K.partial, fc: K.fxComplete }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.lowCount, 1, JSON.stringify(r)); assert.ok(r.h2 >= r.h1 - 1, JSON.stringify(r));
 });
+
+test('K-1171 BSC48-048: deploys from the Trash at the start of the Attack Step with a Cost 8+ God-Sechs; only Soul Core blockers', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const K = BS.CARDS['BSC48-048'], me = BS.mkInst('BSC48-048'); P.trash = [me]; P.nexus = [];
+    const gs = Object.keys(BS.CARDS).find(k => /God-Sechs/.test(BS.CARDS[k].name) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 8); const g = BS.mkInst(gs); g.cores = 3; P.spirits = [g];
+    await BS.fireFx(P, 'START_ATTACK', null, {});
+    return { deployed: P.nexus.includes(me), fc: K.fxComplete, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r));
+});

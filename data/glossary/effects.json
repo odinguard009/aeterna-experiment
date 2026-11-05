@@ -1658,5 +1658,15 @@
     "status": "full",
     "example": "BSC48-021",
     "rule": "Engine: after the BP loss, a target at 0 BP is destroyed and the player draws N cards from the bottom of the Deck."
+  },
+  {
+    "id": "K_UNBLOCKABLE_NO_SOUL",
+    "kind": "effect",
+    "meaning": "can't be blocked by opposing Spirits without a Soul Core",
+    "pattern": "can't be blocked by opposing Spirits/Ultimates without \\(Soul Core\\)",
+    "engine": "STATIC UNBLOCKABLE_LOW noSoul",
+    "status": "full",
+    "example": "BSC48-048",
+    "rule": "Engine: while active, only opposing Spirits holding a Soul Core may block the matching attacker."
   }
 ]

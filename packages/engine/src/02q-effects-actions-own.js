@@ -166,10 +166,10 @@ Object.assign(FX_ACTIONS, {
       log(`${who(c.p)} ${c.p.cpu ? 'sets' : 'set'} a Mirage face up without paying the cost: ${CARDS[c.src.id].name}.`);
       await fireFx(c.p, 'MIRAGE_SET', c.src, {});
     } },
-  DEPLOY_SELF: { chk: () => true, txt: () => 'summon/deploy this card without paying the cost',
-    can: c => (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)) && canPlaceFree(c.p, c.src),
-    run: async c => {
-      if (!FX_ACTIONS.DEPLOY_SELF.can(c)) { c.ctx.did = false; return; }
+  DEPLOY_SELF: { chk: a => a.fromTrash == null || a.fromTrash === true, txt: () => 'summon/deploy this card without paying the cost',
+    can: (c, a) => (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src) || (a && a.fromTrash === true && c.p.trash.includes(c.src))) && canPlaceFree(c.p, c.src),
+    run: async (c, a) => {
+      if (!FX_ACTIONS.DEPLOY_SELF.can(c, a)) { c.ctx.did = false; return; }
       removeFrom(c.p.revealed, c.src); await summonFree(c.p, c.src); c.ctx.did = fieldList(c.p).includes(c.src);
     } },
   /* v195 "send up to N cores from this Spirit to one of your matching Spirits" (another Spirit; the source may be depleted) */
