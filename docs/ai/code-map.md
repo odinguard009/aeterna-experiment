@@ -86,8 +86,8 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (314 lines, ~7.2k tokens)
-symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, destroyUnpreventable, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect, BURST_TYPES
+## packages/engine/src/02w-effects-indra.js (315 lines, ~7.2k tokens)
+symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, destroyUnpreventable, unprevPred, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect, BURST_TYPES
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.5k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay

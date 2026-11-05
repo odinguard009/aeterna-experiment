@@ -69,6 +69,7 @@ function destroyUnpreventable(byKey, holder) {
   const m = G && G.p[byKey] && G.p[byKey].mirage; if (!m || !holder || !CARDS[holder.id] || !['Spirit', 'Ultimate'].includes(CARDS[holder.id].type)) return false;
   return fxEntries(m).some(({ e }) => e.trigger === 'STATIC' && e.zone === 'mirage' && e.flag === 'DESTROY_UNPREVENTABLE' && CARDS[holder.id].cost <= e.costLe);
 }
+const unprevPred = (e, h) => !destroyUnpreventable(G.fxBy, h);
 function nexusShielded(p, n) {
   if (nexusSwapSave(p, n)) return true;
   if (nexusGuarded(p, n)) return true;
