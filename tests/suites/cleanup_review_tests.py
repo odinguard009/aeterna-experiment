@@ -1,7 +1,7 @@
 # v0.24: code review / cleanup suite. Every chk() is one numbered test. Needs PYTHONPATH with the fixtures helper for fixture checks only.
 import json as _json_c, os as _os_c  # counts come from the card data, so a new colour needs no edit here
 _CARDS = _json_c.load(open(_os_c.path.join(_os_c.path.dirname(_os_c.path.abspath(__file__)), '..', '..', 'build', 'all-cards.json'), encoding='utf-8'))
-import re as _re_c; PACK_N = sum(1 for _c in _CARDS if _re_c.match(r'(\d\dR)?(BSC|BS|SD|CB|DB)\d', _c['id']) and not _c.get('token')); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and 'Grandwalker' in c.get('families', []))   # Contractor Grandwalkers only: the BS76/BS77 CX Flagbearers (family Flag) are not Count-level
+import re as _re_c; PACK_N = sum(1 for _c in _CARDS if _re_c.match(r'(\d\dR)?(BSC|BS|SD|CB|DB)\d', _c['id']) and not _c.get('token')); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and 'Grandwalker' in c.get('families', []) and 'contractor' in c['name'].lower())   # Contractor Grandwalkers only (the engine's isCountLv: Grandwalker Nexus with Contractor in its name, 52 after the master import: 44 CX + 8 CP/PX); the Flagbearers (family Flag) and the CX collab Nexuses without Contractor (BSC43-CX03, BSC46-CX04, CB32-CX04, CB33-CX02) level by cores
 from playwright.sync_api import sync_playwright
 from waits import settle, ready
 import json, sys, re, time
@@ -48,7 +48,7 @@ with sync_playwright() as p:
     chk('C4 cost within 0..30 and integer', ev(pg, "Object.values(BS.CARDS).every(c=>Number.isInteger(c.cost)&&c.cost>=0&&c.cost<=30)"))
     chk('C5 Spirit levels: cores strictly ascending, BP numeric', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Spirit').every(c=>c.levels.length>=1&&c.levels.every((l,i)=>Number.isInteger(l.cores)&&Number.isInteger(l.bp)&&(i===0||l.cores>c.levels[i-1].cores)))"))
     # BS32-036 is the one printed exception: Fandom lists LV1 20000 BP and LV2 10000 BP (checked 2026-10-20), so the data is right
-    chk('C6 Spirit BP never decreases with level (except BS32-036)', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Spirit'&&c.id!=='BS32-036').every(c=>c.levels.every((l,i)=>i===0||l.bp>=c.levels[i-1].bp))"))
+    chk('C6 Spirit BP never decreases with level except at the last level (printed on 147 cards, Fandom and the official list agree: BS32-036 and 146 Lv3 drops)', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Spirit').every(c=>c.levels.every((l,i)=>i===0||l.bp>=c.levels[i-1].bp||i===c.levels.length-1))"))
     chk('C7 reduction values are non-negative integers, symbols 0..5', ev(pg, "Object.values(BS.CARDS).every(c=>Object.values(c.reduction||{}).every(v=>Number.isInteger(v)&&v>=0&&v<=10)&&Number.isInteger(c.symbols)&&c.symbols>=0&&c.symbols<=5)"))
     chk('C8 Nexus cards carry no BP', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Nexus').every(c=>c.levels.every(l=>l.bp==null))"))
     chk('C9 Magic cards have a magic block or are flagged not implemented', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Magic').every(c=>c.magic||c.implemented===false)"))

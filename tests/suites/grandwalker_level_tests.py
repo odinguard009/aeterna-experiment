@@ -2,7 +2,7 @@ from waits import settle, ready  # v0.87.0 (F5): state waits instead of fixed ti
 # v0.22: Lv of a Contract Grandwalker Nexus is decided by the Count (official Eternal rule). Every chk() is one numbered test.
 import json as _json_c, os as _os_c  # counts come from the card data, so a new colour needs no edit here
 _CARDS = _json_c.load(open(_os_c.path.join(_os_c.path.dirname(_os_c.path.abspath(__file__)), '..', '..', 'build', 'all-cards.json'), encoding='utf-8'))
-PACK_N = len(_CARDS); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and 'Grandwalker' in c.get('families', []))   # Contractor Grandwalkers only: the BS76/BS77 CX Flagbearers (family Flag) are not Count-level
+PACK_N = len(_CARDS); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and 'Grandwalker' in c.get('families', []) and 'contractor' in c['name'].lower())   # Contractor Grandwalkers only (the engine's isCountLv: Grandwalker Nexus with Contractor in its name, 52 after the master import: 44 CX + 8 CP/PX); the Flagbearers (family Flag) and the CX collab Nexuses without Contractor (BSC43-CX03, BSC46-CX04, CB32-CX04, CB33-CX02) level by cores
 src = open('/tmp/claude-0/t4/mitra_tests.py', encoding='utf-8').read()
 exec(src.split("MITRA_FX =")[0])
 def run(pg, js, ms=700):
@@ -13,7 +13,7 @@ with sync_playwright() as p:
     def fresh(extra=''):
         pg, errs, _ = new_page(b); ev(pg, S + extra); return pg, errs
     pg, errs = fresh()
-    chk('countLv flag: exactly the Contractor Grandwalker Nexuses (Nexus cards with a CX number)', sorted(ev(pg, "Object.values(BS.CARDS).filter(c=>c.countLv).map(c=>c.id)")) == CONTRACTORS)
+    chk('countLv flag: exactly the Contractor Grandwalker Nexuses (Grandwalker Nexus with Contractor in the name)', sorted(ev(pg, "Object.values(BS.CARDS).filter(c=>c.countLv).map(c=>c.id)")) == CONTRACTORS)
     chk('ordinary Nexuses (Temple, Air Fortress, Crater) stay core-based', ev(pg, "!BS.CARDS['BS74-072'].countLv&&!BS.CARDS['BS75-061'].countLv&&!BS.CARDS['BS75-063'].countLv"))
     ev(pg, "window.mi=mk('player','BS74-CX03',5)")
     chk('Mitra with 5 cores but Count 0 is still Lv1', ev(pg, "P.count===0&&BS.lvIndex(mi)===0"))
