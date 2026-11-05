@@ -57747,7 +57747,7 @@
      3
     ],
     "if": {
-     "srcSoul": true
+     "selfSoul": true
     }
    },
    {
@@ -58466,13 +58466,69 @@
   "image": "SD32-X02.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit is unaffected by opposing Spirit/Magic effects. {{Six Heaven Rush|3}} While you have three or more symbol colors, all opposing Spirits/Ultimates can't refresh.",
-   "[LV2][LV3] (Your Attack Step) While (Soul Core) is on this Spirit, when your Spirit with two or more colors attacks, send two cores from any opposing Spirits/Ultimates to the Trash."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). NO_REFRESH to:opp under Six Heaven Rush 3; ALLY_ATTACKS with match.colorsGe 2 and selfSoul.",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_REFRESH",
+    "to": "opp",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "anyOf": [
+      {
+       "type": "Spirit"
+      },
+      {
+       "type": "Ultimate"
+      }
+     ]
+    },
+    "if": {
+     "symColorsGe": 3
+    }
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "colorsGe": 2
+    },
+    "if": {
+     "selfSoul": true
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-001",
@@ -59356,7 +59412,7 @@
      3
     ],
     "if": {
-     "srcSoul": true
+     "selfSoul": true
     }
    }
   ]
