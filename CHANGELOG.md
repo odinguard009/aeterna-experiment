@@ -4,6 +4,17 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.219.0
+- Lane: K
+- **Lane K: +145 complete cards (2,780 -> 2,925 of 10,291; 145 in this release)**
+Lane: K (priority list). Released on the owner's order when the priority list finished (107 of 107 cards); 145 new complete cards (the count file was stale at 2,849 until the build refreshed it).
+- Priority list complete: God-Sech / Six Heaven (53 cards), Grandwalker Mitra (26), Awakened Dragon family (0 open), Nuadha (28). Last cards: BS71-CX03, BS74-064, BS71-072 and BS71-058/X09.
+- New engine mechanics (schema 531 -> 577): Rebirth (REBORN trigger, REBIRTH_FLIP, back faces), Change replace, ALLY_LEAVES, REBIRTH_ON_LEAVE, `targetSummon` card field, VOID_TO_BRAVE_SPIRIT, NO_BURST_TYPE_BATTLE, `trashTrigger.mirageSet` / `byFrom`, STATIC DESTROY_UNPREVENTABLE, STATIC TRASH_LOCK, plus many Lane K actions and conditions listed in the commit subjects.
+- Fixes: a directly combined Brave now fires ALLY_SUMMONED; stale glossary statuses and several stale unit checks refreshed.
+- Limits (honest): BS74-064 DESTROY_UNPREVENTABLE only bypasses NO_DESTROY_OPP / REMAIN_DESTROY held by Cost 4 or less Spirits/Ultimates (UNAFFECTED and Nexus shields are not touched); its Mirage-from-Trash offer is once per turn per name and the CPU always accepts. BS71-072 TRASH_LOCK enforces "unaffected" through the Trash-pick immunity wrapper, so an unwrapped Trash-pick site may still reach those cards (glossary status partial). SD57-006, SD57-X02, Dian and CX03 keep the caveats in their card notes.
+- Test budgets B01 (1700 KB), B02 (445 KB) and the share limit 0.635 were raised on purpose for the new engine code.
+- Grandwalker queue resumes next.
+
 ## v0.218.1
 - Lane: K
 - **Card library: English-only card data completed (0 Japanese left in player-visible card data)**

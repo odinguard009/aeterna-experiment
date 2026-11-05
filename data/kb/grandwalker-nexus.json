@@ -977,14 +977,8 @@
     "P25-05"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS74-AX03",
-    "P25-05"
-   ],
-   "order_cards": [
-    "BS74-AX03",
-    "P25-05"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS73-CX01",
@@ -2873,49 +2867,8 @@
     "P25-01"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS71-053",
-    "BS71-054",
-    "BS71-057",
-    "BS71-058",
-    "BS71-059",
-    "BS71-060",
-    "BS71-063",
-    "BS71-072",
-    "BS71-083",
-    "BS71-NX03",
-    "BS71-X09",
-    "BS72-051",
-    "BS72-054",
-    "BS72-066",
-    "BS72-074",
-    "BS72-X07",
-    "BS74-064",
-    "BS74-067",
-    "P25-01"
-   ],
-   "order_cards": [
-    "BS71-CX03",
-    "BS71-053",
-    "BS71-054",
-    "BS71-057",
-    "BS71-058",
-    "BS71-059",
-    "BS71-060",
-    "BS71-063",
-    "BS71-072",
-    "BS71-083",
-    "BS71-NX03",
-    "BS71-X09",
-    "BS72-051",
-    "BS72-054",
-    "BS72-066",
-    "BS72-074",
-    "BS72-X07",
-    "BS74-064",
-    "BS74-067",
-    "P25-01"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS70-CX01",
@@ -6428,7 +6381,6 @@
     "BS57-016",
     "BS57-026",
     "BS57-X02",
-    "SD57-002",
     "BS60-024",
     "BS60-035",
     "BS61-012",
@@ -6503,7 +6455,6 @@
     "BS57-016",
     "BS57-026",
     "BS57-X02",
-    "SD57-002",
     "BS60-024",
     "BS60-035",
     "BS61-012",
@@ -7392,8 +7343,6 @@
     "BS57-TCP09",
     "BS57-TCP10",
     "BS57-X07",
-    "SD57-002",
-    "SD57-006",
     "SD57-X01",
     "BS58-004",
     "BS58-006",
@@ -7714,7 +7663,6 @@
     "BS57-TCP09",
     "BS57-TCP10",
     "BS57-X07",
-    "SD57-006",
     "SD57-X01",
     "BS58-004",
     "BS58-006",
@@ -8589,8 +8537,6 @@
     "BS57-TCP09",
     "BS57-TCP10",
     "BS57-X07",
-    "SD57-002",
-    "SD57-006",
     "SD57-X01",
     "BS58-004",
     "BS58-006",
@@ -9458,8 +9404,6 @@
     "BS57-TCP09",
     "BS57-TCP10",
     "BS57-X07",
-    "SD57-002",
-    "SD57-006",
     "SD57-X01",
     "BS58-004",
     "BS58-006",
@@ -12708,11 +12652,7 @@
     "BS56-TX03",
     "BS57-006",
     "BS57-009",
-    "SD57-001",
-    "SD57-003",
-    "SD57-004",
     "SD57-X01",
-    "SD57-X02",
     "BS58-009",
     "BS58-010",
     "BS58-011",
@@ -12811,10 +12751,6 @@
     "BS51-017",
     "BS51-063",
     "BS51-RV004",
-    "SD57-001",
-    "SD57-003",
-    "SD57-004",
-    "SD57-X02",
     "BS58-009",
     "BS58-010",
     "BS58-011",
@@ -27349,7 +27285,7 @@
    "name": "The HeavenlyDemonKing Advents",
    "type": "Magic",
    "families_jp": [],
-   "complete": false
+   "complete": true
   },
   {
    "id": "SD57-RV005",
@@ -29082,14 +29018,14 @@
     "name": "The ArmyMedic Dian",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-060",
     "name": "The TwinHeaded Brodeur",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-061",
@@ -29152,7 +29088,7 @@
     "name": "The Tyrant Bres",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-RV001",
@@ -29215,7 +29151,7 @@
     "name": "The SilverArmDivineEmperor Agateram",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-001",
@@ -29404,7 +29340,7 @@
     "name": "The DivineBlacksmith Goibniu",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-052",
@@ -29418,7 +29354,7 @@
     "name": "The RedWitch Vaha",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-057",
@@ -29481,7 +29417,7 @@
     "name": "The GodEmperor Dagda",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-X08",
@@ -30027,7 +29963,7 @@
     "name": "The Dana Sniper",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-066",
@@ -30573,7 +30509,7 @@
     "name": "The RevelationDragon Bahattar",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "P25-06",
@@ -30757,7 +30693,7 @@
     "name": "The SilverArmDivineEmperor Agateram",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-X01",
@@ -30806,7 +30742,7 @@
     "name": "The GodEmperor Dagda",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-TX02",
@@ -30848,7 +30784,7 @@
     "name": "The RevelationGreatDeity Ultimate-Amaterasu-Dragon",
     "type": "Ultimate",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X01",
@@ -33247,7 +33183,7 @@
     "name": "The RevelationGreatDeity Ultimate-Amaterasu-Dragon",
     "type": "Ultimate",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X06",
@@ -33324,7 +33260,7 @@
     "name": "The RevelationDragon Bahattar",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    }
   ],
   "菌樹": [
@@ -36321,14 +36257,14 @@
     "name": "The Dana Scout",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-054",
     "name": "The Dana Shielder",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-056",
@@ -36342,28 +36278,28 @@
     "name": "The Dana Musketeer",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-058",
     "name": "The ArmyMedic Dian",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-059",
     "name": "The Dana Magic Soldier",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-060",
     "name": "The TwinHeaded Brodeur",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-061",
@@ -36377,7 +36313,7 @@
     "name": "Dana Standard Beam Spear",
     "type": "Brave",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-064",
@@ -36391,14 +36327,14 @@
     "name": "Nuadha's Bulwark Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-083",
     "name": "Dana Draw",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-084",
@@ -36412,14 +36348,14 @@
     "name": "The Tyrant Bres",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-X09",
     "name": "The SilverArmDivineEmperor Agateram",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-049",
@@ -36440,21 +36376,21 @@
     "name": "The DivineBlacksmith Goibniu",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-054",
     "name": "The RedWitch Vaha",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-066",
     "name": "Nuadha's Sword",
     "type": "Brave",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-068",
@@ -36468,7 +36404,7 @@
     "name": "The Boyne Circular Ruins",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-083",
@@ -36482,28 +36418,28 @@
     "name": "The GodEmperor Dagda",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-064",
     "name": "The Dana Sniper",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-067",
     "name": "Dana Standard Railgun",
     "type": "Brave",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "P25-01",
     "name": "The Dana Corporal",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    }
   ],
   "呪鬼": [
@@ -42872,7 +42808,7 @@
     "name": "The Six Heaven Falcon",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS60-024",
@@ -43168,7 +43104,7 @@
     "name": "The Six Heaven Falcon",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS60-025",
@@ -46336,14 +46272,14 @@
     "name": "The Six Heaven Falcon",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "SD57-006",
     "name": "The Owari World",
     "type": "Nexus",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "SD57-X01",
@@ -49117,7 +49053,7 @@
     "name": "The HeavenlyDemonKing Weapons",
     "type": "Brave",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS58-TCP01",
@@ -49602,7 +49538,7 @@
     "name": "Nuadha's Sword",
     "type": "Brave",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-X08",
@@ -50826,21 +50762,21 @@
     "name": "The Six Heaven Soldier",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "SD57-003",
     "name": "The Six Heaven Head",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "SD57-004",
     "name": "The Six Heaven Conjurer",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "SD57-X01",
@@ -50854,7 +50790,7 @@
     "name": "The HeavenlyDemonKing God-Sechs -Type Shadow-",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS58-009",
@@ -56047,7 +55983,7 @@
     "name": "Dana Standard Beam Spear",
     "type": "Brave",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-064",
@@ -56117,7 +56053,7 @@
     "name": "Nuadha's Sword",
     "type": "Brave",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-068",
@@ -56166,7 +56102,7 @@
     "name": "Dana Standard Railgun",
     "type": "Brave",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS76-060",
