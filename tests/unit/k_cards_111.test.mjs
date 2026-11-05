@@ -242,3 +242,16 @@ test('K-1164 BSC48-012: Burst summons Vassal/Heavenly Demon King Spirits from th
     return { tot, self: P.spirits.includes(me), unaff: K.effects[0].flag, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.tot <= 6 && r.tot > 0, JSON.stringify(r)); assert.equal(r.self, true, JSON.stringify(r));
 });
+
+test('K-1165 BSC48-013: High Speed, Void cores to two God-Sechs or two cores in total to Heavenly Demon King Grandwalker Nexuses', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-013'], E = K.effects;
+    const me = BS.mkInst('BSC48-013'); me.cores = 2; P.spirits = [me];
+    const nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Heavenly Demon King') && (BS.CARDS[k].families || []).includes('Grandwalker'));
+    const n1 = BS.mkInst(nx); n1.cores = 1; P.nexus = [n1]; P.void = 3;
+    const o = E[0].actions[0].options[1];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: o });
+    return { nexCores: n1.cores, void: P.void, hs: K.highSpeed, partial: K.partial, nx }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nexCores, 3, JSON.stringify(r)); assert.equal(r.void, 1, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r));
+});

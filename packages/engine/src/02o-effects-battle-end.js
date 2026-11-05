@@ -194,6 +194,17 @@ Object.assign(FX_ACTIONS, {
         }
         left -= CARDS[t.id].cost; await summonBy(c.p, t, false, {}); c.ctx.did = true;
       } } },
+  /* v543 VOID_TO_NEXUS_TOTAL {n, match}: "+N cores in total of any of your <match> Nexuses" (cores from the Void, any split; BSC48-013). */
+  VOID_TO_NEXUS_TOTAL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'n', 'match'].includes(k)),
+    txt: a => `put ${a.n} cores in total from the Void on your matching Nexuses`,
+    cands: (c, a) => c.p.nexus.filter(x => fxMatch(CARDS[x.id], a.match, x)),
+    can: (c, a) => c.p.void > 0 && FX_ACTIONS.VOID_TO_NEXUS_TOTAL.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.VOID_TO_NEXUS_TOTAL.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      for (let j = 0; j < a.n && c.p.void > 0; j++) {
+        const t = L.length === 1 ? L[0] : c.p.cpu ? L.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a Nexus that receives a core from the Void (${j + 1}/${a.n}).`);
+        if (!t || !takeFromVoid(c.p, 1)) break; t.cores += 1; c.ctx.did = true; log(`${_nm(c)}: a core moves from the Void to ${CARDS[t.id].name}.`);
+      } io.view({ type: 'board' }); } },
   /* v541 OPP_RESERVE_CORES_TO_TRASH {n}: "send a core from the opposing Reserve to the Trash" (BSC48-010; OPP_RESERVE_TO_TRASH sends all). */
   OPP_RESERVE_CORES_TO_TRASH: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
     txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from the opposing Reserve to the Trash`,
