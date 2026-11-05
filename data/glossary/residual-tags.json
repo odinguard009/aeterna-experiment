@@ -79679,16 +79679,6 @@
   "T_START_ATTACK",
   "T_SUMMONED"
  ],
- "BSC48-012": [
-  "A_DRAW",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "S_UNAFFECTED",
-  "T_SUMMONED"
- ],
  "BSC48-013": [
   "A_CORE_TO_SELF",
   "A_VOID",

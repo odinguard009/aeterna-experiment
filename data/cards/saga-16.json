@@ -28750,16 +28750,60 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "While you control any \"Contractor Dairokuten Maou\", this set card is unaffected by opposing effects.",
-   "{{Burst|S|After your Life is reduced}}",
-   "Besides any \"The Necromancer Yakumo\", summon any number of \"Heavenly Demon King\"/\"Vassal\" family Spirit cards from your Trash, up to a total of Cost 6, without paying the cost. After this effect resolves, summon this card without paying the cost.",
-   "[LV1][LV2][LV3] (When Summoned)",
-   "You can draw two cards."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "to": "self",
+    "if": {
+     "controlName": "Contractor Dairokuten Maou"
+    }
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 2
+     }
+    ]
+   }
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_TRASH_TOTAL",
+     "match": {
+      "family": [
+       "Heavenly Demon King",
+       "Vassal"
+      ],
+      "notName": [
+       "The Necromancer Yakumo"
+      ]
+     },
+     "totalLe": 6
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  }
  },
  {
   "id": "BSC48-013",

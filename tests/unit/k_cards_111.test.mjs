@@ -229,3 +229,16 @@ test('K-1163 BSC48-011: discards a Vassal/Heavenly Demon King card to draw 2, Gr
     return { discarded: P.trash.length - t, hand: P.hand.length, n: E.length, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.discarded, 1, JSON.stringify(r)); assert.equal(r.hand, 2, JSON.stringify(r)); assert.equal(r.n, 4, JSON.stringify(r));
 });
+
+test('K-1164 BSC48-012: Burst summons Vassal/Heavenly Demon King Spirits from the Trash up to total Cost 6, then itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-012'];
+    const ids = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Vassal') && BS.CARDS[k].cost <= 3 && !BS.CARDS[k].name.includes('Necromancer Yakumo')).slice(0, 3);
+    const ts = ids.map(i => BS.mkInst(i)); P.trash = ts.slice(); P.spirits = [];
+    const me = BS.mkInst('BSC48-012'); P.hand = [me];
+    P.hand = []; P.limbo = me; await BS.runActions({ p: P, opp: O, src: me, ctx: {}, burst: true }, { actions: K.burst.actions });
+    const tot = ts.filter(t => P.spirits.includes(t)).reduce((s, t) => s + BS.CARDS[t.id].cost, 0);
+    return { tot, self: P.spirits.includes(me), unaff: K.effects[0].flag, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.tot <= 6 && r.tot > 0, JSON.stringify(r)); assert.equal(r.self, true, JSON.stringify(r));
+});

@@ -1618,5 +1618,15 @@
     "status": "full",
     "example": "BSC48-011",
     "rule": "Engine: the Core count equals the number of different symbol colours you control."
+  },
+  {
+    "id": "K_SUMMON_TRASH_TOTAL",
+    "kind": "action",
+    "meaning": "summon any number of matching Spirits from the Trash up to a total cost",
+    "pattern": "Summon any number of <family> Spirit cards from your Trash, up to a total of Cost N, without paying the cost",
+    "engine": "SUMMON_TRASH_TOTAL",
+    "status": "full",
+    "example": "BSC48-012",
+    "rule": "Engine: the player picks Spirits from the Trash one at a time while the sum of printed costs stays within N."
   }
 ]

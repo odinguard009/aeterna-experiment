@@ -176,6 +176,24 @@ Object.assign(FX_ACTIONS, {
       att.noBlockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[att.id].name} can't be blocked.`); io.view({ type: 'board' }); } } });
 Object.assign(FX_ACTIONS, {
   /* v537 BOUNCE_DECKBOTTOM_PIERCE {pierceName}: "return an opposing Spirit/Nexus to the deckbottom; if you control any LV2 <name>, this effect can only be prevented by Heavy Armor/Ultra Heavy Armor" (BS73-X05). With the LV2 card on the Field a target is skipped only when it is immune AND has Heavy Armor / Ultra Heavy Armor (other immunity is ignored); otherwise a plain immunity check. The CPU returns the highest BP Spirit. */
+  /* v542 SUMMON_TRASH_TOTAL {match, totalLe}: "summon any number of <match> Spirit cards from your Trash, up to a total of Cost N, without paying the cost" (BSC48-012). */
+  SUMMON_TRASH_TOTAL: { chk: a => hasMatch(a.match) && Number.isInteger(a.totalLe) && a.totalLe >= 1 && a.totalLe <= 20 && Object.keys(a).every(k => ['do', 'if', 'match', 'totalLe'].includes(k)),
+    txt: a => `summon any number of matching Spirit cards from your Trash, up to a total of Cost ${a.totalLe}, without paying the cost`,
+    cands: (c, a, left) => c.p.trash.filter(h => { const k = CARDS[h.id]; return k.type === 'Spirit' && !k.token && fxMatch(k, a.match) && k.cost <= left && canPlaceBy(c.p, h, false); }),
+    can: (c, a) => FX_ACTIONS.SUMMON_TRASH_TOTAL.cands(c, a, a.totalLe).length > 0,
+    run: async (c, a) => {
+      let left = a.totalLe; c.ctx.did = false;
+      for (;;) {
+        const L = FX_ACTIONS.SUMMON_TRASH_TOTAL.cands(c, a, left); if (!L.length) break;
+        let t;
+        if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+        else {
+          const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
+          const id = await ask({ title: `✨ ${esc(_pn(c))}`, peek: true, wide: true, html: `Summon a card from the Trash (total cost left: ${left}).`, cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, cls: 'primary', value: i })).concat([{ label: 'Stop', cls: 'cancel', value: null }]) });
+          if (!id) break; t = L.find(x => x.id === id) || L[0];
+        }
+        left -= CARDS[t.id].cost; await summonBy(c.p, t, false, {}); c.ctx.did = true;
+      } } },
   /* v541 OPP_RESERVE_CORES_TO_TRASH {n}: "send a core from the opposing Reserve to the Trash" (BSC48-010; OPP_RESERVE_TO_TRASH sends all). */
   OPP_RESERVE_CORES_TO_TRASH: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
     txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from the opposing Reserve to the Trash`,
