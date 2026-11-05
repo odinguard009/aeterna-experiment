@@ -1528,5 +1528,15 @@
     "status": "wired",
     "example": "{\"do\":\"OPP_BOUNCE_OR_NOBLOCK\"}",
     "rule": "The opponent may return one of their Spirits to the deckbottom; if they do not, the attacker cannot be blocked. Engine: OPP_BOUNCE_OR_NOBLOCK (card text of BS73-AX03); the CPU never returns a Spirit and the lock lasts the turn."
+  },
+  {
+    "id": "K_BOUNCE_DECKBOTTOM_PIERCE",
+    "kind": "phrase",
+    "meaning": "Return an opposing Spirit/Nexus to the deckbottom; with an LV2 named card this can only be prevented by Heavy Armor",
+    "pattern": "this effect can only be prevented by heavy armor",
+    "engine": "BOUNCE_DECKBOTTOM_PIERCE",
+    "status": "wired",
+    "example": "{\"do\":\"BOUNCE_DECKBOTTOM_PIERCE\",\"pierceName\":\"Dairokuten Maou\"}",
+    "rule": "Other immunity is ignored while the named LV2 card is on your Field; only Heavy Armor / Ultra Heavy Armor stops it. Engine: BOUNCE_DECKBOTTOM_PIERCE (card text of BS73-X05)."
   }
 ]

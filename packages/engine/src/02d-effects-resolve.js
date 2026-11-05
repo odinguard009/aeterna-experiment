@@ -237,10 +237,12 @@ async function adventFieldCores(p, adv) {
 function manifestTargets(p, inst, where) {
   const spec = CARDS[inst.id].manifest; if (!spec || !G || !p.hand.includes(inst) || p.count < (spec.counterGe || 0)) return [];
   if (spec.turn === 'YOUR_ATTACK' ? !(where === 'flash' && G.step === 5 && G.active === p.key) : spec.turn === 'EITHER_ATTACK' ? !(where === 'flash' && G.step === 5) : G.active !== p.key) return [];
-  if (!canPlaceFree(p, inst) || soulCoreHolder(p, null) === null) return [];
+  if (!canPlaceFree(p, inst) || (soulCoreHolder(p, null) === null && !maniAlt(p, inst))) return [];
   if (spec.ultra && p.onceUsed && p.onceUsed['ultra:' + CARDS[inst.id].name] === G.turnNo) return [];      // (Once per Turn: Same Name)
   return p.nexus.filter(n => (spec.nexusFamily ? spec.nexusFamily.every(f => (CARDS[n.id].families || []).includes(f)) : CARDS[n.id].name.toLowerCase().includes(spec.name.toLowerCase())) && (spec.ultra || n.cores >= 1));
 }
+/* v537 manifest.altReturn (BS73-X05): "(Once per Turn: Same Name) by returning a <family> card from your Trash to the Hand, Mani this card, treating the Soul Core as being sent to the Trash" - the Soul Core stays where it is. Used whenever it is available (it only gains a card). */
+const maniAlt = (p, inst) => { const f = CARDS[inst.id].manifest && CARDS[inst.id].manifest.altReturn; return f ? !(p.onceUsed && p.onceUsed['maniAlt:' + CARDS[inst.id].name] === G.turnNo) && p.trash.some(t => (CARDS[t.id].families || []).includes(f)) : false; };
 async function doManifest(p, inst, target, where) {
   if (!manifestTargets(p, inst, where || 'main').includes(target)) return false;
   if (CARDS[inst.id].manifest.ultra) {        // v0.46 Ultra Manifest (BS76-CP01 text): Soul Core onto this card, +1 core to the target, summon treating all costs as paid
@@ -251,7 +253,11 @@ async function doManifest(p, inst, target, where) {
     await summonFree(p, inst, { manifest: true, soul: true });
     return true;
   }
-  if (CARDS[inst.id].manifest.seal) soulToLife(p, soulCoreHolder(p, null));        // v0.48 Seal Manifest: Soul Core from the Field/Reserve to the Life
+  if (maniAlt(p, inst)) {
+    const f = CARDS[inst.id].manifest.altReturn, L = p.trash.filter(t => (CARDS[t.id].families || []).includes(f)); let t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+    if (!p.cpu && L.length > 1) { const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8); const id = await ask({ title: `✨ ${CARDS[inst.id].name}`, peek: true, wide: true, html: `Choose a "${f}" card from your Trash to return to the Hand.`, cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) }); t = L.find(x => x.id === id) || t; }
+    removeFrom(p.trash, t); p.hand.push(t); handUp(p, 1); p.onceUsed = p.onceUsed || {}; p.onceUsed['maniAlt:' + CARDS[inst.id].name] = G.turnNo; log(`${who(p)} return${p.cpu ? 's' : ''} ${CARDS[t.id].name} from the Trash to the Hand (the Soul Core is treated as sent to the Trash).`); }
+  else if (CARDS[inst.id].manifest.seal) soulToLife(p, soulCoreHolder(p, null));        // v0.48 Seal Manifest: Soul Core from the Field/Reserve to the Life
   else soulToTrash(p, soulCoreHolder(p, null));
   target.cores--; p.trashCores.n++; log(`${CARDS[target.id].name}: one core is paid to the Trash for the Manifest.`);
   checkDepletion(p);

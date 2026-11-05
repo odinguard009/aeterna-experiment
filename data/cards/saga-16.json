@@ -11043,18 +11043,36 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|\"Contractor Dairokuten Maou\" & C3 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "This card in Trash is unaffected by either player's effect.",
-   "(Once per Turn: Same Name) By returning a \"Heavenly Demon King\" family card from your Trash to the Hand, Mani this card from the Hand, treating (Soul Core) as being sent to the Trash.",
-   "[LV1][LV2][LV3] (When Summoned) You can return an opposing Spirit/Nexus to the deckbottom. If you control any LV2 \"Dairokuten Maou\", this effect can only be prevented by Heavy Armor/Ultra Heavy Armor."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "12"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "manifest": {
+   "name": "Contractor Dairokuten Maou",
+   "counterGe": 3,
+   "turn": "EITHER_ATTACK",
+   "altReturn": "Heavenly Demon King"
+  },
+  "trashUnaffected": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "BOUNCE_DECKBOTTOM_PIERCE",
+      "pierceName": "Dairokuten Maou"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-X06",

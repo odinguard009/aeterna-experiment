@@ -149,3 +149,15 @@ test('K-1157 BS73-AX03: summons from the Hand for 1 cost when a Cost 6+ Machine 
     return { summoned, cores, noBlock: att.noBlockTurn === G.turnNo, n: E.length, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.noBlock, true, JSON.stringify(r)); assert.equal(r.n, 4, JSON.stringify(r));
 });
+
+test('K-1158 BS73-X05: Mani by returning a Heavenly Demon King card from the Trash keeps the Soul Core, bounce to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BS73-X05'], E = K.effects;
+    const me = BS.mkInst('BS73-X05'); P.hand = [me]; P.spirits = [];
+    const hdk = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Heavenly Demon King') && k !== 'BS73-X05'); const tr = BS.mkInst(hdk); P.trash = [tr];
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)); w.cores = 1; O.spirits = [w];
+    P.spirits = [me]; await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    return { bounced: O.spirits.length === 0 && O.deck[O.deck.length - 1] === w, tu: K.trashUnaffected, man: K.manifest && K.manifest.altReturn, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.bounced, true, JSON.stringify(r)); assert.equal(r.man, 'Heavenly Demon King', JSON.stringify(r));
+});

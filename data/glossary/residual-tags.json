@@ -77770,18 +77770,6 @@
   "M_OPTIONAL",
   "S_UNAFFECTED"
  ],
- "BS73-X05": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_COUNTER",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ARMOR",
-  "M_BY_DOING",
-  "M_OPTIONAL",
-  "S_UNAFFECTED",
-  "T_SUMMONED"
- ],
  "BS73-X06": [
   "A_SUMMON_FREE",
   "A_VOID",

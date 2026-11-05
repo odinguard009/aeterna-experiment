@@ -174,3 +174,15 @@ Object.assign(FX_ACTIONS, {
       }
       if (pay) { bounceCard(c.opp, pay, 'deckBottom'); checkDepletion(c.opp); log(`${poss(c.opp)} ${CARDS[pay.id].name} returns to the deckbottom.`); return; }
       att.noBlockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[att.id].name} can't be blocked.`); io.view({ type: 'board' }); } } });
+Object.assign(FX_ACTIONS, {
+  /* v537 BOUNCE_DECKBOTTOM_PIERCE {pierceName}: "return an opposing Spirit/Nexus to the deckbottom; if you control any LV2 <name>, this effect can only be prevented by Heavy Armor/Ultra Heavy Armor" (BS73-X05). With the LV2 card on the Field a target is skipped only when it is immune AND has Heavy Armor / Ultra Heavy Armor (other immunity is ignored); otherwise a plain immunity check. The CPU returns the highest BP Spirit. */
+  BOUNCE_DECKBOTTOM_PIERCE: { chk: a => typeof a.pierceName === 'string' && !!a.pierceName && Object.keys(a).every(k => ['do', 'if', 'pierceName'].includes(k)),
+    txt: a => `return an opposing Spirit/Nexus to the deckbottom; with an LV2 "${a.pierceName}" it can only be prevented by Heavy Armor/Ultra Heavy Armor`,
+    cands: (c, a) => { const pierce = c.p.spirits.some(s => lvNo(s) === 2 && CARDS[s.id].name.includes(a.pierceName));
+      return c.opp.spirits.concat(c.opp.nexus).filter(t => !flagActive(c.opp, 'NO_RETURN', t) && !(fxImmune(c.opp, t, { p: c.p, src: c.src }) && (!pierce || cardHasKeyword(CARDS[t.id], 'Heavy Armor') || cardHasKeyword(CARDS[t.id], 'Ultra Heavy Armor')))); },
+    can: (c, a) => FX_ACTIONS.BOUNCE_DECKBOTTOM_PIERCE.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.BOUNCE_DECKBOTTOM_PIERCE.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing card to return to the deckbottom (glowing).`);
+      if (!t) return;
+      bounceCard(c.opp, t, 'deckBottom'); checkDepletion(c.opp); c.ctx.did = true; log(`${_nm(c)}: ${CARDS[t.id].name} returns to the deckbottom.`); io.view({ type: 'board' }); } } });
