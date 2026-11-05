@@ -190,3 +190,42 @@ test('K-1160 BSC32-038: Burst summons a God-Sechs Spirit from the Hand/Trash tre
     return { summoned, ended: G.attackEnded === G.turnNo, tu: K.trashUnaffected, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.ended, true, JSON.stringify(r));
 });
+
+test('K-1161 BSC48-009: destroys a 1-symbol Spirit/Nexus, draws, Burst summons itself when a Spirit is lost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-009'], E = K.effects;
+    const me = BS.mkInst('BSC48-009'); me.cores = 3; P.spirits = [me];
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].symbols || []).length <= 1 && BS.CARDS[k].cost <= 3)); w.cores = 1; O.spirits = [w];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    const destroyed = O.spirits.length === 0;
+    const h = P.hand.length; P.deck = P.deck.length ? P.deck : [BS.mkInst(w.id)];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[2].actions });
+    return { destroyed, drew: P.hand.length - h, burst: K.burst.actions[0].do, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.destroyed, true, JSON.stringify(r)); assert.equal(r.drew, 2, JSON.stringify(r)); assert.equal(r.burst, 'SUMMON_SELF', JSON.stringify(r));
+});
+
+test('K-1162 BSC48-010: draws, extra draw with a Level 2 Dairokuten Maou, also counts as White, trashes an opponent Reserve Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-010'], E = K.effects;
+    const me = BS.mkInst('BSC48-010'); me.cores = 2; P.spirits = [me];
+    const h = P.hand.length; await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    const drew = P.hand.length - h;
+    O.reserve.n = 3; const before = O.reserve.n; const tr = O.trash.length;
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[3].actions });
+    return { drew, lost: before - O.reserve.n, also: E[2].flag, cond: E[1].if.controlLv2, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.lost, 1, JSON.stringify(r)); assert.equal(r.also, 'ALSO_TREATED', JSON.stringify(r));
+});
+
+test('K-1163 BSC48-011: discards a Vassal/Heavenly Demon King card to draw 2, Grandwalker Nexus Cores go to the Void per symbol colour', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-011'], E = K.effects;
+    const me = BS.mkInst('BSC48-011'); me.cores = 3; P.spirits = [me];
+    const hdk = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Vassal') && k !== 'BSC48-011'); P.hand = [BS.mkInst(hdk)];
+    if (P.deck.length < 3) P.deck = [BS.mkInst(hdk), BS.mkInst(hdk), BS.mkInst(hdk)];
+    const t = P.trash.length; await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    return { discarded: P.trash.length - t, hand: P.hand.length, n: E.length, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.discarded, 1, JSON.stringify(r)); assert.equal(r.hand, 2, JSON.stringify(r)); assert.equal(r.n, 4, JSON.stringify(r));
+});

@@ -1568,5 +1568,55 @@
     "status": "wired",
     "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"handOrTrash\",\"pay\":true,\"reduceAll\":true}",
     "rule": "Engine: pays the printed cost minus every reduction symbol of the card."
+  },
+  {
+    "id": "K_DESTROY_ANY_SYMBOLS",
+    "kind": "action",
+    "meaning": "destroys one opposing Spirit or Nexus whose symbol count is at most the given number.",
+    "pattern": "Destroy an opposing Spirit or Nexus with N symbols or fewer",
+    "engine": "DESTROY_ANY_SYMBOLS",
+    "status": "full",
+    "example": "BSC48-009",
+    "rule": "Engine: destroys one opposing Spirit or Nexus whose symbol count is at most the given number."
+  },
+  {
+    "id": "K_DISCARD_DRAW_FAMILY",
+    "kind": "action",
+    "meaning": "once per turn per card name, discard a family card and draw N cards.",
+    "pattern": "Discard a <family> card from your Hand; if you do, draw N",
+    "engine": "DISCARD_DRAW_FAMILY",
+    "status": "full",
+    "example": "BSC48-011",
+    "rule": "Engine: once per turn per card name, discard a family card and draw N cards."
+  },
+  {
+    "id": "K_OPP_RESERVE_CORES_TO_TRASH",
+    "kind": "action",
+    "meaning": "moves N Cores from the opponent Reserve to their Trash.",
+    "pattern": "Trash N Core(s) from the opponent's Reserve",
+    "engine": "OPP_RESERVE_CORES_TO_TRASH",
+    "status": "full",
+    "example": "BSC48-010",
+    "rule": "Engine: moves N Cores from the opponent Reserve to their Trash."
+  },
+  {
+    "id": "K_COND_CONTROL_LV2",
+    "kind": "action",
+    "meaning": "condition true while a Level 2 Spirit of yours has that name part.",
+    "pattern": "If you control a Level 2 Spirit named <name>",
+    "engine": "controlLv2",
+    "status": "full",
+    "example": "BSC48-010",
+    "rule": "Engine: condition true while a Level 2 Spirit of yours has that name part."
+  },
+  {
+    "id": "K_NEXUS_CORES_PER_SYMCOLOR",
+    "kind": "action",
+    "meaning": "the Core count equals the number of different symbol colours you control.",
+    "pattern": "Move 1 Core per symbol colour from your Nexus to the Void",
+    "engine": "NEXUS_CORES_TO_VOID perSymColor",
+    "status": "full",
+    "example": "BSC48-011",
+    "rule": "Engine: the Core count equals the number of different symbol colours you control."
   }
 ]

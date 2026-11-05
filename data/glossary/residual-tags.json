@@ -79679,36 +79679,6 @@
   "T_START_ATTACK",
   "T_SUMMONED"
  ],
- "BSC48-009": [
-  "A_DRAW",
-  "A_RETURN_TRASH",
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_BURST",
-  "M_OPTIONAL",
-  "T_ALLY_LOST",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BSC48-010": [
-  "C_CONTROL",
-  "C_LEVEL",
-  "C_ONCE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ALLY_ATTACKS",
-  "T_SUMMONED"
- ],
- "BSC48-011": [
-  "A_DRAW",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BSC48-012": [
   "A_DRAW",
   "A_SUMMON_FREE",

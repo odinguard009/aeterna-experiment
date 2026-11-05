@@ -176,6 +176,39 @@ Object.assign(FX_ACTIONS, {
       att.noBlockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[att.id].name} can't be blocked.`); io.view({ type: 'board' }); } } });
 Object.assign(FX_ACTIONS, {
   /* v537 BOUNCE_DECKBOTTOM_PIERCE {pierceName}: "return an opposing Spirit/Nexus to the deckbottom; if you control any LV2 <name>, this effect can only be prevented by Heavy Armor/Ultra Heavy Armor" (BS73-X05). With the LV2 card on the Field a target is skipped only when it is immune AND has Heavy Armor / Ultra Heavy Armor (other immunity is ignored); otherwise a plain immunity check. The CPU returns the highest BP Spirit. */
+  /* v541 OPP_RESERVE_CORES_TO_TRASH {n}: "send a core from the opposing Reserve to the Trash" (BSC48-010; OPP_RESERVE_TO_TRASH sends all). */
+  OPP_RESERVE_CORES_TO_TRASH: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+    txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from the opposing Reserve to the Trash`,
+    can: c => c.opp.reserve.n > 0,
+    run: async (c, a) => { const m = Math.min(a.n, c.opp.reserve.n); c.ctx.did = m > 0; if (!m) return; coreEvN(c.opp, 'reserve', 'trash', m, false); c.opp.reserve.n -= m; c.opp.trashCores.n += m; log(`${_nm(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} Reserve go to the Trash.`); io.view({ type: 'board' }); } },
+  /* v541 DESTROY_ANY_SYMBOLS {symbolsLe}: "destroy an opposing Spirit/Nexus with N symbol(s) or less" (BSC48-009). */
+  DESTROY_ANY_SYMBOLS: { chk: a => Number.isInteger(a.symbolsLe) && a.symbolsLe >= 0 && a.symbolsLe <= 5 && Object.keys(a).every(k => ['do', 'if', 'symbolsLe'].includes(k)),
+    txt: a => `destroy an opposing Spirit/Nexus with ${a.symbolsLe} symbol(s) or less`,
+    cands: (c, a) => c.opp.spirits.concat(c.opp.nexus).filter(t => CARDS[t.id].symbols <= a.symbolsLe && (c.ctx.noPrevent || !fxImmune(c.opp, t, { p: c.p, src: c.src }))),
+    can: (c, a) => FX_ACTIONS.DESTROY_ANY_SYMBOLS.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.DESTROY_ANY_SYMBOLS.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      const t = c.p.cpu ? L.slice().sort((x, y) => (c.opp.spirits.includes(y) ? bpOf(y) : 0) - (c.opp.spirits.includes(x) ? bpOf(x) : 0))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit/Nexus to destroy (glowing).`);
+      if (!t) return;
+      if (c.opp.spirits.includes(t)) removeSpirit(c.opp, t, 'destroyed', true); else removeNexus(c.opp, t, 'destroyed');
+      checkDepletion(c.opp); c.ctx.did = true; log(`${_nm(c)}: ${CARDS[t.id].name} is destroyed.`); io.view({ type: 'board' }); } },
+  /* v541 DISCARD_DRAW_FAMILY {family, draw}: "discard a card from your Hand. (Once per Turn: Same Name) When this effect discards any <family> card, you can draw N cards" (BSC48-011). */
+  DISCARD_DRAW_FAMILY: { chk: a => Array.isArray(a.family) && a.family.length >= 1 && a.family.length <= 3 && a.family.every(f => typeof f === 'string' && f.length > 0) && Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3 && Object.keys(a).every(k => ['do', 'if', 'family', 'draw'].includes(k)),
+    txt: a => `discard a card from your Hand; once per turn, if it is a ${a.family.join('/')} family card, draw ${a.draw}`,
+    can: c => c.p.hand.some(h => h !== c.src),
+    run: async (c, a) => {
+      const L = c.p.hand.filter(h => h !== c.src); c.ctx.did = false; if (!L.length) return;
+      const pref = L.filter(h => !(CARDS[h.id].families || []).some(f => a.family.includes(f)));
+      const d = c.p.cpu ? (pref[0] || L[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, 'Choose a card from your Hand to discard.', false);
+      if (!d) return;
+      removeFrom(c.p.hand, d); c.p.trash.push(d); c.ctx.did = true; log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+      await sentToTrashFx(c, [d], 'hand');
+      const k = 'ddf:' + CARDS[c.src.id].name; c.p.onceUsed = c.p.onceUsed || {};
+      if ((CARDS[d.id].families || []).some(f => a.family.includes(f)) && c.p.onceUsed[k] !== G.turnNo) {
+        const go = c.p.cpu || await ask({ title: `✨ ${esc(_pn(c))}`, html: `Draw ${a.draw} card${a.draw === 1 ? '' : 's'}?`, buttons: [{ label: 'Draw', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] });
+        if (go) { c.p.onceUsed[k] = G.turnNo; const n = draw(c.p, a.draw); log(`${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${n} card${n === 1 ? '' : 's'}.`); handUp(c.p, n); }
+      }
+      io.view({ type: 'board' }); } },
   /* v539 DESTROY_PIERCE_ARMOR {costLe}: "destroy an opposing Cost N or less Spirit. This effect can only be prevented by 'Armor'-named effects" (BS74-059). A target is skipped only when it is immune AND has an Armor-named keyword; any other immunity is pierced. */
   DESTROY_PIERCE_ARMOR: { chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
     txt: a => `destroy an opposing Cost ${a.costLe} or less Spirit; only Armor-named effects can prevent it`,

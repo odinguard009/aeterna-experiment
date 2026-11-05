@@ -28402,19 +28402,90 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|s|After your Spirit is depleted/destroyed by the opponent}}",
-   "Summon this card without paying the cost.",
-   "[LV1][LV2][LV3] (When Summoned/Attacks)",
-   "Once per turn, you can destroy an opposing Spirit/Nexus with one symbol or less.",
-   "[LV2][LV3] (When Attacks)",
-   "You can draw two cards.",
-   "{{Six Heaven Rush|3}} (Activate if you have three or more symbol colors)",
-   "You can return a \"Heavenly Demon King\"/\"Vassal\" family Spirit card from your Trash to the Hand."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "M"
+  "rcode": "M",
+  "burst": {
+   "when": "ALLY_LOST",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "x",
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY_ANY_SYMBOLS",
+      "symbolsLe": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "x",
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY_ANY_SYMBOLS",
+      "symbolsLe": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 2
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "if": {
+     "symColorsGe": 3
+    },
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "match": {
+       "family": [
+        "Heavenly Demon King",
+        "Vassal"
+       ],
+       "type": "Spirit"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-010",
@@ -28448,17 +28519,78 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "You can draw a card. Then, (Once per Turn: Same Name), if you control any LV2 \"Contracter Dairokuten Maou\", you can draw a card.",
-   "[LV1][LV2]",
-   "This Spirit's symbol is also treated as White.",
-   "[LV2] (Your Attack Step)",
-   "When your \"God-Sechs\" attacks, you can send a core from the opposing Reserve to the Trash."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "once": true,
+    "sameName": true,
+    "if": {
+     "controlLv2": "Dairokuten Maou"
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "colors": [
+     "white"
+    ],
+    "symbol": true
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "if": {
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "OPP_RESERVE_CORES_TO_TRASH",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-011",
@@ -28496,15 +28628,91 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned/Attacks)",
-   "You can discard a card from your Hand. (Once per Turn: Same Name) When this effect discards any \"Heavenly Demon King\"/\"Vassal\" family card, you can draw two cards.",
-   "{{Six Heaven Rush|3}} (Activate if you have three or more symbol colors)",
-   "For each of your symbol colors, you can send a core from any opposing Grandwalker Nexuses to the Void."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DISCARD_DRAW_FAMILY",
+      "family": [
+       "Heavenly Demon King",
+       "Vassal"
+      ],
+      "draw": 2
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DISCARD_DRAW_FAMILY",
+      "family": [
+       "Heavenly Demon King",
+       "Vassal"
+      ],
+      "draw": 2
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "if": {
+     "symColorsGe": 3
+    },
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_VOID",
+      "family": "Grandwalker",
+      "n": 1,
+      "spread": true,
+      "perSymColor": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "if": {
+     "symColorsGe": 3
+    },
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_VOID",
+      "family": "Grandwalker",
+      "n": 1,
+      "spread": true,
+      "perSymColor": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-012",

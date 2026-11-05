@@ -209,12 +209,13 @@ Object.assign(FX_ACTIONS, {
       if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
       await maybeBurst(c.opp, 'LIFE_DECREASE', {});
     } },
-  NEXUS_CORES_TO_VOID: { chk: a => typeof a.family === 'string' && a.family.length > 0 && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10)) && (a.spread == null || typeof a.spread === 'boolean') && (a.orAllIfLifeLe == null || (Number.isInteger(a.orAllIfLifeLe) && a.n != null)) && (a.ignoreImmune == null || a.ignoreImmune === true),
+  NEXUS_CORES_TO_VOID: { chk: a => typeof a.family === 'string' && a.family.length > 0 && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10)) && (a.spread == null || typeof a.spread === 'boolean') && (a.orAllIfLifeLe == null || (Number.isInteger(a.orAllIfLifeLe) && a.n != null)) && (a.ignoreImmune == null || a.ignoreImmune === true) && (a.perSymColor == null || (a.perSymColor === true && a.n === 1 && a.spread === true)),      // v541 perSymColor: "for each of your symbol colors, send a core ..." (n = number of your symbol colors)
     txt: a => (a.ignoreImmune ? "(can't be prevented) " : '') + (a.n ? `send ${a.n} core${a.n === 1 ? '' : 's'} from ${a.spread ? 'any opposing "' + a.family + '" Nexuses' : 'an opposing "' + a.family + '" Nexus'}` : `send all cores from an opposing "${a.family}" Nexus`) + ' to the Void' + (a.orAllIfLifeLe != null ? `, or, if your Life is ${a.orAllIfLifeLe} or less, all cores from one such Nexus` : ''),
     cands: (c, a) => c.opp.nexus.filter(x => x.cores > 0 && (a.ignoreImmune === true || c.ctx.noPrevent || !fxImmune(c.opp, x)) && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.family.toLowerCase()))),
     can: (c, a) => FX_ACTIONS.NEXUS_CORES_TO_VOID.cands(c, a).length > 0,
     run: async (c, a) => {
-      const L = FX_ACTIONS.NEXUS_CORES_TO_VOID.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      if (a.perSymColor) a = Object.assign({}, a, { n: COLORS.filter(k => (symbolsOn(c.p)[k] || 0) >= 1).length });
+      const L = FX_ACTIONS.NEXUS_CORES_TO_VOID.cands(c, a); if (!L.length || (a.perSymColor && !a.n)) { c.ctx.did = false; return; }
       const nm = CARDS[c.src.id].name, total = L.reduce((t, x) => t + x.cores, 0), most = Math.max(...L.map(x => x.cores));
       let all = a.n == null;
       if (!all && a.orAllIfLifeLe != null && c.p.life <= a.orAllIfLifeLe) {
