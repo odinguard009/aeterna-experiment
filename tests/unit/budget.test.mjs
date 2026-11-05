@@ -97,7 +97,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, SIDES_RE = /
 // v0.217.0 (Lane K, Field Flash v1 + Grandwalker bundles 46-53): raised B01 1600 -> 1610 KB on purpose (page was 1.2 KB over).
 // v0.218.1+ (Lane K, BS73-AX03 hand-zone attack triggers): raised B01 1610 -> 1620 KB on purpose (page was 3 KB over).
 // Lane K, BSC48-009..011: raised 1620 -> 1640 KB; BS71-NX03: 1640 -> 1660 KB on purpose (new engine actions).
-test('B01 index.html without the card pack stays under 1660 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1660e3, Buffer.byteLength(noFont(code))));
+// Lane K, BSC48-XX01 (Advent2 costIn/orNexus, RETURN_OPP_SUN): raised 1660 -> 1680 KB on purpose (page was 1 KB over).
+test('B01 index.html without the card pack stays under 1680 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1680e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
