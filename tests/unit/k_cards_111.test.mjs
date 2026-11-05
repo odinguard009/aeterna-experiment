@@ -303,3 +303,17 @@ test('K-1169 BSC48-021: Flash -5000 BP destroys at 0 BP and draws from the deckb
     return { back,  gone: !O.spirits.includes(t), drew, gs, col: BS.collectFx({ owner: P, trigger: 'ALLY_SUMMONED', src: g, ctx: { subject: g } }).length,  sa: K.magic.summonAfter, zone: e.zone, trg: e.trigger, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.sa, true); assert.equal(r.back, true, JSON.stringify(r));
 });
+
+test('K-1170 BSC48-039: Draw Step +1 card; discard 1 unless six counters and a small Hand', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2;
+    const K = BS.CARDS['BSC48-039'], me = BS.mkInst('BSC48-039'); me.cores = 1; P.nexus = [me]; if (!P.nexuses) P.nexuses = P.nexus;
+    const plus = BS.fieldList(P).includes(me) ? 0 : -1;
+    P.count = 2; P.hand = P.deck.splice(0, 4); const h0 = P.hand.length;
+    await BS.fireFx(P, 'DRAW_STEP', null, {});
+    const lowCount = h0 - P.hand.length;
+    P.count = 6; P.hand = P.deck.splice(0, 4); const h1 = P.hand.length;
+    await BS.fireFx(P, 'DRAW_STEP', null, {});
+    return { lowCount, h1, h2: P.hand.length, plus, partial: K.partial, fc: K.fxComplete }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.lowCount, 1, JSON.stringify(r)); assert.ok(r.h2 >= r.h1 - 1, JSON.stringify(r));
+});
