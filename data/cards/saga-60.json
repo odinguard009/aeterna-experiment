@@ -73962,13 +73962,75 @@
   "image": "SD57-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Draw a card. {{Rush|Red/White}} (While you have a Red/White symbol, the following effects activate next) (Red Core): You can destroy an opposing Nexus. (White Core): Return an opposing Spirit to the Hand.",
-   "[LV2][LV3] This Spirit's symbol is also treated as Red/White."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). Six Heaven Rush = per-colour hasSymbol gates (Red: optional Nexus destroy; White: bounce).",
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true,
+      "if": {
+       "hasSymbol": "red"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "kind": "spirit",
+      "to": "hand",
+      "if": {
+       "hasSymbol": "white"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "colors": [
+     "red",
+     "white"
+    ],
+    "symbol": true
+   }
+  ]
  },
  {
   "id": "SD57-005",

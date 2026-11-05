@@ -68,3 +68,14 @@ test('K-1180 SD32-004: +3000 BP to two-colour allies only while the Soul Core is
     return { fc: BS.CARDS['SD32-004'].partial === false, withSoul: run(true, two), noSoul: run(false, two), mono: run(true, one) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.withSoul, 3000, JSON.stringify(r)); assert.equal(r.noSoul, 0, JSON.stringify(r)); assert.equal(r.mono, 0, JSON.stringify(r));
 });
+
+test('K-1181 SD57-004: summon draws, then returns an opposing Spirit only while you have a White symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const mono = c => (c.colors || [c.symbol]).length === 1 && c.levels.length > 0 && c.type === 'Spirit';
+    const wh = Object.keys(BS.CARDS).find(k => { if (!(mono(BS.CARDS[k]) && BS.CARDS[k].symbol === 'white')) return false; const a = BS.mkInst(k); a.cores = 1; P.spirits = [a]; return !!symbolsOn(P).white; });
+    const bl = Object.keys(BS.CARDS).find(k => mono(BS.CARDS[k]) && BS.CARDS[k].symbol === 'blue');
+    const run = async (id) => { const me = BS.mkInst('SD57-004'); me.cores = 1; const a = BS.mkInst(id); a.cores = 1; P.spirits = [a]; P.spirits = [me, a].slice(0, 2); const t = BS.mkInst(bl); t.cores = 1; O.spirits = [t]; O.hand = []; const h0 = P.hand.length; await BS.fireFx(P, 'SUMMONED', me, {}); return { drew: P.hand.length - h0, back: O.hand.length }; };
+    return { fc: BS.CARDS['SD57-004'].partial === false, white: await run(wh), blue: await run(bl), sd: (BS.CARDS['SD57-004'].colors || []) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.white.drew, 1, JSON.stringify(r)); assert.equal(r.white.back, 1, JSON.stringify(r)); assert.equal(r.blue.back, 0, JSON.stringify(r));
+});
