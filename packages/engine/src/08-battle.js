@@ -106,7 +106,25 @@ async function doBattleInner(attKey, att) {
 async function maybeBurst(owner, trigger, ctx) {      // v435 LIFE_ANY: a Life reduction also lets the other player's "your Life or the opposing Life" Burst answer
   const r = await maybeBurst1(owner, trigger, ctx);
   if (trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await maybeBurst1(G.p[other(owner.key)], 'OPP_LIFE_DECREASE', {});
+  if (!r && trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await lifeFlashDiscard(owner);
   return r;
+}
+/* v564 card field lifeFlash (BSC48-054): "when your Life is reduced by the opponent, by discarding this set card, immediately activate its Flash effect without paying the cost".
+   Runs after the Burst check of a Life reduction (only when the set card was not activated as a Burst); the set card leaves the Burst Area like a used Burst. */
+async function lifeFlashDiscard(owner) {
+  const b = owner.burst; if (!b || b.mirage || !CARDS[b.id].lifeFlash) return false;
+  if (!magicUsable(owner, b, 'flash', true)) return false;
+  const card = CARDS[b.id];
+  const use = owner.cpu ? true : await ask({ title: '💥 ' + esc(card.name), peek: true, wide: true, html: `Discard ${esc(card.name)} to activate its (Flash) effect without paying the cost: ${esc(magicText(card))}`, cards: cardIds([b]),
+    buttons: [{ label: 'Discard and activate', cls: 'primary', value: true }, { label: 'Keep it set', cls: 'cancel', value: false }] });
+  if (!use || owner.burst !== b) return false;
+  owner.burst = null; owner.limbo = b;
+  log(`${who(owner)} ${owner.cpu ? 'discards' : 'discard'} the set card ${card.name}: its Flash effect activates without paying the cost.`);
+  io.view({ type: 'board' });
+  try { await castMagic(owner, { inst: b, target: null, plan: null, ctx: 'flash', free: true }); }
+  finally { owner.limbo = null; if (!fieldList(owner).includes(b) && !owner.trash.includes(b) && !owner.hand.includes(b)) owner.trash.push(b); }
+  io.view({ type: 'board' });
+  return true;
 }
 async function maybeBurst1(owner, trigger, ctx) {
   if (trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await lifeHandFx(owner);      // v411 magic.lifeHand

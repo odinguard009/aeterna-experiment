@@ -106,3 +106,13 @@ test('K-1201 BS71-083: Burst timing covers a Spirit lost by depletion as well as
   const r = await page.evaluate(`(() => { const k = BS.CARDS['BS71-083']; return { fc: k.partial === false, when: k.burst.when, main: k.burst.thenMain, also: !!k.burst.also }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.when, 'ALLY_LOST', JSON.stringify(r)); assert.equal(r.main, true, JSON.stringify(r)); assert.equal(r.also, true, JSON.stringify(r));
 });
+
+test('K-1202 BSC48-054: Life reduced by the opponent lets the set Magic be discarded for a free Flash (end the Attack Step)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key;
+    const k = BS.CARDS['BSC48-054']; const b = BS.mkInst('BSC48-054'); P.burst = b; P.trash = [];
+    const att = BS.mkInst(Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && !BS.CARDS[x].burst)); att.cores = 3; O.spirits = [att]; G.attacker = att;
+    P.life = 4; P.life--; await BS.maybeBurst(P, 'LIFE_DECREASE', { attacker: att });
+    return { fc: k.partial === false, setLeft: !!P.burst, inTrash: P.trash.includes(b), tt: !!k.trashTrigger, lf: k.lifeFlash === true }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.setLeft, false, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r)); assert.equal(r.tt, true, JSON.stringify(r)); assert.equal(r.lf, true, JSON.stringify(r));
+});

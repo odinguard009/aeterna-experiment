@@ -31040,17 +31040,49 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "When this card is sent to the Trash from the deck by the effect of your \"Dairokuten Maou\" Grandwalker Nexus, you can add it to the Hand.",
-   "This set card can't be discarded by the opponent, and when your Life is reduced by the opponent, by discarding it, immediately activate its Flash effect without paying the cost.",
-   "{{Burst|s|After your Spirit is depleted/destroyed by the opponent}}",
-   "Put a core from the Void to your Life. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash",
-   "When this battle ends, end the Attack Step."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_AFTER_BATTLE"
+    }
+   ]
+  },
+  "burst": {
+   "when": "ALLY_LOST",
+   "actions": [
+    {
+     "do": "VOID_TO_LIFE",
+     "n": 1
+    }
+   ],
+   "thenFlash": true
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "SET_UNAFFECTED"
+   }
+  ],
+  "trashTrigger": {
+   "from": [
+    "deck"
+   ],
+   "by": {
+    "name": [
+     "Dairokuten Maou"
+    ]
+   },
+   "add": true
+  },
+  "lifeFlash": true
  },
  {
   "id": "BSC48-055",

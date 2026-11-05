@@ -1,1882 +1,1892 @@
 [
-  {
-    "id": "T_SUMMONED",
-    "kind": "trigger",
-    "meaning": "(When Summoned)",
-    "pattern": "\\(When Summoned\\)|When Summoned",
-    "engine": "SUMMONED",
-    "status": "wired",
-    "example": "{\"trigger\":\"SUMMONED\"}",
-    "rule": "Standard Comprehensive Rules 1.0 12-2-1-6-1: activates when the Spirit is Summoned."
-  },
-  {
-    "id": "T_ATTACKS",
-    "kind": "trigger",
-    "meaning": "(When Attacks)",
-    "pattern": "\\(When Attacks\\)|When Attacks",
-    "engine": "ATTACKS",
-    "status": "wired",
-    "example": "{\"trigger\":\"ATTACKS\"}",
-    "rule": "Standard Comprehensive Rules 1.0 12-2-1-7-1: Triggered Effect when it attacks during your Attack Step."
-  },
-  {
-    "id": "T_ALLY_ATTACKS",
-    "kind": "trigger",
-    "meaning": "When your X attacks",
-    "pattern": "When your .{0,40} attacks",
-    "engine": "ALLY_ATTACKS",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_ATTACKS\",\"match\":{\"name\":[\"Crimson\"]}}",
-    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): effects that activate on one event are ordered here (constant before timed, the turn player orders the rest); the trigger itself is card text naming the ally."
-  },
-  {
-    "id": "T_ALLY_BLOCKED",
-    "kind": "trigger",
-    "meaning": "When your X is blocked",
-    "pattern": "is blocked",
-    "engine": "ALLY_BLOCKED",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): block-timing effects trigger after the block is declared and performed, which is the event this card text watches."
-  },
-  {
-    "id": "T_ALLY_SUMMONED",
-    "kind": "trigger",
-    "meaning": "When your target Spirit is summoned (Neo-Core Charge)",
-    "pattern": "is summoned|Neo-Core Charge",
-    "engine": "ALLY_SUMMONED",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 24 (ETR:cost.paying): the summon it watches pays its cost and puts cores on the card; Neo-Core Charge itself is card text (docs/manual-notes.md \"Blue Nuadha card-text terms\")."
-  },
-  {
-    "id": "T_ADVENT",
-    "kind": "trigger",
-    "meaning": "(When Advents)",
-    "pattern": "When Advents|\\(When Advent\\)",
-    "engine": "ADVENT",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): Advent is not a summon (keyword glossary in packages/engine/src/00-config.js; docs/manual-notes.md \"Costs and summons\"), and the (When Advents) trigger is card text that resolves as a timed effect."
-  },
-  {
-    "id": "T_START_ATTACK",
-    "kind": "trigger",
-    "meaning": "(Start of Your Attack Step)",
-    "pattern": "Start of Your Attack Step",
-    "engine": "START_ATTACK",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the step list and what each step does; a start-of-step head is card text that fires once when the step begins."
-  },
-  {
-    "id": "T_ALLY_LIFE_HIT",
-    "kind": "trigger",
-    "meaning": "When your X reduces the opposing Life",
-    "pattern": "reduces the opposing Life",
-    "engine": "ALLY_LIFE_HIT",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): an unblocked attack takes Life equal to the attacker symbols; a trigger on that event is card text."
-  },
-  {
-    "id": "T_ALLY_LOST",
-    "kind": "trigger",
-    "meaning": "When your Spirit is depleted/destroyed by the opponent",
-    "pattern": "destroyed by the opponent|depleted by the opponent",
-    "engine": "ALLY_LOST",
-    "status": "partial",
-    "example": "Burst version uses ALLY_DESTROYED",
-    "rule": "Standard Comprehensive Rules 12-2-1-12 (STD:12-2-1-12): \"destroyed by the opponent\" needs an opposing effect or a BP comparison with an opposing Spirit; depletion is not destruction (ETR:cores.depletion)."
-  },
-  {
-    "id": "T_OPP_HAND_UP",
-    "kind": "trigger",
-    "meaning": "When the opposing Hand increases",
-    "pattern": "opposing Hand increases",
-    "engine": "OPP_HAND_UP",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 10 (ETR:setup): the opening hand and the Draw Step (SJP:turn) are the only draws; watching an opposing Hand increase is card text."
-  },
-  {
-    "id": "T_MIRAGE_LIFE",
-    "kind": "trigger",
-    "meaning": "[During Set] when a Life is reduced",
-    "pattern": "During Set",
-    "engine": "MIRAGE_OWN_LIFE / MIRAGE_OPP_LIFE",
-    "status": "partial",
-    "example": "Other Mirage triggers (Flash, Soul State) are not wired",
-    "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): a Mirage sits in the Burst Area outside the Field; a [During Set] effect that watches a Life decrease is card text."
-  },
-  {
-    "id": "C_MIRAGE_SET",
-    "kind": "condition",
-    "meaning": "While a Mirage is set (any / of a given colour)",
-    "pattern": "Mirage set",
-    "engine": "if.mirageSet (boolean) / if.mirageColor (array of colours; the set Mirage must carry one of them)",
-    "status": "wired",
-    "example": "{\"if\":{\"mirageColor\":[\"purple\",\"white\"]}} (BS58-037)",
-    "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): the Mirage sits in the Burst Area; its colour is read from colours, else colour and symbol."
-  },
-  {
-    "id": "T_REVEALED",
-    "kind": "trigger",
-    "meaning": "When revealed from the deck",
-    "pattern": "revealed from the deck",
-    "engine": "REVEALED (+ actions MIRAGE_SET, DEPLOY_SELF)",
-    "status": "partial",
-    "example": "{\"trigger\":\"REVEALED\",\"optional\":true,\"actions\":[{\"do\":\"MIRAGE_SET\"}]}",
-    "rule": "Eternal manual VER.17.0 has no timing rule; v0.33 ruling: resolves at once while the revealing effect resolves. Magic reveals do not fire it yet."
-  },
-  {
-    "id": "T_ALLY_DESTROYS",
-    "kind": "trigger",
-    "meaning": "When your X destroys an opposing Spirit",
-    "pattern": "is destroyed by your",
-    "engine": "ALLY_DESTROYS (battle only)",
-    "status": "partial",
-    "example": "{\"trigger\":\"ALLY_DESTROYS\",\"match\":{\"name\":[\"Crimson\"]}}",
-    "rule": "Eternal manual p. 30-31: battle destruction after BP comparison; destructions by effects do not fire it yet."
-  },
-  {
-    "id": "T_FROM_HAND_BLOCKED",
-    "kind": "trigger",
-    "meaning": "Deploy/summon this from the Hand when your X is blocked",
-    "pattern": "is blocked, you can deploy this card from the Hand",
-    "engine": "ALLY_BLOCKED zone:'hand' + DEPLOY_SELF",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_BLOCKED\",\"zone\":\"hand\",\"actions\":[{\"do\":\"DEPLOY_SELF\"}]}",
-    "rule": "Eternal manual p. 30: activates with the other effects after the block is declared."
-  },
-  {
-    "id": "T_ACTIVATE",
-    "kind": "trigger",
-    "meaning": "[Main] / (Flash) activated abilities",
-    "pattern": "\\(Flash\\)|\\[Main\\]|Main -",
-    "engine": "ACTIVATE",
-    "status": "wired",
-    "example": "timing MAIN/FLASH, cost nexusToVoid",
-    "rule": "Eternal Rule Manual sec.2: Main effects only in your Main Step; Flash effects in the Main Step and at Flash Timing. A (Flash) with '(Either Attack Step)' is Flash Timing only. Standard Comprehensive Rules 1.0 9-1-7-1-2."
-  },
-  {
-    "id": "A_DRAW",
-    "kind": "action",
-    "meaning": "Draw N cards",
-    "pattern": "draw (one|two|three|\\d) cards?",
-    "engine": "DRAW",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 10 (ETR:setup): Deck to Hand at setup and in the Draw Step (SJP:turn); an effect draws the same way (SJP:effects)."
-  },
-  {
-    "id": "A_COUNTER",
-    "kind": "action",
-    "meaning": "Your counter +N",
-    "pattern": "counter \\+\\d",
-    "engine": "COUNTER",
-    "status": "wired",
-    "example": "max up to 30",
-    "rule": "Eternal Rule Manual p. 60: Count Area cores come from the Void (engine: takeFromVoid, v0.29); this is not 'adding cores from the Void'."
-  },
-  {
-    "id": "A_DESTROY_BP",
-    "kind": "action",
-    "meaning": "Destroy an opposing Spirit with BP N or less",
-    "pattern": "destroy an opposing .{0,30}BP",
-    "engine": "DESTROY",
-    "status": "wired",
-    "example": "bpLe, bpLeAttacker, lifeBoost, thenDraw",
-    "rule": "Standard Comprehensive Rules 1.0 5-10-1: destroyed by an effect or BP comparison -> pending state -> Trash."
-  },
-  {
-    "id": "A_DESTROY_NEXUS",
-    "kind": "action",
-    "meaning": "Destroy an opposing Nexus",
-    "pattern": "destroy an opposing Nexus",
-    "engine": "DESTROY nexus:true",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): Nexus deployment; destroying a Nexus by an effect follows the card text, while Spirit destruction follows ETR:battle.destruction."
-  },
-  {
-    "id": "A_BOUNCE",
-    "kind": "action",
-    "meaning": "Return an opposing Spirit/Nexus to the Hand",
-    "pattern": "return an opposing .{0,20}to the Hand",
-    "engine": "BOUNCE_OPP",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): returning a card to the Hand is not destruction, and a card leaving the Field waits in Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4)."
-  },
-  {
-    "id": "A_BANISH",
-    "kind": "action",
-    "meaning": "Banish",
-    "pattern": "[Bb]anish",
-    "engine": "MAGIC_FX BANISH_BP_LE / BANISH_DESTROYED",
-    "status": "partial",
-    "example": "Not available as an effect action",
-    "rule": "Engine: a banished card goes to the Banished zone (removed from the game). The Eternal Rule Manual 17.0 text available online does not define Banish; re-check against the 17.1 PDF."
-  },
-  {
-    "id": "A_BP_PLUS",
-    "kind": "action",
-    "meaning": "+N BP this turn",
-    "pattern": "\\+\\d+ ?BP|gain \\+\\d+",
-    "engine": "BP_PLUS / STATIC bp",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 68 (ETR:faq.bp): BP changes stack on the current level and a Spirit at 0 BP is destroyed only by a card clause; printed numbers never go below zero (STD:1-4-6)."
-  },
-  {
-    "id": "A_REFRESH",
-    "kind": "action",
-    "meaning": "Refresh a Spirit",
-    "pattern": "[Rr]efresh",
-    "engine": "REFRESH / REFRESH_SPIRIT",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 5-14-1 / 5-15-1: Refresh = Exhausted to Refresh state; Exhaust = Refresh to Exhausted state."
-  },
-  {
-    "id": "A_CORE_TO_SELF",
-    "kind": "action",
-    "meaning": "+1 core to this card",
-    "pattern": "\\+\\d core",
-    "engine": "CORE_TO_SELF",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move from the Reserve or the Void (ETR:cost.paying); Count cores are a separate pool outside the Field (ETR:count)."
-  },
-  {
-    "id": "A_TRASH_TO_RESERVE",
-    "kind": "action",
-    "meaning": "Cores from the Trash to cards/Reserve",
-    "pattern": "from your Trash to",
-    "engine": "TRASH_CORES_TO",
-    "status": "wired",
-    "example": "onlyCards, toAttacker, thenDestroyNexus",
-    "rule": "Eternal Rule Manual p. 20 (ETR:turn.refresh-step): Trash cores return to the Reserve at the Refresh Step; an effect may make that move earlier (card text)."
-  },
-  {
-    "id": "A_VOID",
-    "kind": "action",
-    "meaning": "Cores to/from the Void",
-    "pattern": "Void",
-    "engine": "VOID_TO_RESERVE / VOID_TO_CARD / VOID_TO_TRASH / NEXUS_CORES_TO_VOID",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 4-8-1/4-8-2: the Void is the supply of Cores and has no limit; when it runs out, cores are added from outside the game (engine: takeFromVoid, v0.29). Eternal Rule Manual sec.11: +X cores from the Void onto a Grandwalker Nexus does not count as increasing Cores from the Void. Eternal Rule Manual (Cores and the Soul Core): the Soul Core can never be placed in the Void; it stays where it is and another core goes instead."
-  },
-  {
-    "id": "A_SOUL_STATE",
-    "kind": "action",
-    "meaning": "Enter / leave Soul State",
-    "pattern": "Soul State",
-    "engine": "SOUL_ENTER / SOUL_SUMMON / SOUL_RETURN",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.10: no Lv, no cores, symbols cannot reduce costs, cannot attack or block; not in the Trash, so destruction Bursts cannot trigger."
-  },
-  {
-    "id": "A_SUMMON_FREE",
-    "kind": "action",
-    "meaning": "Summon/deploy without paying the cost",
-    "pattern": "without paying the cost",
-    "engine": "SUMMON_HAND / SUMMON_SELF / SUMMON_FREE",
-    "status": "wired",
-    "example": "from: hand/handOrSoul/soul",
-    "rule": "Official: a plain \"summon/deploy\" effect still pays the cost (with cost reduction); only text saying \"without paying the cost\" is free (Eternal manual, summon/deploy)."
-  },
-  {
-    "id": "A_SUMMON_PAID",
-    "kind": "action",
-    "meaning": "Summon/deploy by paying the cost (cost reduction applies)",
-    "pattern": "summon / deploy (no 'without paying the cost')",
-    "engine": "SUMMON_HAND / SOUL_SUMMON with pay:true; Revive",
-    "status": "wired",
-    "example": "pay: true",
-    "rule": "Official (Eternal manual): Revive/Revival also deploys the Grandwalker Nexus by paying its cost."
-  },
-  {
-    "id": "A_RETURN_TRASH",
-    "kind": "action",
-    "meaning": "Return a card from the Trash to the Hand",
-    "pattern": "from your Trash to the Hand|from the Trash to the Hand",
-    "engine": "RETURN_TRASH",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): the Trash is a public pile and cards leave it only by an effect."
-  },
-  {
-    "id": "A_REVEAL_DECK",
-    "kind": "action",
-    "meaning": "Reveal N cards from the decktop and pick",
-    "pattern": "reveal (three|four|five|\\d) cards",
-    "engine": "SOUL_ENTER src:reveal / REVEAL_DEPLOY / REVEAL_ADD (Magic)",
-    "status": "partial",
-    "example": "Spirit/Nexus reveal-and-deploy not generic yet",
-    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): revealing Deck cards is an effect; the ruling since v0.33 is that it resolves at once inside the revealing effect (docs/manual-notes.md \"Effects\")."
-  },
-  {
-    "id": "A_AWAKEN",
-    "kind": "action",
-    "meaning": "Send cores from your Spirits to this Spirit",
-    "pattern": "Awaken",
-    "engine": "AWAKEN",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move between your cards in the Main Step; \"Awaken\" with its printed limit is card text."
-  },
-  {
-    "id": "A_LIFE_TO_RESERVE",
-    "kind": "action",
-    "meaning": "Send Life to the Reserve",
-    "pattern": "Life .{0,30}Reserve",
-    "engine": "LIFE_TO_RESERVE",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): a reduced Life sends its cores to the Reserve; the same move by an effect is card text."
-  },
-  {
-    "id": "A_EXHAUST",
-    "kind": "action",
-    "meaning": "Exhaust / depletion effects",
-    "pattern": "[Ee]xhaust",
-    "engine": "EXHAUST_OPP (effect action) and MAGIC_FX EXHAUST_OPP",
-    "status": "wired",
-    "example": "{\"do\":\"EXHAUST_OPP\",\"n\":1,\"costLe\":7}",
-    "rule": "Eternal Rule Manual p. 60-61: Exhaust turns a Refreshed card sideways; only a Refreshed card can be exhausted by an Exhaust effect (an Exhausted target is not a valid target); it is not Heavy Exhaust."
-  },
-  {
-    "id": "A_DISCARD_OPP",
-    "kind": "action",
-    "meaning": "Opponent discards",
-    "pattern": "opponent discards|discard.{0,20}opposing",
-    "engine": "DISCARD_OPP_BURST only",
-    "status": "partial",
-    "example": "",
-    "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): a card leaves a hidden Hand for the Trash by an effect, and its owner picks."
-  },
-  {
-    "id": "A_SYMBOL",
-    "kind": "action",
-    "meaning": "Extra symbol / symbol change",
-    "pattern": "extra .{0,12}symbol",
-    "engine": "SYMBOL_PLUS (this battle) / SYMBOL_PLUS_TURN (this turn, coloured)",
-    "status": "partial",
-    "example": "Magma Call Flash",
-    "rule": "Eternal Rule Manual p. 13 (ETR:card.symbols): symbols drive cost reduction and Life damage and include God and Ultimate symbols; extra or changed symbols are card text."
-  },
-  {
-    "id": "A_END_ATTACK",
-    "kind": "action",
-    "meaning": "End the Attack Step",
-    "pattern": "end the Attack Step",
-    "engine": "END_ATTACK_AFTER_BATTLE / STATIC NO_END_ATTACK",
-    "status": "wired",
-    "example": "Meteor Defense Flash",
-    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the Attack Step and where it sits; effects already pending resolve first (ETR:effects.simultaneous); ending the step early is card text."
-  },
-  {
-    "id": "A_SEAL",
-    "kind": "action",
-    "meaning": "Seal",
-    "pattern": "\\bSeal\\b",
-    "engine": "SEAL action; manifest/contractAdvent \"seal\":true; fxIf sealed; p.lifeSoul",
-    "status": "wired",
-    "example": "{\"do\":\"SEAL\"} / {\"if\":{\"sealed\":true}}",
-    "rule": "Eternal Rule Manual p.49 (Seal): Seal moves your Soul Core from the stated place to your Life; while that Soul Core is in your Life you are Sealed and [During Seal] effects can be used. Using Seal is optional. When Life is reduced with a normal core and the Soul Core in Life, the player chooses which leaves (engine: normal cores first)."
-  },
-  {
-    "id": "C_LIFE",
-    "kind": "condition",
-    "meaning": "If your Life is N or less",
-    "pattern": "[Ll]ife is (at )?(\\w+) or less",
-    "engine": "lifeLe / lifeGe",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 10 (ETR:setup): Life is a core count in the Life area; a condition on it is card text."
-  },
-  {
-    "id": "C_COUNTER",
-    "kind": "condition",
-    "meaning": "Counter N or more / C-cost",
-    "pattern": "C\\d+ or more|counter .{0,10}or more",
-    "engine": "counterGe",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): counters are put on Nexuses by effects; Count cores are a separate Void-fed pool (ETR:count); a counter threshold is card text."
-  },
-  {
-    "id": "C_CONTROL",
-    "kind": "condition",
-    "meaning": "If you control (incl. Soul State) a named card",
-    "pattern": "if you control any",
-    "engine": "controlName / hasName",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 54 (ETR:contract.soul-state): \"control\" means on your Field and a Soul State card is not on the Field, which is why the engine has an explicit incl.-Soul-State form."
-  },
-  {
-    "id": "C_ONCE",
-    "kind": "condition",
-    "meaning": "(Once per Turn: Same Name)",
-    "pattern": "Once per Turn",
-    "engine": "once / sameName",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual FAQ Q9: [Once per turn] is per card; [Once per turn: Same Name] is shared by all same-name cards. Standard Comprehensive Rules 1.0 12-3-1-1."
-  },
-  {
-    "id": "C_OPP_TURN",
-    "kind": "condition",
-    "meaning": "Opposing turn / Your turn",
-    "pattern": "Your Turn|Opposing Turn|opposing turn",
-    "engine": "oppTurn",
-    "status": "partial",
-    "example": "Your Turn limit on Flash only partly",
-    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): one seat holds the turn at a time; \"opposing turn\" is a card-text timing."
-  },
-  {
-    "id": "C_LEVEL",
-    "kind": "condition",
-    "meaning": "[LV1][LV2] level gating",
-    "pattern": "\\[LV\\d\\]",
-    "engine": "lv",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 27 (ETR:cores.depletion): levels are core thresholds and too few cores is depletion, not destruction; a [LV1][LV2] head is printed on the card."
-  },
-  {
-    "id": "S_MUST_BLOCK",
-    "kind": "static",
-    "meaning": "Must block if possible",
-    "pattern": "must block",
-    "engine": "STATIC flag MUST_BLOCK",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): one untapped Spirit or Ultimate may block; \"must block if possible\" is card text on top of that."
-  },
-  {
-    "id": "S_NO_RETURN",
-    "kind": "static",
-    "meaning": "Can't be returned from the Field",
-    "pattern": "can't be returned|cannot be returned",
-    "engine": "STATIC flag NO_RETURN",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): every way of leaving the Field goes through Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4); a lock against being returned is card text."
-  },
-  {
-    "id": "S_CORES_DRAW",
-    "kind": "static",
-    "meaning": "Draw when cores are sent to this Spirit",
-    "pattern": "When cores are sent to this Spirit",
-    "engine": "STATIC flag CORES_DRAW",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores moving onto a Field card; drawing on that event is card text."
-  },
-  {
-    "id": "S_UNAFFECTED",
-    "kind": "static",
-    "meaning": "Unaffected by opposing effects",
-    "pattern": "unaffected by",
-    "engine": "STATIC flag UNAFFECTED {to: self|own, match, from: {colors, types}} (v0.58) and UNAFFECTED_SOUL (Ometeotl) via fxImmune(owner, target, acting effect); every FX_ACTIONS cands list skips immune opposing targets (02k-effects-immunity.js); HAND_UNAFFECTED (your Hand), card flags handUnaffected / trashUnaffected",
-    "status": "partial",
-    "example": "Banve, Unnis, Z Thunder",
-    "rule": "Eternal Rule Manual sec.6: ignores all effects except those listed (e.g. Grandwalker Nexus only by its own / Grandwalker-targeting effects; Soul State cards only by Soul State-targeting effects). Priority (FAQ Q3): cannot be prevented > unaffected > cannot activate. Engine v0.58: unaffected by OPPOSING effects whose source card matches the colours/types; conditional forms (while exhausted, During Seal, While ... in your Trash) and 'this effect is unaffected' are not built yet."
-  },
-  {
-    "id": "S_CANT_PREVENT",
-    "kind": "static",
-    "meaning": "Can't be prevented/negated",
-    "pattern": "can't be prevent|cannot be prevent",
-    "engine": "action flag ignoreImmune (DESTROY coresLe since v0.39; every cands list honours it since v0.58)",
-    "status": "partial",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 62 (ETR:faq.effects-q3): effect priority: \"cannot\" beats \"must\" beats \"may/do\"; \"cannot be prevented\" beats \"unaffected\" beats \"cannot activate\" (ETR:faq.effects-q4)."
-  },
-  {
-    "id": "K_BURST",
-    "kind": "keyword",
-    "meaning": "Burst",
-    "pattern": "\\bBurst\\b",
-    "engine": "card.burst",
-    "status": "wired",
-    "example": "LIFE_DECREASE / ALLY_DESTROYED / OPP_SUMMON_FX / OPP_HAND_UP",
-    "rule": "Eternal Rule Manual sec.7: set face down from the Hand in your Main Step once per turn, no cost; one Burst in the area (a new one discards the old one); activation is optional; Magic Bursts may allow a paid extra (Flash) effect."
-  },
-  {
-    "id": "K_FLASH_BURST_FOLLOWUP",
-    "kind": "keyword",
-    "meaning": "Burst then pay to use the Flash effect",
-    "pattern": "by paying the cost, activate this card's \\(Flash\\)",
-    "engine": "burst.thenFlash (burstFlash)",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 46 (ETR:burst): a Burst activates with the other effects of its event and the Flash timings follow (SJP:flash); paying to use the Flash effect after the Burst is card text."
-  },
-  {
-    "id": "K_MIRAGE",
-    "kind": "keyword",
-    "meaning": "Mirage",
-    "pattern": "Mirage",
-    "engine": "card.mirage",
-    "status": "partial",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.8: set face up from the Hand in your Main Step once per turn by paying the Mirage cost; cores cannot be placed on it; its symbols cannot reduce costs; a Burst and a Mirage can both be in the Burst Area; replacing a Mirage returns the old one to the Hand."
-  },
-  {
-    "id": "K_ADVENT",
-    "kind": "keyword",
-    "meaning": "Advent / Contract Advent",
-    "pattern": "Advent",
-    "engine": "advent / contractAdvent",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.9: not a summon; the Soul Core moves; the Advent card stacks on the source and inherits its state and cores; Contract/Divine/Over Advent count as Advent."
-  },
-  {
-    "id": "K_MANIFEST",
-    "kind": "keyword",
-    "meaning": "Manifest / Ultra Manifest",
-    "pattern": "MANIFEST|Manifest",
-    "engine": "manifest {name, counterGe, turn: YOURS | EITHER_ATTACK | YOUR_ATTACK, ultra | seal}, trigger MANIFEST",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual (Manifest): put the Soul Core from your Life, Field or Reserve in the Trash and pay 1 of the summon cost with a core from the target Grandwalker Nexus; the Spirit is treated as summoned by paying 1 cost. When-Manifests effects do not activate when the Manifest happens in the Main Step or the Spirit is summoned by another effect."
-  },
-  {
-    "id": "K_REVIVE",
-    "kind": "keyword",
-    "meaning": "Revive",
-    "pattern": "Revive",
-    "engine": "revive:true",
-    "status": "wired",
-    "example": "",
-    "rule": "Revive is not covered by any manual chunk read so far (docs/rules/kb.json known_gaps), so the Eternal Rule Manual and Standard Comprehensive Rules offer no text here; the engine follows the printed card text (docs/manual-notes.md \"Not found in the online text yet\")."
-  },
-  {
-    "id": "K_CONTRACT",
-    "kind": "keyword",
-    "meaning": "Contract Field / Contract Skill",
-    "pattern": "Contract Field|Contract Skill",
-    "engine": "ACTIVATE + CONTRACT_FIELD_ADVENT",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual p. 44 (ETR:gw.contract): and the Contract card at setup (ETR:contract.setup); the printed Contract Skill cost is card text (docs/manual-notes.md \"Nexus Brave Contract Skill N\")."
-  },
-  {
-    "id": "K_GRANDWALKER",
-    "kind": "keyword",
-    "meaning": "Grandwalker Nexus core effects",
-    "pattern": "Grandwalker",
-    "engine": "(partly via VOID_/NEXUS_ actions)",
-    "status": "partial",
-    "example": "Core Charge, Grand Skill/Field are per card",
-    "rule": "Eternal Rule Manual sec.16: cores are placed only by Oracle/Unseal or effects that target them; cores on it go to the Void when it leaves the Field."
-  },
-  {
-    "id": "K_OVER_COUNT",
-    "kind": "keyword",
-    "meaning": "Over Count",
-    "pattern": "Over Count",
-    "engine": "card \"overCount\": {count, bp}; effect modifier oc:true",
-    "status": "wired",
-    "example": "{\"overCount\":{\"count\":4,\"bp\":5000}}",
-    "rule": "Eternal Rule Manual VER.17.0 p. 61: OC is active while your Count meets the OC condition, regardless of Lv; its + value is added to BP like a combined Brave; [During OC] effects work only while it is met; [During OC & Advent] also needs the Advent state."
-  },
-  {
-    "id": "K_BRAVE",
-    "kind": "keyword",
-    "meaning": "Brave (braving)",
-    "pattern": "\\bBrave\\b|brave",
-    "engine": "type Brave + \"brave\": {bp, family, name, costGe, nexus:{name}}; combineBrave / separateBrave / braveSummon",
-    "status": "partial",
-    "example": "{\"type\":\"Brave\",\"brave\":{\"bp\":5000,\"family\":[\"Ancient Dragon\"]}}",
-    "rule": "Eternal Rule Manual VER.17.0 p. 34-36: an uncombined Brave on the Field is treated as a Spirit (summoning it is not a Spirit summon); it combines with a Spirit meeting its Brave condition in the Main Step or when summoned, at no cost; its cores move onto the Spirit; BP+, cost and symbol are added; one Brave per Spirit; it leaves the Field with the Spirit to the same place. p. 38-39: a Saga Brave (\"brave.nexus\") can combine with a matching Grandwalker Nexus: its cores return to the Reserve first, no cores when combined directly, Lv1 cores to separate; the Nexus gets its symbol and its [While Combined with a Nexus] effects (nexusBrave:true, v0.35). The Nexus does not take the Brave's cost/family yet."
-  },
-  {
-    "id": "K_ULTIMATE",
-    "kind": "keyword",
-    "meaning": "Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target",
-    "pattern": "Ultimate",
-    "engine": "type Ultimate, summonIf (v0.56: lifeGe, ctrl = you control N or more colour/cost/family Spirits/Ultimates), lvBase 3, lvNo; v0.56 Ultimate Trigger action ULT_TRIGGER + condition utHit (compiler: inline [LVn] (When Attacks) form only); open: Ultimate Trigger level/timing missing in the Fandom export, Double/Triple Ultimate Trigger, Guard / Trigger Counter, effects printed for Spirits only still reach Ultimates",
-    "status": "partial",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.15: not affected by effects that target Spirits; affected by effects that target Cores, cards on the Field or Ultimates. U-Trigger: Hit only if the Ultimate's cost is higher than the revealed card."
-  },
-  {
-    "id": "K_TOKEN",
-    "kind": "keyword",
-    "meaning": "Tokens",
-    "pattern": "[Tt]oken",
-    "engine": "data/cards/tokens.json (type \"Token Spirit\" -> Spirit + token:true); action SEND_TOKEN {token,n,ask}; sendToken / tokenHome; per-player Token supply",
-    "status": "wired",
-    "example": "{\"do\":\"SEND_TOKEN\",\"token\":\"SD69-TOKEN-RAD\",\"n\":1,\"ask\":true}",
-    "rule": "Eternal Rule Manual VER.17.0 p. 56-57 + official page \"How to Use Token Cards\" (battlespirits.com/product/special/tokencard): Token cards cannot be in the Deck; they are prepared before the game (no limit per kind, not refilled during the game); they go to the Field only by \"send out\" effects, without paying the cost, with cores for at least Lv1 from your Field or Reserve; a Token Spirit is a Spirit (attacks, blocks, is targeted by Spirit effects, can be braved); when it leaves the Field it returns to where it came from, never the Trash/Hand/Deck, so \"after your Spirit is destroyed\" Bursts cannot activate. Engine house choice: 10 of each Token kind a deck can send out."
-  },
-  {
-    "id": "K_HEAVY_EXHAUST",
-    "kind": "keyword",
-    "meaning": "Heavy Exhaust",
-    "pattern": "Heavy Exhaust",
-    "engine": "HEAVY_EXHAUST_OPP (setHeavy / refreshOne; flag heavy next to exhausted)",
-    "status": "wired",
-    "example": "{\"do\":\"HEAVY_EXHAUST_OPP\",\"n\":2}",
-    "rule": "Eternal Rule Manual pp. 60-61, FAQ p. 67 (read 2026-10-14): only an effect can Heavy Exhaust; the card is turned upside down, counts as Exhausted and cannot attack or block; one Refresh (effect or Refresh Step) turns it into a normal Exhausted card; a Refreshed or Exhausted Spirit can be Heavy Exhausted by a Heavy Exhaust effect. The engine shows it as Exhausted (the upside-down picture waits for UI approval)."
-  },
-  {
-    "id": "K_STANDARD_SUCCESSION",
-    "kind": "keyword",
-    "meaning": "Standard: Succession / Soul Magic / Shinkai-ho",
-    "pattern": "Succession|Soul Magic|Shinkai",
-    "engine": "(not wired)",
-    "status": "missing",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 12-2-1-2 (STD:12-2-1-2): Soul Magic also per SJP:soul-magic; Inherit (Succession) Summon per SJP:inherit; Shinkai-ho is not covered by a manual chunk and follows the printed text."
-  },
-  {
-    "id": "K_SEAL",
-    "kind": "keyword",
-    "meaning": "Seal (Sealed state)",
-    "pattern": "\\bSealed?\\b",
-    "engine": "(not wired)",
-    "status": "missing",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.19: Seal moves your Soul Core from a specified place to your Life; 'Sealed' effects check the Soul Core in your Life. Standard Comprehensive Rules 5-7-3: the Soul Core can go to Life/Void only when an effect targets it. Engine: needs the Soul Core to be able to sit in the Life area."
-  },
-  {
-    "id": "K_HIGH_SPEED",
-    "kind": "keyword",
-    "meaning": "Flash - High Speed: summon this card from the Hand paying the cost and its Lv1 cores from the Reserve only",
-    "pattern": "High Speed",
-    "engine": "card \"highSpeed\": true; highSpeedOK / highSpeedSummon in the Flash Timing (human button, cpuHighSpeed)",
-    "status": "wired",
-    "example": "{\"highSpeed\":true}",
-    "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
-  },
-  {
-    "id": "K_CRUSH",
-    "kind": "keyword",
-    "meaning": "Crush (When Attacks): discard cards equal to this Spirit's level from the opposing decktop",
-    "pattern": "\\bCrush\\b",
-    "engine": "action CRUSH {n:\"lv\"|1-5}; ctx.crushed",
-    "status": "wired",
-    "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"CRUSH\",\"n\":\"lv\"}]}",
-    "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
-  },
-  {
-    "id": "K_HOLY_LIFE",
-    "kind": "keyword",
-    "meaning": "Holy Life (When Attacks): when this Spirit's attack reduces the opposing Life, put a Void core on your Life",
-    "pattern": "(?<!Ultra )Holy Life",
-    "engine": "ALLY_LIFE_HIT self + VOID_TO_LIFE",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_LIFE_HIT\",\"self\":true,\"lv\":[1,2],\"actions\":[{\"do\":\"VOID_TO_LIFE\",\"n\":1}]}",
-    "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
-  },
-  {
-    "id": "K_ULTRA_HOLY_LIFE",
-    "kind": "keyword",
-    "meaning": "Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not blocked put a Void core on your Life",
-    "pattern": "Ultra Holy Life",
-    "engine": "(not wired: needs a \"not blocked\" trigger)",
-    "status": "missing",
-    "example": "",
-    "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
-  },
-  {
-    "id": "K_ACCEL",
-    "kind": "keyword",
-    "meaning": "Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone)",
-    "pattern": "Accel",
-    "engine": "ACCEL effect (cost, timing, optional reduction) used from the Hand; card then to the Removed Zone; Accel Spirits summonable from the Removed Zone in your Main Step (useAccel, summonFromRemoved)",
-    "status": "partial",
-    "example": "BS68-045",
-    "rule": "Fandom 'Accel' Q1-Q8 (the Eternal manual text read has no Accel section): used from the Hand at the printed timing by paying the Accel cost, field symbols reduce it (Q4), Hand cost changes do not (Q8); the card is revealed and put onto the Removed Zone (Q1, Q3); a Spirit there can be summoned in your Main Step by paying its cost (Q5); its Accel can't be used from there (Q6). Partial: the Accel-cost reduction icons are missing from the Fandom export, so the full cost is paid."
-  },
-  {
-    "id": "K_SILVER_WHEEL",
-    "kind": "keyword",
-    "meaning": "Silver Wheel: a Flash effect that exhausts this Spirit as its cost",
-    "pattern": "Silver Wheel",
-    "engine": "ACTIVATE {silverWheel, timing Main+Flash, cost exhaustSelf, once:false}; trigger SILVER_WHEEL after it resolves",
-    "status": "partial",
-    "example": "BS70-036",
-    "rule": "Printed card text (Fandom export BS70/BS71/BS76): 'Flash - Silver Wheel: You can exhaust this Spirit. When you've done so, ...'; Flash effects can be used in the Main Step and the Flash Timings (Eternal manual p.18, p.23). Partial: the Silver Wheel cards that need other missing clauses keep them as residual."
-  },
-  {
-    "id": "K_ARMOR",
-    "kind": "keyword",
-    "meaning": "Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours",
-    "pattern": "\\{\\{(Armor|ha|ua|uha)\\||Heavy Armor|Ultra Armor|\\bArmor\\s*:",
-    "engine": "compiler unaffected_para -> STATIC UNAFFECTED from {colors, types} (v0.58)",
-    "status": "partial",
-    "example": "BS02-040, BS14-035, BS17-035, BS20-035",
-    "rule": "Printed keyword text (Fandom export): Armor = opposing <colour> Spirit/Nexus/Magic effects; Heavy Armor = Spirit/Brave/Nexus/Magic; Ultra Armor = Spirit/Ultimate/Nexus/Magic. Eternal manual p. 48 names Heavy/Ultra Armor as Burst preventers: a Burst of a listed colour cannot affect the card (same cands filter). Open: granted Armor ('give ... Armor', When Braved / During Brave / During OC prefixes)."
-  },
-  {
-    "id": "K_NETHER_IMMORTALITY",
-    "kind": "keyword",
-    "meaning": "Nether Immortality: when your matching \"Nether\" is destroyed, summon this card from the Trash",
-    "pattern": "Nether Immortality|\\{\\{N Im",
-    "engine": "(not wired; close to DESTROYED + summon from Trash)",
-    "status": "missing",
-    "example": "",
-    "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
-  },
-  {
-    "id": "T_BLOCKS",
-    "kind": "trigger",
-    "meaning": "(When Blocks): this Spirit blocks",
-    "pattern": "When Blocks|When Blocking",
-    "engine": "BLOCKS; ATTACKS with alsoBlocks:true",
-    "status": "wired",
-    "example": "{\"trigger\":\"ATTACKS\",\"alsoBlocks\":true}",
-    "rule": "Standard Comprehensive Rules 1.0 12-2-1-9-1: Triggered Effect when it blocks during the opponent's Attack Step. Eternal manual p. 30: activates after the block is declared, before BP is compared."
-  },
-  {
-    "id": "T_DESTROYED",
-    "kind": "trigger",
-    "meaning": "(When Destroyed)",
-    "pattern": "When Destroyed|When this .{0,20}is destroyed",
-    "engine": "DESTROYED",
-    "status": "partial",
-    "example": "{\"trigger\":\"DESTROYED\",\"lv\":[2]}",
-    "rule": "Standard Comprehensive Rules 1.0 12-2-1-12: activates when the Spirit or Nexus is destroyed. Eternal manual p. 31: resolves before the card goes to the Trash; engine resolves right after with the level it had."
-  },
-  {
-    "id": "M_OPTIONAL",
-    "kind": "modifier",
-    "meaning": "'You can' = optional; 'You do' = mandatory",
-    "pattern": "[Yy]ou can",
-    "engine": "optional:true",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual FAQ Q2: 'you can/may' is optional; 'you do' must be done whenever possible. Burst activation is optional."
-  },
-  {
-    "id": "M_BY_DOING",
-    "kind": "modifier",
-    "meaning": "'By doing X, do Y': X is a requirement",
-    "pattern": "\\bBy (sending|discarding|paying|putting|returning)",
-    "engine": "BY {cost, then, ask}",
-    "status": "wired",
-    "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"SOUL_RETURN\",\"match\":{\"family\":[\"Awakened Dragon\"]}},\"then\":[{\"do\":\"CORE_TO_NEXUS\",\"n\":1,\"match\":{\"name\":[\"Contractor Mitra\"]}}]}",
-    "rule": "Eternal Rule Manual FAQ (About Effects in General) Q5: you must perform X for the effect to activate, X cannot be performed when Y cannot be performed, and the player chooses whether to activate the effect. Q6: \"you can do X; if you do, do Y\" does Y as far as possible."
-  },
-  {
-    "id": "M_IF_YOU_DO",
-    "kind": "modifier",
-    "meaning": "'You can X. If you do / When you've done so, Y'",
-    "pattern": "[Ww]hen you've done so|[Ii]f you do",
-    "engine": "if:{prev:true}",
-    "status": "wired",
-    "example": "",
-    "rule": "Eternal Rule Manual FAQ Q6: the effect works even if Y cannot be done."
-  },
-  {
-    "id": "M_THEN",
-    "kind": "modifier",
-    "meaning": "'Then': the next part resolves even if the previous part could not",
-    "pattern": "\\bThen\\b",
-    "engine": "default (no if)",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 5-19-1."
-  },
-  {
-    "id": "M_UP_TO",
-    "kind": "modifier",
-    "meaning": "'Up to X' can be 0",
-    "pattern": "[Uu]p to",
-    "engine": "human may stop / choose 0",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 1-4-5-1."
-  },
-  {
-    "id": "M_UNSTACKABLE",
-    "kind": "modifier",
-    "meaning": "(Can't Stack): same effect cannot activate more than once at the same timing",
-    "pattern": "Can't Stack|Unstackable",
-    "engine": "noStack (effect field)",
-    "status": "wired",
-    "example": "{\"trigger\":\"OPP_START_ATTACK\",\"noStack\":true,\"actions\":[...]}",
-    "rule": "Standard Comprehensive Rules 1.0 12-3-2-1. Wired 2026-10-31: `noStack` is deduped per timing window in collectFx (02d) and in staticBp (02a), one copy per card name; the flag is effect-level, not a static flag."
-  },
-  {
-    "id": "M_REPLACEMENT",
-    "kind": "modifier",
-    "meaning": "'Instead' = replacement effect",
-    "pattern": "\\binstead\\b",
-    "engine": "(Soul State 'instead' only)",
-    "status": "partial",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 9-1-8-1: a replaced event cannot be replaced again."
-  },
-  {
-    "id": "P_PRIORITY",
-    "kind": "rule",
-    "meaning": "Priority: cannot > must > do = can; cannot be prevented > unaffected > cannot activate",
-    "pattern": "(?!x)x",
-    "engine": "v0.58: can't-block removes blockers before MUST_BLOCK; unaffected Spirits are not bound by MUST_BLOCK; ignoreImmune beats unaffected",
-    "status": "partial",
-    "example": "",
-    "rule": "JP 17.0 revision notice item 9: 'cannot' > 'must' > 'do' = 'can' (do and can no longer outrank each other). Eternal Rule Manual FAQ A3/A4 (Q3). Card text beats the basic rules."
-  },
-  {
-    "id": "P_SIMULTANEOUS",
-    "kind": "rule",
-    "meaning": "Simultaneous triggers: continuous effects first, then triggered; the turn player orders within a category",
-    "pattern": "(?!x)x",
-    "engine": "fireFx ordering (owner only)",
-    "status": "partial",
-    "example": "",
-    "rule": "Eternal Rule Manual sec.5. Same event hitting several cards at once triggers an effect only once (Standard Comprehensive Rules 1.0 9-1-5-4)."
-  },
-  {
-    "id": "P_TARGETING",
-    "kind": "rule",
-    "meaning": "Targets are chosen when the effect resolves and are not changed if they stop matching",
-    "pattern": "(?!x)x",
-    "engine": "(by design)",
-    "status": "wired",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 9-3-2."
-  },
-  {
-    "id": "A_SOUL_TO_NEXUS",
-    "kind": "action",
-    "meaning": "send your Soul Core to a named Grandwalker Nexus",
-    "pattern": "send your Soul Core to (any|your) \"Contractor",
-    "engine": "SOUL_TO_NEXUS (+ trigger SOUL_PLACED)",
-    "status": "wired",
-    "example": "{\"do\":\"SOUL_TO_NEXUS\",\"match\":{\"name\":[\"Contractor Ometeotl\"]},\"ask\":true}",
-    "rule": "Eternal Rule Manual (Cores and the Soul Core): the Soul Core can only be in the Reserve, on a card on the Field or in the Trash; the engine takes it from the Trash, the Reserve or a card it can leave without depleting a Spirit."
-  },
-  {
-    "id": "T_SOUL_PLACED",
-    "kind": "trigger",
-    "meaning": "when your Soul Core is sent/placed on your Nexus",
-    "pattern": "[Ww]hen (your|a) Soul Core is (sent to|placed on)",
-    "engine": "SOUL_PLACED",
-    "status": "wired",
-    "example": "{\"trigger\":\"SOUL_PLACED\",\"self\":true,\"once\":true}",
-    "rule": "Engine: card text trigger (Ometeotl Contract Field, Sphinott-Hauser, Magmazosia); the timing words (Your/Either Attack Step) use the attackStep / oppTurn conditions."
-  },
-  {
-    "id": "T_MANIFESTS",
-    "kind": "trigger",
-    "meaning": "(When Manifests)",
-    "pattern": "When Manifests",
-    "engine": "MANIFEST",
-    "status": "wired",
-    "example": "{\"trigger\":\"MANIFEST\"}",
-    "rule": "Eternal Rule Manual (Manifest): activates with the summon effects; not when the Manifest happens in the Main Step or the Spirit is summoned by another effect."
-  },
-  {
-    "id": "A_DESTROY_TOTAL",
-    "kind": "action",
-    "meaning": "destroy any number of opposing Spirits up to a total BP",
-    "pattern": "up to a total of \\d+ BP",
-    "engine": "DESTROY_TOTAL",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY_TOTAL\",\"total\":20000}",
-    "rule": "Standard Comprehensive Rules 1.0 5-10-1: destroyed by an effect. Ultimates are not in the engine yet."
-  },
-  {
-    "id": "A_SEND_TOKEN",
-    "kind": "action",
-    "meaning": "send out a Token from your Token supply",
-    "pattern": "send out (one|up to \\w+) of your",
-    "engine": "SEND_TOKEN",
-    "status": "wired",
-    "example": "{\"do\":\"SEND_TOKEN\",\"token\":\"SD69-TOKEN-RAD\",\"n\":2,\"ask\":true}",
-    "rule": "Eternal Rule Manual VER.17.0 p. 56 and the official \"How to Use Token Cards\" page, rule 2: only a \"send out a Token\" effect puts a Token on the Field; no cost is paid; cores for at least Lv1 come from your Field or Reserve; it is not a summon."
-  },
-  {
-    "id": "A_SYMBOL_PLUS",
-    "kind": "action",
-    "meaning": "this Spirit gains extra symbols during this battle",
-    "pattern": "gains an extra \\w+ symbol",
-    "engine": "SYMBOL_PLUS (inst.symBattle, cleared when the battle ends)",
-    "status": "wired",
-    "example": "{\"do\":\"SYMBOL_PLUS\",\"n\":1}",
-    "rule": "Symbols decide how many Life an unblocked attacker takes (Eternal Rule Manual VER.17.0 attack step); the gain lasts only for this battle (card text)."
-  },
-  {
-    "id": "A_DESTROY_NOFX",
-    "kind": "action",
-    "meaning": "destroy, and the effects of the destroyed target can't activate",
-    "pattern": "effects of the destroyed target can't activate",
-    "engine": "DESTROY noFx:true",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY\",\"bpLe\":5000,\"noFx\":true}",
-    "rule": "Eternal Rule Manual VER.17.0 p. 31 gives (When Destroyed) effects; this card text overrides it: the destroyed card's own effects do not activate."
-  },
-  {
-    "id": "A_DESTROY_COST",
-    "kind": "action",
-    "meaning": "destroy an opposing Spirit/Ultimate by cost: Cost N or less, cost equal or inferior to this Spirit's / the discarded card's, or the lowest/highest cost",
-    "pattern": "destroy an opposing (?:Cost \\d+ or less )?Spirit/Ultimate",
-    "engine": "DESTROY costLe | costLeSelf | costLeDiscarded | costRank | costBoost",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY\",\"costLe\":3,\"costBoost\":{\"counterGe\":5,\"n\":5}}",
-    "rule": "Card text (cardrush-bs.jp BS71-057, BS72-054); the Eternal Rule Manual defines no rule for the term \"Cost Destruction effect\". Limits grow with COST_DESTROY_PLUS effects; lowest/highest cost destruction is not a Cost Destruction effect and has no limit."
-  },
-  {
-    "id": "M_COST_DESTROY_LIMIT",
-    "kind": "mechanic",
-    "meaning": "increase the limit of your Cost Destruction effects (Bulwark Temple, Railgun on a Nexus)",
-    "pattern": "increase the limit of your .{0,40}Cost Destruction",
-    "engine": "STATIC flag COST_DESTROY_PLUS {n, perSagaBrave, srcFamily, nexusBrave}",
-    "status": "wired",
-    "example": "{\"trigger\":\"STATIC\",\"flag\":\"COST_DESTROY_PLUS\",\"n\":1,\"nexusBrave\":true}",
-    "rule": "Card text (cardrush-bs.jp BS71-072, BS74-067); the Eternal Rule Manual defines no rule for it. The bonus applies to limit-based destruction only."
-  },
-  {
-    "id": "A_LOOT",
-    "kind": "action",
-    "meaning": "draw N cards, then discard M cards from the Hand (extra draws and fewer discards under conditions)",
-    "pattern": "draw (?:a|two|three) cards?, (?:and )?(?:then )?discard",
-    "engine": "LOOT {draw, discard, drawPlus, discardLessPerName, famCostDestroy}",
-    "status": "wired",
-    "example": "{\"do\":\"LOOT\",\"draw\":2,\"discard\":2,\"drawPlus\":{\"n\":1,\"if\":{\"nexusBraved\":\"Nuadha\"}}}",
-    "rule": "Card text; the Eternal Rule Manual p. 31 style of resolution applies (effects resolve in order). Discarding is from the Hand to the Trash; the CPU discards its cheapest card."
-  },
-  {
-    "id": "A_CORE_OR_COUNTER",
-    "kind": "action",
-    "meaning": "Neo-Core Charge Contract Field: instead of +1 core to the Nexus, +1 counter",
-    "pattern": "instead of \\+1 core to it, you can \\+1 counter",
-    "engine": "CORE_OR_COUNTER",
-    "status": "wired",
-    "example": "{\"do\":\"CORE_OR_COUNTER\",\"n\":1}",
-    "rule": "Card text (cardrush-bs.jp BS71-CX03); the Eternal Rule Manual defines Neo-Core Charge only through the card. Brave-summon variant only when the Brave is summoned as a Spirit."
-  },
-  {
-    "id": "T_DURING_BRAVE",
-    "kind": "trigger",
-    "meaning": "[During Brave]: the effect works only while a Brave is combined with this Spirit",
-    "pattern": "During Brave",
-    "engine": "effect flag braved:true; condition nexusBraved",
-    "status": "wired",
-    "example": "{\"trigger\":\"ATTACKS\",\"braved\":true,\"actions\":[...]}",
-    "rule": "Eternal Rule Manual VER.17.0 pp. 34-36 (Brave): a combined Brave belongs to the Spirit; the gate checks that a Brave is combined."
-  },
-  {
-    "id": "A_BRAVE_AS_SPIRIT",
-    "kind": "action",
-    "meaning": "an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost",
-    "pattern": "summon a .{0,20}Brave card",
-    "engine": "SUMMON_HAND / REVEAL_DEPLOY allowBrave:true",
-    "status": "partial",
-    "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"hand\",\"allowBrave\":true,\"match\":{\"family\":[\"Scalostle\"],\"type\":\"Brave\"}}",
-    "rule": "Eternal Rule Manual VER.17.0 pp. 34-36: an uncombined Brave is a Spirit. Direct combining by an effect and summon from the Trash are not built yet."
-  },
-  {
-    "id": "T_OPP_REMOVED",
-    "kind": "trigger",
-    "meaning": "When cards are put onto the opposing Removed Zone",
-    "pattern": "put onto the opposing Removed Zone|put onto the opposing Removed Zone|opposing Removed Zone",
-    "engine": "OPP_REMOVED (event REMOVED from toRemoved)",
-    "status": "wired",
-    "example": "{\"trigger\":\"OPP_REMOVED\",\"once\":true}",
-    "rule": "Card text of BS69-BS70 (Hermes deck). The Eternal Rule Manual text read on 2026-10-14 defines no Removed Zone rule; the engine keeps p.removed (the Banished zone of A_BANISH) and fires the effect once per put event."
-  },
-  {
-    "id": "A_REMOVED_ZONE",
-    "kind": "action",
-    "meaning": "Put onto the Removed Zone (hand, Trash, Spirit)",
-    "pattern": "Removed Zone",
-    "engine": "REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND, REMOVE_OPP_TRASH, SEND_REMOVED",
-    "status": "partial",
-    "example": "{\"do\":\"SEND_REMOVED\",\"n\":1}",
-    "rule": "Card text of BS69-BS70 (Hermes deck); the Eternal Rule Manual text read on 2026-10-14 has no Removed Zone rule (it lists a Set Aside zone; whether that is the same zone is not confirmed). Engine: a random card (or the opponent's choice) goes to p.removed; a Spirit sent there loses its cores to its Reserve; returning cards from the zone and 'can't use' locks are not built."
-  },
-  {
-    "id": "A_NO_BURST",
-    "kind": "action",
-    "meaning": "The opponent can't activate Burst effects (this battle)",
-    "pattern": "can't activate Burst|cannot activate Burst",
-    "engine": "NO_BURST_BATTLE (G.noBurst, cleared when the battle ends)",
-    "status": "partial",
-    "example": "{\"do\":\"NO_BURST_BATTLE\"}",
-    "rule": "Card text (Contractor Hermes Contract Field); the Eternal Rule Manual p. 48 only names Heavy Armor / Ultra Armor as Burst preventers. Engine: maybeBurst is refused for the locked player until the battle ends; Magic/Mirage activations are unaffected."
-  },
-  {
-    "id": "A_VOID_TO_MATCHING",
-    "kind": "action",
-    "meaning": "Put a core from the Void each to several matching Spirits/Nexuses",
-    "pattern": "core from the Void each to",
-    "engine": "VOID_TO_MATCHING",
-    "status": "wired",
-    "example": "{\"do\":\"VOID_TO_MATCHING\",\"targets\":2,\"match\":{\"family\":[\"Devotee\"]}}",
-    "rule": "Eternal Rule Manual p. 11 / Standard Comprehensive Rules 4-8: the Void is the supply of cores; the cores come from the Void, one per target, targets distinct."
-  },
-  {
-    "id": "A_MILL",
-    "kind": "action",
-    "meaning": "Send cards from the top of your Deck to the Trash (discard from the decktop)",
-    "pattern": "send (one|two|three|\\d+) cards? from your decktop to the Trash|discard (one|two|three|\\d+) cards? from your decktop",
-    "engine": "MILL (n, optional family + counter/draw); DECK_TO_TRASH_CORES for the Contractor Nexus version",
-    "status": "wired",
-    "example": "{\"do\":\"MILL\",\"n\":2,\"family\":\"Infernal Lord\",\"counter\":1,\"draw\":1}",
-    "rule": "Eternal Rule Manual, Discarding / Trash rules: a card sent from the Deck to the Trash is a normal card movement (no Hand involved). Engine: the top n cards go to the Trash; a family hit gives counter +n and a draw (Hound-Beros)."
-  },
-  {
-    "id": "A_DISCARD_HAND",
-    "kind": "action",
-    "meaning": "Discard cards from your Hand (the cost of \"by discarding a card from your Hand, ...\")",
-    "pattern": "by discarding (a|one|\\d+) .*card.* from your Hand",
-    "engine": "DISCARD_HAND as the cost of BY (the CPU throws away its cheapest card); match.color limits it to e.g. Purple",
-    "status": "wired",
-    "example": "{\"do\":\"BY\",\"ask\":true,\"cost\":{\"do\":\"DISCARD_HAND\",\"n\":1},\"then\":[{\"do\":\"DRAW\",\"n\":2}]}",
-    "rule": "Eternal Rule Manual FAQ, About Effects in General Q5 (\"By doing X, do Y\"): the cost must be performable and is not paid when the rest cannot be done. Engine: BY checks can() of the cost and of the first result before asking."
-  },
-  {
-    "id": "A_OPP_CORES_TO_RESERVE",
-    "kind": "action",
-    "meaning": "Send cores from opposing Spirits/Ultimates to the opposing Reserve",
-    "pattern": "send .*cores? from .*opposing Spirits?/Ultimates? to the Reserve",
-    "engine": "OPP_CORES_TO_RESERVE ({targets, each} or {total}; drawPerDepleted)",
-    "status": "wired",
-    "example": "{\"do\":\"OPP_CORES_TO_RESERVE\",\"targets\":2,\"each\":2,\"drawPerDepleted\":true}",
-    "rule": "Eternal Rule Manual p. 28 (Depletion): a Spirit left with fewer cores than its Lv1 requirement goes to the Trash without Destruction effects. Engine: cores move to the opposing Reserve, then checkDepletion; Soul Cores are not moved; Spirits immune to opposing effects are skipped."
-  },
-  {
-    "id": "A_COUNTER_ONCE",
-    "kind": "action",
-    "meaning": "Counter +n, limited to once per turn inside a longer effect",
-    "pattern": "then, once per turn, your counter \\+\\d",
-    "engine": "COUNTER_ONCE (p.onceUsed key per card name)",
-    "status": "wired",
-    "example": "{\"do\":\"COUNTER_ONCE\",\"n\":2}",
-    "rule": "Card text of Contractor Hades (Contract Skill 2): only the Count part is limited to once per turn, the core removal is not. Eternal Rule Manual (Count Area): Count cores come from the Void. Engine: p.onceUsed key per card name."
-  },
-  {
-    "id": "A_DESTROY_CORES_LE",
-    "kind": "action",
-    "meaning": "Destroy an opposing Spirit/Ultimate with N cores or less on it",
-    "pattern": "destroy an opposing Spirit/Ultimate with (\\w+) cores? or less",
-    "engine": "DESTROY coresLe (totalCores, Soul Core included)",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY\",\"coresLe\":3}",
-    "rule": "Card text (BS68 Sorcerers); Eternal Rule Manual: all cores on a card count, the Soul Core as well. Engine: totalCores of the target; Spirits immune to opposing effects are skipped."
-  },
-  {
-    "id": "A_CANT_ATTACK_BLOCK",
-    "kind": "action",
-    "meaning": "An opposing Spirit/Ultimate can't attack/block during this game",
-    "pattern": "can't attack/block",
-    "engine": "CANT_ATTACK_BLOCK (flag noAB on the Spirit; reset when it leaves the Field)",
-    "status": "partial",
-    "example": "{\"do\":\"CANT_ATTACK_BLOCK\",\"n\":1}",
-    "rule": "No rule text for this term was re-read in v0.40 (the manual PDF could not be fetched in the session); built as printed on the cards. Engine: the Spirit stays on the Field but is never offered as an attacker or blocker (human and CPU); it is a Spirit for every other purpose. \"During this game\" is not removed at turn end; bouncing, destroying or Advent-stacking the Spirit clears it."
-  },
-  {
-    "id": "C_OPP_NO_AB",
-    "kind": "condition",
-    "meaning": "If any opposing Spirit is under can't attack/block effects",
-    "pattern": "under .*can't attack/block",
-    "engine": "if.oppNoAB",
-    "status": "wired",
-    "example": "{\"if\":{\"oppNoAB\":true}}",
-    "rule": "Engine: true while any opposing Spirit carries the noAB flag."
-  },
-  {
-    "id": "C_OPP_NEXUS",
-    "kind": "condition",
-    "meaning": "If the opponent controls any Nexus",
-    "pattern": "opponent controls any Nexus",
-    "engine": "if.oppNexusGe",
-    "status": "wired",
-    "example": "{\"if\":{\"oppNexusGe\":1}}",
-    "rule": "Engine: counts the opposing Nexuses (Vajdra-of-Magan cost 3)."
-  },
-  {
-    "id": "A_DRAW_BOTTOM",
-    "kind": "action",
-    "meaning": "Draw from the bottom of the Deck",
-    "pattern": "draw (a|\\d) cards? from the deckbottom",
-    "engine": "DRAW_BOTTOM",
-    "status": "wired",
-    "example": "{\"do\":\"DRAW_BOTTOM\",\"n\":1}",
-    "rule": "Card text (Thunderive). No rule text for this term was re-read in v0.40 (the manual PDF could not be fetched in the session); built as printed on the cards. Engine: the last card of the Deck goes to the Hand; it counts as drawing (Hand increase by an own effect)."
-  },
-  {
-    "id": "A_REVEAL_ADD",
-    "kind": "action",
-    "meaning": "Reveal cards from the Deck top, add matching cards, discard the rest",
-    "pattern": "reveal (three|\\d) cards from your decktop",
-    "engine": "REVEAL_ADD ({n, add, match, moreIf})",
-    "status": "partial",
-    "example": "{\"do\":\"REVEAL_ADD\",\"n\":3,\"add\":1,\"match\":{\"family\":[\"Thunderive\"]},\"moreIf\":{\"counterGe\":8}}",
-    "rule": "Card text of Manevajra. The Fandom text says \"add a total of one Contractor Indra and Thunderive card\"; built as one card matching either (+1 with the bonus condition). Unverified against the card image. Engine: built as printed on the card text."
-  },
-  {
-    "id": "A_DISCARD_ALL_HAND",
-    "kind": "action",
-    "meaning": "Discard the entire Hand (at least one card)",
-    "pattern": "discard your entire Hand",
-    "engine": "DISCARD_ALL_HAND (cost of BY)",
-    "status": "wired",
-    "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"DISCARD_ALL_HAND\"},\"then\":[{\"do\":\"DRAW_BOTTOM\",\"n\":4}]}",
-    "rule": "Eternal Rule Manual FAQ (About Effects in General): the cost of \"by ...\" must be performable; with an empty Hand nothing happens."
-  },
-  {
-    "id": "A_VOID_TO_LIFE",
-    "kind": "action",
-    "meaning": "Put a core from the Void on your Life",
-    "pattern": "put a core from the Void to your Life",
-    "engine": "VOID_TO_LIFE ({n, lifeLe})",
-    "status": "partial",
-    "example": "{\"do\":\"VOID_TO_LIFE\",\"n\":1,\"lifeLe\":3}",
-    "rule": "Card text (Naraka, Temple). Engine: Life +1 and the Void -1; not a Life reduction, no Burst."
-  },
-  {
-    "id": "A_LIFE_TO_SELF",
-    "kind": "action",
-    "meaning": "Send one of your Lives to this Spirit",
-    "pattern": "send one of your Lives to this Spirit",
-    "engine": "LIFE_TO_SELF",
-    "status": "partial",
-    "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"LIFE_TO_SELF\",\"n\":1},\"then\":[]}",
-    "rule": "Card text (Vajdra-of-Magan). Engine: the Life core moves to the Spirit; not a Life reduction by damage, so no Burst; the last Life cannot be sent."
-  },
-  {
-    "id": "A_NEXUS_CORES_TO_SELF",
-    "kind": "action",
-    "meaning": "Send cores from your Nexus to this Spirit",
-    "pattern": "sending two cores from your .* Nexuses to this Spirit",
-    "engine": "NEXUS_CORES_TO_SELF",
-    "status": "wired",
-    "example": "{\"do\":\"NEXUS_CORES_TO_SELF\",\"n\":2,\"name\":\"Contractor Indra\"}",
-    "rule": "Card text (Vajrawurm Unleash cost). Engine: the Nexus must hold the cores."
-  },
-  {
-    "id": "A_SELF_TO_HAND",
-    "kind": "action",
-    "meaning": "Return this Spirit to your Hand",
-    "pattern": "return this Spirit to the Hand",
-    "engine": "SELF_TO_HAND",
-    "status": "wired",
-    "example": "{\"do\":\"SELF_TO_HAND\"}",
-    "rule": "Card text (Togevajdra). Engine: bounceCard to the Hand, cores to the Reserve."
-  },
-  {
-    "id": "S_EXTRA_REDUCTION",
-    "kind": "static",
-    "meaning": "All your matching cards gain an extra reduction symbol",
-    "pattern": "extra .* reduction symbol",
-    "engine": "STATIC flag EXTRA_REDUCTION ({color, n, match, lv})",
-    "status": "partial",
-    "example": "{\"trigger\":\"STATIC\",\"flag\":\"EXTRA_REDUCTION\",\"to\":\"own\",\"match\":{\"family\":[\"Thunderive\"]},\"color\":\"yellow\"}",
-    "rule": "Card text (Indra Contract Field, Shimavajdra). The extra symbol is a reduction symbol of that colour on the card being paid (effCost); the usual symbol matching of the manual (p. 25-27) still decides if it is fulfilled. Engine: built as printed on the card text."
-  },
-  {
-    "id": "F_OTHER_NOSTACK",
-    "kind": "flag",
-    "meaning": "\"Your other X\" and \"(Can't Stack)\"",
-    "pattern": "Can't Stack|other \\\"",
-    "engine": "effect flags other / noStack",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_SUMMONED\",\"other\":true,\"noStack\":true}",
-    "rule": "Card text. other: the summoned card is not this card. noStack: of several same-name cards only one copy of the effect works per event. Engine: built as printed on the card text."
-  },
-  {
-    "id": "K_UNLEASH",
-    "kind": "keyword",
-    "meaning": "SA Unleash N: when the trigger happens, you can send N cores from the named Grandwalker Nexus to this Spirit; the rest applies only when you did",
-    "pattern": "Unleash",
-    "engine": "BY {cost: NEXUS_CORES_TO_SELF {n,name}, then: [...]} (Vajrawurm, Agateram)",
-    "status": "wired",
-    "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"NEXUS_CORES_TO_SELF\",\"n\":3,\"name\":\"Nuadha\"},\"then\":[...]}",
-    "rule": "Engine (house reading from the card text, Fandom BS71-X09 / BS75-X10; no manual section found): \"you can send N cores from your <name> Nexus to this Spirit; when you have done so, ...\" - the follow-up applies only when the cores were sent."
-  },
-  {
-    "id": "A_LIFE_TO_TRASH",
-    "kind": "action",
-    "meaning": "Send opposing Life to the Trash (optionally one per differently named <family> Brave you control)",
-    "pattern": "Life to the Trash",
-    "engine": "OPP_LIFE_TO_TRASH {n | perBraveNames}",
-    "status": "wired",
-    "example": "{\"do\":\"OPP_LIFE_TO_TRASH\",\"perBraveNames\":\"Scalostle\"}",
-    "rule": "Engine (house reading, v0.45): not damage; the Life cores go to the Trash, one Burst check (Life decreased), Life 0 ends the game."
-  },
-  {
-    "id": "S_OPP_NO_BLOCK",
-    "kind": "static",
-    "meaning": "(Your Attack Step) the opponent can't block",
-    "pattern": "they can't block",
-    "engine": "OPP_NO_BLOCK {minLv} at START_ATTACK; noBlockActive() empties the blocker list while the source stays at minLv",
-    "status": "partial",
-    "example": "{\"trigger\":\"START_ATTACK\",\"actions\":[{\"do\":\"OPP_DISCARD_MAGIC_OR\"},{\"do\":\"OPP_NO_BLOCK\",\"minLv\":2,\"if\":{\"prev\":true}}]}",
-    "rule": "Engine (house reading, v0.45): decided once at the start of your Attack Step; reaching the level later in that step does not start it."
-  },
-  {
-    "id": "G_SUBJ_BRAVED",
-    "kind": "condition",
-    "meaning": "When your <family> Brave Spirit attacks",
-    "pattern": "Brave Spirit attacks",
-    "engine": "ALLY_ATTACKS + subjBraved:<family> (attacker has a combined Brave; the Spirit or the Brave is of the family)",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_ATTACKS\",\"subjBraved\":\"Scalostle\"}",
-    "rule": "Engine (house reading from the card text, Fandom BS71-X09): \"When your Scalostle family Brave Spirit attacks\" - the attacking Spirit or its combined Brave carries the family."
-  },
-  {
-    "id": "M_TRASH_TRIGGER",
-    "kind": "trigger",
-    "meaning": "When this card is sent to the Trash from the Deck/Hand by the effect of your <X>: add it to the Hand and/or +1 core to a Grandwalker Nexus",
-    "pattern": "is sent to (the )?Trash from (the )?(deck|Hand/Deck)|was sent to the Trash from Hand/Deck",
-    "engine": "card field trashTrigger {from, by, add, gwCore}; sentToTrashFx from DECK_TO_TRASH_CORES, MILL, DISCARD_HAND",
-    "status": "wired",
-    "example": "{\"trashTrigger\":{\"from\":[\"deck\"],\"by\":{\"name\":[\"Contractor Nuadha\"]},\"add\":true,\"gwCore\":1}}",
-    "rule": "Engine (card text of Whirling Tide, Thunder Counter, Hades Disaster): \"+1 core\" puts a core from the Void (Eternal Rule Manual, Cores: the Void is the core supply)."
-  },
-  {
-    "id": "M_TRASH_USE",
-    "kind": "mechanic",
-    "meaning": "While you control <X>, you can use this Magic card from the Trash (then it is banished)",
-    "pattern": "you can use this card from the Trash",
-    "engine": "magic.trashUse {if, actions?}: magicUsable/castMagic accept a Trash card, trashUse.actions replace the effect, the card goes to the Removed Zone",
-    "status": "wired",
-    "example": "{\"magic\":{\"trashUse\":{\"if\":{\"hasName\":\"Contractor Hades\"},\"actions\":[{\"do\":\"DESTROY\",\"coresLe\":4}]}}}",
-    "rule": "Engine (card text of Hades Disaster and Plutonic Wall): built as printed; the human uses it from the Flash Timing list (marked [from the Trash])."
-  },
-  {
-    "id": "AB_CORE_TAX_TURN",
-    "kind": "action",
-    "meaning": "During this turn, an opposing Spirit/Ultimate can attack/block only by sending a core from itself to the Trash",
-    "pattern": "unless the opponent sends a core from the attacking/blocking",
-    "engine": "AB_CORE_TAX_TURN sets opp.abTax; doBattleInner asks payAbTax for the attacker and the blocker; abTaxOK filters CPU attackers and all blockers",
-    "status": "wired",
-    "example": "{\"do\":\"AB_CORE_TAX_TURN\"}",
-    "rule": "Engine (house reading, Plutonic Wall): only a spare core can be sent; a payment that would deplete the Spirit is not offered."
-  },
-  {
-    "id": "M_TRASH_SYMBOLS",
-    "kind": "static",
-    "meaning": "When using this card, you can also use symbols from your Trash to reduce the cost",
-    "pattern": "symbols from your Trash to reduce the cost",
-    "engine": "card flag trashSymbols: effCost adds the symbols of Trash cards to the Field symbols",
-    "status": "wired",
-    "example": "{\"trashSymbols\":true}",
-    "rule": "Engine (card text of Lightning Tempest); reduction itself follows the Eternal Rule Manual (Cost reduction, mandatory when possible)."
-  },
-  {
-    "id": "M_HAND_UNAFFECTED",
-    "kind": "static",
-    "meaning": "This card in the Hand/Removed Zone is unaffected by opposing effects",
-    "pattern": "in Hand/Removed Zone is unaffected by opposing effects",
-    "engine": "card flag handUnaffected: REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND and OPP_DISCARD_MAGIC_OR skip it (no opposing effect acts on the Removed Zone yet)",
-    "status": "wired",
-    "example": "{\"handUnaffected\":true}",
-    "rule": "Engine (card text of Lightning Tempest)."
-  },
-  {
-    "id": "M_OPP_ATTACK_HAND",
-    "kind": "trigger",
-    "meaning": "At the start of the opposing Attack Step, by sending N cores from your <X> Grandwalker Nexus to the Void, pay the cost to use this card from the Hand",
-    "pattern": "At the start of Opposing Attack Step, by sending",
-    "engine": "magic.oppAttackHand {gwToVoid, match}; oppAttackHandFx after START_ATTACK",
-    "status": "wired",
-    "example": "{\"magic\":{\"oppAttackHand\":{\"gwToVoid\":2,\"match\":{\"name\":[\"Contractor Indra\"]}}}}",
-    "rule": "Engine (card text of Thunder Counter); Grandwalker cores go to the Void (Eternal Rule Manual p. 44)."
-  },
-  {
-    "id": "K_BURST_THEN_MAIN",
-    "kind": "keyword",
-    "meaning": "Burst: then by paying the cost, activate the Main effect of this card; also activates when your <family> Brave is summoned (condition)",
-    "pattern": "activate the Main effect of this card|you can immediately activate this set card",
-    "engine": "burst.thenMain -> burstFlash(p, inst, 'main'); burst.also {when:BRAVE_SUMMONED, match, if} -> maybeBurst from braveSummonedFx",
-    "status": "wired",
-    "example": "{\"burst\":{\"thenMain\":true,\"also\":{\"when\":\"BRAVE_SUMMONED\",\"match\":{\"family\":[\"Scalostle\"],\"type\":\"Brave\"},\"if\":{\"counterGe\":5}}}}",
-    "rule": "Engine (card text of Dana Draw); Burst timing per the Eternal Rule Manual (Burst)."
-  },
-  {
-    "id": "A_BP_MINUS",
-    "kind": "action",
-    "meaning": "Give opposing Spirits -N BP (this turn)",
-    "pattern": "-\\d[\\d,]* ?BP",
-    "engine": "action BP_MINUS {n} (one opposing Spirit, v0.55)",
-    "status": "partial",
-    "example": "{\"do\":\"BP_MINUS\",\"n\":3000}",
-    "rule": "No rule destroys a Spirit at 0 BP (Eternal manual FAQ p. 68: only a card's own \"Then, if its BP is 0, destroy it\" does); BP is shown as 0, never negative (Standard CR 1-4-6). Open: every/two opposing Spirits (lasts for Spirits summoned later this turn, FAQ p. 68 Q3), the \"then destroy at 0\" clause."
-  },
-  {
-    "id": "T_BATTLE_WIN",
-    "kind": "trigger",
-    "meaning": "(When Battles) when only the opposing Spirit is destroyed by BP comparison",
-    "pattern": "\\(When Battles\\)",
-    "engine": "BATTLE_WIN (v0.55)",
-    "status": "partial",
-    "example": "{\"trigger\":\"BATTLE_WIN\",\"lv\":[2]}",
-    "rule": "Standard CR 8-1-6-2: effects for a destruction by BP comparison activate after the comparison. Open: other (When Battles) texts (effects at the start of the battle)."
-  },
-  {
-    "id": "K_RUSH",
-    "kind": "keyword",
-    "meaning": "Rush: while you have a X symbol, the following effect activates next",
-    "pattern": "\\{\\{Rush\\|",
-    "engine": "per-action if {hasSymbol: colour} (v0.55)",
-    "status": "partial",
-    "example": "{\"do\":\"DRAW\",\"n\":1,\"if\":{\"hasSymbol\":\"purple\"}}",
-    "rule": "Engine: built from the card text only (Fandom export, BS19-BS27); no Eternal or Standard manual section found. House reading: Field symbols (as for cost reduction) at resolution. Open: Rush on Magic cards and optional Rush effects."
-  },
-  {
-    "id": "T_DESTROYED_OPP",
-    "kind": "trigger",
-    "meaning": "(When Destroyed by the Opponent)",
-    "pattern": "When (?:Depleted/)?Destroyed by the Opponent",
-    "engine": "DESTROYED + if {byOpp:true} (v0.55)",
-    "status": "partial",
-    "example": "{\"trigger\":\"DESTROYED\",\"if\":{\"byOpp\":true}}",
-    "rule": "Standard CR 12-2-1-12-1: destroyed by an opposing effect or by BP comparison with an opposing Spirit. Open: (When Depleted/Destroyed by the Opponent) (depletion is not destruction, Eternal manual p. 28)."
-  },
-  {
-    "id": "K_STANDARD_INVOKE",
-    "kind": "keyword",
-    "meaning": "{{Invoke|Flash}} / {{Invoke|Main}} <cost> ▶ <effect>",
-    "pattern": "\\{\\{Invoke\\|(Flash|Main)\\}\\}",
-    "engine": "ACTIVATE {invoke:true, timing, when, once, oncePer, cost} (v0.68, 02l-effects-invoke.js)",
-    "status": "partial",
-    "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"MAIN\",\"FLASH\"],\"when\":\"duringAttack\",\"once\":true,\"cost\":{\"discard\":{\"match\":{\"family\":[\"Windfang\"]}}},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":3000,\"to\":\"self\",\"battle\":true}]}",
-    "rule": "Standard manual 'FAQ on Effects' Q11: the part before the arrow (the cost) must resolve fully, otherwise the effect is not used; timing from the template (Flash includes your Main Step), narrowed by printed heads; limits only when printed."
-  },
-  {
-    "id": "S1_LIFE_REDUCED",
-    "kind": "condition",
-    "meaning": "If your Life was reduced (during) this turn",
-    "pattern": "If your Life was reduced (during )?this turn",
-    "engine": "if {lifeReduced: true|false} (v0.88, 02a fxIf; lifeTake records p.lifeRedTurn)",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY\",\"costLe\":7,\"if\":{\"lifeReduced\":true}}",
-    "rule": "Engine reading of the Standard Magic card texts: the Life counts as reduced this turn when any core left it during the current turn, by an attack or by an effect; checked when the effect resolves. The 'X instead' riders are two actions with lifeReduced false / true. Manual reference still to find (rules audit)."
-  },
-  {
-    "id": "S1_ALL_HAVE",
-    "kind": "condition",
-    "meaning": "If all your Spirits/Nexuses have the X family / have <Team>; If all your Spirits are Cost 2/4/6/8 with the X family",
-    "pattern": "If all your Spirits(/Nexuses)? (are Cost [0-9/]+ with|have)",
-    "engine": "if {allHave: {family|team|costIn, spiritsOnly}} (v0.88, 02p-effects-shared-shapes.js; teams from the [Team: X] / [Teams: X/Y] head line)",
-    "status": "partial",
-    "example": "{\"do\":\"DESTROY\",\"bpLe\":5000,\"if\":{\"allHave\":{\"family\":\"GAIM\"}}}",
-    "rule": "Engine house reading of the Standard card texts (rules audit, 2026-10-21): every card on your Field of the named kind must match; with no such card the condition is not met (an empty Field has nothing that 'has' the family). Team = the card's printed [Team: X] attribute, like a family."
-  },
-  {
-    "id": "S1_DESTROY_OWN",
-    "kind": "action",
-    "meaning": "Target one of your X Spirits. Destroy it. If you've done so, ...",
-    "pattern": "Target (one of your|a .+ you control).*Destroy it\\. If you've done so",
-    "engine": "DESTROY_OWN {match} (v0.88, 02p)",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY_OWN\",\"match\":{\"family\":[\"Dark Puce\"]}}",
-    "rule": "Engine reading of the Standard card texts: own destruction by your own effect; 'If you've done so' = the next action has if {prev: true}."
-  },
-  {
-    "id": "S1_LIFE_SHIELD",
-    "kind": "action",
-    "meaning": "During this turn, your Life can't be reduced by its attack.",
-    "pattern": "your Life can't be reduced by its attack",
-    "engine": "LIFE_SHIELD {n} (v0.89, 02p; 08-battle)",
-    "status": "wired",
-    "example": "{\"do\":\"LIFE_SHIELD\",\"n\":1}",
-    "rule": "Engine reading of the Standard card texts: the targeted Spirit's unblocked attacks take no Life from you until the end of the turn; its other effects still apply."
-  },
-  {
-    "id": "S1_BLOCK_EXHAUSTED_OPP",
-    "kind": "action",
-    "meaning": "Target an opposing Spirit. During this battle, it can block even while exhausted.",
-    "pattern": "can block even while exhausted",
-    "engine": "BLOCK_EXHAUSTED_OPP (v0.89, 02p; canBlockState)",
-    "status": "wired",
-    "example": "{\"do\":\"BLOCK_EXHAUSTED_OPP\"}",
-    "rule": "Engine reading of the Standard card text (Meteor Crash): as printed, during this battle only."
-  },
-  {
-    "id": "S1_DESTROY_PICKED",
-    "kind": "action",
-    "meaning": "When this battle ends, destroy it.",
-    "pattern": "When this battle ends, destroy (it|the summoned)",
-    "engine": "END_BATTLE {then: [DESTROY_PICKED]} (v0.89, 02p / 02o)",
-    "status": "wired",
-    "example": "{\"do\":\"END_BATTLE\",\"then\":[{\"do\":\"DESTROY_PICKED\"}]}",
-    "rule": "Engine reading of the Standard card texts: a delayed effect of a used Magic card; it resolves at the end of the battle even though the card is in the Trash."
-  },
-  {
-    "id": "T_MAGIC_USED",
-    "kind": "trigger",
-    "meaning": "(When you use a Magic card)",
-    "pattern": "[Ww]hen you use (a |any |an? )[^\\.]*Magic card",
-    "engine": "MAGIC_USED",
-    "status": "wired",
-    "example": "{\"trigger\":\"MAGIC_USED\",\"match\":{\"type\":\"Magic\",\"family\":[\"Topaz\"]}}",
-    "rule": "Standard Comprehensive Rules 12-2 (Common Effects) has no entry for this event: using a Magic card is an ordinary game action (SJP:main-step). The engine fires it after the Magic resolved and does not fire it for a Burst."
-  },
-  {
-    "id": "C_MAGIC_USED_TURN",
-    "kind": "condition",
-    "meaning": "If you used a X Magic card this turn",
-    "pattern": "If you used (a |any |an? )[^\\.]*Magic card this turn",
-    "engine": "magicUsed",
-    "status": "wired",
-    "example": "{\"if\":{\"magicUsed\":{\"family\":[\"Topaz\"]}}}",
-    "rule": "Standard Comprehensive Rules 12-2 has no numbered entry for using a Magic card (it is an ordinary game action, SJP:main-step); the engine records every Magic the player uses this turn (MAGIC_USED) and this condition reads that record."
-  },
-  {
-    "id": "K_RUMBLE",
-    "kind": "keyword",
-    "meaning": "Rumble (During Attack): at the end of battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit in the opposing Trash",
-    "pattern": "\\bRumble\\b",
-    "engine": "action RUMBLE {n:1-7} (queued at ATTACKS, resolved at the end of battle)",
-    "status": "wired",
-    "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"RUMBLE\",\"n\":3}]}",
-    "rule": "Standard keyword; official Q&A 31592-31594, 31621 (read via the Fandom \"Rumble\" page). Engine: action RUMBLE {n:1-7}."
-  },
-  {
-    "id": "K_AMPLIFY",
-    "kind": "keyword",
-    "meaning": "Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP",
-    "pattern": "\\bAmplify\\b",
-    "engine": "BP_TARGET {battle:true, per:{type:'Spirit',family}} on an ACTIVATE Invoke; the card carries keywords ['Amplify']",
-    "status": "wired",
-    "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"FLASH\"],\"when\":\"duringAttackBlock\",\"once\":true,\"oncePer\":\"battle\",\"lv\":[2],\"cost\":{\"pay\":1},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":1000,\"to\":\"self\",\"battle\":true,\"per\":{\"type\":\"Spirit\",\"family\":\"Leucomyst\"}}]}",
-    "rule": "Standard keyword (Fandom \"Amplify\" page): the {{Amplify|family +N}} head reads 'for each [family] Spirit you control, during this battle, this Spirit gains +N BP'. Engine: BP_TARGET {battle:true, per:{type:'Spirit',family}}."
-  },
-  {
-    "id": "K_SUMMON_SELF_BY_RETURN",
-    "kind": "phrase",
-    "meaning": "By returning one of your matching Spirits to the Hand, summon this card from the Hand/Trash without paying the cost (at the end of the battle of your named Spirit)",
-    "pattern": "by returning one .* to the Hand, summon this card",
-    "engine": "SUMMON_SELF_BY_RETURN {match} on an ALLY_BATTLE_END effect with zone 'hand' / 'trash'",
-    "status": "wired",
-    "example": "{\"trigger\":\"ALLY_BATTLE_END\",\"zone\":\"hand\",\"optional\":true,\"match\":{\"name\":[\"X\"]},\"actions\":[{\"do\":\"SUMMON_SELF_BY_RETURN\",\"match\":{\"name\":[\"X\"]}}]}",
-    "rule": "The owner returns one matching Spirit (the attacker may be chosen) to the Hand, then this card enters the Field free; nothing happens if no other matching Spirit is on the Field. Engine: SUMMON_SELF_BY_RETURN (card text of BS34-XX02)."
-  },
-  {
-    "id": "K_DESTROY_PER_SYMBOL_COLOR",
-    "kind": "phrase",
-    "meaning": "Destroy opposing Spirits/Ultimates with the same colors as your symbols, one of each color",
-    "pattern": "same colors as your symbols, one of each color",
-    "engine": "DESTROY_PER_SYMBOL_COLOR {} (Six Heaven Rush clause, with if {symColorsGe, selfSoul})",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY_PER_SYMBOL_COLOR\",\"if\":{\"symColorsGe\":4,\"selfSoul\":true}}",
-    "rule": "For each color you have a symbol of, one opposing Spirit/Ultimate of that color is destroyed; a card is never counted for two colors. Engine: DESTROY_PER_SYMBOL_COLOR (card text of BS34-XX02)."
-  },
-  {
-    "id": "K_SWAP_HAND_WITH_FIELD",
-    "kind": "phrase",
-    "meaning": "Swap this card from the Hand with a matching Spirit you control in the same condition",
-    "pattern": "swap this card from hand with",
-    "engine": "ACCEL {cost:0,timing:[FLASH],flashOnly:true} + SWAP_HAND_WITH_FIELD {match}",
-    "status": "wired",
-    "example": "{\"do\":\"SWAP_HAND_WITH_FIELD\",\"match\":{\"name\":\"God-Sechs\"}}",
-    "rule": "The card from the Hand takes the place of the chosen Spirit with its cores, Soul Core and exhausted state; that Spirit goes to the Hand. Engine: SWAP_HAND_WITH_FIELD (card text of BS35-XX02)."
-  },
-  {
-    "id": "K_SYM_ALL_COLORS",
-    "kind": "phrase",
-    "meaning": "The symbols of your attacking Spirit are fixed as one of each of the six colors",
-    "pattern": "symbols of your attacking spirit are fixed as",
-    "engine": "STATIC SYM_ALL_COLORS {to:self, if:{symColorsGe:6}}",
-    "status": "wired",
-    "example": "{\"trigger\":\"STATIC\",\"flag\":\"SYM_ALL_COLORS\",\"to\":\"self\",\"if\":{\"symColorsGe\":6}}",
-    "rule": "While you have six symbol colors the Spirit attacks with six symbols. Engine: SYM_ALL_COLORS (card text of BS35-XX02; the colors themselves are not tracked per attack symbol)."
-  },
-  {
-    "id": "K_SOUL_TREATED",
-    "kind": "phrase",
-    "meaning": "Every matching Spirit you control is treated as having the Soul Core on it",
-    "pattern": "is treated as having the .{0,6} on it",
-    "engine": "STATIC SOUL_TREATED {to:own, match, if}",
-    "status": "wired",
-    "example": "{\"trigger\":\"STATIC\",\"flag\":\"SOUL_TREATED\",\"to\":\"own\",\"match\":{\"name\":[\"God-Sechs\"]},\"if\":{\"sealed\":true}}",
-    "rule": "The listed Spirits satisfy \"if the Soul Core is on this Spirit\" conditions without holding it. Engine: SOUL_TREATED (card text of BS46-10THX02); only those conditions read it."
-  },
-  {
-    "id": "K_SEAL_FROM_SELF",
-    "kind": "phrase",
-    "meaning": "You can send the Soul Core from this Spirit to your Life",
-    "pattern": "send the .{0,6} from this spirit to your life",
-    "engine": "SEAL {from:\"self\"}",
-    "status": "wired",
-    "example": "{\"do\":\"SEAL\",\"from\":\"self\"}",
-    "rule": "Seal using the Soul Core that sits on this Spirit. Engine: SEAL from self (card text of BS46-10THX02)."
-  },
-  {
-    "id": "K_SUMMON_SELF_PAY",
-    "kind": "phrase",
-    "meaning": "You can summon this card from the Hand by paying N cost",
-    "pattern": "summon this card from the hand by paying .{0,12}cost",
-    "engine": "SUMMON_SELF_PAY {pay, thenCore}",
-    "status": "wired",
-    "example": "{\"do\":\"SUMMON_SELF_PAY\",\"pay\":1,\"thenCore\":true}",
-    "rule": "Pay the stated cost to put this card from the Hand onto the Field; thenCore adds the Soul Core from the Trash or a Void core. Engine: SUMMON_SELF_PAY (card text of BS73-AX03)."
-  },
-  {
-    "id": "K_OPP_BOUNCE_OR_NOBLOCK",
-    "kind": "phrase",
-    "meaning": "Unless the opponent returns a Spirit they control to the deckbottom, they can't block",
-    "pattern": "unless the opponent returns a spirit they control to the deckbottom",
-    "engine": "OPP_BOUNCE_OR_NOBLOCK",
-    "status": "wired",
-    "example": "{\"do\":\"OPP_BOUNCE_OR_NOBLOCK\"}",
-    "rule": "The opponent may return one of their Spirits to the deckbottom; if they do not, the attacker cannot be blocked. Engine: OPP_BOUNCE_OR_NOBLOCK (card text of BS73-AX03); the CPU never returns a Spirit and the lock lasts the turn."
-  },
-  {
-    "id": "K_BOUNCE_DECKBOTTOM_PIERCE",
-    "kind": "phrase",
-    "meaning": "Return an opposing Spirit/Nexus to the deckbottom; with an LV2 named card this can only be prevented by Heavy Armor",
-    "pattern": "this effect can only be prevented by heavy armor",
-    "engine": "BOUNCE_DECKBOTTOM_PIERCE",
-    "status": "wired",
-    "example": "{\"do\":\"BOUNCE_DECKBOTTOM_PIERCE\",\"pierceName\":\"Dairokuten Maou\"}",
-    "rule": "Other immunity is ignored while the named LV2 card is on your Field; only Heavy Armor / Ultra Heavy Armor stops it. Engine: BOUNCE_DECKBOTTOM_PIERCE (card text of BS73-X05)."
-  },
-  {
-    "id": "K_DESTROY_PIERCE_ARMOR",
-    "kind": "phrase",
-    "meaning": "Destroy an opposing Spirit of a cost limit; only Armor-named effects can prevent it",
-    "pattern": "this effect can only be prevented by \"armor\"-named effects",
-    "engine": "DESTROY_PIERCE_ARMOR",
-    "status": "wired",
-    "example": "{\"do\":\"DESTROY_PIERCE_ARMOR\",\"costLe\":4}",
-    "rule": "Engine: a target is skipped only when it is immune and carries an Armor, Heavy Armor or Ultra Heavy Armor keyword; every other immunity is pierced."
-  },
-  {
-    "id": "K_END_ATTACK_NOW",
-    "kind": "phrase",
-    "meaning": "Immediately end the Attack Step",
-    "pattern": "immediately end the attack step",
-    "engine": "END_ATTACK_NOW",
-    "status": "wired",
-    "example": "{\"do\":\"END_ATTACK_NOW\"}",
-    "rule": "Engine: sets the Attack Step as ended for this turn unless an active NO_END_ATTACK lock applies; the running battle still resolves."
-  },
-  {
-    "id": "K_SUMMON_REDUCE_ALL",
-    "kind": "phrase",
-    "meaning": "Summon a card treating all its reduction symbols as fulfilled",
-    "pattern": "treating all reduction symbols as being fulfilled",
-    "engine": "SUMMON_HAND",
-    "status": "wired",
-    "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"handOrTrash\",\"pay\":true,\"reduceAll\":true}",
-    "rule": "Engine: pays the printed cost minus every reduction symbol of the card."
-  },
-  {
-    "id": "K_DESTROY_ANY_SYMBOLS",
-    "kind": "action",
-    "meaning": "destroys one opposing Spirit or Nexus whose symbol count is at most the given number.",
-    "pattern": "[Dd]estroy an opposing Spirit/Nexus with \\d+ symbols? or fewer",
-    "engine": "DESTROY_ANY_SYMBOLS",
-    "status": "full",
-    "example": "BSC48-009",
-    "rule": "Engine: destroys one opposing Spirit or Nexus whose symbol count is at most the given number."
-  },
-  {
-    "id": "K_DISCARD_DRAW_FAMILY",
-    "kind": "action",
-    "meaning": "once per turn per card name, discard a family card and draw N cards.",
-    "pattern": "[Dd]iscard (one|a) card from your Hand\\. If it is a .* family card, draw",
-    "engine": "DISCARD_DRAW_FAMILY",
-    "status": "full",
-    "example": "BSC48-011",
-    "rule": "Engine: once per turn per card name, discard a family card and draw N cards."
-  },
-  {
-    "id": "K_OPP_RESERVE_CORES_TO_TRASH",
-    "kind": "action",
-    "meaning": "moves N Cores from the opponent Reserve to their Trash.",
-    "pattern": "core from the opposing Reserve to the Trash",
-    "engine": "OPP_RESERVE_CORES_TO_TRASH",
-    "status": "full",
-    "example": "BSC48-010",
-    "rule": "Engine: moves N Cores from the opponent Reserve to their Trash."
-  },
-  {
-    "id": "K_COND_CONTROL_LV2",
-    "kind": "action",
-    "meaning": "condition true while a Level 2 Spirit of yours has that name part.",
-    "pattern": "[Ii]f you control any LV2 \\\".*\\\"",
-    "engine": "controlLv2",
-    "status": "full",
-    "example": "BSC48-010",
-    "rule": "Engine: condition true while a Level 2 Spirit of yours has that name part."
-  },
-  {
-    "id": "K_NEXUS_CORES_PER_SYMCOLOR",
-    "kind": "action",
-    "meaning": "the Core count equals the number of different symbol colours you control.",
-    "pattern": "for each .* symbol colou?r.* Nexus.* Void",
-    "engine": "NEXUS_CORES_TO_VOID perSymColor",
-    "status": "full",
-    "example": "BSC48-011",
-    "rule": "Engine: the Core count equals the number of different symbol colours you control."
-  },
-  {
-    "id": "K_SUMMON_TRASH_TOTAL",
-    "kind": "action",
-    "meaning": "summon any number of matching Spirits from the Trash up to a total cost",
-    "pattern": "summon any number of .* from your Trash, up to a total of Cost \\d+",
-    "engine": "SUMMON_TRASH_TOTAL",
-    "status": "full",
-    "example": "BSC48-012",
-    "rule": "Engine: the player picks Spirits from the Trash one at a time while the sum of printed costs stays within N."
-  },
-  {
-    "id": "K_VOID_TO_NEXUS_TOTAL",
-    "kind": "action",
-    "meaning": "put N cores in total from the Void on matching Nexuses",
-    "pattern": "\\+\\d+ cores? in total of any of your .* Nexuses",
-    "engine": "VOID_TO_NEXUS_TOTAL",
-    "status": "full",
-    "example": "BSC48-013",
-    "rule": "Engine: each core is put on a Nexus of your choice among the matching ones, any split."
-  },
-  {
-    "id": "K_DECK_SUMMON",
-    "kind": "keyword",
-    "meaning": "summon this card when an opposing effect would discard from the Deck",
-    "pattern": "would be discarded by an opposing \"Deck-discarding effect\", before sending it to the Trash, you can summon it",
-    "engine": "card.deckSummon (MILL_OPP)",
-    "status": "full",
-    "example": "BSC48-014",
-    "rule": "Engine: before an opposing MILL_OPP resolves, flagged cards in the Hand/Trash and among the discarded cards can be summoned without paying the cost."
-  },
-  {
-    "id": "K_BP_MINUS_DRAW_BOTTOM",
-    "kind": "effect",
-    "meaning": "give -N BP, destroy at 0 BP and draw from the deckbottom",
-    "pattern": "destroy it, and draw a card from the deckbottom",
-    "engine": "BP_MINUS zeroDestroy drawN drawBottom",
-    "status": "full",
-    "example": "BSC48-021",
-    "rule": "Engine: after the BP loss, a target at 0 BP is destroyed and the player draws N cards from the bottom of the Deck."
-  },
-  {
-    "id": "K_UNBLOCKABLE_NO_SOUL",
-    "kind": "effect",
-    "meaning": "can't be blocked by opposing Spirits without a Soul Core",
-    "pattern": "can't be blocked by opposing Spirits/Ultimates without \\(Soul Core\\)",
-    "engine": "STATIC UNBLOCKABLE_LOW noSoul",
-    "status": "full",
-    "example": "BSC48-048",
-    "rule": "Engine: while active, only opposing Spirits holding a Soul Core may block the matching attacker."
-  },
-  {
-    "id": "K_COSTALT_EXHAUST",
-    "kind": "effect",
-    "meaning": "cost becomes lower by exhausting one of your Grandwalker Nexuses",
-    "pattern": "by exhausting one of your .* Grandwalker Nexuses?, this card becomes Cost \\d+",
-    "engine": "costAlt.exhaust",
-    "status": "full",
-    "example": "BSC48-056",
-    "rule": "Engine: the alternate cost applies only if an untapped matching Grandwalker Nexus exists; casting exhausts it."
-  },
-  {
-    "id": "K_OPP_CORES_PER_SYMBOL_COLOR",
-    "kind": "effect",
-    "meaning": "send one opposing core to the Reserve for each symbol color you have",
-    "pattern": "For each symbol color you have, send a core from any opposing Spirits/Ultimates to the Reserve",
-    "engine": "OPP_CORES_TO_RESERVE perSource ownSymColors",
-    "status": "full",
-    "example": "BSC48-055",
-    "rule": "Engine: counts your distinct symbol colors on the Field and takes that many cores, one at a time, from opposing Spirits."
-  },
-  {
-    "id": "K_SIX_HEAVEN_COLOR",
-    "kind": "effect",
-    "meaning": "Grand Field: fulfills one symbol color for Six Heaven Rush/Rebirth conditions",
-    "pattern": "Fulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth",
-    "engine": "STATIC SIX_HEAVEN_COLOR",
-    "status": "full",
-    "example": "BSC48-CP03",
-    "rule": "Engine: each active Nexus with this flag adds one symbol color to every symbol-color-count condition (symColorsGe), except those marked symColorsPlain."
-  },
-  {
-    "id": "K_MAGIC_SOUL_TAX",
-    "kind": "effect",
-    "meaning": "During this turn, while your named Spirit attacks, the opponent cannot use Magic unless they send their Soul Core to the Trash",
-    "pattern": "while your .{1,30} is attacking, unless the opponent sends their .{0,12}Soul Core.{0,3} to the Trash, they can't use Magic cards",
-    "engine": "MAGIC_SOUL_TAX_TURN",
-    "status": "full",
-    "example": "BSC48-CX02",
-    "rule": "Engine: sets a per-turn lock read by the Magic-usable check; the first Magic cast while it applies pays the Soul Core once, which lifts the lock for the turn."
-  },
-  {
-    "id": "K_TRASH_ALL_MATCH",
-    "kind": "effect",
-    "meaning": "Condition: every card in your Trash matches a description",
-    "pattern": "While every card in your Trash is .{1,60}(God-Sechs|family)",
-    "engine": "if trashAllMatch",
-    "status": "full",
-    "example": "BSC48-CX02",
-    "rule": "Engine: true for an empty Trash as well."
-  },
-  {
-    "id": "K_NO_REFRESH_OPP",
-    "kind": "effect",
-    "meaning": "Opposing Spirits/Ultimates/Nexuses can't refresh while this applies",
-    "pattern": "(Every )?opposing .{1,60} can't refresh",
-    "engine": "STATIC NO_REFRESH to:opp",
-    "status": "full",
-    "example": "BSC48-X08",
-    "rule": "Engine: refreshOne skips any card an active opposing NO_REFRESH static matches, in the Refresh Step and in refresh effects."
-  },
-  {
-    "id": "K_CTRL_SOUL_SPIRIT",
-    "kind": "effect",
-    "meaning": "Condition: a Spirit of yours has a Soul Core on it",
-    "pattern": "When a Soul Core is on a .{1,30}Spirit of yours( other than this Spirit)?",
-    "engine": "if ctrl {type:Spirit, soul:true, other?, colors?}",
-    "status": "full",
-    "example": "SD32-003",
-    "rule": "Engine: ctrlCount counts only your Spirits that carry a Soul Core when the entry has soul:true; other:true leaves out the source Spirit."
-  },
-  {
-    "id": "K_BRAVED_TO_NAMED",
-    "kind": "effect",
-    "meaning": "During Brave: while braved to a Spirit with a given name",
-    "pattern": "While braved to an? .{1,40}-named Spirit",
-    "engine": "braved:true + if selfNameHas",
-    "status": "full",
-    "example": "SD57-005",
-    "rule": "Engine: a Brave effect marked braved:true reads the host Spirit as its context; selfNameHas checks that Spirit's name."
-  },
-  {
-    "id": "K_DESTROY_OWN_ALL_BESIDES",
-    "kind": "effect",
-    "meaning": "Besides this Spirit, destroy all your Spirits and Nexuses",
-    "pattern": "Besides this Spirit, destroy all your Spirits and Nexuses",
-    "engine": "DESTROY_OWN_ALL besides+nexus",
-    "status": "full",
-    "example": "P16-16",
-    "rule": "Engine: every own Spirit except the source and every own Nexus is destroyed; the source stays."
-  },
-  {
-    "id": "K_CANT_BRAVE",
-    "kind": "effect",
-    "meaning": "This Spirit can't Brave",
-    "pattern": "can't attack nor Brave",
-    "engine": "STATIC CANT_BRAVE",
-    "status": "full",
-    "example": "P16-16",
-    "rule": "Engine: no Brave card can be combined with this Spirit (braveFits refuses it). The 'can't be negated' rider has nothing to negate."
-  },
-  {
-    "id": "K_SYMBOLS_CHANGED_TO",
-    "kind": "effect",
-    "meaning": "While a condition holds, change this Spirit's symbols to N symbols of one colour",
-    "pattern": "change this Spirit's symbols to",
-    "engine": "EXTRA_SYMBOL replace:true",
-    "status": "full",
-    "example": "PB17-X02",
-    "rule": "Engine: while the condition holds the printed symbols no longer count and N symbols of the colour count instead."
-  },
-  {
-    "id": "K_BOUNCE_PER_SYMCOLOR",
-    "kind": "effect",
-    "meaning": "For each colour of your symbols, return one opposing Spirit to the Hand",
-    "pattern": "for each color of your symbols, return",
-    "engine": "BOUNCE_PER_SYMCOLOR",
-    "status": "full",
-    "example": "SD32-X01",
-    "rule": "Engine: counts your symbol colours, lets you pick that many opposing Spirits one by one, and returns them; with the Soul Core used for the summon cost their cores go to the Trash."
-  },
-  {
-    "id": "K_OPP_SPIRITS_CORES_TRASH",
-    "kind": "effect",
-    "meaning": "Put cores from several opposing Spirits to the opposing Trash, then Life per removed Spirit",
-    "pattern": "cores each from two opposing Spirits to the opposing Trash",
-    "engine": "OPP_SPIRITS_CORES_TRASH",
-    "status": "full",
-    "example": "SJ15-20",
-    "rule": "Engine: picks up to the listed number of opposing Spirits and moves the listed cores from each; with the chain condition met each Spirit that ends with no cores costs the opponent one Life core."
-  },
-  {
-    "id": "K_REFRESH_PER_SYMCOLOR",
-    "kind": "effect",
-    "meaning": "For each colour of your symbols, refresh one of your Spirits",
-    "pattern": "for each symbol color you have, refresh a Spirit",
-    "engine": "REFRESH_PER_SYMCOLOR",
-    "status": "full",
-    "example": "SD32-007",
-    "rule": "Engine: counts your symbol colours and refreshes that many of your exhausted Spirits, one pick each."
-  },
-  {
-    "id": "K_DESTROYS_SELF",
-    "kind": "trigger",
-    "meaning": "When this Spirit destroys an opposing Spirit (by its effect or in battle)",
-    "pattern": "When this Spirit destroys any opposing Spirit/Ultimate",
-    "engine": "OPP_DESTROYED_FX bySrc.self + ALLY_DESTROYS self",
-    "status": "done",
-    "example": "BS71-057",
-    "rule": "Engine: fires for the Spirit that caused the destruction, through its own effect or a battle win."
-  },
-  {
-    "id": "K_DISCARD_DOWN_TO",
-    "kind": "action",
-    "meaning": "Discard cards from your Hand until it is N or less",
-    "pattern": "discard cards from your Hand until your Hand is three or less",
-    "engine": "DISCARD_DOWN_TO n",
-    "status": "done",
-    "example": "BS72-074",
-    "rule": "Engine: the owner picks the cards to discard (the CPU throws away the cheapest) until the Hand holds at most n cards."
-  },
-  {
-    "id": "K_OPP_HAND_DISCARD_LOOK",
-    "kind": "action",
-    "meaning": "Look at the entire opposing Hand and discard cards from it",
-    "pattern": "look at the entire opposing Hand, and discard two cards from among them",
-    "engine": "OPP_HAND_DISCARD_LOOK n",
-    "status": "done",
-    "example": "BS71-NX03",
-    "rule": "Engine: the owner of the effect looks at the opposing Hand and chooses the cards to discard (the CPU takes the most expensive)."
-  },
-  {
-    "id": "K_CORES_ON_GE",
-    "kind": "condition",
-    "meaning": "You control a matching card with N or more cores on it",
-    "pattern": "five or more cores on one of your Blue \"Contractor\"",
-    "engine": "if.coresOnGe {n, match}",
-    "status": "done",
-    "example": "BS71-NX03",
-    "rule": "Engine: true when one card on your field that matches has at least N cores on it."
-  },
-  {
-    "id": "K_COST_LE_BRAVES",
-    "kind": "condition",
-    "meaning": "Cost N or less, +1 for each of your <family> family Braves",
-    "pattern": "increase this \"Cost Destruction effect\" limit by \\+1",
-    "engine": "DESTROY costLeBraves",
-    "status": "done",
-    "example": "{\"do\":\"DESTROY\",\"costLeBraves\":{\"base\":3,\"family\":[\"Scalostle\"]}}",
-    "rule": "Engine: the cost limit of the destruction is the base plus the number of your Braves of that family attached to your Spirits or Nexuses."
-  },
-  {
-    "id": "K_SUMMON_DISCARDED",
-    "kind": "condition",
-    "meaning": "summon the discarded card instead of leaving it in the Trash",
-    "pattern": "would be discarded by your effect, you can summon it instead",
-    "engine": "SUMMON_DISCARDED",
-    "status": "done",
-    "example": "{\"trigger\":\"OWN_DISCARD\",\"actions\":[{\"do\":\"SUMMON_DISCARDED\",\"match\":{\"type\":\"Brave\"}}]}",
-    "rule": "Engine: runs from OWN_DISCARD after the discard; the first matching discarded card is summoned from the Trash without paying its cost."
-  },
-  {
-    "id": "K_BURST_SPIRIT_PUNISH",
-    "kind": "condition",
-    "meaning": "look at the opposing Burst; if it's a Spirit card, discard it and send a Life to the Reserve",
-    "pattern": "Look at the contents of an opposing Burst, and if it's a Spirit card, discard it",
-    "engine": "BURST_SPIRIT_PUNISH",
-    "status": "done",
-    "example": "{\"do\":\"BURST_SPIRIT_PUNISH\"}",
-    "rule": "Engine: looks at the opposing set Burst; only a Spirit card is discarded, and then one opposing Life goes to the Reserve."
-  }
+ {
+  "id": "T_SUMMONED",
+  "kind": "trigger",
+  "meaning": "(When Summoned)",
+  "pattern": "\\(When Summoned\\)|When Summoned",
+  "engine": "SUMMONED",
+  "status": "wired",
+  "example": "{\"trigger\":\"SUMMONED\"}",
+  "rule": "Standard Comprehensive Rules 1.0 12-2-1-6-1: activates when the Spirit is Summoned."
+ },
+ {
+  "id": "T_ATTACKS",
+  "kind": "trigger",
+  "meaning": "(When Attacks)",
+  "pattern": "\\(When Attacks\\)|When Attacks",
+  "engine": "ATTACKS",
+  "status": "wired",
+  "example": "{\"trigger\":\"ATTACKS\"}",
+  "rule": "Standard Comprehensive Rules 1.0 12-2-1-7-1: Triggered Effect when it attacks during your Attack Step."
+ },
+ {
+  "id": "T_ALLY_ATTACKS",
+  "kind": "trigger",
+  "meaning": "When your X attacks",
+  "pattern": "When your .{0,40} attacks",
+  "engine": "ALLY_ATTACKS",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_ATTACKS\",\"match\":{\"name\":[\"Crimson\"]}}",
+  "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): effects that activate on one event are ordered here (constant before timed, the turn player orders the rest); the trigger itself is card text naming the ally."
+ },
+ {
+  "id": "T_ALLY_BLOCKED",
+  "kind": "trigger",
+  "meaning": "When your X is blocked",
+  "pattern": "is blocked",
+  "engine": "ALLY_BLOCKED",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): block-timing effects trigger after the block is declared and performed, which is the event this card text watches."
+ },
+ {
+  "id": "T_ALLY_SUMMONED",
+  "kind": "trigger",
+  "meaning": "When your target Spirit is summoned (Neo-Core Charge)",
+  "pattern": "is summoned|Neo-Core Charge",
+  "engine": "ALLY_SUMMONED",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 24 (ETR:cost.paying): the summon it watches pays its cost and puts cores on the card; Neo-Core Charge itself is card text (docs/manual-notes.md \"Blue Nuadha card-text terms\")."
+ },
+ {
+  "id": "T_ADVENT",
+  "kind": "trigger",
+  "meaning": "(When Advents)",
+  "pattern": "When Advents|\\(When Advent\\)",
+  "engine": "ADVENT",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): Advent is not a summon (keyword glossary in packages/engine/src/00-config.js; docs/manual-notes.md \"Costs and summons\"), and the (When Advents) trigger is card text that resolves as a timed effect."
+ },
+ {
+  "id": "T_START_ATTACK",
+  "kind": "trigger",
+  "meaning": "(Start of Your Attack Step)",
+  "pattern": "Start of Your Attack Step",
+  "engine": "START_ATTACK",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the step list and what each step does; a start-of-step head is card text that fires once when the step begins."
+ },
+ {
+  "id": "T_ALLY_LIFE_HIT",
+  "kind": "trigger",
+  "meaning": "When your X reduces the opposing Life",
+  "pattern": "reduces the opposing Life",
+  "engine": "ALLY_LIFE_HIT",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): an unblocked attack takes Life equal to the attacker symbols; a trigger on that event is card text."
+ },
+ {
+  "id": "T_ALLY_LOST",
+  "kind": "trigger",
+  "meaning": "When your Spirit is depleted/destroyed by the opponent",
+  "pattern": "destroyed by the opponent|depleted by the opponent",
+  "engine": "ALLY_LOST",
+  "status": "partial",
+  "example": "Burst version uses ALLY_DESTROYED",
+  "rule": "Standard Comprehensive Rules 12-2-1-12 (STD:12-2-1-12): \"destroyed by the opponent\" needs an opposing effect or a BP comparison with an opposing Spirit; depletion is not destruction (ETR:cores.depletion)."
+ },
+ {
+  "id": "T_OPP_HAND_UP",
+  "kind": "trigger",
+  "meaning": "When the opposing Hand increases",
+  "pattern": "opposing Hand increases",
+  "engine": "OPP_HAND_UP",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 10 (ETR:setup): the opening hand and the Draw Step (SJP:turn) are the only draws; watching an opposing Hand increase is card text."
+ },
+ {
+  "id": "T_MIRAGE_LIFE",
+  "kind": "trigger",
+  "meaning": "[During Set] when a Life is reduced",
+  "pattern": "During Set",
+  "engine": "MIRAGE_OWN_LIFE / MIRAGE_OPP_LIFE",
+  "status": "partial",
+  "example": "Other Mirage triggers (Flash, Soul State) are not wired",
+  "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): a Mirage sits in the Burst Area outside the Field; a [During Set] effect that watches a Life decrease is card text."
+ },
+ {
+  "id": "C_MIRAGE_SET",
+  "kind": "condition",
+  "meaning": "While a Mirage is set (any / of a given colour)",
+  "pattern": "Mirage set",
+  "engine": "if.mirageSet (boolean) / if.mirageColor (array of colours; the set Mirage must carry one of them)",
+  "status": "wired",
+  "example": "{\"if\":{\"mirageColor\":[\"purple\",\"white\"]}} (BS58-037)",
+  "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): the Mirage sits in the Burst Area; its colour is read from colours, else colour and symbol."
+ },
+ {
+  "id": "T_REVEALED",
+  "kind": "trigger",
+  "meaning": "When revealed from the deck",
+  "pattern": "revealed from the deck",
+  "engine": "REVEALED (+ actions MIRAGE_SET, DEPLOY_SELF)",
+  "status": "partial",
+  "example": "{\"trigger\":\"REVEALED\",\"optional\":true,\"actions\":[{\"do\":\"MIRAGE_SET\"}]}",
+  "rule": "Eternal manual VER.17.0 has no timing rule; v0.33 ruling: resolves at once while the revealing effect resolves. Magic reveals do not fire it yet."
+ },
+ {
+  "id": "T_ALLY_DESTROYS",
+  "kind": "trigger",
+  "meaning": "When your X destroys an opposing Spirit",
+  "pattern": "is destroyed by your",
+  "engine": "ALLY_DESTROYS (battle only)",
+  "status": "partial",
+  "example": "{\"trigger\":\"ALLY_DESTROYS\",\"match\":{\"name\":[\"Crimson\"]}}",
+  "rule": "Eternal manual p. 30-31: battle destruction after BP comparison; destructions by effects do not fire it yet."
+ },
+ {
+  "id": "T_FROM_HAND_BLOCKED",
+  "kind": "trigger",
+  "meaning": "Deploy/summon this from the Hand when your X is blocked",
+  "pattern": "is blocked, you can deploy this card from the Hand",
+  "engine": "ALLY_BLOCKED zone:'hand' + DEPLOY_SELF",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_BLOCKED\",\"zone\":\"hand\",\"actions\":[{\"do\":\"DEPLOY_SELF\"}]}",
+  "rule": "Eternal manual p. 30: activates with the other effects after the block is declared."
+ },
+ {
+  "id": "T_ACTIVATE",
+  "kind": "trigger",
+  "meaning": "[Main] / (Flash) activated abilities",
+  "pattern": "\\(Flash\\)|\\[Main\\]|Main -",
+  "engine": "ACTIVATE",
+  "status": "wired",
+  "example": "timing MAIN/FLASH, cost nexusToVoid",
+  "rule": "Eternal Rule Manual sec.2: Main effects only in your Main Step; Flash effects in the Main Step and at Flash Timing. A (Flash) with '(Either Attack Step)' is Flash Timing only. Standard Comprehensive Rules 1.0 9-1-7-1-2."
+ },
+ {
+  "id": "A_DRAW",
+  "kind": "action",
+  "meaning": "Draw N cards",
+  "pattern": "draw (one|two|three|\\d) cards?",
+  "engine": "DRAW",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 10 (ETR:setup): Deck to Hand at setup and in the Draw Step (SJP:turn); an effect draws the same way (SJP:effects)."
+ },
+ {
+  "id": "A_COUNTER",
+  "kind": "action",
+  "meaning": "Your counter +N",
+  "pattern": "counter \\+\\d",
+  "engine": "COUNTER",
+  "status": "wired",
+  "example": "max up to 30",
+  "rule": "Eternal Rule Manual p. 60: Count Area cores come from the Void (engine: takeFromVoid, v0.29); this is not 'adding cores from the Void'."
+ },
+ {
+  "id": "A_DESTROY_BP",
+  "kind": "action",
+  "meaning": "Destroy an opposing Spirit with BP N or less",
+  "pattern": "destroy an opposing .{0,30}BP",
+  "engine": "DESTROY",
+  "status": "wired",
+  "example": "bpLe, bpLeAttacker, lifeBoost, thenDraw",
+  "rule": "Standard Comprehensive Rules 1.0 5-10-1: destroyed by an effect or BP comparison -> pending state -> Trash."
+ },
+ {
+  "id": "A_DESTROY_NEXUS",
+  "kind": "action",
+  "meaning": "Destroy an opposing Nexus",
+  "pattern": "destroy an opposing Nexus",
+  "engine": "DESTROY nexus:true",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): Nexus deployment; destroying a Nexus by an effect follows the card text, while Spirit destruction follows ETR:battle.destruction."
+ },
+ {
+  "id": "A_BOUNCE",
+  "kind": "action",
+  "meaning": "Return an opposing Spirit/Nexus to the Hand",
+  "pattern": "return an opposing .{0,20}to the Hand",
+  "engine": "BOUNCE_OPP",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): returning a card to the Hand is not destruction, and a card leaving the Field waits in Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4)."
+ },
+ {
+  "id": "A_BANISH",
+  "kind": "action",
+  "meaning": "Banish",
+  "pattern": "[Bb]anish",
+  "engine": "MAGIC_FX BANISH_BP_LE / BANISH_DESTROYED",
+  "status": "partial",
+  "example": "Not available as an effect action",
+  "rule": "Engine: a banished card goes to the Banished zone (removed from the game). The Eternal Rule Manual 17.0 text available online does not define Banish; re-check against the 17.1 PDF."
+ },
+ {
+  "id": "A_BP_PLUS",
+  "kind": "action",
+  "meaning": "+N BP this turn",
+  "pattern": "\\+\\d+ ?BP|gain \\+\\d+",
+  "engine": "BP_PLUS / STATIC bp",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 68 (ETR:faq.bp): BP changes stack on the current level and a Spirit at 0 BP is destroyed only by a card clause; printed numbers never go below zero (STD:1-4-6)."
+ },
+ {
+  "id": "A_REFRESH",
+  "kind": "action",
+  "meaning": "Refresh a Spirit",
+  "pattern": "[Rr]efresh",
+  "engine": "REFRESH / REFRESH_SPIRIT",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 5-14-1 / 5-15-1: Refresh = Exhausted to Refresh state; Exhaust = Refresh to Exhausted state."
+ },
+ {
+  "id": "A_CORE_TO_SELF",
+  "kind": "action",
+  "meaning": "+1 core to this card",
+  "pattern": "\\+\\d core",
+  "engine": "CORE_TO_SELF",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move from the Reserve or the Void (ETR:cost.paying); Count cores are a separate pool outside the Field (ETR:count)."
+ },
+ {
+  "id": "A_TRASH_TO_RESERVE",
+  "kind": "action",
+  "meaning": "Cores from the Trash to cards/Reserve",
+  "pattern": "from your Trash to",
+  "engine": "TRASH_CORES_TO",
+  "status": "wired",
+  "example": "onlyCards, toAttacker, thenDestroyNexus",
+  "rule": "Eternal Rule Manual p. 20 (ETR:turn.refresh-step): Trash cores return to the Reserve at the Refresh Step; an effect may make that move earlier (card text)."
+ },
+ {
+  "id": "A_VOID",
+  "kind": "action",
+  "meaning": "Cores to/from the Void",
+  "pattern": "Void",
+  "engine": "VOID_TO_RESERVE / VOID_TO_CARD / VOID_TO_TRASH / NEXUS_CORES_TO_VOID",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 4-8-1/4-8-2: the Void is the supply of Cores and has no limit; when it runs out, cores are added from outside the game (engine: takeFromVoid, v0.29). Eternal Rule Manual sec.11: +X cores from the Void onto a Grandwalker Nexus does not count as increasing Cores from the Void. Eternal Rule Manual (Cores and the Soul Core): the Soul Core can never be placed in the Void; it stays where it is and another core goes instead."
+ },
+ {
+  "id": "A_SOUL_STATE",
+  "kind": "action",
+  "meaning": "Enter / leave Soul State",
+  "pattern": "Soul State",
+  "engine": "SOUL_ENTER / SOUL_SUMMON / SOUL_RETURN",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.10: no Lv, no cores, symbols cannot reduce costs, cannot attack or block; not in the Trash, so destruction Bursts cannot trigger."
+ },
+ {
+  "id": "A_SUMMON_FREE",
+  "kind": "action",
+  "meaning": "Summon/deploy without paying the cost",
+  "pattern": "without paying the cost",
+  "engine": "SUMMON_HAND / SUMMON_SELF / SUMMON_FREE",
+  "status": "wired",
+  "example": "from: hand/handOrSoul/soul",
+  "rule": "Official: a plain \"summon/deploy\" effect still pays the cost (with cost reduction); only text saying \"without paying the cost\" is free (Eternal manual, summon/deploy)."
+ },
+ {
+  "id": "A_SUMMON_PAID",
+  "kind": "action",
+  "meaning": "Summon/deploy by paying the cost (cost reduction applies)",
+  "pattern": "summon / deploy (no 'without paying the cost')",
+  "engine": "SUMMON_HAND / SOUL_SUMMON with pay:true; Revive",
+  "status": "wired",
+  "example": "pay: true",
+  "rule": "Official (Eternal manual): Revive/Revival also deploys the Grandwalker Nexus by paying its cost."
+ },
+ {
+  "id": "A_RETURN_TRASH",
+  "kind": "action",
+  "meaning": "Return a card from the Trash to the Hand",
+  "pattern": "from your Trash to the Hand|from the Trash to the Hand",
+  "engine": "RETURN_TRASH",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): the Trash is a public pile and cards leave it only by an effect."
+ },
+ {
+  "id": "A_REVEAL_DECK",
+  "kind": "action",
+  "meaning": "Reveal N cards from the decktop and pick",
+  "pattern": "reveal (three|four|five|\\d) cards",
+  "engine": "SOUL_ENTER src:reveal / REVEAL_DEPLOY / REVEAL_ADD (Magic)",
+  "status": "partial",
+  "example": "Spirit/Nexus reveal-and-deploy not generic yet",
+  "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): revealing Deck cards is an effect; the ruling since v0.33 is that it resolves at once inside the revealing effect (docs/manual-notes.md \"Effects\")."
+ },
+ {
+  "id": "A_AWAKEN",
+  "kind": "action",
+  "meaning": "Send cores from your Spirits to this Spirit",
+  "pattern": "Awaken",
+  "engine": "AWAKEN",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move between your cards in the Main Step; \"Awaken\" with its printed limit is card text."
+ },
+ {
+  "id": "A_LIFE_TO_RESERVE",
+  "kind": "action",
+  "meaning": "Send Life to the Reserve",
+  "pattern": "Life .{0,30}Reserve",
+  "engine": "LIFE_TO_RESERVE",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): a reduced Life sends its cores to the Reserve; the same move by an effect is card text."
+ },
+ {
+  "id": "A_EXHAUST",
+  "kind": "action",
+  "meaning": "Exhaust / depletion effects",
+  "pattern": "[Ee]xhaust",
+  "engine": "EXHAUST_OPP (effect action) and MAGIC_FX EXHAUST_OPP",
+  "status": "wired",
+  "example": "{\"do\":\"EXHAUST_OPP\",\"n\":1,\"costLe\":7}",
+  "rule": "Eternal Rule Manual p. 60-61: Exhaust turns a Refreshed card sideways; only a Refreshed card can be exhausted by an Exhaust effect (an Exhausted target is not a valid target); it is not Heavy Exhaust."
+ },
+ {
+  "id": "A_DISCARD_OPP",
+  "kind": "action",
+  "meaning": "Opponent discards",
+  "pattern": "opponent discards|discard.{0,20}opposing",
+  "engine": "DISCARD_OPP_BURST only",
+  "status": "partial",
+  "example": "",
+  "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): a card leaves a hidden Hand for the Trash by an effect, and its owner picks."
+ },
+ {
+  "id": "A_SYMBOL",
+  "kind": "action",
+  "meaning": "Extra symbol / symbol change",
+  "pattern": "extra .{0,12}symbol",
+  "engine": "SYMBOL_PLUS (this battle) / SYMBOL_PLUS_TURN (this turn, coloured)",
+  "status": "partial",
+  "example": "Magma Call Flash",
+  "rule": "Eternal Rule Manual p. 13 (ETR:card.symbols): symbols drive cost reduction and Life damage and include God and Ultimate symbols; extra or changed symbols are card text."
+ },
+ {
+  "id": "A_END_ATTACK",
+  "kind": "action",
+  "meaning": "End the Attack Step",
+  "pattern": "end the Attack Step",
+  "engine": "END_ATTACK_AFTER_BATTLE / STATIC NO_END_ATTACK",
+  "status": "wired",
+  "example": "Meteor Defense Flash",
+  "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the Attack Step and where it sits; effects already pending resolve first (ETR:effects.simultaneous); ending the step early is card text."
+ },
+ {
+  "id": "A_SEAL",
+  "kind": "action",
+  "meaning": "Seal",
+  "pattern": "\\bSeal\\b",
+  "engine": "SEAL action; manifest/contractAdvent \"seal\":true; fxIf sealed; p.lifeSoul",
+  "status": "wired",
+  "example": "{\"do\":\"SEAL\"} / {\"if\":{\"sealed\":true}}",
+  "rule": "Eternal Rule Manual p.49 (Seal): Seal moves your Soul Core from the stated place to your Life; while that Soul Core is in your Life you are Sealed and [During Seal] effects can be used. Using Seal is optional. When Life is reduced with a normal core and the Soul Core in Life, the player chooses which leaves (engine: normal cores first)."
+ },
+ {
+  "id": "C_LIFE",
+  "kind": "condition",
+  "meaning": "If your Life is N or less",
+  "pattern": "[Ll]ife is (at )?(\\w+) or less",
+  "engine": "lifeLe / lifeGe",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 10 (ETR:setup): Life is a core count in the Life area; a condition on it is card text."
+ },
+ {
+  "id": "C_COUNTER",
+  "kind": "condition",
+  "meaning": "Counter N or more / C-cost",
+  "pattern": "C\\d+ or more|counter .{0,10}or more",
+  "engine": "counterGe",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): counters are put on Nexuses by effects; Count cores are a separate Void-fed pool (ETR:count); a counter threshold is card text."
+ },
+ {
+  "id": "C_CONTROL",
+  "kind": "condition",
+  "meaning": "If you control (incl. Soul State) a named card",
+  "pattern": "if you control any",
+  "engine": "controlName / hasName",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 54 (ETR:contract.soul-state): \"control\" means on your Field and a Soul State card is not on the Field, which is why the engine has an explicit incl.-Soul-State form."
+ },
+ {
+  "id": "C_ONCE",
+  "kind": "condition",
+  "meaning": "(Once per Turn: Same Name)",
+  "pattern": "Once per Turn",
+  "engine": "once / sameName",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual FAQ Q9: [Once per turn] is per card; [Once per turn: Same Name] is shared by all same-name cards. Standard Comprehensive Rules 1.0 12-3-1-1."
+ },
+ {
+  "id": "C_OPP_TURN",
+  "kind": "condition",
+  "meaning": "Opposing turn / Your turn",
+  "pattern": "Your Turn|Opposing Turn|opposing turn",
+  "engine": "oppTurn",
+  "status": "partial",
+  "example": "Your Turn limit on Flash only partly",
+  "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): one seat holds the turn at a time; \"opposing turn\" is a card-text timing."
+ },
+ {
+  "id": "C_LEVEL",
+  "kind": "condition",
+  "meaning": "[LV1][LV2] level gating",
+  "pattern": "\\[LV\\d\\]",
+  "engine": "lv",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 27 (ETR:cores.depletion): levels are core thresholds and too few cores is depletion, not destruction; a [LV1][LV2] head is printed on the card."
+ },
+ {
+  "id": "S_MUST_BLOCK",
+  "kind": "static",
+  "meaning": "Must block if possible",
+  "pattern": "must block",
+  "engine": "STATIC flag MUST_BLOCK",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): one untapped Spirit or Ultimate may block; \"must block if possible\" is card text on top of that."
+ },
+ {
+  "id": "S_NO_RETURN",
+  "kind": "static",
+  "meaning": "Can't be returned from the Field",
+  "pattern": "can't be returned|cannot be returned",
+  "engine": "STATIC flag NO_RETURN",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): every way of leaving the Field goes through Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4); a lock against being returned is card text."
+ },
+ {
+  "id": "S_CORES_DRAW",
+  "kind": "static",
+  "meaning": "Draw when cores are sent to this Spirit",
+  "pattern": "When cores are sent to this Spirit",
+  "engine": "STATIC flag CORES_DRAW",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores moving onto a Field card; drawing on that event is card text."
+ },
+ {
+  "id": "S_UNAFFECTED",
+  "kind": "static",
+  "meaning": "Unaffected by opposing effects",
+  "pattern": "unaffected by",
+  "engine": "STATIC flag UNAFFECTED {to: self|own, match, from: {colors, types}} (v0.58) and UNAFFECTED_SOUL (Ometeotl) via fxImmune(owner, target, acting effect); every FX_ACTIONS cands list skips immune opposing targets (02k-effects-immunity.js); HAND_UNAFFECTED (your Hand), card flags handUnaffected / trashUnaffected",
+  "status": "partial",
+  "example": "Banve, Unnis, Z Thunder",
+  "rule": "Eternal Rule Manual sec.6: ignores all effects except those listed (e.g. Grandwalker Nexus only by its own / Grandwalker-targeting effects; Soul State cards only by Soul State-targeting effects). Priority (FAQ Q3): cannot be prevented > unaffected > cannot activate. Engine v0.58: unaffected by OPPOSING effects whose source card matches the colours/types; conditional forms (while exhausted, During Seal, While ... in your Trash) and 'this effect is unaffected' are not built yet."
+ },
+ {
+  "id": "S_CANT_PREVENT",
+  "kind": "static",
+  "meaning": "Can't be prevented/negated",
+  "pattern": "can't be prevent|cannot be prevent",
+  "engine": "action flag ignoreImmune (DESTROY coresLe since v0.39; every cands list honours it since v0.58)",
+  "status": "partial",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 62 (ETR:faq.effects-q3): effect priority: \"cannot\" beats \"must\" beats \"may/do\"; \"cannot be prevented\" beats \"unaffected\" beats \"cannot activate\" (ETR:faq.effects-q4)."
+ },
+ {
+  "id": "K_BURST",
+  "kind": "keyword",
+  "meaning": "Burst",
+  "pattern": "\\bBurst\\b",
+  "engine": "card.burst",
+  "status": "wired",
+  "example": "LIFE_DECREASE / ALLY_DESTROYED / OPP_SUMMON_FX / OPP_HAND_UP",
+  "rule": "Eternal Rule Manual sec.7: set face down from the Hand in your Main Step once per turn, no cost; one Burst in the area (a new one discards the old one); activation is optional; Magic Bursts may allow a paid extra (Flash) effect."
+ },
+ {
+  "id": "K_FLASH_BURST_FOLLOWUP",
+  "kind": "keyword",
+  "meaning": "Burst then pay to use the Flash effect",
+  "pattern": "by paying the cost, activate this card's \\(Flash\\)",
+  "engine": "burst.thenFlash (burstFlash)",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 46 (ETR:burst): a Burst activates with the other effects of its event and the Flash timings follow (SJP:flash); paying to use the Flash effect after the Burst is card text."
+ },
+ {
+  "id": "K_MIRAGE",
+  "kind": "keyword",
+  "meaning": "Mirage",
+  "pattern": "Mirage",
+  "engine": "card.mirage",
+  "status": "partial",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.8: set face up from the Hand in your Main Step once per turn by paying the Mirage cost; cores cannot be placed on it; its symbols cannot reduce costs; a Burst and a Mirage can both be in the Burst Area; replacing a Mirage returns the old one to the Hand."
+ },
+ {
+  "id": "K_ADVENT",
+  "kind": "keyword",
+  "meaning": "Advent / Contract Advent",
+  "pattern": "Advent",
+  "engine": "advent / contractAdvent",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.9: not a summon; the Soul Core moves; the Advent card stacks on the source and inherits its state and cores; Contract/Divine/Over Advent count as Advent."
+ },
+ {
+  "id": "K_MANIFEST",
+  "kind": "keyword",
+  "meaning": "Manifest / Ultra Manifest",
+  "pattern": "MANIFEST|Manifest",
+  "engine": "manifest {name, counterGe, turn: YOURS | EITHER_ATTACK | YOUR_ATTACK, ultra | seal}, trigger MANIFEST",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual (Manifest): put the Soul Core from your Life, Field or Reserve in the Trash and pay 1 of the summon cost with a core from the target Grandwalker Nexus; the Spirit is treated as summoned by paying 1 cost. When-Manifests effects do not activate when the Manifest happens in the Main Step or the Spirit is summoned by another effect."
+ },
+ {
+  "id": "K_REVIVE",
+  "kind": "keyword",
+  "meaning": "Revive",
+  "pattern": "Revive",
+  "engine": "revive:true",
+  "status": "wired",
+  "example": "",
+  "rule": "Revive is not covered by any manual chunk read so far (docs/rules/kb.json known_gaps), so the Eternal Rule Manual and Standard Comprehensive Rules offer no text here; the engine follows the printed card text (docs/manual-notes.md \"Not found in the online text yet\")."
+ },
+ {
+  "id": "K_CONTRACT",
+  "kind": "keyword",
+  "meaning": "Contract Field / Contract Skill",
+  "pattern": "Contract Field|Contract Skill",
+  "engine": "ACTIVATE + CONTRACT_FIELD_ADVENT",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual p. 44 (ETR:gw.contract): and the Contract card at setup (ETR:contract.setup); the printed Contract Skill cost is card text (docs/manual-notes.md \"Nexus Brave Contract Skill N\")."
+ },
+ {
+  "id": "K_GRANDWALKER",
+  "kind": "keyword",
+  "meaning": "Grandwalker Nexus core effects",
+  "pattern": "Grandwalker",
+  "engine": "(partly via VOID_/NEXUS_ actions)",
+  "status": "partial",
+  "example": "Core Charge, Grand Skill/Field are per card",
+  "rule": "Eternal Rule Manual sec.16: cores are placed only by Oracle/Unseal or effects that target them; cores on it go to the Void when it leaves the Field."
+ },
+ {
+  "id": "K_OVER_COUNT",
+  "kind": "keyword",
+  "meaning": "Over Count",
+  "pattern": "Over Count",
+  "engine": "card \"overCount\": {count, bp}; effect modifier oc:true",
+  "status": "wired",
+  "example": "{\"overCount\":{\"count\":4,\"bp\":5000}}",
+  "rule": "Eternal Rule Manual VER.17.0 p. 61: OC is active while your Count meets the OC condition, regardless of Lv; its + value is added to BP like a combined Brave; [During OC] effects work only while it is met; [During OC & Advent] also needs the Advent state."
+ },
+ {
+  "id": "K_BRAVE",
+  "kind": "keyword",
+  "meaning": "Brave (braving)",
+  "pattern": "\\bBrave\\b|brave",
+  "engine": "type Brave + \"brave\": {bp, family, name, costGe, nexus:{name}}; combineBrave / separateBrave / braveSummon",
+  "status": "partial",
+  "example": "{\"type\":\"Brave\",\"brave\":{\"bp\":5000,\"family\":[\"Ancient Dragon\"]}}",
+  "rule": "Eternal Rule Manual VER.17.0 p. 34-36: an uncombined Brave on the Field is treated as a Spirit (summoning it is not a Spirit summon); it combines with a Spirit meeting its Brave condition in the Main Step or when summoned, at no cost; its cores move onto the Spirit; BP+, cost and symbol are added; one Brave per Spirit; it leaves the Field with the Spirit to the same place. p. 38-39: a Saga Brave (\"brave.nexus\") can combine with a matching Grandwalker Nexus: its cores return to the Reserve first, no cores when combined directly, Lv1 cores to separate; the Nexus gets its symbol and its [While Combined with a Nexus] effects (nexusBrave:true, v0.35). The Nexus does not take the Brave's cost/family yet."
+ },
+ {
+  "id": "K_ULTIMATE",
+  "kind": "keyword",
+  "meaning": "Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target",
+  "pattern": "Ultimate",
+  "engine": "type Ultimate, summonIf (v0.56: lifeGe, ctrl = you control N or more colour/cost/family Spirits/Ultimates), lvBase 3, lvNo; v0.56 Ultimate Trigger action ULT_TRIGGER + condition utHit (compiler: inline [LVn] (When Attacks) form only); open: Ultimate Trigger level/timing missing in the Fandom export, Double/Triple Ultimate Trigger, Guard / Trigger Counter, effects printed for Spirits only still reach Ultimates",
+  "status": "partial",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.15: not affected by effects that target Spirits; affected by effects that target Cores, cards on the Field or Ultimates. U-Trigger: Hit only if the Ultimate's cost is higher than the revealed card."
+ },
+ {
+  "id": "K_TOKEN",
+  "kind": "keyword",
+  "meaning": "Tokens",
+  "pattern": "[Tt]oken",
+  "engine": "data/cards/tokens.json (type \"Token Spirit\" -> Spirit + token:true); action SEND_TOKEN {token,n,ask}; sendToken / tokenHome; per-player Token supply",
+  "status": "wired",
+  "example": "{\"do\":\"SEND_TOKEN\",\"token\":\"SD69-TOKEN-RAD\",\"n\":1,\"ask\":true}",
+  "rule": "Eternal Rule Manual VER.17.0 p. 56-57 + official page \"How to Use Token Cards\" (battlespirits.com/product/special/tokencard): Token cards cannot be in the Deck; they are prepared before the game (no limit per kind, not refilled during the game); they go to the Field only by \"send out\" effects, without paying the cost, with cores for at least Lv1 from your Field or Reserve; a Token Spirit is a Spirit (attacks, blocks, is targeted by Spirit effects, can be braved); when it leaves the Field it returns to where it came from, never the Trash/Hand/Deck, so \"after your Spirit is destroyed\" Bursts cannot activate. Engine house choice: 10 of each Token kind a deck can send out."
+ },
+ {
+  "id": "K_HEAVY_EXHAUST",
+  "kind": "keyword",
+  "meaning": "Heavy Exhaust",
+  "pattern": "Heavy Exhaust",
+  "engine": "HEAVY_EXHAUST_OPP (setHeavy / refreshOne; flag heavy next to exhausted)",
+  "status": "wired",
+  "example": "{\"do\":\"HEAVY_EXHAUST_OPP\",\"n\":2}",
+  "rule": "Eternal Rule Manual pp. 60-61, FAQ p. 67 (read 2026-10-14): only an effect can Heavy Exhaust; the card is turned upside down, counts as Exhausted and cannot attack or block; one Refresh (effect or Refresh Step) turns it into a normal Exhausted card; a Refreshed or Exhausted Spirit can be Heavy Exhausted by a Heavy Exhaust effect. The engine shows it as Exhausted (the upside-down picture waits for UI approval)."
+ },
+ {
+  "id": "K_STANDARD_SUCCESSION",
+  "kind": "keyword",
+  "meaning": "Standard: Succession / Soul Magic / Shinkai-ho",
+  "pattern": "Succession|Soul Magic|Shinkai",
+  "engine": "(not wired)",
+  "status": "missing",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 12-2-1-2 (STD:12-2-1-2): Soul Magic also per SJP:soul-magic; Inherit (Succession) Summon per SJP:inherit; Shinkai-ho is not covered by a manual chunk and follows the printed text."
+ },
+ {
+  "id": "K_SEAL",
+  "kind": "keyword",
+  "meaning": "Seal (Sealed state)",
+  "pattern": "\\bSealed?\\b",
+  "engine": "(not wired)",
+  "status": "missing",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.19: Seal moves your Soul Core from a specified place to your Life; 'Sealed' effects check the Soul Core in your Life. Standard Comprehensive Rules 5-7-3: the Soul Core can go to Life/Void only when an effect targets it. Engine: needs the Soul Core to be able to sit in the Life area."
+ },
+ {
+  "id": "K_HIGH_SPEED",
+  "kind": "keyword",
+  "meaning": "Flash - High Speed: summon this card from the Hand paying the cost and its Lv1 cores from the Reserve only",
+  "pattern": "High Speed",
+  "engine": "card \"highSpeed\": true; highSpeedOK / highSpeedSummon in the Flash Timing (human button, cpuHighSpeed)",
+  "status": "wired",
+  "example": "{\"highSpeed\":true}",
+  "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
+ },
+ {
+  "id": "K_CRUSH",
+  "kind": "keyword",
+  "meaning": "Crush (When Attacks): discard cards equal to this Spirit's level from the opposing decktop",
+  "pattern": "\\bCrush\\b",
+  "engine": "action CRUSH {n:\"lv\"|1-5}; ctx.crushed",
+  "status": "wired",
+  "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"CRUSH\",\"n\":\"lv\"}]}",
+  "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
+ },
+ {
+  "id": "K_HOLY_LIFE",
+  "kind": "keyword",
+  "meaning": "Holy Life (When Attacks): when this Spirit's attack reduces the opposing Life, put a Void core on your Life",
+  "pattern": "(?<!Ultra )Holy Life",
+  "engine": "ALLY_LIFE_HIT self + VOID_TO_LIFE",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_LIFE_HIT\",\"self\":true,\"lv\":[1,2],\"actions\":[{\"do\":\"VOID_TO_LIFE\",\"n\":1}]}",
+  "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
+ },
+ {
+  "id": "K_ULTRA_HOLY_LIFE",
+  "kind": "keyword",
+  "meaning": "Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not blocked put a Void core on your Life",
+  "pattern": "Ultra Holy Life",
+  "engine": "(not wired: needs a \"not blocked\" trigger)",
+  "status": "missing",
+  "example": "",
+  "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
+ },
+ {
+  "id": "K_ACCEL",
+  "kind": "keyword",
+  "meaning": "Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone)",
+  "pattern": "Accel",
+  "engine": "ACCEL effect (cost, timing, optional reduction) used from the Hand; card then to the Removed Zone; Accel Spirits summonable from the Removed Zone in your Main Step (useAccel, summonFromRemoved)",
+  "status": "partial",
+  "example": "BS68-045",
+  "rule": "Fandom 'Accel' Q1-Q8 (the Eternal manual text read has no Accel section): used from the Hand at the printed timing by paying the Accel cost, field symbols reduce it (Q4), Hand cost changes do not (Q8); the card is revealed and put onto the Removed Zone (Q1, Q3); a Spirit there can be summoned in your Main Step by paying its cost (Q5); its Accel can't be used from there (Q6). Partial: the Accel-cost reduction icons are missing from the Fandom export, so the full cost is paid."
+ },
+ {
+  "id": "K_SILVER_WHEEL",
+  "kind": "keyword",
+  "meaning": "Silver Wheel: a Flash effect that exhausts this Spirit as its cost",
+  "pattern": "Silver Wheel",
+  "engine": "ACTIVATE {silverWheel, timing Main+Flash, cost exhaustSelf, once:false}; trigger SILVER_WHEEL after it resolves",
+  "status": "partial",
+  "example": "BS70-036",
+  "rule": "Printed card text (Fandom export BS70/BS71/BS76): 'Flash - Silver Wheel: You can exhaust this Spirit. When you've done so, ...'; Flash effects can be used in the Main Step and the Flash Timings (Eternal manual p.18, p.23). Partial: the Silver Wheel cards that need other missing clauses keep them as residual."
+ },
+ {
+  "id": "K_ARMOR",
+  "kind": "keyword",
+  "meaning": "Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours",
+  "pattern": "\\{\\{(Armor|ha|ua|uha)\\||Heavy Armor|Ultra Armor|\\bArmor\\s*:",
+  "engine": "compiler unaffected_para -> STATIC UNAFFECTED from {colors, types} (v0.58)",
+  "status": "partial",
+  "example": "BS02-040, BS14-035, BS17-035, BS20-035",
+  "rule": "Printed keyword text (Fandom export): Armor = opposing <colour> Spirit/Nexus/Magic effects; Heavy Armor = Spirit/Brave/Nexus/Magic; Ultra Armor = Spirit/Ultimate/Nexus/Magic. Eternal manual p. 48 names Heavy/Ultra Armor as Burst preventers: a Burst of a listed colour cannot affect the card (same cands filter). Open: granted Armor ('give ... Armor', When Braved / During Brave / During OC prefixes)."
+ },
+ {
+  "id": "K_NETHER_IMMORTALITY",
+  "kind": "keyword",
+  "meaning": "Nether Immortality: when your matching \"Nether\" is destroyed, summon this card from the Trash",
+  "pattern": "Nether Immortality|\\{\\{N Im",
+  "engine": "(not wired; close to DESTROYED + summon from Trash)",
+  "status": "missing",
+  "example": "",
+  "rule": "Engine: built from the printed card text (Fandom export, BS68-BS77); no manual rule note found yet."
+ },
+ {
+  "id": "T_BLOCKS",
+  "kind": "trigger",
+  "meaning": "(When Blocks): this Spirit blocks",
+  "pattern": "When Blocks|When Blocking",
+  "engine": "BLOCKS; ATTACKS with alsoBlocks:true",
+  "status": "wired",
+  "example": "{\"trigger\":\"ATTACKS\",\"alsoBlocks\":true}",
+  "rule": "Standard Comprehensive Rules 1.0 12-2-1-9-1: Triggered Effect when it blocks during the opponent's Attack Step. Eternal manual p. 30: activates after the block is declared, before BP is compared."
+ },
+ {
+  "id": "T_DESTROYED",
+  "kind": "trigger",
+  "meaning": "(When Destroyed)",
+  "pattern": "When Destroyed|When this .{0,20}is destroyed",
+  "engine": "DESTROYED",
+  "status": "partial",
+  "example": "{\"trigger\":\"DESTROYED\",\"lv\":[2]}",
+  "rule": "Standard Comprehensive Rules 1.0 12-2-1-12: activates when the Spirit or Nexus is destroyed. Eternal manual p. 31: resolves before the card goes to the Trash; engine resolves right after with the level it had."
+ },
+ {
+  "id": "M_OPTIONAL",
+  "kind": "modifier",
+  "meaning": "'You can' = optional; 'You do' = mandatory",
+  "pattern": "[Yy]ou can",
+  "engine": "optional:true",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual FAQ Q2: 'you can/may' is optional; 'you do' must be done whenever possible. Burst activation is optional."
+ },
+ {
+  "id": "M_BY_DOING",
+  "kind": "modifier",
+  "meaning": "'By doing X, do Y': X is a requirement",
+  "pattern": "\\bBy (sending|discarding|paying|putting|returning)",
+  "engine": "BY {cost, then, ask}",
+  "status": "wired",
+  "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"SOUL_RETURN\",\"match\":{\"family\":[\"Awakened Dragon\"]}},\"then\":[{\"do\":\"CORE_TO_NEXUS\",\"n\":1,\"match\":{\"name\":[\"Contractor Mitra\"]}}]}",
+  "rule": "Eternal Rule Manual FAQ (About Effects in General) Q5: you must perform X for the effect to activate, X cannot be performed when Y cannot be performed, and the player chooses whether to activate the effect. Q6: \"you can do X; if you do, do Y\" does Y as far as possible."
+ },
+ {
+  "id": "M_IF_YOU_DO",
+  "kind": "modifier",
+  "meaning": "'You can X. If you do / When you've done so, Y'",
+  "pattern": "[Ww]hen you've done so|[Ii]f you do",
+  "engine": "if:{prev:true}",
+  "status": "wired",
+  "example": "",
+  "rule": "Eternal Rule Manual FAQ Q6: the effect works even if Y cannot be done."
+ },
+ {
+  "id": "M_THEN",
+  "kind": "modifier",
+  "meaning": "'Then': the next part resolves even if the previous part could not",
+  "pattern": "\\bThen\\b",
+  "engine": "default (no if)",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 5-19-1."
+ },
+ {
+  "id": "M_UP_TO",
+  "kind": "modifier",
+  "meaning": "'Up to X' can be 0",
+  "pattern": "[Uu]p to",
+  "engine": "human may stop / choose 0",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 1-4-5-1."
+ },
+ {
+  "id": "M_UNSTACKABLE",
+  "kind": "modifier",
+  "meaning": "(Can't Stack): same effect cannot activate more than once at the same timing",
+  "pattern": "Can't Stack|Unstackable",
+  "engine": "noStack (effect field)",
+  "status": "wired",
+  "example": "{\"trigger\":\"OPP_START_ATTACK\",\"noStack\":true,\"actions\":[...]}",
+  "rule": "Standard Comprehensive Rules 1.0 12-3-2-1. Wired 2026-10-31: `noStack` is deduped per timing window in collectFx (02d) and in staticBp (02a), one copy per card name; the flag is effect-level, not a static flag."
+ },
+ {
+  "id": "M_REPLACEMENT",
+  "kind": "modifier",
+  "meaning": "'Instead' = replacement effect",
+  "pattern": "\\binstead\\b",
+  "engine": "(Soul State 'instead' only)",
+  "status": "partial",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 9-1-8-1: a replaced event cannot be replaced again."
+ },
+ {
+  "id": "P_PRIORITY",
+  "kind": "rule",
+  "meaning": "Priority: cannot > must > do = can; cannot be prevented > unaffected > cannot activate",
+  "pattern": "(?!x)x",
+  "engine": "v0.58: can't-block removes blockers before MUST_BLOCK; unaffected Spirits are not bound by MUST_BLOCK; ignoreImmune beats unaffected",
+  "status": "partial",
+  "example": "",
+  "rule": "JP 17.0 revision notice item 9: 'cannot' > 'must' > 'do' = 'can' (do and can no longer outrank each other). Eternal Rule Manual FAQ A3/A4 (Q3). Card text beats the basic rules."
+ },
+ {
+  "id": "P_SIMULTANEOUS",
+  "kind": "rule",
+  "meaning": "Simultaneous triggers: continuous effects first, then triggered; the turn player orders within a category",
+  "pattern": "(?!x)x",
+  "engine": "fireFx ordering (owner only)",
+  "status": "partial",
+  "example": "",
+  "rule": "Eternal Rule Manual sec.5. Same event hitting several cards at once triggers an effect only once (Standard Comprehensive Rules 1.0 9-1-5-4)."
+ },
+ {
+  "id": "P_TARGETING",
+  "kind": "rule",
+  "meaning": "Targets are chosen when the effect resolves and are not changed if they stop matching",
+  "pattern": "(?!x)x",
+  "engine": "(by design)",
+  "status": "wired",
+  "example": "",
+  "rule": "Standard Comprehensive Rules 1.0 9-3-2."
+ },
+ {
+  "id": "A_SOUL_TO_NEXUS",
+  "kind": "action",
+  "meaning": "send your Soul Core to a named Grandwalker Nexus",
+  "pattern": "send your Soul Core to (any|your) \"Contractor",
+  "engine": "SOUL_TO_NEXUS (+ trigger SOUL_PLACED)",
+  "status": "wired",
+  "example": "{\"do\":\"SOUL_TO_NEXUS\",\"match\":{\"name\":[\"Contractor Ometeotl\"]},\"ask\":true}",
+  "rule": "Eternal Rule Manual (Cores and the Soul Core): the Soul Core can only be in the Reserve, on a card on the Field or in the Trash; the engine takes it from the Trash, the Reserve or a card it can leave without depleting a Spirit."
+ },
+ {
+  "id": "T_SOUL_PLACED",
+  "kind": "trigger",
+  "meaning": "when your Soul Core is sent/placed on your Nexus",
+  "pattern": "[Ww]hen (your|a) Soul Core is (sent to|placed on)",
+  "engine": "SOUL_PLACED",
+  "status": "wired",
+  "example": "{\"trigger\":\"SOUL_PLACED\",\"self\":true,\"once\":true}",
+  "rule": "Engine: card text trigger (Ometeotl Contract Field, Sphinott-Hauser, Magmazosia); the timing words (Your/Either Attack Step) use the attackStep / oppTurn conditions."
+ },
+ {
+  "id": "T_MANIFESTS",
+  "kind": "trigger",
+  "meaning": "(When Manifests)",
+  "pattern": "When Manifests",
+  "engine": "MANIFEST",
+  "status": "wired",
+  "example": "{\"trigger\":\"MANIFEST\"}",
+  "rule": "Eternal Rule Manual (Manifest): activates with the summon effects; not when the Manifest happens in the Main Step or the Spirit is summoned by another effect."
+ },
+ {
+  "id": "A_DESTROY_TOTAL",
+  "kind": "action",
+  "meaning": "destroy any number of opposing Spirits up to a total BP",
+  "pattern": "up to a total of \\d+ BP",
+  "engine": "DESTROY_TOTAL",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY_TOTAL\",\"total\":20000}",
+  "rule": "Standard Comprehensive Rules 1.0 5-10-1: destroyed by an effect. Ultimates are not in the engine yet."
+ },
+ {
+  "id": "A_SEND_TOKEN",
+  "kind": "action",
+  "meaning": "send out a Token from your Token supply",
+  "pattern": "send out (one|up to \\w+) of your",
+  "engine": "SEND_TOKEN",
+  "status": "wired",
+  "example": "{\"do\":\"SEND_TOKEN\",\"token\":\"SD69-TOKEN-RAD\",\"n\":2,\"ask\":true}",
+  "rule": "Eternal Rule Manual VER.17.0 p. 56 and the official \"How to Use Token Cards\" page, rule 2: only a \"send out a Token\" effect puts a Token on the Field; no cost is paid; cores for at least Lv1 come from your Field or Reserve; it is not a summon."
+ },
+ {
+  "id": "A_SYMBOL_PLUS",
+  "kind": "action",
+  "meaning": "this Spirit gains extra symbols during this battle",
+  "pattern": "gains an extra \\w+ symbol",
+  "engine": "SYMBOL_PLUS (inst.symBattle, cleared when the battle ends)",
+  "status": "wired",
+  "example": "{\"do\":\"SYMBOL_PLUS\",\"n\":1}",
+  "rule": "Symbols decide how many Life an unblocked attacker takes (Eternal Rule Manual VER.17.0 attack step); the gain lasts only for this battle (card text)."
+ },
+ {
+  "id": "A_DESTROY_NOFX",
+  "kind": "action",
+  "meaning": "destroy, and the effects of the destroyed target can't activate",
+  "pattern": "effects of the destroyed target can't activate",
+  "engine": "DESTROY noFx:true",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY\",\"bpLe\":5000,\"noFx\":true}",
+  "rule": "Eternal Rule Manual VER.17.0 p. 31 gives (When Destroyed) effects; this card text overrides it: the destroyed card's own effects do not activate."
+ },
+ {
+  "id": "A_DESTROY_COST",
+  "kind": "action",
+  "meaning": "destroy an opposing Spirit/Ultimate by cost: Cost N or less, cost equal or inferior to this Spirit's / the discarded card's, or the lowest/highest cost",
+  "pattern": "destroy an opposing (?:Cost \\d+ or less )?Spirit/Ultimate",
+  "engine": "DESTROY costLe | costLeSelf | costLeDiscarded | costRank | costBoost",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY\",\"costLe\":3,\"costBoost\":{\"counterGe\":5,\"n\":5}}",
+  "rule": "Card text (cardrush-bs.jp BS71-057, BS72-054); the Eternal Rule Manual defines no rule for the term \"Cost Destruction effect\". Limits grow with COST_DESTROY_PLUS effects; lowest/highest cost destruction is not a Cost Destruction effect and has no limit."
+ },
+ {
+  "id": "M_COST_DESTROY_LIMIT",
+  "kind": "mechanic",
+  "meaning": "increase the limit of your Cost Destruction effects (Bulwark Temple, Railgun on a Nexus)",
+  "pattern": "increase the limit of your .{0,40}Cost Destruction",
+  "engine": "STATIC flag COST_DESTROY_PLUS {n, perSagaBrave, srcFamily, nexusBrave}",
+  "status": "wired",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"COST_DESTROY_PLUS\",\"n\":1,\"nexusBrave\":true}",
+  "rule": "Card text (cardrush-bs.jp BS71-072, BS74-067); the Eternal Rule Manual defines no rule for it. The bonus applies to limit-based destruction only."
+ },
+ {
+  "id": "A_LOOT",
+  "kind": "action",
+  "meaning": "draw N cards, then discard M cards from the Hand (extra draws and fewer discards under conditions)",
+  "pattern": "draw (?:a|two|three) cards?, (?:and )?(?:then )?discard",
+  "engine": "LOOT {draw, discard, drawPlus, discardLessPerName, famCostDestroy}",
+  "status": "wired",
+  "example": "{\"do\":\"LOOT\",\"draw\":2,\"discard\":2,\"drawPlus\":{\"n\":1,\"if\":{\"nexusBraved\":\"Nuadha\"}}}",
+  "rule": "Card text; the Eternal Rule Manual p. 31 style of resolution applies (effects resolve in order). Discarding is from the Hand to the Trash; the CPU discards its cheapest card."
+ },
+ {
+  "id": "A_CORE_OR_COUNTER",
+  "kind": "action",
+  "meaning": "Neo-Core Charge Contract Field: instead of +1 core to the Nexus, +1 counter",
+  "pattern": "instead of \\+1 core to it, you can \\+1 counter",
+  "engine": "CORE_OR_COUNTER",
+  "status": "wired",
+  "example": "{\"do\":\"CORE_OR_COUNTER\",\"n\":1}",
+  "rule": "Card text (cardrush-bs.jp BS71-CX03); the Eternal Rule Manual defines Neo-Core Charge only through the card. Brave-summon variant only when the Brave is summoned as a Spirit."
+ },
+ {
+  "id": "T_DURING_BRAVE",
+  "kind": "trigger",
+  "meaning": "[During Brave]: the effect works only while a Brave is combined with this Spirit",
+  "pattern": "During Brave",
+  "engine": "effect flag braved:true; condition nexusBraved",
+  "status": "wired",
+  "example": "{\"trigger\":\"ATTACKS\",\"braved\":true,\"actions\":[...]}",
+  "rule": "Eternal Rule Manual VER.17.0 pp. 34-36 (Brave): a combined Brave belongs to the Spirit; the gate checks that a Brave is combined."
+ },
+ {
+  "id": "A_BRAVE_AS_SPIRIT",
+  "kind": "action",
+  "meaning": "an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost",
+  "pattern": "summon a .{0,20}Brave card",
+  "engine": "SUMMON_HAND / REVEAL_DEPLOY allowBrave:true",
+  "status": "partial",
+  "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"hand\",\"allowBrave\":true,\"match\":{\"family\":[\"Scalostle\"],\"type\":\"Brave\"}}",
+  "rule": "Eternal Rule Manual VER.17.0 pp. 34-36: an uncombined Brave is a Spirit. Direct combining by an effect and summon from the Trash are not built yet."
+ },
+ {
+  "id": "T_OPP_REMOVED",
+  "kind": "trigger",
+  "meaning": "When cards are put onto the opposing Removed Zone",
+  "pattern": "put onto the opposing Removed Zone|put onto the opposing Removed Zone|opposing Removed Zone",
+  "engine": "OPP_REMOVED (event REMOVED from toRemoved)",
+  "status": "wired",
+  "example": "{\"trigger\":\"OPP_REMOVED\",\"once\":true}",
+  "rule": "Card text of BS69-BS70 (Hermes deck). The Eternal Rule Manual text read on 2026-10-14 defines no Removed Zone rule; the engine keeps p.removed (the Banished zone of A_BANISH) and fires the effect once per put event."
+ },
+ {
+  "id": "A_REMOVED_ZONE",
+  "kind": "action",
+  "meaning": "Put onto the Removed Zone (hand, Trash, Spirit)",
+  "pattern": "Removed Zone",
+  "engine": "REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND, REMOVE_OPP_TRASH, SEND_REMOVED",
+  "status": "partial",
+  "example": "{\"do\":\"SEND_REMOVED\",\"n\":1}",
+  "rule": "Card text of BS69-BS70 (Hermes deck); the Eternal Rule Manual text read on 2026-10-14 has no Removed Zone rule (it lists a Set Aside zone; whether that is the same zone is not confirmed). Engine: a random card (or the opponent's choice) goes to p.removed; a Spirit sent there loses its cores to its Reserve; returning cards from the zone and 'can't use' locks are not built."
+ },
+ {
+  "id": "A_NO_BURST",
+  "kind": "action",
+  "meaning": "The opponent can't activate Burst effects (this battle)",
+  "pattern": "can't activate Burst|cannot activate Burst",
+  "engine": "NO_BURST_BATTLE (G.noBurst, cleared when the battle ends)",
+  "status": "partial",
+  "example": "{\"do\":\"NO_BURST_BATTLE\"}",
+  "rule": "Card text (Contractor Hermes Contract Field); the Eternal Rule Manual p. 48 only names Heavy Armor / Ultra Armor as Burst preventers. Engine: maybeBurst is refused for the locked player until the battle ends; Magic/Mirage activations are unaffected."
+ },
+ {
+  "id": "A_VOID_TO_MATCHING",
+  "kind": "action",
+  "meaning": "Put a core from the Void each to several matching Spirits/Nexuses",
+  "pattern": "core from the Void each to",
+  "engine": "VOID_TO_MATCHING",
+  "status": "wired",
+  "example": "{\"do\":\"VOID_TO_MATCHING\",\"targets\":2,\"match\":{\"family\":[\"Devotee\"]}}",
+  "rule": "Eternal Rule Manual p. 11 / Standard Comprehensive Rules 4-8: the Void is the supply of cores; the cores come from the Void, one per target, targets distinct."
+ },
+ {
+  "id": "A_MILL",
+  "kind": "action",
+  "meaning": "Send cards from the top of your Deck to the Trash (discard from the decktop)",
+  "pattern": "send (one|two|three|\\d+) cards? from your decktop to the Trash|discard (one|two|three|\\d+) cards? from your decktop",
+  "engine": "MILL (n, optional family + counter/draw); DECK_TO_TRASH_CORES for the Contractor Nexus version",
+  "status": "wired",
+  "example": "{\"do\":\"MILL\",\"n\":2,\"family\":\"Infernal Lord\",\"counter\":1,\"draw\":1}",
+  "rule": "Eternal Rule Manual, Discarding / Trash rules: a card sent from the Deck to the Trash is a normal card movement (no Hand involved). Engine: the top n cards go to the Trash; a family hit gives counter +n and a draw (Hound-Beros)."
+ },
+ {
+  "id": "A_DISCARD_HAND",
+  "kind": "action",
+  "meaning": "Discard cards from your Hand (the cost of \"by discarding a card from your Hand, ...\")",
+  "pattern": "by discarding (a|one|\\d+) .*card.* from your Hand",
+  "engine": "DISCARD_HAND as the cost of BY (the CPU throws away its cheapest card); match.color limits it to e.g. Purple",
+  "status": "wired",
+  "example": "{\"do\":\"BY\",\"ask\":true,\"cost\":{\"do\":\"DISCARD_HAND\",\"n\":1},\"then\":[{\"do\":\"DRAW\",\"n\":2}]}",
+  "rule": "Eternal Rule Manual FAQ, About Effects in General Q5 (\"By doing X, do Y\"): the cost must be performable and is not paid when the rest cannot be done. Engine: BY checks can() of the cost and of the first result before asking."
+ },
+ {
+  "id": "A_OPP_CORES_TO_RESERVE",
+  "kind": "action",
+  "meaning": "Send cores from opposing Spirits/Ultimates to the opposing Reserve",
+  "pattern": "send .*cores? from .*opposing Spirits?/Ultimates? to the Reserve",
+  "engine": "OPP_CORES_TO_RESERVE ({targets, each} or {total}; drawPerDepleted)",
+  "status": "wired",
+  "example": "{\"do\":\"OPP_CORES_TO_RESERVE\",\"targets\":2,\"each\":2,\"drawPerDepleted\":true}",
+  "rule": "Eternal Rule Manual p. 28 (Depletion): a Spirit left with fewer cores than its Lv1 requirement goes to the Trash without Destruction effects. Engine: cores move to the opposing Reserve, then checkDepletion; Soul Cores are not moved; Spirits immune to opposing effects are skipped."
+ },
+ {
+  "id": "A_COUNTER_ONCE",
+  "kind": "action",
+  "meaning": "Counter +n, limited to once per turn inside a longer effect",
+  "pattern": "then, once per turn, your counter \\+\\d",
+  "engine": "COUNTER_ONCE (p.onceUsed key per card name)",
+  "status": "wired",
+  "example": "{\"do\":\"COUNTER_ONCE\",\"n\":2}",
+  "rule": "Card text of Contractor Hades (Contract Skill 2): only the Count part is limited to once per turn, the core removal is not. Eternal Rule Manual (Count Area): Count cores come from the Void. Engine: p.onceUsed key per card name."
+ },
+ {
+  "id": "A_DESTROY_CORES_LE",
+  "kind": "action",
+  "meaning": "Destroy an opposing Spirit/Ultimate with N cores or less on it",
+  "pattern": "destroy an opposing Spirit/Ultimate with (\\w+) cores? or less",
+  "engine": "DESTROY coresLe (totalCores, Soul Core included)",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY\",\"coresLe\":3}",
+  "rule": "Card text (BS68 Sorcerers); Eternal Rule Manual: all cores on a card count, the Soul Core as well. Engine: totalCores of the target; Spirits immune to opposing effects are skipped."
+ },
+ {
+  "id": "A_CANT_ATTACK_BLOCK",
+  "kind": "action",
+  "meaning": "An opposing Spirit/Ultimate can't attack/block during this game",
+  "pattern": "can't attack/block",
+  "engine": "CANT_ATTACK_BLOCK (flag noAB on the Spirit; reset when it leaves the Field)",
+  "status": "partial",
+  "example": "{\"do\":\"CANT_ATTACK_BLOCK\",\"n\":1}",
+  "rule": "No rule text for this term was re-read in v0.40 (the manual PDF could not be fetched in the session); built as printed on the cards. Engine: the Spirit stays on the Field but is never offered as an attacker or blocker (human and CPU); it is a Spirit for every other purpose. \"During this game\" is not removed at turn end; bouncing, destroying or Advent-stacking the Spirit clears it."
+ },
+ {
+  "id": "C_OPP_NO_AB",
+  "kind": "condition",
+  "meaning": "If any opposing Spirit is under can't attack/block effects",
+  "pattern": "under .*can't attack/block",
+  "engine": "if.oppNoAB",
+  "status": "wired",
+  "example": "{\"if\":{\"oppNoAB\":true}}",
+  "rule": "Engine: true while any opposing Spirit carries the noAB flag."
+ },
+ {
+  "id": "C_OPP_NEXUS",
+  "kind": "condition",
+  "meaning": "If the opponent controls any Nexus",
+  "pattern": "opponent controls any Nexus",
+  "engine": "if.oppNexusGe",
+  "status": "wired",
+  "example": "{\"if\":{\"oppNexusGe\":1}}",
+  "rule": "Engine: counts the opposing Nexuses (Vajdra-of-Magan cost 3)."
+ },
+ {
+  "id": "A_DRAW_BOTTOM",
+  "kind": "action",
+  "meaning": "Draw from the bottom of the Deck",
+  "pattern": "draw (a|\\d) cards? from the deckbottom",
+  "engine": "DRAW_BOTTOM",
+  "status": "wired",
+  "example": "{\"do\":\"DRAW_BOTTOM\",\"n\":1}",
+  "rule": "Card text (Thunderive). No rule text for this term was re-read in v0.40 (the manual PDF could not be fetched in the session); built as printed on the cards. Engine: the last card of the Deck goes to the Hand; it counts as drawing (Hand increase by an own effect)."
+ },
+ {
+  "id": "A_REVEAL_ADD",
+  "kind": "action",
+  "meaning": "Reveal cards from the Deck top, add matching cards, discard the rest",
+  "pattern": "reveal (three|\\d) cards from your decktop",
+  "engine": "REVEAL_ADD ({n, add, match, moreIf})",
+  "status": "partial",
+  "example": "{\"do\":\"REVEAL_ADD\",\"n\":3,\"add\":1,\"match\":{\"family\":[\"Thunderive\"]},\"moreIf\":{\"counterGe\":8}}",
+  "rule": "Card text of Manevajra. The Fandom text says \"add a total of one Contractor Indra and Thunderive card\"; built as one card matching either (+1 with the bonus condition). Unverified against the card image. Engine: built as printed on the card text."
+ },
+ {
+  "id": "A_DISCARD_ALL_HAND",
+  "kind": "action",
+  "meaning": "Discard the entire Hand (at least one card)",
+  "pattern": "discard your entire Hand",
+  "engine": "DISCARD_ALL_HAND (cost of BY)",
+  "status": "wired",
+  "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"DISCARD_ALL_HAND\"},\"then\":[{\"do\":\"DRAW_BOTTOM\",\"n\":4}]}",
+  "rule": "Eternal Rule Manual FAQ (About Effects in General): the cost of \"by ...\" must be performable; with an empty Hand nothing happens."
+ },
+ {
+  "id": "A_VOID_TO_LIFE",
+  "kind": "action",
+  "meaning": "Put a core from the Void on your Life",
+  "pattern": "put a core from the Void to your Life",
+  "engine": "VOID_TO_LIFE ({n, lifeLe})",
+  "status": "partial",
+  "example": "{\"do\":\"VOID_TO_LIFE\",\"n\":1,\"lifeLe\":3}",
+  "rule": "Card text (Naraka, Temple). Engine: Life +1 and the Void -1; not a Life reduction, no Burst."
+ },
+ {
+  "id": "A_LIFE_TO_SELF",
+  "kind": "action",
+  "meaning": "Send one of your Lives to this Spirit",
+  "pattern": "send one of your Lives to this Spirit",
+  "engine": "LIFE_TO_SELF",
+  "status": "partial",
+  "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"LIFE_TO_SELF\",\"n\":1},\"then\":[]}",
+  "rule": "Card text (Vajdra-of-Magan). Engine: the Life core moves to the Spirit; not a Life reduction by damage, so no Burst; the last Life cannot be sent."
+ },
+ {
+  "id": "A_NEXUS_CORES_TO_SELF",
+  "kind": "action",
+  "meaning": "Send cores from your Nexus to this Spirit",
+  "pattern": "sending two cores from your .* Nexuses to this Spirit",
+  "engine": "NEXUS_CORES_TO_SELF",
+  "status": "wired",
+  "example": "{\"do\":\"NEXUS_CORES_TO_SELF\",\"n\":2,\"name\":\"Contractor Indra\"}",
+  "rule": "Card text (Vajrawurm Unleash cost). Engine: the Nexus must hold the cores."
+ },
+ {
+  "id": "A_SELF_TO_HAND",
+  "kind": "action",
+  "meaning": "Return this Spirit to your Hand",
+  "pattern": "return this Spirit to the Hand",
+  "engine": "SELF_TO_HAND",
+  "status": "wired",
+  "example": "{\"do\":\"SELF_TO_HAND\"}",
+  "rule": "Card text (Togevajdra). Engine: bounceCard to the Hand, cores to the Reserve."
+ },
+ {
+  "id": "S_EXTRA_REDUCTION",
+  "kind": "static",
+  "meaning": "All your matching cards gain an extra reduction symbol",
+  "pattern": "extra .* reduction symbol",
+  "engine": "STATIC flag EXTRA_REDUCTION ({color, n, match, lv})",
+  "status": "partial",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"EXTRA_REDUCTION\",\"to\":\"own\",\"match\":{\"family\":[\"Thunderive\"]},\"color\":\"yellow\"}",
+  "rule": "Card text (Indra Contract Field, Shimavajdra). The extra symbol is a reduction symbol of that colour on the card being paid (effCost); the usual symbol matching of the manual (p. 25-27) still decides if it is fulfilled. Engine: built as printed on the card text."
+ },
+ {
+  "id": "F_OTHER_NOSTACK",
+  "kind": "flag",
+  "meaning": "\"Your other X\" and \"(Can't Stack)\"",
+  "pattern": "Can't Stack|other \\\"",
+  "engine": "effect flags other / noStack",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_SUMMONED\",\"other\":true,\"noStack\":true}",
+  "rule": "Card text. other: the summoned card is not this card. noStack: of several same-name cards only one copy of the effect works per event. Engine: built as printed on the card text."
+ },
+ {
+  "id": "K_UNLEASH",
+  "kind": "keyword",
+  "meaning": "SA Unleash N: when the trigger happens, you can send N cores from the named Grandwalker Nexus to this Spirit; the rest applies only when you did",
+  "pattern": "Unleash",
+  "engine": "BY {cost: NEXUS_CORES_TO_SELF {n,name}, then: [...]} (Vajrawurm, Agateram)",
+  "status": "wired",
+  "example": "{\"do\":\"BY\",\"cost\":{\"do\":\"NEXUS_CORES_TO_SELF\",\"n\":3,\"name\":\"Nuadha\"},\"then\":[...]}",
+  "rule": "Engine (house reading from the card text, Fandom BS71-X09 / BS75-X10; no manual section found): \"you can send N cores from your <name> Nexus to this Spirit; when you have done so, ...\" - the follow-up applies only when the cores were sent."
+ },
+ {
+  "id": "A_LIFE_TO_TRASH",
+  "kind": "action",
+  "meaning": "Send opposing Life to the Trash (optionally one per differently named <family> Brave you control)",
+  "pattern": "Life to the Trash",
+  "engine": "OPP_LIFE_TO_TRASH {n | perBraveNames}",
+  "status": "wired",
+  "example": "{\"do\":\"OPP_LIFE_TO_TRASH\",\"perBraveNames\":\"Scalostle\"}",
+  "rule": "Engine (house reading, v0.45): not damage; the Life cores go to the Trash, one Burst check (Life decreased), Life 0 ends the game."
+ },
+ {
+  "id": "S_OPP_NO_BLOCK",
+  "kind": "static",
+  "meaning": "(Your Attack Step) the opponent can't block",
+  "pattern": "they can't block",
+  "engine": "OPP_NO_BLOCK {minLv} at START_ATTACK; noBlockActive() empties the blocker list while the source stays at minLv",
+  "status": "partial",
+  "example": "{\"trigger\":\"START_ATTACK\",\"actions\":[{\"do\":\"OPP_DISCARD_MAGIC_OR\"},{\"do\":\"OPP_NO_BLOCK\",\"minLv\":2,\"if\":{\"prev\":true}}]}",
+  "rule": "Engine (house reading, v0.45): decided once at the start of your Attack Step; reaching the level later in that step does not start it."
+ },
+ {
+  "id": "G_SUBJ_BRAVED",
+  "kind": "condition",
+  "meaning": "When your <family> Brave Spirit attacks",
+  "pattern": "Brave Spirit attacks",
+  "engine": "ALLY_ATTACKS + subjBraved:<family> (attacker has a combined Brave; the Spirit or the Brave is of the family)",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_ATTACKS\",\"subjBraved\":\"Scalostle\"}",
+  "rule": "Engine (house reading from the card text, Fandom BS71-X09): \"When your Scalostle family Brave Spirit attacks\" - the attacking Spirit or its combined Brave carries the family."
+ },
+ {
+  "id": "M_TRASH_TRIGGER",
+  "kind": "trigger",
+  "meaning": "When this card is sent to the Trash from the Deck/Hand by the effect of your <X>: add it to the Hand and/or +1 core to a Grandwalker Nexus",
+  "pattern": "is sent to (the )?Trash from (the )?(deck|Hand/Deck)|was sent to the Trash from Hand/Deck",
+  "engine": "card field trashTrigger {from, by, add, gwCore}; sentToTrashFx from DECK_TO_TRASH_CORES, MILL, DISCARD_HAND",
+  "status": "wired",
+  "example": "{\"trashTrigger\":{\"from\":[\"deck\"],\"by\":{\"name\":[\"Contractor Nuadha\"]},\"add\":true,\"gwCore\":1}}",
+  "rule": "Engine (card text of Whirling Tide, Thunder Counter, Hades Disaster): \"+1 core\" puts a core from the Void (Eternal Rule Manual, Cores: the Void is the core supply)."
+ },
+ {
+  "id": "M_TRASH_USE",
+  "kind": "mechanic",
+  "meaning": "While you control <X>, you can use this Magic card from the Trash (then it is banished)",
+  "pattern": "you can use this card from the Trash",
+  "engine": "magic.trashUse {if, actions?}: magicUsable/castMagic accept a Trash card, trashUse.actions replace the effect, the card goes to the Removed Zone",
+  "status": "wired",
+  "example": "{\"magic\":{\"trashUse\":{\"if\":{\"hasName\":\"Contractor Hades\"},\"actions\":[{\"do\":\"DESTROY\",\"coresLe\":4}]}}}",
+  "rule": "Engine (card text of Hades Disaster and Plutonic Wall): built as printed; the human uses it from the Flash Timing list (marked [from the Trash])."
+ },
+ {
+  "id": "AB_CORE_TAX_TURN",
+  "kind": "action",
+  "meaning": "During this turn, an opposing Spirit/Ultimate can attack/block only by sending a core from itself to the Trash",
+  "pattern": "unless the opponent sends a core from the attacking/blocking",
+  "engine": "AB_CORE_TAX_TURN sets opp.abTax; doBattleInner asks payAbTax for the attacker and the blocker; abTaxOK filters CPU attackers and all blockers",
+  "status": "wired",
+  "example": "{\"do\":\"AB_CORE_TAX_TURN\"}",
+  "rule": "Engine (house reading, Plutonic Wall): only a spare core can be sent; a payment that would deplete the Spirit is not offered."
+ },
+ {
+  "id": "M_TRASH_SYMBOLS",
+  "kind": "static",
+  "meaning": "When using this card, you can also use symbols from your Trash to reduce the cost",
+  "pattern": "symbols from your Trash to reduce the cost",
+  "engine": "card flag trashSymbols: effCost adds the symbols of Trash cards to the Field symbols",
+  "status": "wired",
+  "example": "{\"trashSymbols\":true}",
+  "rule": "Engine (card text of Lightning Tempest); reduction itself follows the Eternal Rule Manual (Cost reduction, mandatory when possible)."
+ },
+ {
+  "id": "M_HAND_UNAFFECTED",
+  "kind": "static",
+  "meaning": "This card in the Hand/Removed Zone is unaffected by opposing effects",
+  "pattern": "in Hand/Removed Zone is unaffected by opposing effects",
+  "engine": "card flag handUnaffected: REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND and OPP_DISCARD_MAGIC_OR skip it (no opposing effect acts on the Removed Zone yet)",
+  "status": "wired",
+  "example": "{\"handUnaffected\":true}",
+  "rule": "Engine (card text of Lightning Tempest)."
+ },
+ {
+  "id": "M_OPP_ATTACK_HAND",
+  "kind": "trigger",
+  "meaning": "At the start of the opposing Attack Step, by sending N cores from your <X> Grandwalker Nexus to the Void, pay the cost to use this card from the Hand",
+  "pattern": "At the start of Opposing Attack Step, by sending",
+  "engine": "magic.oppAttackHand {gwToVoid, match}; oppAttackHandFx after START_ATTACK",
+  "status": "wired",
+  "example": "{\"magic\":{\"oppAttackHand\":{\"gwToVoid\":2,\"match\":{\"name\":[\"Contractor Indra\"]}}}}",
+  "rule": "Engine (card text of Thunder Counter); Grandwalker cores go to the Void (Eternal Rule Manual p. 44)."
+ },
+ {
+  "id": "K_BURST_THEN_MAIN",
+  "kind": "keyword",
+  "meaning": "Burst: then by paying the cost, activate the Main effect of this card; also activates when your <family> Brave is summoned (condition)",
+  "pattern": "activate the Main effect of this card|you can immediately activate this set card",
+  "engine": "burst.thenMain -> burstFlash(p, inst, 'main'); burst.also {when:BRAVE_SUMMONED, match, if} -> maybeBurst from braveSummonedFx",
+  "status": "wired",
+  "example": "{\"burst\":{\"thenMain\":true,\"also\":{\"when\":\"BRAVE_SUMMONED\",\"match\":{\"family\":[\"Scalostle\"],\"type\":\"Brave\"},\"if\":{\"counterGe\":5}}}}",
+  "rule": "Engine (card text of Dana Draw); Burst timing per the Eternal Rule Manual (Burst)."
+ },
+ {
+  "id": "A_BP_MINUS",
+  "kind": "action",
+  "meaning": "Give opposing Spirits -N BP (this turn)",
+  "pattern": "-\\d[\\d,]* ?BP",
+  "engine": "action BP_MINUS {n} (one opposing Spirit, v0.55)",
+  "status": "partial",
+  "example": "{\"do\":\"BP_MINUS\",\"n\":3000}",
+  "rule": "No rule destroys a Spirit at 0 BP (Eternal manual FAQ p. 68: only a card's own \"Then, if its BP is 0, destroy it\" does); BP is shown as 0, never negative (Standard CR 1-4-6). Open: every/two opposing Spirits (lasts for Spirits summoned later this turn, FAQ p. 68 Q3), the \"then destroy at 0\" clause."
+ },
+ {
+  "id": "T_BATTLE_WIN",
+  "kind": "trigger",
+  "meaning": "(When Battles) when only the opposing Spirit is destroyed by BP comparison",
+  "pattern": "\\(When Battles\\)",
+  "engine": "BATTLE_WIN (v0.55)",
+  "status": "partial",
+  "example": "{\"trigger\":\"BATTLE_WIN\",\"lv\":[2]}",
+  "rule": "Standard CR 8-1-6-2: effects for a destruction by BP comparison activate after the comparison. Open: other (When Battles) texts (effects at the start of the battle)."
+ },
+ {
+  "id": "K_RUSH",
+  "kind": "keyword",
+  "meaning": "Rush: while you have a X symbol, the following effect activates next",
+  "pattern": "\\{\\{Rush\\|",
+  "engine": "per-action if {hasSymbol: colour} (v0.55)",
+  "status": "partial",
+  "example": "{\"do\":\"DRAW\",\"n\":1,\"if\":{\"hasSymbol\":\"purple\"}}",
+  "rule": "Engine: built from the card text only (Fandom export, BS19-BS27); no Eternal or Standard manual section found. House reading: Field symbols (as for cost reduction) at resolution. Open: Rush on Magic cards and optional Rush effects."
+ },
+ {
+  "id": "T_DESTROYED_OPP",
+  "kind": "trigger",
+  "meaning": "(When Destroyed by the Opponent)",
+  "pattern": "When (?:Depleted/)?Destroyed by the Opponent",
+  "engine": "DESTROYED + if {byOpp:true} (v0.55)",
+  "status": "partial",
+  "example": "{\"trigger\":\"DESTROYED\",\"if\":{\"byOpp\":true}}",
+  "rule": "Standard CR 12-2-1-12-1: destroyed by an opposing effect or by BP comparison with an opposing Spirit. Open: (When Depleted/Destroyed by the Opponent) (depletion is not destruction, Eternal manual p. 28)."
+ },
+ {
+  "id": "K_STANDARD_INVOKE",
+  "kind": "keyword",
+  "meaning": "{{Invoke|Flash}} / {{Invoke|Main}} <cost> ▶ <effect>",
+  "pattern": "\\{\\{Invoke\\|(Flash|Main)\\}\\}",
+  "engine": "ACTIVATE {invoke:true, timing, when, once, oncePer, cost} (v0.68, 02l-effects-invoke.js)",
+  "status": "partial",
+  "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"MAIN\",\"FLASH\"],\"when\":\"duringAttack\",\"once\":true,\"cost\":{\"discard\":{\"match\":{\"family\":[\"Windfang\"]}}},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":3000,\"to\":\"self\",\"battle\":true}]}",
+  "rule": "Standard manual 'FAQ on Effects' Q11: the part before the arrow (the cost) must resolve fully, otherwise the effect is not used; timing from the template (Flash includes your Main Step), narrowed by printed heads; limits only when printed."
+ },
+ {
+  "id": "S1_LIFE_REDUCED",
+  "kind": "condition",
+  "meaning": "If your Life was reduced (during) this turn",
+  "pattern": "If your Life was reduced (during )?this turn",
+  "engine": "if {lifeReduced: true|false} (v0.88, 02a fxIf; lifeTake records p.lifeRedTurn)",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY\",\"costLe\":7,\"if\":{\"lifeReduced\":true}}",
+  "rule": "Engine reading of the Standard Magic card texts: the Life counts as reduced this turn when any core left it during the current turn, by an attack or by an effect; checked when the effect resolves. The 'X instead' riders are two actions with lifeReduced false / true. Manual reference still to find (rules audit)."
+ },
+ {
+  "id": "S1_ALL_HAVE",
+  "kind": "condition",
+  "meaning": "If all your Spirits/Nexuses have the X family / have <Team>; If all your Spirits are Cost 2/4/6/8 with the X family",
+  "pattern": "If all your Spirits(/Nexuses)? (are Cost [0-9/]+ with|have)",
+  "engine": "if {allHave: {family|team|costIn, spiritsOnly}} (v0.88, 02p-effects-shared-shapes.js; teams from the [Team: X] / [Teams: X/Y] head line)",
+  "status": "partial",
+  "example": "{\"do\":\"DESTROY\",\"bpLe\":5000,\"if\":{\"allHave\":{\"family\":\"GAIM\"}}}",
+  "rule": "Engine house reading of the Standard card texts (rules audit, 2026-10-21): every card on your Field of the named kind must match; with no such card the condition is not met (an empty Field has nothing that 'has' the family). Team = the card's printed [Team: X] attribute, like a family."
+ },
+ {
+  "id": "S1_DESTROY_OWN",
+  "kind": "action",
+  "meaning": "Target one of your X Spirits. Destroy it. If you've done so, ...",
+  "pattern": "Target (one of your|a .+ you control).*Destroy it\\. If you've done so",
+  "engine": "DESTROY_OWN {match} (v0.88, 02p)",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY_OWN\",\"match\":{\"family\":[\"Dark Puce\"]}}",
+  "rule": "Engine reading of the Standard card texts: own destruction by your own effect; 'If you've done so' = the next action has if {prev: true}."
+ },
+ {
+  "id": "S1_LIFE_SHIELD",
+  "kind": "action",
+  "meaning": "During this turn, your Life can't be reduced by its attack.",
+  "pattern": "your Life can't be reduced by its attack",
+  "engine": "LIFE_SHIELD {n} (v0.89, 02p; 08-battle)",
+  "status": "wired",
+  "example": "{\"do\":\"LIFE_SHIELD\",\"n\":1}",
+  "rule": "Engine reading of the Standard card texts: the targeted Spirit's unblocked attacks take no Life from you until the end of the turn; its other effects still apply."
+ },
+ {
+  "id": "S1_BLOCK_EXHAUSTED_OPP",
+  "kind": "action",
+  "meaning": "Target an opposing Spirit. During this battle, it can block even while exhausted.",
+  "pattern": "can block even while exhausted",
+  "engine": "BLOCK_EXHAUSTED_OPP (v0.89, 02p; canBlockState)",
+  "status": "wired",
+  "example": "{\"do\":\"BLOCK_EXHAUSTED_OPP\"}",
+  "rule": "Engine reading of the Standard card text (Meteor Crash): as printed, during this battle only."
+ },
+ {
+  "id": "S1_DESTROY_PICKED",
+  "kind": "action",
+  "meaning": "When this battle ends, destroy it.",
+  "pattern": "When this battle ends, destroy (it|the summoned)",
+  "engine": "END_BATTLE {then: [DESTROY_PICKED]} (v0.89, 02p / 02o)",
+  "status": "wired",
+  "example": "{\"do\":\"END_BATTLE\",\"then\":[{\"do\":\"DESTROY_PICKED\"}]}",
+  "rule": "Engine reading of the Standard card texts: a delayed effect of a used Magic card; it resolves at the end of the battle even though the card is in the Trash."
+ },
+ {
+  "id": "T_MAGIC_USED",
+  "kind": "trigger",
+  "meaning": "(When you use a Magic card)",
+  "pattern": "[Ww]hen you use (a |any |an? )[^\\.]*Magic card",
+  "engine": "MAGIC_USED",
+  "status": "wired",
+  "example": "{\"trigger\":\"MAGIC_USED\",\"match\":{\"type\":\"Magic\",\"family\":[\"Topaz\"]}}",
+  "rule": "Standard Comprehensive Rules 12-2 (Common Effects) has no entry for this event: using a Magic card is an ordinary game action (SJP:main-step). The engine fires it after the Magic resolved and does not fire it for a Burst."
+ },
+ {
+  "id": "C_MAGIC_USED_TURN",
+  "kind": "condition",
+  "meaning": "If you used a X Magic card this turn",
+  "pattern": "If you used (a |any |an? )[^\\.]*Magic card this turn",
+  "engine": "magicUsed",
+  "status": "wired",
+  "example": "{\"if\":{\"magicUsed\":{\"family\":[\"Topaz\"]}}}",
+  "rule": "Standard Comprehensive Rules 12-2 has no numbered entry for using a Magic card (it is an ordinary game action, SJP:main-step); the engine records every Magic the player uses this turn (MAGIC_USED) and this condition reads that record."
+ },
+ {
+  "id": "K_RUMBLE",
+  "kind": "keyword",
+  "meaning": "Rumble (During Attack): at the end of battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit in the opposing Trash",
+  "pattern": "\\bRumble\\b",
+  "engine": "action RUMBLE {n:1-7} (queued at ATTACKS, resolved at the end of battle)",
+  "status": "wired",
+  "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"RUMBLE\",\"n\":3}]}",
+  "rule": "Standard keyword; official Q&A 31592-31594, 31621 (read via the Fandom \"Rumble\" page). Engine: action RUMBLE {n:1-7}."
+ },
+ {
+  "id": "K_AMPLIFY",
+  "kind": "keyword",
+  "meaning": "Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP",
+  "pattern": "\\bAmplify\\b",
+  "engine": "BP_TARGET {battle:true, per:{type:'Spirit',family}} on an ACTIVATE Invoke; the card carries keywords ['Amplify']",
+  "status": "wired",
+  "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"FLASH\"],\"when\":\"duringAttackBlock\",\"once\":true,\"oncePer\":\"battle\",\"lv\":[2],\"cost\":{\"pay\":1},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":1000,\"to\":\"self\",\"battle\":true,\"per\":{\"type\":\"Spirit\",\"family\":\"Leucomyst\"}}]}",
+  "rule": "Standard keyword (Fandom \"Amplify\" page): the {{Amplify|family +N}} head reads 'for each [family] Spirit you control, during this battle, this Spirit gains +N BP'. Engine: BP_TARGET {battle:true, per:{type:'Spirit',family}}."
+ },
+ {
+  "id": "K_SUMMON_SELF_BY_RETURN",
+  "kind": "phrase",
+  "meaning": "By returning one of your matching Spirits to the Hand, summon this card from the Hand/Trash without paying the cost (at the end of the battle of your named Spirit)",
+  "pattern": "by returning one .* to the Hand, summon this card",
+  "engine": "SUMMON_SELF_BY_RETURN {match} on an ALLY_BATTLE_END effect with zone 'hand' / 'trash'",
+  "status": "wired",
+  "example": "{\"trigger\":\"ALLY_BATTLE_END\",\"zone\":\"hand\",\"optional\":true,\"match\":{\"name\":[\"X\"]},\"actions\":[{\"do\":\"SUMMON_SELF_BY_RETURN\",\"match\":{\"name\":[\"X\"]}}]}",
+  "rule": "The owner returns one matching Spirit (the attacker may be chosen) to the Hand, then this card enters the Field free; nothing happens if no other matching Spirit is on the Field. Engine: SUMMON_SELF_BY_RETURN (card text of BS34-XX02)."
+ },
+ {
+  "id": "K_DESTROY_PER_SYMBOL_COLOR",
+  "kind": "phrase",
+  "meaning": "Destroy opposing Spirits/Ultimates with the same colors as your symbols, one of each color",
+  "pattern": "same colors as your symbols, one of each color",
+  "engine": "DESTROY_PER_SYMBOL_COLOR {} (Six Heaven Rush clause, with if {symColorsGe, selfSoul})",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY_PER_SYMBOL_COLOR\",\"if\":{\"symColorsGe\":4,\"selfSoul\":true}}",
+  "rule": "For each color you have a symbol of, one opposing Spirit/Ultimate of that color is destroyed; a card is never counted for two colors. Engine: DESTROY_PER_SYMBOL_COLOR (card text of BS34-XX02)."
+ },
+ {
+  "id": "K_SWAP_HAND_WITH_FIELD",
+  "kind": "phrase",
+  "meaning": "Swap this card from the Hand with a matching Spirit you control in the same condition",
+  "pattern": "swap this card from hand with",
+  "engine": "ACCEL {cost:0,timing:[FLASH],flashOnly:true} + SWAP_HAND_WITH_FIELD {match}",
+  "status": "wired",
+  "example": "{\"do\":\"SWAP_HAND_WITH_FIELD\",\"match\":{\"name\":\"God-Sechs\"}}",
+  "rule": "The card from the Hand takes the place of the chosen Spirit with its cores, Soul Core and exhausted state; that Spirit goes to the Hand. Engine: SWAP_HAND_WITH_FIELD (card text of BS35-XX02)."
+ },
+ {
+  "id": "K_SYM_ALL_COLORS",
+  "kind": "phrase",
+  "meaning": "The symbols of your attacking Spirit are fixed as one of each of the six colors",
+  "pattern": "symbols of your attacking spirit are fixed as",
+  "engine": "STATIC SYM_ALL_COLORS {to:self, if:{symColorsGe:6}}",
+  "status": "wired",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"SYM_ALL_COLORS\",\"to\":\"self\",\"if\":{\"symColorsGe\":6}}",
+  "rule": "While you have six symbol colors the Spirit attacks with six symbols. Engine: SYM_ALL_COLORS (card text of BS35-XX02; the colors themselves are not tracked per attack symbol)."
+ },
+ {
+  "id": "K_SOUL_TREATED",
+  "kind": "phrase",
+  "meaning": "Every matching Spirit you control is treated as having the Soul Core on it",
+  "pattern": "is treated as having the .{0,6} on it",
+  "engine": "STATIC SOUL_TREATED {to:own, match, if}",
+  "status": "wired",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"SOUL_TREATED\",\"to\":\"own\",\"match\":{\"name\":[\"God-Sechs\"]},\"if\":{\"sealed\":true}}",
+  "rule": "The listed Spirits satisfy \"if the Soul Core is on this Spirit\" conditions without holding it. Engine: SOUL_TREATED (card text of BS46-10THX02); only those conditions read it."
+ },
+ {
+  "id": "K_SEAL_FROM_SELF",
+  "kind": "phrase",
+  "meaning": "You can send the Soul Core from this Spirit to your Life",
+  "pattern": "send the .{0,6} from this spirit to your life",
+  "engine": "SEAL {from:\"self\"}",
+  "status": "wired",
+  "example": "{\"do\":\"SEAL\",\"from\":\"self\"}",
+  "rule": "Seal using the Soul Core that sits on this Spirit. Engine: SEAL from self (card text of BS46-10THX02)."
+ },
+ {
+  "id": "K_SUMMON_SELF_PAY",
+  "kind": "phrase",
+  "meaning": "You can summon this card from the Hand by paying N cost",
+  "pattern": "summon this card from the hand by paying .{0,12}cost",
+  "engine": "SUMMON_SELF_PAY {pay, thenCore}",
+  "status": "wired",
+  "example": "{\"do\":\"SUMMON_SELF_PAY\",\"pay\":1,\"thenCore\":true}",
+  "rule": "Pay the stated cost to put this card from the Hand onto the Field; thenCore adds the Soul Core from the Trash or a Void core. Engine: SUMMON_SELF_PAY (card text of BS73-AX03)."
+ },
+ {
+  "id": "K_OPP_BOUNCE_OR_NOBLOCK",
+  "kind": "phrase",
+  "meaning": "Unless the opponent returns a Spirit they control to the deckbottom, they can't block",
+  "pattern": "unless the opponent returns a spirit they control to the deckbottom",
+  "engine": "OPP_BOUNCE_OR_NOBLOCK",
+  "status": "wired",
+  "example": "{\"do\":\"OPP_BOUNCE_OR_NOBLOCK\"}",
+  "rule": "The opponent may return one of their Spirits to the deckbottom; if they do not, the attacker cannot be blocked. Engine: OPP_BOUNCE_OR_NOBLOCK (card text of BS73-AX03); the CPU never returns a Spirit and the lock lasts the turn."
+ },
+ {
+  "id": "K_BOUNCE_DECKBOTTOM_PIERCE",
+  "kind": "phrase",
+  "meaning": "Return an opposing Spirit/Nexus to the deckbottom; with an LV2 named card this can only be prevented by Heavy Armor",
+  "pattern": "this effect can only be prevented by heavy armor",
+  "engine": "BOUNCE_DECKBOTTOM_PIERCE",
+  "status": "wired",
+  "example": "{\"do\":\"BOUNCE_DECKBOTTOM_PIERCE\",\"pierceName\":\"Dairokuten Maou\"}",
+  "rule": "Other immunity is ignored while the named LV2 card is on your Field; only Heavy Armor / Ultra Heavy Armor stops it. Engine: BOUNCE_DECKBOTTOM_PIERCE (card text of BS73-X05)."
+ },
+ {
+  "id": "K_DESTROY_PIERCE_ARMOR",
+  "kind": "phrase",
+  "meaning": "Destroy an opposing Spirit of a cost limit; only Armor-named effects can prevent it",
+  "pattern": "this effect can only be prevented by \"armor\"-named effects",
+  "engine": "DESTROY_PIERCE_ARMOR",
+  "status": "wired",
+  "example": "{\"do\":\"DESTROY_PIERCE_ARMOR\",\"costLe\":4}",
+  "rule": "Engine: a target is skipped only when it is immune and carries an Armor, Heavy Armor or Ultra Heavy Armor keyword; every other immunity is pierced."
+ },
+ {
+  "id": "K_END_ATTACK_NOW",
+  "kind": "phrase",
+  "meaning": "Immediately end the Attack Step",
+  "pattern": "immediately end the attack step",
+  "engine": "END_ATTACK_NOW",
+  "status": "wired",
+  "example": "{\"do\":\"END_ATTACK_NOW\"}",
+  "rule": "Engine: sets the Attack Step as ended for this turn unless an active NO_END_ATTACK lock applies; the running battle still resolves."
+ },
+ {
+  "id": "K_SUMMON_REDUCE_ALL",
+  "kind": "phrase",
+  "meaning": "Summon a card treating all its reduction symbols as fulfilled",
+  "pattern": "treating all reduction symbols as being fulfilled",
+  "engine": "SUMMON_HAND",
+  "status": "wired",
+  "example": "{\"do\":\"SUMMON_HAND\",\"from\":\"handOrTrash\",\"pay\":true,\"reduceAll\":true}",
+  "rule": "Engine: pays the printed cost minus every reduction symbol of the card."
+ },
+ {
+  "id": "K_DESTROY_ANY_SYMBOLS",
+  "kind": "action",
+  "meaning": "destroys one opposing Spirit or Nexus whose symbol count is at most the given number.",
+  "pattern": "[Dd]estroy an opposing Spirit/Nexus with \\d+ symbols? or fewer",
+  "engine": "DESTROY_ANY_SYMBOLS",
+  "status": "full",
+  "example": "BSC48-009",
+  "rule": "Engine: destroys one opposing Spirit or Nexus whose symbol count is at most the given number."
+ },
+ {
+  "id": "K_DISCARD_DRAW_FAMILY",
+  "kind": "action",
+  "meaning": "once per turn per card name, discard a family card and draw N cards.",
+  "pattern": "[Dd]iscard (one|a) card from your Hand\\. If it is a .* family card, draw",
+  "engine": "DISCARD_DRAW_FAMILY",
+  "status": "full",
+  "example": "BSC48-011",
+  "rule": "Engine: once per turn per card name, discard a family card and draw N cards."
+ },
+ {
+  "id": "K_OPP_RESERVE_CORES_TO_TRASH",
+  "kind": "action",
+  "meaning": "moves N Cores from the opponent Reserve to their Trash.",
+  "pattern": "core from the opposing Reserve to the Trash",
+  "engine": "OPP_RESERVE_CORES_TO_TRASH",
+  "status": "full",
+  "example": "BSC48-010",
+  "rule": "Engine: moves N Cores from the opponent Reserve to their Trash."
+ },
+ {
+  "id": "K_COND_CONTROL_LV2",
+  "kind": "action",
+  "meaning": "condition true while a Level 2 Spirit of yours has that name part.",
+  "pattern": "[Ii]f you control any LV2 \\\".*\\\"",
+  "engine": "controlLv2",
+  "status": "full",
+  "example": "BSC48-010",
+  "rule": "Engine: condition true while a Level 2 Spirit of yours has that name part."
+ },
+ {
+  "id": "K_NEXUS_CORES_PER_SYMCOLOR",
+  "kind": "action",
+  "meaning": "the Core count equals the number of different symbol colours you control.",
+  "pattern": "for each .* symbol colou?r.* Nexus.* Void",
+  "engine": "NEXUS_CORES_TO_VOID perSymColor",
+  "status": "full",
+  "example": "BSC48-011",
+  "rule": "Engine: the Core count equals the number of different symbol colours you control."
+ },
+ {
+  "id": "K_SUMMON_TRASH_TOTAL",
+  "kind": "action",
+  "meaning": "summon any number of matching Spirits from the Trash up to a total cost",
+  "pattern": "summon any number of .* from your Trash, up to a total of Cost \\d+",
+  "engine": "SUMMON_TRASH_TOTAL",
+  "status": "full",
+  "example": "BSC48-012",
+  "rule": "Engine: the player picks Spirits from the Trash one at a time while the sum of printed costs stays within N."
+ },
+ {
+  "id": "K_VOID_TO_NEXUS_TOTAL",
+  "kind": "action",
+  "meaning": "put N cores in total from the Void on matching Nexuses",
+  "pattern": "\\+\\d+ cores? in total of any of your .* Nexuses",
+  "engine": "VOID_TO_NEXUS_TOTAL",
+  "status": "full",
+  "example": "BSC48-013",
+  "rule": "Engine: each core is put on a Nexus of your choice among the matching ones, any split."
+ },
+ {
+  "id": "K_DECK_SUMMON",
+  "kind": "keyword",
+  "meaning": "summon this card when an opposing effect would discard from the Deck",
+  "pattern": "would be discarded by an opposing \"Deck-discarding effect\", before sending it to the Trash, you can summon it",
+  "engine": "card.deckSummon (MILL_OPP)",
+  "status": "full",
+  "example": "BSC48-014",
+  "rule": "Engine: before an opposing MILL_OPP resolves, flagged cards in the Hand/Trash and among the discarded cards can be summoned without paying the cost."
+ },
+ {
+  "id": "K_BP_MINUS_DRAW_BOTTOM",
+  "kind": "effect",
+  "meaning": "give -N BP, destroy at 0 BP and draw from the deckbottom",
+  "pattern": "destroy it, and draw a card from the deckbottom",
+  "engine": "BP_MINUS zeroDestroy drawN drawBottom",
+  "status": "full",
+  "example": "BSC48-021",
+  "rule": "Engine: after the BP loss, a target at 0 BP is destroyed and the player draws N cards from the bottom of the Deck."
+ },
+ {
+  "id": "K_UNBLOCKABLE_NO_SOUL",
+  "kind": "effect",
+  "meaning": "can't be blocked by opposing Spirits without a Soul Core",
+  "pattern": "can't be blocked by opposing Spirits/Ultimates without \\(Soul Core\\)",
+  "engine": "STATIC UNBLOCKABLE_LOW noSoul",
+  "status": "full",
+  "example": "BSC48-048",
+  "rule": "Engine: while active, only opposing Spirits holding a Soul Core may block the matching attacker."
+ },
+ {
+  "id": "K_COSTALT_EXHAUST",
+  "kind": "effect",
+  "meaning": "cost becomes lower by exhausting one of your Grandwalker Nexuses",
+  "pattern": "by exhausting one of your .* Grandwalker Nexuses?, this card becomes Cost \\d+",
+  "engine": "costAlt.exhaust",
+  "status": "full",
+  "example": "BSC48-056",
+  "rule": "Engine: the alternate cost applies only if an untapped matching Grandwalker Nexus exists; casting exhausts it."
+ },
+ {
+  "id": "K_OPP_CORES_PER_SYMBOL_COLOR",
+  "kind": "effect",
+  "meaning": "send one opposing core to the Reserve for each symbol color you have",
+  "pattern": "For each symbol color you have, send a core from any opposing Spirits/Ultimates to the Reserve",
+  "engine": "OPP_CORES_TO_RESERVE perSource ownSymColors",
+  "status": "full",
+  "example": "BSC48-055",
+  "rule": "Engine: counts your distinct symbol colors on the Field and takes that many cores, one at a time, from opposing Spirits."
+ },
+ {
+  "id": "K_SIX_HEAVEN_COLOR",
+  "kind": "effect",
+  "meaning": "Grand Field: fulfills one symbol color for Six Heaven Rush/Rebirth conditions",
+  "pattern": "Fulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth",
+  "engine": "STATIC SIX_HEAVEN_COLOR",
+  "status": "full",
+  "example": "BSC48-CP03",
+  "rule": "Engine: each active Nexus with this flag adds one symbol color to every symbol-color-count condition (symColorsGe), except those marked symColorsPlain."
+ },
+ {
+  "id": "K_MAGIC_SOUL_TAX",
+  "kind": "effect",
+  "meaning": "During this turn, while your named Spirit attacks, the opponent cannot use Magic unless they send their Soul Core to the Trash",
+  "pattern": "while your .{1,30} is attacking, unless the opponent sends their .{0,12}Soul Core.{0,3} to the Trash, they can't use Magic cards",
+  "engine": "MAGIC_SOUL_TAX_TURN",
+  "status": "full",
+  "example": "BSC48-CX02",
+  "rule": "Engine: sets a per-turn lock read by the Magic-usable check; the first Magic cast while it applies pays the Soul Core once, which lifts the lock for the turn."
+ },
+ {
+  "id": "K_TRASH_ALL_MATCH",
+  "kind": "effect",
+  "meaning": "Condition: every card in your Trash matches a description",
+  "pattern": "While every card in your Trash is .{1,60}(God-Sechs|family)",
+  "engine": "if trashAllMatch",
+  "status": "full",
+  "example": "BSC48-CX02",
+  "rule": "Engine: true for an empty Trash as well."
+ },
+ {
+  "id": "K_NO_REFRESH_OPP",
+  "kind": "effect",
+  "meaning": "Opposing Spirits/Ultimates/Nexuses can't refresh while this applies",
+  "pattern": "(Every )?opposing .{1,60} can't refresh",
+  "engine": "STATIC NO_REFRESH to:opp",
+  "status": "full",
+  "example": "BSC48-X08",
+  "rule": "Engine: refreshOne skips any card an active opposing NO_REFRESH static matches, in the Refresh Step and in refresh effects."
+ },
+ {
+  "id": "K_CTRL_SOUL_SPIRIT",
+  "kind": "effect",
+  "meaning": "Condition: a Spirit of yours has a Soul Core on it",
+  "pattern": "When a Soul Core is on a .{1,30}Spirit of yours( other than this Spirit)?",
+  "engine": "if ctrl {type:Spirit, soul:true, other?, colors?}",
+  "status": "full",
+  "example": "SD32-003",
+  "rule": "Engine: ctrlCount counts only your Spirits that carry a Soul Core when the entry has soul:true; other:true leaves out the source Spirit."
+ },
+ {
+  "id": "K_BRAVED_TO_NAMED",
+  "kind": "effect",
+  "meaning": "During Brave: while braved to a Spirit with a given name",
+  "pattern": "While braved to an? .{1,40}-named Spirit",
+  "engine": "braved:true + if selfNameHas",
+  "status": "full",
+  "example": "SD57-005",
+  "rule": "Engine: a Brave effect marked braved:true reads the host Spirit as its context; selfNameHas checks that Spirit's name."
+ },
+ {
+  "id": "K_DESTROY_OWN_ALL_BESIDES",
+  "kind": "effect",
+  "meaning": "Besides this Spirit, destroy all your Spirits and Nexuses",
+  "pattern": "Besides this Spirit, destroy all your Spirits and Nexuses",
+  "engine": "DESTROY_OWN_ALL besides+nexus",
+  "status": "full",
+  "example": "P16-16",
+  "rule": "Engine: every own Spirit except the source and every own Nexus is destroyed; the source stays."
+ },
+ {
+  "id": "K_CANT_BRAVE",
+  "kind": "effect",
+  "meaning": "This Spirit can't Brave",
+  "pattern": "can't attack nor Brave",
+  "engine": "STATIC CANT_BRAVE",
+  "status": "full",
+  "example": "P16-16",
+  "rule": "Engine: no Brave card can be combined with this Spirit (braveFits refuses it). The 'can't be negated' rider has nothing to negate."
+ },
+ {
+  "id": "K_SYMBOLS_CHANGED_TO",
+  "kind": "effect",
+  "meaning": "While a condition holds, change this Spirit's symbols to N symbols of one colour",
+  "pattern": "change this Spirit's symbols to",
+  "engine": "EXTRA_SYMBOL replace:true",
+  "status": "full",
+  "example": "PB17-X02",
+  "rule": "Engine: while the condition holds the printed symbols no longer count and N symbols of the colour count instead."
+ },
+ {
+  "id": "K_BOUNCE_PER_SYMCOLOR",
+  "kind": "effect",
+  "meaning": "For each colour of your symbols, return one opposing Spirit to the Hand",
+  "pattern": "for each color of your symbols, return",
+  "engine": "BOUNCE_PER_SYMCOLOR",
+  "status": "full",
+  "example": "SD32-X01",
+  "rule": "Engine: counts your symbol colours, lets you pick that many opposing Spirits one by one, and returns them; with the Soul Core used for the summon cost their cores go to the Trash."
+ },
+ {
+  "id": "K_OPP_SPIRITS_CORES_TRASH",
+  "kind": "effect",
+  "meaning": "Put cores from several opposing Spirits to the opposing Trash, then Life per removed Spirit",
+  "pattern": "cores each from two opposing Spirits to the opposing Trash",
+  "engine": "OPP_SPIRITS_CORES_TRASH",
+  "status": "full",
+  "example": "SJ15-20",
+  "rule": "Engine: picks up to the listed number of opposing Spirits and moves the listed cores from each; with the chain condition met each Spirit that ends with no cores costs the opponent one Life core."
+ },
+ {
+  "id": "K_REFRESH_PER_SYMCOLOR",
+  "kind": "effect",
+  "meaning": "For each colour of your symbols, refresh one of your Spirits",
+  "pattern": "for each symbol color you have, refresh a Spirit",
+  "engine": "REFRESH_PER_SYMCOLOR",
+  "status": "full",
+  "example": "SD32-007",
+  "rule": "Engine: counts your symbol colours and refreshes that many of your exhausted Spirits, one pick each."
+ },
+ {
+  "id": "K_DESTROYS_SELF",
+  "kind": "trigger",
+  "meaning": "When this Spirit destroys an opposing Spirit (by its effect or in battle)",
+  "pattern": "When this Spirit destroys any opposing Spirit/Ultimate",
+  "engine": "OPP_DESTROYED_FX bySrc.self + ALLY_DESTROYS self",
+  "status": "done",
+  "example": "BS71-057",
+  "rule": "Engine: fires for the Spirit that caused the destruction, through its own effect or a battle win."
+ },
+ {
+  "id": "K_DISCARD_DOWN_TO",
+  "kind": "action",
+  "meaning": "Discard cards from your Hand until it is N or less",
+  "pattern": "discard cards from your Hand until your Hand is three or less",
+  "engine": "DISCARD_DOWN_TO n",
+  "status": "done",
+  "example": "BS72-074",
+  "rule": "Engine: the owner picks the cards to discard (the CPU throws away the cheapest) until the Hand holds at most n cards."
+ },
+ {
+  "id": "K_OPP_HAND_DISCARD_LOOK",
+  "kind": "action",
+  "meaning": "Look at the entire opposing Hand and discard cards from it",
+  "pattern": "look at the entire opposing Hand, and discard two cards from among them",
+  "engine": "OPP_HAND_DISCARD_LOOK n",
+  "status": "done",
+  "example": "BS71-NX03",
+  "rule": "Engine: the owner of the effect looks at the opposing Hand and chooses the cards to discard (the CPU takes the most expensive)."
+ },
+ {
+  "id": "K_CORES_ON_GE",
+  "kind": "condition",
+  "meaning": "You control a matching card with N or more cores on it",
+  "pattern": "five or more cores on one of your Blue \"Contractor\"",
+  "engine": "if.coresOnGe {n, match}",
+  "status": "done",
+  "example": "BS71-NX03",
+  "rule": "Engine: true when one card on your field that matches has at least N cores on it."
+ },
+ {
+  "id": "K_COST_LE_BRAVES",
+  "kind": "condition",
+  "meaning": "Cost N or less, +1 for each of your <family> family Braves",
+  "pattern": "increase this \"Cost Destruction effect\" limit by \\+1",
+  "engine": "DESTROY costLeBraves",
+  "status": "done",
+  "example": "{\"do\":\"DESTROY\",\"costLeBraves\":{\"base\":3,\"family\":[\"Scalostle\"]}}",
+  "rule": "Engine: the cost limit of the destruction is the base plus the number of your Braves of that family attached to your Spirits or Nexuses."
+ },
+ {
+  "id": "K_SUMMON_DISCARDED",
+  "kind": "condition",
+  "meaning": "summon the discarded card instead of leaving it in the Trash",
+  "pattern": "would be discarded by your effect, you can summon it instead",
+  "engine": "SUMMON_DISCARDED",
+  "status": "done",
+  "example": "{\"trigger\":\"OWN_DISCARD\",\"actions\":[{\"do\":\"SUMMON_DISCARDED\",\"match\":{\"type\":\"Brave\"}}]}",
+  "rule": "Engine: runs from OWN_DISCARD after the discard; the first matching discarded card is summoned from the Trash without paying its cost."
+ },
+ {
+  "id": "K_BURST_SPIRIT_PUNISH",
+  "kind": "condition",
+  "meaning": "look at the opposing Burst; if it's a Spirit card, discard it and send a Life to the Reserve",
+  "pattern": "Look at the contents of an opposing Burst, and if it's a Spirit card, discard it",
+  "engine": "BURST_SPIRIT_PUNISH",
+  "status": "done",
+  "example": "{\"do\":\"BURST_SPIRIT_PUNISH\"}",
+  "rule": "Engine: looks at the opposing set Burst; only a Spirit card is discarded, and then one opposing Life goes to the Reserve."
+ },
+ {
+  "id": "K_LIFE_FLASH",
+  "kind": "condition",
+  "meaning": "when your Life is reduced by the opponent, discard this set Magic to use its Flash effect for free",
+  "pattern": "when your Life is reduced by the opponent, by discarding it, immediately activate its Flash effect without paying the cost",
+  "engine": "card field lifeFlash",
+  "status": "done",
+  "example": "{\"lifeFlash\":true}",
+  "rule": "Engine: after a Life reduction by the opponent, if the set card was not used as a Burst, the owner may discard it from the Burst Area to cast its Flash effect without paying the cost."
+ }
 ]
