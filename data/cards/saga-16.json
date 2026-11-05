@@ -31139,7 +31139,8 @@
   "costAlt": {
    "cost": 4,
    "if": {
-    "symColorsGe": 6
+    "symColorsGe": 6,
+    "symColorsPlain": true
    },
    "exhaust": {
     "match": {
@@ -31432,21 +31433,109 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "GWrule",
-   "{{tk|Core Charge:|(Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast & Cost 3 or more)}}",
-   "◆When you Summon/Advent a target Spirit, you can put a core from the Void to this Nexus.",
-   "◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void to this Nexus.",
-   "[LV1][LV2]",
-   "This Nexus's symbol is also treated as Red/Purple/Green/Yellow/Blue.",
-   "{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)",
-   "(Once per turn, send two cores from this Nexus to the Void) For each symbol color you have, send a core from an opposing Spirit to the Reserve.",
-   "Grand Field [LV2]",
-   "Fulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Effects authored by hand (Lane K, priority list God-Sech group). STATIC SIX_HEAVEN_COLOR = Grand Field colour bonus for symColorsGe.",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "family": [
+        "Heavenly Demon King",
+        "Evil Shadow",
+        "Clever Machine",
+        "Machine Beast"
+       ],
+       "costGe": 3
+      },
+      "void": true,
+      "max": 15,
+      "fresh": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "family": [
+      "Heavenly Demon King",
+      "Evil Shadow",
+      "Clever Machine",
+      "Machine Beast"
+     ],
+     "costGe": 3
+    },
+    "actions": [
+     {
+      "do": "ORACLE_CORE",
+      "n": 1,
+      "max": 15
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "symbol": true,
+    "colors": [
+     "red",
+     "purple",
+     "green",
+     "yellow",
+     "blue"
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     1,
+     2
+    ],
+    "timing": [
+     "FLASH"
+    ],
+    "if": {
+     "attackStep": true
+    },
+    "once": true,
+    "cost": {
+     "nexusToVoid": 2
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "perSource": "ownSymColors"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SIX_HEAVEN_COLOR",
+    "to": "self",
+    "lv": [
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-CX01",

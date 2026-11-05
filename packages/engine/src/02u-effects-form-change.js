@@ -38,3 +38,5 @@ function costAltActive(p, card) {                 // e.g. Wurm Draw: "(Once per 
   if (a.exhaust && !costAltExhaustPick(p, a)) return false;
   return fxIf(p, G.p[other(p.key)], a.if);
 }
+/* v549 STATIC SIX_HEAVEN_COLOR (Grand Field): "fulfill one symbol color for the conditions of your Six Heaven Rush/Rebirth": +1 colour for every symColorsGe check unless the condition says symColorsPlain */
+function grandFieldColors(p) { return p.nexus.filter(n => fxEntries(n).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'SIX_HEAVEN_COLOR' && (!e.lv || e.lv.includes(lvNo(n))))).length; }

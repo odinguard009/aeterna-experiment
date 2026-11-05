@@ -350,3 +350,12 @@ test('K-1173 BSC48-055: Burst takes one opposing core per own symbol color; Flas
     return { fc: K.partial === false, lost: 5 - o.cores, bt: !!K.burst && K.burst.when }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.bt, 'OPP_ATTACK', JSON.stringify(r)); assert.ok(r.lost >= 1 && r.lost <= 5, JSON.stringify(r));
 });
+test('K-1174 BSC48-CP03: Grand Field adds a colour to symColorsGe; Core Charge triggers wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const K = BS.CARDS['BSC48-CP03'], n = BS.mkInst('BSC48-CP03'); n.cores = 6; P.nexus = [n]; P.spirits = [];
+    const lv = BS.lvNo ? BS.lvNo(n) : null;
+    const ok = BS.fxIf(P, O, { symColorsGe: 6 }), plain = BS.fxIf(P, O, { symColorsGe: 6, symColorsPlain: true });
+    return { fc: K.partial === false, lv, ok, plain }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.plain, false, JSON.stringify(r));
+});

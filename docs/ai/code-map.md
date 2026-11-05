@@ -80,8 +80,8 @@ leaveHook
 ## packages/engine/src/02t-effects-actions-opp.js (330 lines, ~8.7k tokens)
 dtBoost, lifeGuardFx
 
-## packages/engine/src/02u-effects-form-change.js (40 lines, ~0.9k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
-fcCands, costAltExhaustPick, costAltActive
+## packages/engine/src/02u-effects-form-change.js (42 lines, ~1k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
+fcCands, costAltExhaustPick, costAltActive, grandFieldColors
 
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit

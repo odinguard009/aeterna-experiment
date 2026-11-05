@@ -80083,15 +80083,6 @@
   "M_OPTIONAL",
   "T_ALLY_LIFE_HIT"
  ],
- "BSC48-CP03": [
-  "A_MILL",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
  "BSC48-CX01": [
   "A_CORE_TO_SELF",
   "A_MILL",
@@ -96222,6 +96213,7 @@
   "C_LEVEL",
   "K_ADVENT",
   "K_GRANDWALKER",
+  "K_SIX_HEAVEN_COLOR",
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],

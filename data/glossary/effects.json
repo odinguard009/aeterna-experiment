@@ -1688,5 +1688,15 @@
     "status": "full",
     "example": "BSC48-055",
     "rule": "Engine: counts your distinct symbol colors on the Field and takes that many cores, one at a time, from opposing Spirits."
+  },
+  {
+    "id": "K_SIX_HEAVEN_COLOR",
+    "kind": "effect",
+    "meaning": "Grand Field: fulfills one symbol color for Six Heaven Rush/Rebirth conditions",
+    "pattern": "Fulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth",
+    "engine": "STATIC SIX_HEAVEN_COLOR",
+    "status": "full",
+    "example": "BSC48-CP03",
+    "rule": "Engine: each active Nexus with this flag adds one symbol color to every symbol-color-count condition (symColorsGe), except those marked symColorsPlain."
   }
 ]
