@@ -8,7 +8,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 34 | 34 | done |
 | 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 25 | 25 | done |
 | 4 | small | BS73-CX01 The ForestMasterContractor Yum-Kaax | complete | Fungal Tree | 23 | 23 | done |
-| 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 24 | 18 | open |
+| 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 24 | 22 | open |
 | 6 | small | BS73-CX03 The CycleForceContractor Yamato Takeru | OPEN, first | Machine, Force Fighter | 38 | 4 | open |
 | 7 | small | BS72-CX01 The MartialArtsContractor Lugh | OPEN, first | Martial | 27 | 1 | open |
 | 8 | small | BS72-CX02 The NightlyDarknessContractor Nyx | complete | Darkling | 32 | 12 | open |
