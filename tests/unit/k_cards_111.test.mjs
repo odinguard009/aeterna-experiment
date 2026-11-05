@@ -123,3 +123,16 @@ test('K-1155 BS55-041 Six Heaven General: unaffected by opposing Spirit effects;
     return { vsSpirit: BS.fxImmune(P, me, { p: O, src: sp }), vsNexus: BS.fxImmune(P, gol, { p: O, src: nx }), otherNexus: BS.fxImmune(P, other, { p: O, src: nx }), partial: BS.CARDS['BS55-041'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.vsSpirit, true, JSON.stringify(r)); assert.equal(r.vsNexus, true, JSON.stringify(r)); assert.equal(r.otherNexus, false, JSON.stringify(r));
 });
+
+test('K-1156 BS55-RV004 Type Five: also Green/Yellow/Blue, unaffected with five symbol colours, refreshes when attacking', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BS55-RV004'], E = K.effects;
+    const me = BS.mkInst('BS55-RV004'); me.cores = 2; P.spirits = [me];
+    const foe = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token));
+    const few = BS.fxImmune(P, me, { p: O, src: foe });
+    me.exhausted = true;
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[4].actions });
+    return { few, refreshed: !me.exhausted, n: E.length, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.n, 5, JSON.stringify(r));
+});

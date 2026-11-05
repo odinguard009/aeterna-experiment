@@ -19690,16 +19690,84 @@
   "mechanics": [
    "Six Heaven Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as Green/Yellow/Blue. {{Six Heaven Rush|5}} While you have five or more symbol colors, this Spirit is unaffected by opposing effects, and when it would leave the Field due to an opposing effect, it can remain on the Field, exhausted.",
-   "[LV2][LV3] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "7"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "colors": [
+     "green",
+     "yellow",
+     "blue"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "symColorsGe": 5
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REMAIN_DESTROY",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "symColorsGe": 5
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REMAIN_RETURN",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "symColorsGe": 5
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     2,
+     3
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS55-RV005",

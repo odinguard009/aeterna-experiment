@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6071,
+  "cards": 6070,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -12,7 +12,7 @@
    "8": 428,
    "9": 441,
    "10": 474,
-   "11": 273,
+   "11": 272,
    "12": 303,
    "13": 381,
    "14": 418,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2635,
+  "skipped_curated": 2636,
   "nexus_levels_added": 643,
   "nexus_levels_missing": 38,
   "merged": 101,
@@ -1678,6 +1678,7 @@
   "BS55-073",
   "BS55-RV002",
   "BS55-RV003",
+  "BS55-RV004",
   "BS56-002",
   "BS56-012",
   "BS56-015",
