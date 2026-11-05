@@ -2,14 +2,11 @@
 
 Standing list (owner 2026-11-04): groups top to bottom, all before the Grandwalker queue. Edit data/kb/lane-k-priority.json with the tool (`--add`, `--top`, `--after`, `--remove`).
 
-## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 7 of 53 complete
+## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 10 of 53 complete
 Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.
 
 | Card | Name | State |
 |---|---|---|
-| BS35-041 | The HeavenlyDemonKing God-Sechs -Type Five- | OPEN |
-| BS35-XX02 | The HeavenlyDemonKing God-Sechs -Type The End- | OPEN |
-| BS46-10THX02 | The HeavenlyDemonGodKing God-Sechs -Type God- | OPEN |
 | BS55-041 | The Six Heaven General | OPEN |
 | BS55-RV004 | The HeavenlyDemonKing God-Sechs -Type Five- | OPEN |
 | BS73-AX03 | The HeavenlyDemonKing God-Sechs -Type Force- | OPEN |

@@ -112,3 +112,14 @@ test('K-1154 BS46-10THX02 Type God: Seal from itself, God-Sechs treated as holdi
   assert.equal(r.sealed, true, JSON.stringify(r)); assert.equal(r.lifeUp, 4, JSON.stringify(r)); assert.equal(r.soulGone, true, JSON.stringify(r));
   assert.equal(r.treatedOn, true, JSON.stringify(r)); assert.equal(r.unaff, true, JSON.stringify(r)); assert.equal(r.bounced, true, JSON.stringify(r));
 });
+
+test('K-1155 BS55-041 Six Heaven General: unaffected by opposing Spirit effects; at LV2 Six Heaven Spirits and The Owari World are unaffected by opposing Nexus effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const me = BS.mkInst('BS55-041'); me.cores = 2; const gol = BS.mkInst('BS55-061'); gol.cores = 1; P.spirits = [me, gol];
+    const sp = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !/Six Heaven/.test(BS.CARDS[k].name)));
+    const nx = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && !BS.CARDS[k].token));
+    const other = BS.mkInst('SD32-X02'); other.cores = 3; P.spirits.push(other);
+    return { vsSpirit: BS.fxImmune(P, me, { p: O, src: sp }), vsNexus: BS.fxImmune(P, gol, { p: O, src: nx }), otherNexus: BS.fxImmune(P, other, { p: O, src: nx }), partial: BS.CARDS['BS55-041'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.vsSpirit, true, JSON.stringify(r)); assert.equal(r.vsNexus, true, JSON.stringify(r)); assert.equal(r.otherNexus, false, JSON.stringify(r));
+});
