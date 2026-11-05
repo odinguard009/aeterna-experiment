@@ -19276,7 +19276,7 @@
   "image": "BS71-053.png",
   "block": "71",
   "saga": 15,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image.",
   "effects": [
    {
@@ -19299,13 +19299,34 @@
       "do": "VOID_TO_CARD",
       "n": 1,
       "to": "self"
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "match": {
+       "family": [
+        "Scalostle"
+       ],
+       "hasBrave": true
+      }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CORE_SAFE",
+    "lv": [
+     2
+    ],
+    "mode": "floor3",
+    "to": "own",
+    "match": {
+     "family": [
+      "Scalostle"
+     ]
+    }
    }
-  ],
-  "residual": [
-   "(When Summoned): the core from the Void to a Scalostle Brave Spirit you control",
-   "LV2: the number of cores on your Scalostle Spirits cannot be brought below three by opposing effects"
   ],
   "bicon": [
    "11"

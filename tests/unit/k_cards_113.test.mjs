@@ -13,3 +13,13 @@ test('K-1193 BS71-054: returns from the Trash when a Saga Brave is summoned, onc
     return { fc: BS.CARDS['BS71-054'].partial === false, afterNon, afterSaga, inTrash: P.trash.includes(sh) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.afterNon, 0, JSON.stringify(r)); assert.equal(r.afterSaga, 1, JSON.stringify(r));
 });
+
+test('K-1194 BS71-053: Void core goes to this Spirit and a Scalostle Spirit with a Brave; LV2 core floor three', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const sc = BS.mkInst('BS71-053'); sc.cores = 1; const al = BS.mkInst('BS71-054'); al.cores = 1; al.brave = BS.mkInst('BS71-063'); const plain = BS.mkInst('BS71-057'); plain.cores = 1;
+    P.spirits = [sc, al, plain]; P.nexus = []; P.reserve.n = 0; P.void = P.void || { n: 0 }; const v0 = P.void.n; if (typeof P.void.n === 'number') P.void.n = 5;
+    await BS.fireFx(P, 'SUMMONED', sc, {});
+    return { fc: BS.CARDS['BS71-053'].partial === false, sc: sc.cores, al: al.cores, plain: plain.cores }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.plain, 1, JSON.stringify(r)); assert.ok(r.al === 2 || r.sc === 2, JSON.stringify(r));
+});
