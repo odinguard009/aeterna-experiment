@@ -1,225 +1,88 @@
 {
- "owner_order": "2026-11-04",
- "purpose": "Lane K works these cards first (before the Grandwalker queue) until all are complete",
- "scope": "cards naming or mentioning God-Sech, Six Heaven (Rush) or Tenma Nobunaga/Dairokuten Maou; excluded by the owner: BS10-029, BS12-024, BSC49-027, CB10-032",
- "excluded": [
-  "BS10-029",
-  "BS12-024",
-  "BSC49-027",
-  "CB10-032"
- ],
- "cards": [
+ "about": "Lane K priority list (owner, 2026-11-04). A standing list: groups are worked top to bottom BEFORE the Grandwalker queue, a group is skipped once all its cards are complete, and the owner can add a group at any time. Edit with `python3 tools/priority_queue.py --add ...` (see the tool); never reuse or delete a group to 'reset' it.",
+ "groups": [
   {
-   "id": "BS34-016",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Zero-"
+   "id": "god-sech-six-heaven-53",
+   "title": "God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards",
+   "added": "2026-11-04",
+   "note": "Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.",
+   "select": {
+    "ids": [
+     "BS34-016",
+     "BS34-071",
+     "BS34-075",
+     "BS34-XX02",
+     "BS35-041",
+     "BS35-XX02",
+     "BS46-10THX02",
+     "BS55-008",
+     "BS55-041",
+     "BS55-061",
+     "BS55-RV004",
+     "BS73-AX03",
+     "BS73-X05",
+     "BS74-059",
+     "BSC32-038",
+     "BSC48-009",
+     "BSC48-010",
+     "BSC48-011",
+     "BSC48-012",
+     "BSC48-013",
+     "BSC48-014",
+     "BSC48-016",
+     "BSC48-017",
+     "BSC48-021",
+     "BSC48-039",
+     "BSC48-048",
+     "BSC48-052",
+     "BSC48-054",
+     "BSC48-055",
+     "BSC48-056",
+     "BSC48-CP03",
+     "BSC48-CX02",
+     "BSC48-X08",
+     "BSC48-X09",
+     "BSC48-XX01",
+     "P16-16",
+     "PB17-X02",
+     "PB39-RVX02",
+     "SD32-002",
+     "SD32-006",
+     "SD32-X02",
+     "SD57-001",
+     "SD57-002",
+     "SD57-003",
+     "SD57-004",
+     "SD57-005",
+     "SD57-006",
+     "SD57-CP01",
+     "SD57-RV001",
+     "SD57-RV004",
+     "SD57-TX01",
+     "SD57-X02",
+     "SJ15-20"
+    ]
+   }
   },
   {
-   "id": "BS34-071",
-   "name": "The World of Owari"
+   "id": "grandwalker-mitra",
+   "title": "Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck",
+   "added": "2026-11-05",
+   "note": "Nexus card plus its deck cards from data/kb/grandwalker-nexus.json.",
+   "select": {
+    "nexus": "BS74-CX03"
+   }
   },
   {
-   "id": "BS34-075",
-   "name": "The HeavenlyDemonKing Advents"
-  },
-  {
-   "id": "BS34-XX02",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Destroy-"
-  },
-  {
-   "id": "BS35-041",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Five-"
-  },
-  {
-   "id": "BS35-XX02",
-   "name": "The HeavenlyDemonKing God-Sechs -Type The End-"
-  },
-  {
-   "id": "BS46-10THX02",
-   "name": "The HeavenlyDemonGodKing God-Sechs -Type God-"
-  },
-  {
-   "id": "BS55-008",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Flame-"
-  },
-  {
-   "id": "BS55-041",
-   "name": "The Six Heaven General"
-  },
-  {
-   "id": "BS55-061",
-   "name": "The Six Heaven Golem"
-  },
-  {
-   "id": "BS55-RV004",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Five-"
-  },
-  {
-   "id": "BS73-AX03",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Force-"
-  },
-  {
-   "id": "BS73-X05",
-   "name": "The HeadAttendant Forest-Orchid"
-  },
-  {
-   "id": "BS74-059",
-   "name": "The Six Heaven Hatamochi"
-  },
-  {
-   "id": "BSC32-038",
-   "name": "Turn End, Worm. End your Turn."
-  },
-  {
-   "id": "BSC48-009",
-   "name": "The HeavenlyDemonKing God-Sechs LT -Type Flame-"
-  },
-  {
-   "id": "BSC48-010",
-   "name": "The Wandering Armor LT"
-  },
-  {
-   "id": "BSC48-011",
-   "name": "The HeavenlyDemonKing God-Sechs LT -Type Zero-"
-  },
-  {
-   "id": "BSC48-012",
-   "name": "The Necromancer Yakumo LT"
-  },
-  {
-   "id": "BSC48-013",
-   "name": "The Six Heaven Falcon LT"
-  },
-  {
-   "id": "BSC48-014",
-   "name": "The GunSoldier Tanegashima LT"
-  },
-  {
-   "id": "BSC48-016",
-   "name": "Ichibanspear LT"
-  },
-  {
-   "id": "BSC48-017",
-   "name": "Saiborg LT"
-  },
-  {
-   "id": "BSC48-021",
-   "name": "Gyuuki LT"
-  },
-  {
-   "id": "BSC48-039",
-   "name": "The Six Heaven Castle Dyed in Red LT"
-  },
-  {
-   "id": "BSC48-048",
-   "name": "The World of Owari LT"
-  },
-  {
-   "id": "BSC48-052",
-   "name": "The HeavenlyDemonKing Advents LT"
-  },
-  {
-   "id": "BSC48-054",
-   "name": "Burst Wall LT"
-  },
-  {
-   "id": "BSC48-055",
-   "name": "Demon King Blade LT"
-  },
-  {
-   "id": "BSC48-056",
-   "name": "Turn End, Worm. End your Turn LT"
-  },
-  {
-   "id": "BSC48-CP03",
-   "name": "Tenma Nobunaga"
-  },
-  {
-   "id": "BSC48-CX02",
-   "name": "The HeavenWheelContractor Dairokuten Maou"
-  },
-  {
-   "id": "BSC48-X08",
-   "name": "The HeavenlyDemonKing God-Sechs X"
-  },
-  {
-   "id": "BSC48-X09",
-   "name": "The HeavenlyDemonKing God-Sechs X -Type Destroy-"
-  },
-  {
-   "id": "BSC48-XX01",
-   "name": "The HeavenlyDemonKing God-Sechs X -Type The End-"
-  },
-  {
-   "id": "P16-16",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Lolo-"
-  },
-  {
-   "id": "PB17-X02",
-   "name": "The HeavenlyDemonKing Pentan -Type God-Sechs-"
-  },
-  {
-   "id": "PB39-RVX02",
-   "name": "The HeavenlyDemonKing Pentan -Type God-Sechs-"
-  },
-  {
-   "id": "SD32-002",
-   "name": "Ichibanspear"
-  },
-  {
-   "id": "SD32-006",
-   "name": "The Six Heaven Castle Dyed in Red"
-  },
-  {
-   "id": "SD32-X02",
-   "name": "The HeavenlyDemonKing God-Sechs"
-  },
-  {
-   "id": "SD57-001",
-   "name": "The Six Heaven Soldier"
-  },
-  {
-   "id": "SD57-002",
-   "name": "The Six Heaven Falcon"
-  },
-  {
-   "id": "SD57-003",
-   "name": "The Six Heaven Head"
-  },
-  {
-   "id": "SD57-004",
-   "name": "The Six Heaven Conjurer"
-  },
-  {
-   "id": "SD57-005",
-   "name": "The HeavenlyDemonKing Weapons"
-  },
-  {
-   "id": "SD57-006",
-   "name": "The Owari World"
-  },
-  {
-   "id": "SD57-CP01",
-   "name": "Tenma Nobunaga"
-  },
-  {
-   "id": "SD57-RV001",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Zero-"
-  },
-  {
-   "id": "SD57-RV004",
-   "name": "The HeavenlyDemonKing Advents"
-  },
-  {
-   "id": "SD57-TX01",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Earth-"
-  },
-  {
-   "id": "SD57-X02",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Shadow-"
-  },
-  {
-   "id": "SJ15-20",
-   "name": "The HeavenlyDemonKing God-Sechs -Type Souldragon-"
+   "id": "awakened-dragon-family",
+   "title": "Awakened Dragon family",
+   "added": "2026-11-05",
+   "note": "Every card whose families list holds Awakened Dragon (not cards that only have it in the name).",
+   "select": {
+    "families": [
+     "Awakened Dragon"
+    ]
+   }
   }
  ]
 }
