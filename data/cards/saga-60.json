@@ -75345,13 +75345,56 @@
   "image": "SD57-X02.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Tenma-Kagemusha When your \"Heavenly Demon King\" family Spirit(s) are targeted by an opposing effect, you can summon this card from the Hand. Then, choose to either change the target of that effect to this Spirit only, or change the \"opponent\"/\"opposing\" text(s) of that effect to \"you\"/\"your\", and if it's the latter option, the opponent chooses the target.",
-   "[LV2][LV3] (When Attacks/Blocks) Send a core from any opposing Spirit to the Reserve. {{Six Heaven Rush|3}} (Activate if you have three or more symbol colors) Draw two cards."
+  "fxComplete": true,
+  "note": "Lane K priority list. Tenma-Kagemusha = card field targetSummon (fxPickTarget wrapper in 02w); the new target is not re-checked against the action's filters; 'opposing becomes your' sets c.opp = c.p for the rest of the effect. Six Heaven Rush 3 = symColorsGe 3.",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 2,
+      "if": {
+       "symColorsGe": 3
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 2,
+      "if": {
+       "symColorsGe": 3
+      }
+     }
+    ]
+   }
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "X"
+  "targetSummon": {
+   "family": "Heavenly Demon King"
+  }
  },
  {
   "id": "SD58-001",

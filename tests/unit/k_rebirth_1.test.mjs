@@ -61,3 +61,14 @@ test('K-1306 SD57-006B reborn returns an opposing Spirit to the deckbottom and (
     return { gw, spirits: O.spirits.length, nex: O.nexus.length }; })()`);
   assert.deepEqual([r.gw, r.spirits, r.nex], [6, 0, 1], JSON.stringify(r));
 });
+
+test('K-1307 SD57-X02 Tenma-Kagemusha: an opposing destroy aimed at a Heavenly Demon King Spirit summons it from the Hand and hits it instead', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const src = BS.mkInst('BS01-001'); P.spirits = [BS.mkInst('BS01-021')]; const king = BS.mkInst('BS34-016'); king.cores = 4; O.spirits = [king];
+    const x = BS.mkInst('SD57-X02'); O.hand = [x]; O.reserve.n = 10;
+    const c = { p: P, opp: O, src: P.spirits[0], ctx: {} };
+    await BS.FX_ACTIONS.DESTROY.run(c, { do: 'DESTROY', n: 1, bpLe: 99999 });
+    return { kingOn: O.spirits.includes(king), xOn: O.spirits.includes(x), xTrash: O.trash.includes(x), inHand: O.hand.includes(x), field: O.spirits.length, partial: BS.CARDS['SD57-X02'].partial, tag: JSON.stringify(BS.CARDS['SD57-X02'].targetSummon) }; })()`);
+  assert.equal(r.kingOn, true, JSON.stringify(r)); assert.equal(r.xTrash, true, JSON.stringify(r)); assert.equal(r.inHand, false, JSON.stringify(r)); assert.equal(r.partial, false, JSON.stringify(r));
+});

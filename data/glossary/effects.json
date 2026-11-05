@@ -1998,5 +1998,15 @@
   "status": "done",
   "example": "SD57-006B",
   "rule": "Engine: up to N matching opposing Nexuses are destroyed, the ones with most cores first; not a target."
+ },
+ {
+  "id": "TARGET_SUMMON",
+  "kind": "card field",
+  "meaning": "Summon this card from the Hand when an opposing effect targets one of your family Spirits, then redirect the effect.",
+  "pattern": "When your \"Heavenly Demon King\" family Spirit(s) are targeted by an opposing effect, you can summon this card from the Hand. Then, change the target to this Spirit only, or change \"opponent\" to \"you\".",
+  "engine": "targetSummon {family}",
+  "status": "done",
+  "example": "SD57-X02",
+  "rule": "Engine: checked where an effect picks its target; once per effect; the redirected target is not re-validated against the action filters."
  }
 ]

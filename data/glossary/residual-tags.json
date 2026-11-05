@@ -96116,12 +96116,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "SD57-X02": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS"
- ],
  "SD58-001": [
   "A_EXHAUST",
   "A_SUMMON_FREE",

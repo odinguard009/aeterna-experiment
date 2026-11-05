@@ -253,3 +253,33 @@ FX_ACTIONS.DESTROY_OPP_GW_NEXUS = { chk: a => Number.isInteger(a.n) && a.n >= 1 
     for (const n of L) { log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[n.id].name} is destroyed.`); removeNexus(c.opp, n, 'destroyed'); c.ctx.did = true; }
     io.view({ type: 'board' });
   } };
+
+/* v574 SD57-X02 Tenma-Kagemusha (card field targetSummon {family}): when an opposing effect picks one of the owner's <family> Spirits as its target (fxPickTarget, in 02a, is the one pick point and calls this), the owner may summon this card from the Hand (cost paid), then EITHER the target becomes this Spirit only, OR the effect's "opposing" becomes "your": its remaining actions hit the effect user's own side (c.opp = c.p) and the owner chooses the target. Once per effect. Shortcut: the new target is not re-checked against the action's own filters. */
+async function fxPickRaw(c, cands, text) {
+  if (!cands.length) return null;
+  if (c.p.cpu) return cands.slice().sort((a, b) => (bpOf(b) - bpOf(a)) || (b.cores - a.cores))[0];
+  if (cands.length === 1) return cands[0];
+  const uid = await pickFromField({ text, uids: cands.map(t => t.uid) });
+  return cands.find(t => t.uid === uid) || cands[0];
+}
+async function tenmaRedirect(c, t) {
+  const owner = G.p[other(c.p.key)];
+  if (G.over || c.opp !== owner || !owner.spirits.includes(t)) return t;
+  const fams = CARDS[t.id].families || [];
+  for (const h of owner.hand.slice()) {
+    const k = CARDS[h.id]; if (!k.targetSummon || !fams.includes(k.targetSummon.family) || !summonOK(owner, k) || !canPlacePaid(owner, h)) continue;
+    if (!owner.cpu && !await ask({ title: `✨ ${k.name}`, peek: true, html: `${esc(CARDS[t.id].name)} is targeted by an opposing effect. Summon ${esc(k.name)} from your Hand (paying its cost)?`, cards: cardIds([h]), buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) continue;
+    c.ctx.tenmaDone = true;
+    log(`${k.name}: summoned from the Hand as ${CARDS[t.id].name} is targeted.`);
+    await summonPaid(owner, h);
+    if (!owner.spirits.includes(h)) return t;
+    const mode = owner.cpu ? 'target' : await ask({ title: `✨ ${k.name}`, html: 'Choose how the effect changes.', buttons: [{ label: 'Target this Spirit only', cls: 'primary', value: 'target' }, { label: 'Opposing becomes yours (you choose)', value: 'you' }] });
+    if (mode !== 'you' || !c.p.spirits.length) { log(`${k.name}: the effect now targets ${k.name} only.`); return h; }
+    c.opp = c.p; const own = c.p.spirits.slice();
+    log(`${k.name}: the effect now affects ${poss(c.p)} own Spirits, ${poss(owner)} chooses.`);
+    if (owner.cpu) return own.sort((a, b) => bpOf(b) - bpOf(a))[0];
+    const uid = await pickFromField({ text: `✨ <b>${esc(k.name)}</b><br>Choose the target among the effect user's Spirits.`, uids: own.map(x => x.uid) });
+    return own.find(x => x.uid === uid) || own[0];
+  }
+  return t;
+}

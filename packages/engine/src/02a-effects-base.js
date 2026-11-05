@@ -445,12 +445,9 @@ function removeNexus(p, n, why) {
   n.cores = 0; n.soul = false; shedBrave(p, n, p.trash);
   if (n.token) tokenHome(p, n); else p.trash.push(n); log(`${poss(p)} ${CARDS[n.id].name} is ${why}.`);
 }
-async function fxPickTarget(c, cands, text) {
-  if (!cands.length) return null;
-  if (c.p.cpu) return cands.slice().sort((a, b) => (bpOf(b) - bpOf(a)) || (b.cores - a.cores))[0];
-  if (cands.length === 1) return cands[0];
-  const uid = await pickFromField({ text, uids: cands.map(t => t.uid) });
-  return cands.find(t => t.uid === uid) || cands[0];
+async function fxPickTarget(c, cands, text) {      // v574: fxPickRaw (02w) is the plain pick; tenmaRedirect (02w) is SD57-X02
+  const t = await fxPickRaw(c, cands, text);
+  return t && c.src && c.ctx && !c.ctx.tenmaDone ? tenmaRedirect(c, t) : t;
 }
 /* ---- Soul State / Void helpers (v0.13) ---- */
 function toSoulState(p, inst) {                       // any zone (Hand, Trash, Deck, revealed, field) -> Soul State
