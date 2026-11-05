@@ -22,7 +22,8 @@ const TPL_NAMES = { ha: 'Heavy Armor', ua: 'Ultra Armor', catl: 'Catalyze', adco
   shaman: 'Shamanism', msyn: 'Mirage Synchro', mflash: 'Mirage Flash', psa: 'PS Armor', vpsa: 'VPS Armor', 'cf unleash': 'CF Unleash', 'sa unleash': 'SA Unleash', 'in unleash': 'IN Unleash',
   'd assault': 'D Assault', 'c count break': 'C Count Break', 'f change': 'F Change', 'b engage': 'B Engage', 'tw catl': 'TW Catalyze', 'w catl': 'W Catalyze' };
 function descText(raw) {
-  let t = String(raw || ''); if (t.indexOf('{{') < 0) return t;
+  let t = String(raw || '').replace(/&rarr;/g, '→').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/<\/?span\b[^>]*>/g, '');   // wiki HTML leftovers (50 Tribute cards print &rarr;, two God-Sechs lines a styled span) would show as raw text after escaping
+  if (t.indexOf('{{') < 0) return t;
   t = t.replace(/\{\{#tag:\s*tabber\s*\|([\s\S]*)\}\}\s*$/, (m, body) => { const parts = body.split('{{!}}-{{!}}'); const pick = parts.find(p => /^\s*(Eng|English|Standard)/i.test(p)) || parts[parts.length - 1]; return pick.replace(/^\s*[^=\n]*=\s*/, '').trim(); });
   return t.replace(/\{\{([^{}|]+)((?:\|[^{}]*)?)\}\}/g, (m, n, a) => {
     n = n.trim(); if (n === '!') return '';
