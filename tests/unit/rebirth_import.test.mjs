@@ -14,6 +14,7 @@ const rebirth = cards.filter(c => c.rebirthTo);
 test('RB-01 the Rebirth front cards are partial playable cards and point at a back id', () => {
   assert.ok(rebirth.length >= 200, String(rebirth.length));
   for (const c of rebirth) {
+    if (c.fxComplete === true) { assert.ok(!c.residual, c.id); assert.match(c.rebirthTo, /^[A-Z0-9-]+B$/, c.id); continue; }      // v572 cards wired with REBIRTH_FLIP
     assert.equal(c.fxComplete, false, c.id);
     assert.ok(Array.isArray(c.residual) && c.residual.length > 0, c.id);
     assert.match(c.rebirthTo, /^[A-Z0-9-]+B$/, c.id);

@@ -56,6 +56,9 @@ function joinScript(parts, cards) {
   const tokens = JSON.parse(rd('data/cards/tokens.json'));
   if (js.split('/*TOKENS_START*//*TOKENS_END*/').length !== 2) throw new Error('expected exactly one empty token marker in the script parts');
   js = js.replace('/*TOKENS_START*//*TOKENS_END*/', () => '/*TOKENS_START*/const BUILTIN_TOKENS = ' + packBlob(tokens) + ';/*TOKENS_END*/');
+  // v572 Rebirth back faces that run (data/cards/rebirth-b.json): non-enumerable CARDS entries, registered by packages/engine/src/03b-rebirth.js
+  if (js.split('/*REBB_START*//*REBB_END*/').length !== 2) throw new Error('expected exactly one empty rebirth-side marker in the script parts');
+  js = js.replace('/*REBB_START*//*REBB_END*/', () => '/*REBB_START*/const BUILTIN_REBB = ' + packBlob(JSON.parse(rd('data/cards/rebirth-b.json'))) + ';/*REBB_END*/');
   // v0.131.0 U14g: English flavor text per card id (data/index/flavor.json, tools/fetch_flavor.py), a compressed blob for the Lore tab;
   // only the web parts carry the marker, the headless engine script does not
   if (js.includes('/*FLAVOR_START*//*FLAVOR_END*/')) {

@@ -35,7 +35,7 @@ fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDe
 ## packages/engine/src/02e-effects-removed.js (169 lines, ~4.6k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
 
-## packages/engine/src/02f-effects-mill-discard.js (171 lines, ~4.4k tokens)
+## packages/engine/src/02f-effects-mill-discard.js (171 lines, ~4.5k tokens)
 deckSummonOffer, _pn
 
 ## packages/engine/src/02g-effects-attack-lock.js (96 lines, ~2.4k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
@@ -86,7 +86,7 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (222 lines, ~4.7k tokens)
+## packages/engine/src/02w-effects-indra.js (240 lines, ~5.3k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
@@ -103,6 +103,9 @@ COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, 
 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
 
+
+## packages/engine/src/03b-rebirth.js (35 lines, ~0.6k tokens)
+REBIRTH_B_IDS, registerRebirthB, rebirthTarget, rebirthFlip, rebirthSweep
 
 ## packages/engine/src/04-decks.js (208 lines, ~9.9k tokens) — DECK STORAGE AND VALIDATION
 deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, eternalDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor

@@ -1968,5 +1968,15 @@
   "status": "done",
   "example": "BS72-051",
   "rule": "Engine: only offered when a Nexus can be exhausted and a Brave from the Trash can combine; the Brave then triggers its Brave-summoned effects."
+ },
+ {
+  "id": "REBIRTH_FLIP",
+  "kind": "action",
+  "meaning": "Six Heaven Rebirth: flip this card to its back face.",
+  "pattern": "Six Heaven Rebirth: N or less Counters. When this Spirit attacks, you can flip it.",
+  "engine": "REBIRTH_FLIP {ask, lifeTrashSym, countLe} + trigger REBORN",
+  "status": "done",
+  "example": "SD57-TX01",
+  "rule": "Engine: the card is swapped for its back face (keeps cores and exhaust state), the owner gets Count +1, then the back face's When Reborn effects run; the face reverts when the card leaves the Field. Only one Rebirth at a time is not enforced."
  }
 ]

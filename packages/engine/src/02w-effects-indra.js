@@ -220,3 +220,21 @@ Object.assign(FX_ACTIONS, {
       c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${_pn(c)}: the opposing Burst is discarded.`); c.ctx.did = true;
       await FX_ACTIONS.LIFE_TO_RESERVE.run(c, { do: 'LIFE_TO_RESERVE', n: 1 });
     } } });
+
+/* v572 (Lane K) REBIRTH_FLIP {ask, lifeTrashSym, countLe}: Rebirth, "you can flip this card" (the flip itself is rebirthFlip in 03b-rebirth.js).
+   ask: you can (the human is asked, the CPU always flips). lifeTrashSym N: when you have N or more symbol colours, also send an opposing Life to the Trash ("instead, you can flip it, sending an opposing Life to the Trash":
+   the flip happens either way, the Life only with the colours). countLe N: only while you have N or fewer counters ("Six Heaven Rebirth: 5 or less Counters"). After the flip the owner gets Count +1 (one core from the Void becomes a counter, fires COUNTER_UP) and the back face's (When Reborn) effects fire. Not enforced: "only one Rebirth can be used at a time". */
+FX_ACTIONS.REBIRTH_FLIP = { chk: a => (a.ask == null || a.ask === true) && (a.lifeTrashSym == null || (Number.isInteger(a.lifeTrashSym) && a.lifeTrashSym >= 2 && a.lifeTrashSym <= 6)) && (a.countLe == null || (Number.isInteger(a.countLe) && a.countLe >= 0 && a.countLe <= 30)) && Object.keys(a).every(k => ['do', 'if', 'cost', 'ask', 'lifeTrashSym', 'countLe'].includes(k)),
+  txt: a => `${a.ask ? 'you can ' : ''}flip this card (Rebirth${a.countLe != null ? ': ' + a.countLe + ' or fewer counters' : ''})${a.lifeTrashSym ? `; with ${a.lifeTrashSym} or more symbol colours, also send an opposing Life to the Trash` : ''}`,
+  can: (c, a) => !!c.src && !!rebirthTarget(c.src) && (a == null || a.countLe == null || c.p.count <= a.countLe) && (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)),
+  run: async (c, a) => {
+    if (!FX_ACTIONS.REBIRTH_FLIP.can(c, a)) { c.ctx.did = false; return; }
+    if (a.ask && !c.p.cpu) {
+      const yes = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Flip this card (Rebirth) to ${esc(CARDS[CARDS[c.src.id].rebirthTo].name)}?`, buttons: [{ label: 'Flip', cls: 'primary', value: 1 }, { label: 'Skip', cls: 'cancel', value: 0 }] });
+      if (!yes) { c.ctx.did = false; return; }
+    }
+    const src = c.src; if (!rebirthFlip(c.p, src)) { c.ctx.did = false; return; }
+    if (a.lifeTrashSym && fxIf(c.p, c.opp, { symColorsGe: a.lifeTrashSym }, { selfInst: src }) && FX_ACTIONS.OPP_LIFE_TO_TRASH) await FX_ACTIONS.OPP_LIFE_TO_TRASH.run({ p: c.p, opp: c.opp, src, ctx: { did: true } }, { do: 'OPP_LIFE_TO_TRASH', n: 1 });
+    if (c.p.void >= 1) { takeFromVoid(c.p, 1); c.p.count += 1; log(`${CARDS[src.id].name}: counter +1 (Count +1).`); await fireFx(c.p, 'COUNTER_UP', null, { by: src }); }
+    c.ctx.did = true; if (!G.over) await fireFx(c.p, 'REBORN', src, {});
+  } };

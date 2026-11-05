@@ -87,7 +87,7 @@ export async function validate({ staged = false, engine = true } = {}) {
   const res = { schemaStale: false, shipped: {}, staged: null };
   const S = buildSchema();
   try { res.schemaStale = readFileSync(SCHEMA_PATH, 'utf8') !== schemaText(S); } catch { res.schemaStale = true; }
-  const shipped = [...JSON.parse(readFileSync(ensureAllCards(ROOT), 'utf8')), ...JSON.parse(readFileSync(join(ROOT, 'data/cards/tokens.json'), 'utf8'))];
+  const shipped = [...JSON.parse(readFileSync(ensureAllCards(ROOT), 'utf8')), ...JSON.parse(readFileSync(join(ROOT, 'data/cards/tokens.json'), 'utf8')), ...JSON.parse(readFileSync(join(ROOT, 'data/cards/rebirth-b.json'), 'utf8'))];
   for (const c of shipped) { const e = cardErrors(c, S); if (e.length) res.shipped[c.id] = e; }
   res.shippedN = shipped.length;
   let pool = [];

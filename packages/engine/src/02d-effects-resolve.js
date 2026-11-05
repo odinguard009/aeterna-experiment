@@ -24,7 +24,7 @@ async function runActions(c, e, trg) {
    - effects that activate at the same time form one pool; the TURN PLAYER decides the order (also for the opponent's effects);
    - an effect activated as a result of a resolving effect is resolved first, right after that effect has finished (derived queue).
    fireFxMulti takes several events that happen at the same time (e.g. Life reduced: attacker and defender effects). */
-async function fireFx(owner, trigger, src, ctx) { return fireFxMulti([{ owner, trigger, src, ctx }]); }
+async function fireFx(owner, trigger, src, ctx) { const r = await fireFxMulti([{ owner, trigger, src, ctx }]); if (typeof rebirthSweep === 'function') rebirthSweep(); return r; }
 function collectFx(ev) {
   const owner = ev.owner, trigger = ev.trigger, src = ev.src, ctx = ev.ctx || {};
   if (trigger === 'SUMMONED') ctx.subject = src;
@@ -35,7 +35,7 @@ function collectFx(ev) {
   if (trigger === 'ADVENT') { const card = CARDS[src.id]; if (card.effects) card.effects.forEach((e, idx) => { if (e.trigger === 'ADVENT' || (e.trigger === 'SUMMONED' && e.alsoAdvent)) add(e.trigger, src, e, idx); }); ctx.subject = src; }
   else if (trigger === 'SUMMONED' && ctx.noSelfFx) { /* v0.180: the summoned card's own (When Summoned) effects do not activate */ }
   else if (trigger === 'ATTACKS' && src && blocksAsAtkOn(owner, src)) { collect('ATTACKS', src); collect('BLOCKS', src); }      // v218
-  else if (trigger === 'SUMMONED' || trigger === 'REFRESHED' || trigger === 'ATTACKS' || trigger === 'MANIFEST' || trigger === 'DESTROYED' || trigger === 'LEAVES' || trigger === 'BATTLE_WIN' || trigger === 'TRIBUTED' || trigger === 'NEXUS_EXHAUST') collect(trigger, src);
+  else if (trigger === 'SUMMONED' || trigger === 'REBORN' || trigger === 'REFRESHED' || trigger === 'ATTACKS' || trigger === 'MANIFEST' || trigger === 'DESTROYED' || trigger === 'LEAVES' || trigger === 'BATTLE_WIN' || trigger === 'TRIBUTED' || trigger === 'NEXUS_EXHAUST') collect(trigger, src);
   else if (trigger === 'BLOCKS') { for (const { e, idx } of fxEntries(src)) { if (e.trigger === 'BLOCKS' || (e.trigger === 'ATTACKS' && e.alsoBlocks)) add('BLOCKS', src, e, idx); } }
   else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE' || trigger === 'MIRAGE_SET') { if (owner.mirage) collect(trigger, owner.mirage); }
   else for (const f of fieldList(owner)) collect(trigger, f);

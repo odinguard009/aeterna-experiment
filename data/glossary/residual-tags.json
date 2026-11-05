@@ -45438,16 +45438,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "SD57-TX01": [
-  "A_LIFE_TO_TRASH",
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_BURST",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "S_UNAFFECTED",
-  "T_ATTACKS"
- ],
  "BS56-001": [
   "C_LEVEL",
   "C_MIRAGE_SET",

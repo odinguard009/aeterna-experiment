@@ -189,8 +189,8 @@ async function lifeHandFx(D) {
     await castMagic(D, ch); io.view({ type: 'board' });
   }
 }
-async function braveSummonedFx(p, b) { if (G && !G.over && b) { await maybeBurst(p, 'BRAVE_SUMMONED', { subject: b }); await flushBursts(); if (!G.over) await fireFx(p, 'SUMMONED', b, { noSelfFx: true, braveDirect: true }); } }      // v572 a direct-combined Brave is a summoned Brave: allies' ALLY_SUMMONED (match type Brave) fire; its own (When Summoned) is handled elsewhere
-async function braveSummonedEvs(evs) { for (const e of evs) if (e.trigger === 'SUMMONED' && !(e.ctx && e.ctx.braveDirect) && e.src && CARDS[e.src.id] && CARDS[e.src.id].type === 'Brave') await braveSummonedFx(e.owner, e.src); }
+async function braveSummonedFx(p, b, viaEvent) { if (G && !G.over && b) { await maybeBurst(p, 'BRAVE_SUMMONED', { subject: b }); await flushBursts(); if (!viaEvent && !G.over) await fireFx(p, 'SUMMONED', b, { noSelfFx: true, braveDirect: true }); } }      // v572 a direct-combined Brave is a summoned Brave: allies' ALLY_SUMMONED (match type Brave) fire; its own (When Summoned) is handled elsewhere
+async function braveSummonedEvs(evs) { for (const e of evs) if (e.trigger === 'SUMMONED' && !(e.ctx && e.ctx.braveDirect) && e.src && CARDS[e.src.id] && CARDS[e.src.id].type === 'Brave') await braveSummonedFx(e.owner, e.src, true); }
 Object.assign(FX_ACTIONS, {
   /* v0.184 "You can use the Flash effect of a <match> Magic card from your Hand, without paying the cost": the card is cast (Flash side) for free and goes to the Trash */
   USE_FLASH: { chk: a => hasMatch(a.match),

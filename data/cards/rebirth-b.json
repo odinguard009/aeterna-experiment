@@ -1,0 +1,150 @@
+[
+ {
+  "id": "SD57-TX01B",
+  "name": "The HeavenlyDemonKing God-Sechs -Type Heaven-",
+  "name_jp": "天魔王ゴッド・ゼクス -天ノ型-",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 10,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 2,
+    "bp": 15000
+   },
+   {
+    "cores": 6,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Heavenly Demon King"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nSend three cores from any opposing Spirits/Ultimates to the Trash.\n{{Six Heaven Rush|5}}\nIf you have five or more colors of symbols, this effect can't be prevented by opposing effects.\n\n[LV2][LV3]\nThis Spirit is unaffected by opposing Spirit/Magic effects.\n{{Six Heaven Rush|6}}\nIf you have six colors of symbols, all your Spirits can't be blocked.",
+  "image": "SD57-TX01(B).png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 3,
+      "if": {
+       "not": {
+        "symColorsGe": 5
+       }
+      }
+     },
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 3,
+      "ignoreImmune": true,
+      "if": {
+       "symColorsGe": 5
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 3,
+      "if": {
+       "not": {
+        "symColorsGe": 5
+       }
+      }
+     },
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 3,
+      "ignoreImmune": true,
+      "if": {
+       "symColorsGe": 5
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNBLOCKABLE_LOW",
+    "to": "own",
+    "bpLe": 30000,
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "symColorsGe": 6,
+     "attackStep": true,
+     "oppTurn": false
+    }
+   }
+  ]
+ },
+ {
+  "id": "SD57-006B",
+  "name": "The HeavenlyDemonKing God-Sechs -Type Final-",
+  "name_jp": "天魔王ゴッド・ゼクス -焉ノ型-",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Heavenly Demon King"
+  ],
+  "text": "Count +1\n\n[LV1] (When Reborn)\nReturn an opposing Spirit to the deckbottom.\n{{Six Heaven Rush|5}}\nIf you have five or more symbol colors, destroy five opposing non-\"Primal\" family Grandwalker Nexuses.\n\n[LV1] Return to Prime\nWhen it would leave the Field due to an opposing effect, you can flip and deploy it.",
+  "image": "SD57-006(B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1] (When Reborn)",
+   "Return an opposing Spirit to the deckbottom.",
+   "{{Six Heaven Rush|5}}",
+   "If you have five or more symbol colors, destroy five opposing non-\"Primal\" family Grandwalker Nexuses.",
+   "[LV1] Return to Prime",
+   "When it would leave the Field due to an opposing effect, you can flip and deploy it."
+  ]
+ }
+]
