@@ -15724,16 +15724,48 @@
   "mechanics": [
    "Mirage"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Once per Turn: Same Name) When this card is discarded from the Hand by your \"Scalostle\" family effect, or sent to the Trash from deck by the effect of your \"Contractor Nuadha\", you can set it without paying the cost.",
-   "When you do, return your originally set Mirage to the Hand.",
-   "{{Mirage|Cost 5 ()}}",
-   "During Set",
-   "Your \"Contractor Nuadha\" Grandwalker Nexuses can't be destroyed by opposing effects.",
-   "Also, your \"Destruction Effects\" can't be prevented by opposing Cost 4 or less Spirit/Ultimate effects."
+  "fxComplete": true,
+  "note": "Dana Sniper: the Mirage set from the Trash is offered once per turn (same name); DESTROY_UNPREVENTABLE only bypasses NO_DESTROY_OPP / REMAIN_DESTROY held by Cost 4 or less Spirits/Ultimates (UNAFFECTED is target immunity and is not touched).",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "zone": "mirage",
+    "flag": "DESTROY_UNPREVENTABLE",
+    "to": "own",
+    "costLe": 4
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "mirage": {
+   "cost": 5
+  },
+  "mirageNexus": {
+   "name": "Contractor Nuadha",
+   "shieldOnly": true
+  },
+  "trashTrigger": {
+   "from": [
+    "hand",
+    "deck"
+   ],
+   "by": {
+    "name": [
+     "Contractor Nuadha"
+    ]
+   },
+   "byFrom": {
+    "hand": {
+     "family": [
+      "Scalostle"
+     ]
+    },
+    "deck": {
+     "name": [
+      "Contractor Nuadha"
+     ]
+    }
+   },
+   "mirageSet": true
+  }
  },
  {
   "id": "BS74-065",

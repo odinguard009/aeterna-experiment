@@ -78160,16 +78160,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS74-064": [
-  "A_SUMMON_FREE",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "K_MIRAGE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "S_CANT_PREVENT",
-  "T_MIRAGE_LIFE"
- ],
  "BS74-065": [
   "A_VOID",
   "C_LEVEL",

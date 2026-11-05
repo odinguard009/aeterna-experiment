@@ -125,11 +125,23 @@ async function gwCorePlus(c, n, nm) {
   const m = takeFromVoid(c.p, n); t.cores += m;
   log(`${nm}: +${m} core to ${CARDS[t.id].name}.`); io.view({ type: 'board' }); return m;
 }
+/* v576 BS74-064 The Dana Sniper: trashTrigger {mirageSet, byFrom {hand, deck}}: once per turn (same name) the card sent to the Trash may be set from there as the Mirage without paying; the Mirage set before returns to the Hand */
+async function trashMirageSet(c, x) {
+  const card = CARDS[x.id], p = c.p; p.mgTurn = p.mgTurn || {};
+  if (!card.mirage || p.mgTurn[card.name] === G.turnNo || !p.trash.includes(x)) return;
+  if (!p.cpu && !await ask({ title: `✨ ${card.name}`, peek: true, wide: true, html: `It was sent to the Trash. Set it as your Mirage without paying the cost${p.mirage ? ' (your set Mirage returns to the Hand)' : ''}?`, cards: cardIds([x]), buttons: [{ label: 'Set Mirage', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) return;
+  p.mgTurn[card.name] = G.turnNo;
+  if (p.mirage) { const o = p.mirage; o.mirage = false; p.mirage = null; p.hand.push(o); log(`${CARDS[o.id].name} returns to the Hand (${who(p)}).`); handUp(p, 1); }
+  removeFrom(p.trash, x); x.mirage = true; p.mirage = x;
+  log(`${who(p)} ${p.cpu ? 'sets' : 'set'} a Mirage face up without paying the cost: ${card.name}.`);
+  await fireFx(p, 'MIRAGE_SET', x, {}); io.view({ type: 'board' });
+}
 async function sentToTrashFx(c, cards, from) {
   if (!c || !c.src || !CARDS[c.src.id]) return;
   for (const x of cards) {
     const card = CARDS[x.id], tt = card.trashTrigger;
-    if (!tt || !tt.from.includes(from) || !c.p.trash.includes(x) || !fxMatch(CARDS[c.src.id], tt.by) || G.over) continue;
+    if (!tt || !tt.from.includes(from) || !c.p.trash.includes(x) || !fxMatch(CARDS[c.src.id], (tt.byFrom && tt.byFrom[from]) || tt.by) || (tt.byFrom && !tt.byFrom[from]) || G.over) continue;
+    if (tt.mirageSet) { await trashMirageSet(c, x); continue; }      // v576 BS74-064
     if (tt.add) {
       const yes = c.p.cpu ? true : await ask({ title: `✨ ${card.name}`, peek: true, wide: true, html: `It was sent to the Trash from your ${from === 'deck' ? 'Deck' : 'Hand'}. Add it to your Hand${tt.gwCore ? ' (then +' + tt.gwCore + ' core to a Grandwalker Nexus)' : ''}?`, cards: cardIds([x]),
         buttons: [{ label: 'Add to Hand', cls: 'primary', value: true }, { label: 'Keep in Trash', cls: 'cancel', value: false }] });

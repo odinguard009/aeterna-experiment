@@ -2028,5 +2028,7 @@
   "status": "wired",
   "example": "SD57-X02",
   "rule": "Engine: checked where an effect picks its target; once per effect; the redirected target is not re-validated against the action filters."
- }
+ },
+  {"id": "TRASH_MIRAGE_SET", "kind": "card field", "meaning": "Set this card from the Trash as a Mirage without paying, once per turn.", "pattern": "When this card is discarded from the Hand by your \"Scalostle\" family effect, or sent to the Trash from deck by the effect of your \"Contractor Nuadha\", you can set it without paying the cost. When you do, return your originally set Mirage to the Hand.", "engine": "trashTrigger {from, by, byFrom, mirageSet}", "status": "wired", "example": "BS74-064", "rule": "Engine: sentToTrashFx offers it; once per turn per card name; the set Mirage returns to the Hand first."},
+  {"id": "DESTROY_UNPREVENTABLE", "kind": "STATIC flag", "meaning": "Your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects.", "pattern": "Your \"Destruction Effects\" can't be prevented by opposing Cost 4 or less Spirit/Ultimate effects.", "engine": "STATIC DESTROY_UNPREVENTABLE {costLe} (Mirage zone)", "status": "partial", "example": "BS74-064", "rule": "Engine: removeSpirit ignores NO_DESTROY_OPP and REMAIN_DESTROY held by such Spirits/Ultimates; UNAFFECTED (target immunity) is not touched."}
 ]

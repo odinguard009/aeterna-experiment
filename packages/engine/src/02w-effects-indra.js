@@ -64,6 +64,11 @@ function soulEnterHook(p, inst) {
   const mn = G && G.evQ && p.mirage && CARDS[p.mirage.id].mirageNexus;
   if (mn && mn.soul && CARDS[inst.id].name.endsWith(mn.name) && !G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst });
 }
+/* v576 BS74-064 The Dana Sniper: Mirage STATIC DESTROY_UNPREVENTABLE {costLe}: "your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects". Read by removeSpirit: the can't-be-destroyed / remain-on-Field statics (NO_DESTROY_OPP, REMAIN_DESTROY) held by such a Spirit/Ultimate don't stop the Spirit the effect destroys. (Other prevention such as UNAFFECTED is target immunity and is not touched.) */
+function destroyUnpreventable(byKey, holder) {
+  const m = G && G.p[byKey] && G.p[byKey].mirage; if (!m || !holder || !CARDS[holder.id] || !['Spirit', 'Ultimate'].includes(CARDS[holder.id].type)) return false;
+  return fxEntries(m).some(({ e }) => e.trigger === 'STATIC' && e.zone === 'mirage' && e.flag === 'DESTROY_UNPREVENTABLE' && CARDS[holder.id].cost <= e.costLe);
+}
 function nexusShielded(p, n) {
   if (nexusSwapSave(p, n)) return true;
   if (nexusGuarded(p, n)) return true;
@@ -73,7 +78,7 @@ function nexusShielded(p, n) {
 function nexusVoided(p, uid) {
   nexusCoresDown(p, uid);
   if (!G || !G.evQ || G.over || !p.mirage) return;
-  const n = p.nexus.find(x => x.uid === uid); if (!n || !mirageNexusOf(p, n) || CARDS[p.mirage.id].mirageNexus.soul || G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) return;
+  const n = p.nexus.find(x => x.uid === uid); if (!n || !mirageNexusOf(p, n) || CARDS[p.mirage.id].mirageNexus.soul || CARDS[p.mirage.id].mirageNexus.shieldOnly || G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) return;
   G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst: n });
 }
 async function mirageSummonOffer(p) {

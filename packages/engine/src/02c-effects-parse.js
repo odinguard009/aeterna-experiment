@@ -167,6 +167,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_BLOCK_SHAMAN needs a whole-number "costLe" (0-30)' };
         o.costLe = e.costLe;
       }
+      if (e.flag === 'DESTROY_UNPREVENTABLE') {                    // v576 "your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects"
+        if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'DESTROY_UNPREVENTABLE needs a whole-number "costLe" (0-30)' };
+        o.costLe = e.costLe;
+      }
       if (e.flag === 'BP_VIA_SHAMAN') {                            // v201 "all your Spirits summoned via Shamanism this turn gain +N BP"
         if (!Number.isInteger(e.n) || e.n < 1000 || e.n > 5000 || e.n % 1000 !== 0) return { error: 'BP_VIA_SHAMAN needs a whole-number "n" (1000-5000, step 1000)' };
         o.n = e.n;
