@@ -73919,14 +73919,74 @@
   "image": "SD57-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) You can reveal three cards from your decktop. Among them, add a \"HeavenlyDemon\" and an exactly-named \"The Owari World\" to the Hand. Discard any remaining cards.",
-   "[LV1][LV2] The Spirit's symbol is also treated as Red/Green/White/Yellow/Blue.",
-   "[LV2] All exactly-named \"The HeavenlyDemonKing God-Sechs\" in your Hand become Cost 6."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). Names match as substrings (HeavenlyDemon, The Owari World); HAND_COST as SD32-002.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "name": [
+        "HeavenlyDemon"
+       ],
+       "notName": [
+        "Owari"
+       ]
+      },
+      "also": {
+       "name": [
+        "The Owari World"
+       ]
+      },
+      "rest": "trash"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "colors": [
+     "red",
+     "green",
+     "white",
+     "yellow",
+     "blue"
+    ],
+    "symbol": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "HAND_COST",
+    "lv": [
+     2
+    ],
+    "n": 6,
+    "match": {
+     "type": "Spirit",
+     "name": [
+      "God-Sechs"
+     ],
+     "notName": [
+      "-Type",
+      "Sechs X"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "SD57-004",

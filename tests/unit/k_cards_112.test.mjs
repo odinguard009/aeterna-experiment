@@ -88,3 +88,13 @@ test('K-1182 SD57-005: braved to a God-Sechs-named Spirit the host gains all six
     return { fc: BS.CARDS['SD57-005'].partial === false, god: run('SD32-X02'), other: run(other) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.god, 6, JSON.stringify(r)); assert.ok(r.other < 6, JSON.stringify(r));
 });
+
+test('K-1183 SD57-003: reveals three, adds a HeavenlyDemon card and The Owari World, discards the rest; God-Sechs costs 6 at Lv2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const me = BS.mkInst('SD57-003'); me.cores = 3; P.spirits = [me]; P.hand = []; const filler = BS.mkInst('SD57-005');
+    P.deck = [BS.mkInst('SD57-006'), BS.mkInst('SD57-X02'), filler].concat(P.deck); const t0 = P.trash.length;
+    await BS.fireFx(P, 'SUMMONED', me, {});
+    return { fc: BS.CARDS['SD57-003'].partial === false, hand: P.hand.map(x => x.id).sort(), trashed: P.trash.length - t0, cost: handCostSet(P, BS.CARDS['SD32-X02']) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.hand.length, 2, JSON.stringify(r)); assert.ok(r.hand.includes('SD57-006'), JSON.stringify(r)); assert.equal(r.cost, 6, JSON.stringify(r));
+});
