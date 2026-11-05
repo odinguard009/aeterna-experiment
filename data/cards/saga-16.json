@@ -29502,15 +29502,46 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card is also treated as a Magic card.",
-   "(Once per Turn: Same Name) When your \"God-Sechs\" is summoned/advents, you can return this card from your Trash to the Hand.",
-   "Flash (You can't use this effect while it's on Field)",
-   "During this turn, give an opposing Spirit/Ultimate -5000 BP. When this effect brought it to 0 BP, destroy it, and draw a card from the deckbottom. After this effect resolves, you can summon this card without paying the cost."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Effects authored by hand (Lane K, priority list God-Sech group).",
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "alsoMagic": true,
+   "summonAfter": true,
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 5000,
+     "zeroDestroy": true,
+     "drawN": 1,
+     "drawBottom": true
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "zone": "trash",
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-022",

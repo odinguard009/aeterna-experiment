@@ -288,3 +288,18 @@ test('K-1168 BSC48-017: a core from the Void to the Trash, then a core to itself
     return { trashed: P.trashCores.n - t, cores: me.cores, void: P.void, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.trashed, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
 });
+
+test('K-1169 BSC48-021: Flash -5000 BP destroys at 0 BP and draws from the deckbottom; returns from the Trash when a God-Sechs is summoned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-021'];
+    const t = BS.mkInst('BS52-RV004'); t.cores = 3; O.spirits = [t]; t.bpMod = 5000 - BS.bpOf(t);
+    const me = BS.mkInst('BSC48-021'); const bottom = P.deck[0]; const h = P.hand.length;
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: K.magic.actions });
+    const e = K.effects[0]; const drew = P.hand.length - h;
+    const gs = Object.keys(BS.CARDS).find(k => /God-Sechs/.test(BS.CARDS[k].name) && BS.CARDS[k].type === 'Spirit'); const g = BS.mkInst(gs); P.spirits = [g]; P.trash = [me]; P.hand = [];
+    await BS.fireFx(P, 'ALLY_SUMMONED', g, { subject: g });
+    const back = P.hand.includes(me);
+    return { back,  gone: !O.spirits.includes(t), drew, gs, col: BS.collectFx({ owner: P, trigger: 'ALLY_SUMMONED', src: g, ctx: { subject: g } }).length,  sa: K.magic.summonAfter, zone: e.zone, trg: e.trigger, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.sa, true); assert.equal(r.back, true, JSON.stringify(r));
+});

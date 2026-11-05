@@ -1648,5 +1648,15 @@
     "status": "full",
     "example": "BSC48-014",
     "rule": "Engine: before an opposing MILL_OPP resolves, flagged cards in the Hand/Trash and among the discarded cards can be summoned without paying the cost."
+  },
+  {
+    "id": "K_BP_MINUS_DRAW_BOTTOM",
+    "kind": "effect",
+    "meaning": "give -N BP, destroy at 0 BP and draw from the deckbottom",
+    "pattern": "destroy it, and draw a card from the deckbottom",
+    "engine": "BP_MINUS zeroDestroy drawN drawBottom",
+    "status": "full",
+    "example": "BSC48-021",
+    "rule": "Engine: after the BP loss, a target at 0 BP is destroyed and the player draws N cards from the bottom of the Deck."
   }
 ]
