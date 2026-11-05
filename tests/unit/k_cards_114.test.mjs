@@ -23,7 +23,7 @@ test('K-1212 BS72-051: Main LV2 exhausts a Contractor Nuadha Nexus and braves a 
     await BS.fireFx(P, 'ACTIVATE', sp, {}); const lowCount = { brave: !!sp.brave, ex: nx.exhausted };
     P.count = 5; await BS.fireFx(P, 'ACTIVATE', sp, {});
     return { fc: BS.CARDS['BS72-051'].partial === false, bid, lowCount, brave: sp.brave && sp.brave.uid === b.uid, ex: nx.exhausted, trash: P.trash.length }; })()`);
-  assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.lowCount, { brave: false, ex: false }, JSON.stringify(r)); assert.equal(r.brave, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.lowCount, { brave: false, ex: false }, JSON.stringify(r)); assert.equal(r.brave, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.trash, 2, JSON.stringify(r));   // the Brave left the Trash; the ALLY_SUMMONED loot then discards two drawn cards
 });
 
 test('K-1213 BS72-X07 Burst: summons itself, braves a Scalostle Brave from Hand/Trash, then destroys the highest-cost opposing Spirit (no Brave: no destroy)', async () => {
@@ -35,4 +35,14 @@ test('K-1213 BS72-X07 Burst: summons itself, braves a Scalostle Brave from Hand/
       const fired = await BS.maybeBurst(O, 'OPP_SUMMON_FX', {}); return { fired, highGone: !P.spirits.some(s => s.uid === b.uid), lowStays: P.spirits.some(s => s.uid === a.uid), self: O.spirits.length }; };
     return { none: await run(false), one: await run(true) }; })()`);
   assert.equal(r.none.highGone, false, JSON.stringify(r)); assert.equal(r.one.highGone, true, JSON.stringify(r)); assert.equal(r.one.lowStays, true, JSON.stringify(r));
+});
+
+test('K-1214 BS72-051: a Scalostle Brave summoned and directly combined fires "when your Scalostle Braves are summoned" (draw two, discard two)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const sp = BS.mkInst('BS72-051'); sp.cores = 3; const nx = BS.mkInst('BS71-CX03'); nx.cores = 2; P.spirits = [sp]; P.nexus = [nx];
+    P.trash = [BS.mkInst('BS71-063')]; P.hand = []; P.count = 5; const d0 = P.deck.length;
+    await BS.fireFx(P, 'ACTIVATE', sp, {});
+    return { braved: !!sp.brave, drawn: d0 - P.deck.length, hand: P.hand.length }; })()`);
+  assert.equal(r.braved, true, JSON.stringify(r)); assert.equal(r.drawn, 2, JSON.stringify(r));
 });
