@@ -88648,12 +88648,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "PB17-X02": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "S_UNAFFECTED",
-  "T_ALLY_ATTACKS"
- ],
  "PB17-X03": [
   "A_REFRESH",
   "A_SUMMON_FREE",
@@ -89007,12 +89001,6 @@
   "K_SEAL",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "PB39-RVX02": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "S_UNAFFECTED",
-  "T_ALLY_ATTACKS"
  ],
  "PB39-RVX03": [
   "A_REFRESH",

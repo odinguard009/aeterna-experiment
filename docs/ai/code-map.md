@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (357 lines, ~12.4k tokens)
+## packages/engine/src/02c-effects-parse.js (357 lines, ~12.5k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (453 lines, ~10.2k tokens)
@@ -86,8 +86,8 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (95 lines, ~2.3k tokens)
-symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
+## packages/engine/src/02w-effects-indra.js (102 lines, ~2.4k tokens)
+symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay

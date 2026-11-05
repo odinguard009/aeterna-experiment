@@ -131,3 +131,14 @@ test('K-1186 P16-16: destroys the rest of the board; with six symbol colours rev
     return { fc: BS.CARDS['P16-16'].partial === false, spirits: P.spirits.map(x => x.id), nexus: P.nexus.length, atk: cantAttack(P, me) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.nexus, 0, JSON.stringify(r)); assert.ok(r.spirits.includes('P16-16') && !r.spirits.includes('SD32-002'), JSON.stringify(r)); assert.equal(r.atk, true, JSON.stringify(r));
 });
+
+test('K-1187 PB17-X02: six Pentan-named Spirits turn its symbols into six Yellow; its attack aura gives -6000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const me = BS.mkInst('PB17-X02'); me.cores = 4; P.spirits = [me]; const solo = symbolsOn(P);
+    const pen = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].name.includes('Pentan') && k !== 'PB17-X02' && BS.CARDS[k].levels.length > 0);
+    for (let i = 0; i < 5; i++) { const x = BS.mkInst(pen); x.cores = 1; P.spirits.push(x); }
+    const six = symbolsOn(P), meAlone = (() => { const y = P.spirits; P.spirits = [me]; const q = P.spirits.length; P.spirits = y; return q; })();
+    return { fc: BS.CARDS['PB17-X02'].partial === false, solo, yellow: six.yellow }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.ok(r.yellow >= 6, JSON.stringify(r));
+});

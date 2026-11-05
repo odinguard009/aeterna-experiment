@@ -93,3 +93,10 @@ Object.assign(FX_ACTIONS, {
       for (const n of c.p.nexus.slice()) removeNexus(c.p, n, 'destroyed');
       checkDepletion(c.p); log(`${CARDS[c.src.id].name}: ${poss(c.p)} other Spirits and Nexuses are destroyed.`); io.view({ type: 'board' });
     } } });
+
+/* v555 EXTRA_SYMBOL {replace:true}: "change this Spirit's symbols to N <colour> symbols" while `if` holds (PB17-X02): the printed symbols are dropped, the N extras stay (extraSymbolsOf). */
+function symReplaced(p, i) {
+  if (!G || !fieldList(p).includes(i)) return false;
+  const L = lvNo(i), opp = G.p[other(p.key)];
+  return fxEntries(i).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'EXTRA_SYMBOL' && e.replace === true && !(e.lv && !e.lv.includes(L)) && fxIf(p, opp, e.if, { selfInst: i }));
+}

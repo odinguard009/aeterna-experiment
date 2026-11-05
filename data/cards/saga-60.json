@@ -27690,13 +27690,66 @@
   "image": "PB17-X02.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit is unaffected by opposing Spirit/Magic effects. {{Six Pen Rush|6}} While you control six or more \"Pentan\"-named Spirits, change this Spirit's symbols to (Yellow Core)(Yellow Core)(Yellow Core)(Yellow Core)(Yellow Core)(Yellow Core) (six Yellow symbols).",
-   "[LV2][LV3] (Your Attack Step) When your \"Pentan\"-named Spirit attacks, during this turn, give an opposing Spirit -6000 BP. Destroy the Spirits whose BP are brought to 0 by this effect."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "Lane K priority list. Six Pen Rush 6: EXTRA_SYMBOL replace:true (printed symbols dropped, six Yellow) while ctrl 6+ Pentan-named Spirits (this one counts).",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "EXTRA_SYMBOL",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "color": "yellow",
+    "n": 6,
+    "replace": true,
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "name": "Pentan",
+      "n": 6
+     }
+    }
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "name": [
+      "Pentan"
+     ]
+    },
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 6000,
+      "zeroDestroy": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "PB17-X03",
@@ -29466,17 +29519,66 @@
   "bicon": [
    "11"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3]",
-   "This Spirit is unaffected by opposing Spirit/Magic effects.",
-   "{{Six Pen Rush|6}}",
-   "While you control six or more \"Pentan\"-named Spirits, change this Spirit's symbols to (Yellow Core) (Yellow Core) (Yellow Core) (Yellow Core) (Yellow Core) (Yellow Core) (six Yellow symbols).",
-   "[LV2][LV3] (Your Attack Step)",
-   "When your \"Pentan\"-named Spirit attacks, during this turn, give an opposing Spirit -6000 BP. Destroy the Spirits whose BP are brought to 0 by this effect."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "Lane K priority list. Six Pen Rush 6: EXTRA_SYMBOL replace:true (printed symbols dropped, six Yellow) while ctrl 6+ Pentan-named Spirits (this one counts).",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "EXTRA_SYMBOL",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "color": "yellow",
+    "n": 6,
+    "replace": true,
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "name": "Pentan",
+      "n": 6
+     }
+    }
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "name": [
+      "Pentan"
+     ]
+    },
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 6000,
+      "zeroDestroy": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "PB39-RVX03",

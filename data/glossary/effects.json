@@ -1768,5 +1768,15 @@
     "status": "full",
     "example": "P16-16",
     "rule": "Engine: no Brave card can be combined with this Spirit (braveFits refuses it). The 'can't be negated' rider has nothing to negate."
+  },
+  {
+    "id": "K_SYMBOLS_CHANGED_TO",
+    "kind": "effect",
+    "meaning": "While a condition holds, change this Spirit's symbols to N symbols of one colour",
+    "pattern": "change this Spirit's symbols to",
+    "engine": "EXTRA_SYMBOL replace:true",
+    "status": "full",
+    "example": "PB17-X02",
+    "rule": "Engine: while the condition holds the printed symbols no longer count and N symbols of the colour count instead."
   }
 ]

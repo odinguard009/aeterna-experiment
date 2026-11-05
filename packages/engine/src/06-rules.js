@@ -197,7 +197,7 @@ function extraSymbolsOf(owner, i) {
 /* symbols usable for cost reduction: Field cards only (not Soul State, p. 55, unless the card being paid says so; not the Burst Area, p. 49) */
 function fieldSymbols(p, withSoulState, withStandby) {     // withStandby: cost reduction also counts cards waiting in Standby (v0.57.0)
   const out = [];
-  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of alsoSyms(i, (CARDS[i.id].type === 'Ultimate' && G ? symbolAttrs(CARDS[i.id]).map(a => a.concat(ultSymbolExtra(p, CARDS[i.id]).filter(c => !a.includes(c)))) : symbolAttrs(CARDS[i.id])).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : []))) out.push(a);
+  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of alsoSyms(i, (symReplaced(p, i) ? [] : CARDS[i.id].type === 'Ultimate' && G ? symbolAttrs(CARDS[i.id]).map(a => a.concat(ultSymbolExtra(p, CARDS[i.id]).filter(c => !a.includes(c)))) : symbolAttrs(CARDS[i.id])).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : []))) out.push(a);
   return out;
 }
 function symbolsOn(p, withSoulState) {        // count per attribute (a two-attribute symbol counts in both)
