@@ -11,9 +11,5 @@ Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.
 ## 3. Awakened Dragon family (awakened-dragon-family): 0 of 0 complete - DONE
 Added 2026-11-05. Every card whose families list holds Awakened Dragon (not cards that only have it in the name).
 
-## 4. Grandwalker Nuadha + Scalostle family (nuadha): 27 of 28 complete
+## 4. Grandwalker Nuadha + Scalostle family (nuadha): 28 of 28 complete - DONE
 Added 2026-11-05. owner 2026-11-05
-
-| Card | Name | State |
-|---|---|---|
-| BS71-072 | Nuadha's Bulwark Temple | OPEN |
