@@ -176,3 +176,19 @@ Object.assign(FX_ACTIONS, {
       if (!out.length) { c.ctx.did = false; return; }
       await sentToTrashFx(c, out, 'hand'); io.view({ type: 'board' });
     } } });
+
+/* v561 OPP_HAND_DISCARD_LOOK {n}: "look at the entire opposing Hand, and discard n cards from among them" (you choose; BS71-NX03). Cards the opposing Hand is unaffected for stay out. */
+Object.assign(FX_ACTIONS, {
+  OPP_HAND_DISCARD_LOOK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'n', 'if'].includes(k)),
+    txt: a => `look at the entire opposing Hand and discard ${a.n} card${a.n === 1 ? '' : 's'} from among them`, can: c => c.opp.hand.length > 0,
+    run: async (c, a) => {
+      const o = c.opp; let k = 0;
+      for (let j = 0; j < a.n; j++) {
+        const L = o.hand.filter(x => !handSafe(x, o, c)); if (!L.length) break;
+        const d = c.p.cpu ? L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Look at the opposing Hand and choose a card to discard (${j + 1}/${a.n}).`, false);
+        removeFrom(o.hand, d); o.trash.push(d); k++;
+        log(`${_pn(c)}: ${poss(o)} ${CARDS[d.id].name} is discarded from the Hand.`);
+        await handDiscardedFx(o, d);
+      }
+      if (!k) c.ctx.did = false; io.view({ type: 'board' });
+    } } });

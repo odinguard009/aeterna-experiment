@@ -21412,17 +21412,60 @@
   "image": "BS71-NX03.png",
   "block": "71",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "Flash - (Either Attack Step)",
-   "If there are five or more cores on one of your Blue \"Contractor\", you can pay one cost to summon this card from the Hand.",
-   "[LV1][LV2][LV3] (When Summoned)",
-   "Ignoring the cost of Braves, destroy every opposing Cost 7 or less Spirit/Ultimate.",
-   "After this effect resolves, ignoring the cost of Braves, if the opponent controls any Cost 7 or less Spirit/Ultimate, look at the entire opposing Hand, and discard two cards from among them.",
-   "[LV2][LV3] (When Attacks)",
-   "The opponent can't end the Attack Step via effects."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "highSpeed": true,
+  "highSpeedCost": 1,
+  "highSpeedIf": {
+   "attackStep": true,
+   "coresOnGe": {
+    "n": 5,
+    "match": {
+     "color": [
+      "blue"
+     ],
+     "mono": true,
+     "name": [
+      "Contractor"
+     ]
+    }
+   }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_EVERY",
+      "costLe": 7,
+      "opposing": true
+     },
+     {
+      "do": "OPP_HAND_DISCARD_LOOK",
+      "n": 2,
+      "if": {
+       "oppCtrlMatch": {
+        "type": "Spirit",
+        "costLe": 7
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_END_ATTACK",
+    "lv": [
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "BS71-RV001",

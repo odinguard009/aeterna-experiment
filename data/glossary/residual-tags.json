@@ -69538,13 +69538,6 @@
   "K_ULTIMATE",
   "S_UNAFFECTED"
  ],
- "BS71-063": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "T_ATTACKS"
- ],
  "BS71-065": [
   "A_COUNTER",
   "A_DESTROY_BP",
@@ -69794,14 +69787,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_MIRAGE_LIFE"
- ],
- "BS71-NX03": [
-  "A_END_ATTACK",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_ATTACKS",
-  "T_SUMMONED"
  ],
  "BS71-RV001": [
   "A_BANISH",

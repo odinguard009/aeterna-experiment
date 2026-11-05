@@ -58,3 +58,18 @@ test('K-1197 BS71-063: braved Spirit refreshes by exhausting a Nexus with six or
     return { fc: BS.CARDS['BS71-063'].partial === false, low, ex: sp.exhausted, nx: nx.exhausted }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.low, { ex: true, nx: false }, JSON.stringify(r)); assert.equal(r.ex, false, JSON.stringify(r)); assert.equal(r.nx, true, JSON.stringify(r));
 });
+
+test('K-1198 BS71-NX03: Flash summon needs five cores on a Blue Contractor and pays one cost; When Summoned destroys Cost 7 or less and discards two', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+        const k = BS.CARDS['BS71-NX03']; const cheap = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && BS.CARDS[x].cost <= 7);
+    const big = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && BS.CARDS[x].cost >= 8);
+    const sp = BS.mkInst('BS71-CX03'); sp.cores = 4; P.spirits = []; P.nexus = [sp]; const bres = BS.mkInst('BS71-NX03'); P.hand = [bres];
+    const o1 = BS.mkInst(cheap); o1.cores = 1; const o2 = big ? BS.mkInst(big) : null; if (o2) o2.cores = 3; O.spirits = [o1].concat(o2 ? [o2] : []); O.hand = [BS.mkInst(cheap), BS.mkInst(cheap), BS.mkInst(cheap)]; O.trash = [];
+    const hs0 = BS.highSpeedOK ? BS.highSpeedOK(P, bres) : null; sp.cores = 5; G.step = 5; const hs1 = BS.highSpeedOK ? BS.highSpeedOK(P, bres) : null;
+    P.hand = []; bres.cores = 1; P.spirits = [bres];
+    await BS.fireFx(P, 'SUMMONED', bres, {});
+    return { hs0, hs1, fc: k.partial === false, cost: k.highSpeedCost, oppLeft: O.spirits.length, big: !!o2, hand: O.hand.length, trash: O.trash.length }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.cost, 1, JSON.stringify(r)); assert.equal(r.oppLeft, r.big ? 1 : 0, JSON.stringify(r));
+  assert.equal(r.hand, 3, JSON.stringify(r));
+});

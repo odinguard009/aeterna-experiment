@@ -1828,5 +1828,25 @@
     "status": "done",
     "example": "BS72-074",
     "rule": "Engine: the owner picks the cards to discard (the CPU throws away the cheapest) until the Hand holds at most n cards."
+  },
+  {
+    "id": "K_OPP_HAND_DISCARD_LOOK",
+    "kind": "action",
+    "meaning": "Look at the entire opposing Hand and discard cards from it",
+    "pattern": "look at the entire opposing Hand, and discard two cards from among them",
+    "engine": "OPP_HAND_DISCARD_LOOK n",
+    "status": "done",
+    "example": "BS71-NX03",
+    "rule": "Engine: the owner of the effect looks at the opposing Hand and chooses the cards to discard (the CPU takes the most expensive)."
+  },
+  {
+    "id": "K_CORES_ON_GE",
+    "kind": "condition",
+    "meaning": "You control a matching card with N or more cores on it",
+    "pattern": "five or more cores on one of your Blue \"Contractor\"",
+    "engine": "if.coresOnGe {n, match}",
+    "status": "done",
+    "example": "BS71-NX03",
+    "rule": "Engine: true when one card on your field that matches has at least N cores on it."
   }
 ]
