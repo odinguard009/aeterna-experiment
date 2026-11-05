@@ -68,7 +68,7 @@ def audit(c, r):
                     probs.append('head 『%s』 Lv%s but effects have lv %s' % (m.group(2), lv, [e.get('lv') for e in cand]))
     # every BP figure in the Japanese text must appear in the compiled data (a Magic stores its BP in thousands)
     jp = re.sub(r'\[Lv[^\]]*\]', '', ''.join(r['textJp']).translate(str.maketrans('０１２３４５６７８９', '0123456789')))
-    fx = json.dumps([effs, c.get('magic'), c.get('burst'), c.get('handCost')], ensure_ascii=False)      # handCost holds the cost-change condition (v198)
+    fx = json.dumps([effs, c.get('magic'), c.get('burst'), c.get('handCost'), c.get('highSpeedIf')], ensure_ascii=False)      # handCost holds the cost-change condition (v198)
     for m in sorted(set(re.findall(r'\d{4,5}', jp))):
         if '"NEXUS_AS_SPIRIT"' in fx and m in ('5000', '7000'): continue      # v154 NEXUS_AS_SPIRIT: the Nexus' LV1 5000 / LV2 7000 BP are fixed in the engine
         alts = [m, str(int(m) + 1)] + ([str(int(m) // 1000)] if c.get('type') == 'Magic' else [])      # N+1: "BP N or less" stored as selfBpGe N+1 under not

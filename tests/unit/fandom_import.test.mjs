@@ -101,9 +101,9 @@ test('I21 merged numbers kept one card each', () => {
   for (const id of report.merged) assert.ok(ids.has(id), id);
 });
 test('I22 number conflicts (same number, different cards) are reported with the card kept', () => {
-  assert.ok(report.number_conflicts.length >= 1);
   const by = Object.fromEntries(all.map(c => [c.id, c]));
-  for (const k of report.number_conflicts) { assert.ok(k.names.length > 1, k.id); assert.equal(by[k.id].name, k.kept, k.id); assert.ok(k.names.includes(k.kept), k.id); }
+  // a conflict whose card was completed and pruned from staging is history (BS73-AX03, v0.219.0)
+  for (const k of report.number_conflicts.filter(k => by[k.id])) { assert.ok(k.names.length > 1, k.id); assert.equal(by[k.id].name, k.kept, k.id); assert.ok(k.names.includes(k.kept), k.id); }
 });
 test('I23 Token rows are left out (tokens live in data/cards/tokens.json)', () => {
   assert.equal(report.tokens.length, 3);              // v0.62.0: + one Standard block A Token Spirit row
