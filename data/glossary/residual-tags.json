@@ -69531,9 +69531,6 @@
   "T_DURING_BRAVE",
   "T_MIRAGE_LIFE"
  ],
- "BS71-060": [
-  "K_BRAVE"
- ],
  "BS71-062": [
   "K_ARMOR",
   "K_BRAVE",
@@ -73733,6 +73730,7 @@
   "A_SOUL_STATE",
   "C_CONTROL",
   "C_LEVEL",
+  "K_DISCARD_DOWN_TO",
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "M_THEN",
@@ -76536,13 +76534,6 @@
   "K_ULTIMATE",
   "T_OPP_HAND_UP"
  ],
- "BS72-054": [
-  "A_DISCARD_OPP",
-  "A_REFRESH",
-  "K_BRAVE",
-  "T_ATTACKS",
-  "T_DURING_BRAVE"
- ],
  "BS72-055": [
   "C_LEVEL",
   "K_ADVENT",
@@ -76705,14 +76696,6 @@
   "M_TRASH_TRIGGER",
   "M_UNSTACKABLE",
   "S_CANT_PREVENT",
-  "S_UNAFFECTED"
- ],
- "BS72-074": [
-  "A_DRAW",
-  "C_LEVEL",
-  "C_ONCE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
   "S_UNAFFECTED"
  ],
  "BS72-075": [
@@ -78135,9 +78118,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS74-067": [
-  "K_BRAVE"
  ],
  "BS74-069": [
   "A_COUNTER",
@@ -82613,6 +82593,7 @@
   "A_DRAW",
   "C_LEVEL",
   "F_OTHER_NOSTACK",
+  "K_DISCARD_DOWN_TO",
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "M_UNSTACKABLE",

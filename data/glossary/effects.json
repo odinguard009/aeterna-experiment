@@ -1818,5 +1818,15 @@
     "status": "done",
     "example": "BS71-057",
     "rule": "Engine: fires for the Spirit that caused the destruction, through its own effect or a battle win."
+  },
+  {
+    "id": "K_DISCARD_DOWN_TO",
+    "kind": "action",
+    "meaning": "Discard cards from your Hand until it is N or less",
+    "pattern": "discard cards from your Hand until your Hand is three or less",
+    "engine": "DISCARD_DOWN_TO n",
+    "status": "done",
+    "example": "BS72-074",
+    "rule": "Engine: the owner picks the cards to discard (the CPU throws away the cheapest) until the Hand holds at most n cards."
   }
 ]

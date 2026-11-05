@@ -160,3 +160,19 @@ Object.assign(FX_ACTIONS, {
       }
       if (!done) c.ctx.did = false; io.view({ type: 'board' });
     } } });
+
+/* v560 DISCARD_DOWN_TO {n}: "discard cards from your Hand until your Hand is n or less" (BS72-074; you choose, the CPU throws away the cheapest). */
+Object.assign(FX_ACTIONS, {
+  DISCARD_DOWN_TO: { chk: a => Number.isInteger(a.n) && a.n >= 0 && a.n <= 5 && Object.keys(a).every(k => ['do', 'n', 'if'].includes(k)),
+    txt: a => `discard cards from your Hand until it is ${a.n} or less`, can: () => true,
+    run: async (c, a) => {
+      const out = [];
+      while (c.p.hand.length > a.n) {
+        const L = c.p.hand.slice();
+        const d = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose a card to discard (Hand must be ${a.n} or less).`, false);
+        removeFrom(c.p.hand, d); c.p.trash.push(d); out.push(d);
+        log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+      }
+      if (!out.length) { c.ctx.did = false; return; }
+      await sentToTrashFx(c, out, 'hand'); io.view({ type: 'board' });
+    } } });

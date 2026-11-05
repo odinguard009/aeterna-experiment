@@ -34,3 +34,17 @@ test('K-1195 BS71-057: Brave LV2 core to Nuadha and once-per-turn refresh when t
     return { fc: BS.CARDS['BS71-057'].partial === false, c1, ex1, c2: nx.cores }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ex1, false, JSON.stringify(r)); assert.ok(r.c1 > 2, JSON.stringify(r)); assert.equal(r.c2, r.c1, JSON.stringify(r));
 });
+
+test('K-1196 BS72-074: End Step LV2 draws two with Contractor Nuadha then discards down to three; Hand protected at five or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const nid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].name.toLowerCase().includes('contractor nuadha'));
+    const bn = BS.mkInst('BS72-074'); bn.cores = 2; P.nexus = [bn]; P.spirits = [];
+    const filler = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit');
+    P.deck = Array.from({ length: 10 }, () => BS.mkInst(filler)); P.hand = [BS.mkInst(filler), BS.mkInst(filler), BS.mkInst(filler)];
+    await BS.fireFx(P, 'END_STEP', bn, {}); const noNuadha = P.hand.length;
+    const sp = BS.mkInst(nid); sp.cores = 1; P.spirits = [sp];
+    await BS.fireFx(P, 'END_STEP', bn, {});
+    return { fc: BS.CARDS['BS72-074'].partial === false, noNuadha, after: P.hand.length, trash: P.trash.length }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.noNuadha, 3, JSON.stringify(r)); assert.equal(r.after, 3, JSON.stringify(r)); assert.equal(r.trash, 2, JSON.stringify(r));
+});

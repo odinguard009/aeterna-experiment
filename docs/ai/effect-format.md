@@ -587,3 +587,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v557 (Lane K): action `OPP_SPIRITS_CORES_TRASH {spirits, cores, lifeIf?}` ("put N cores each from M opposing Spirits to the opposing Trash"; with `lifeIf` true, one opposing Life core to the Reserve per Spirit depleted by it). Card: SJ15-20.
 - v558 (Lane K): action `REFRESH_PER_SYMCOLOR` ("for each colour of your symbols, refresh a Spirit you control"). Card: SD32-007 (Burst OPP_ATTACK thenFlash + Flash bounce/draw).
 - v559 (Lane K): `OPP_DESTROYED_FX.bySrc.self:true` (destroyed by this very card's own effect) and `self:true` for `ALLY_DESTROYS` (this Spirit destroys in battle); `VOID_TO_CARD` candidates honour instance match keys such as `hasBrave`. Cards: BS71-053, BS71-057.
+- v560 (Lane K): `DISCARD_DOWN_TO {n}` discards cards from your Hand until it is n or less (BS72-074); the Nexus Hand-protection uses STATIC `HAND_UNAFFECTED` with `if.handLe`.
