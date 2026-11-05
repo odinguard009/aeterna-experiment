@@ -1868,5 +1868,15 @@
     "status": "done",
     "example": "{\"trigger\":\"OWN_DISCARD\",\"actions\":[{\"do\":\"SUMMON_DISCARDED\",\"match\":{\"type\":\"Brave\"}}]}",
     "rule": "Engine: runs from OWN_DISCARD after the discard; the first matching discarded card is summoned from the Trash without paying its cost."
+  },
+  {
+    "id": "K_BURST_SPIRIT_PUNISH",
+    "kind": "condition",
+    "meaning": "look at the opposing Burst; if it's a Spirit card, discard it and send a Life to the Reserve",
+    "pattern": "Look at the contents of an opposing Burst, and if it's a Spirit card, discard it",
+    "engine": "BURST_SPIRIT_PUNISH",
+    "status": "done",
+    "example": "{\"do\":\"BURST_SPIRIT_PUNISH\"}",
+    "rule": "Engine: looks at the opposing set Burst; only a Spirit card is discarded, and then one opposing Life goes to the Reserve."
   }
 ]

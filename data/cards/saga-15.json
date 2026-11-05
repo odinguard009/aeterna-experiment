@@ -19841,15 +19841,32 @@
   "mechanics": [
    "Mirage"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Mirage|Cost 3 ()}}",
-   "During Set (Your Attack Step)",
-   "While your \"Scalostle\" family Brave Spirit is attacking, the opponent can't end the Attack Step via effects.",
-   "During Brave [LV2][LV3] (When Attacks)",
-   "Look at the contents of an opposing Burst, and if it's a Spirit card, discard it, and send an opposing Life to the Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "mirage": {
+   "cost": 3,
+   "noEnd": {
+    "family": [
+     "Scalostle"
+    ],
+    "hasBrave": true
+   }
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "braved": true,
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BURST_SPIRIT_PUNISH"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS71-060",

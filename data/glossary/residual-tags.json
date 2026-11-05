@@ -57206,6 +57206,7 @@
   "C_LEVEL",
   "K_BRAVE",
   "K_BURST",
+  "K_BURST_SPIRIT_PUNISH",
   "K_GRANDWALKER",
   "M_IF_YOU_DO",
   "M_OPTIONAL",
@@ -69518,18 +69519,6 @@
   "K_BRAVE",
   "M_OPTIONAL",
   "T_ALLY_SUMMONED"
- ],
- "BS71-059": [
-  "A_DISCARD_OPP",
-  "A_END_ATTACK",
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_BURST",
-  "K_MIRAGE",
-  "T_ATTACKS",
-  "T_DURING_BRAVE",
-  "T_MIRAGE_LIFE"
  ],
  "BS71-062": [
   "K_ARMOR",

@@ -207,3 +207,16 @@ Object.assign(FX_ACTIONS, {
       if (!c.p.cpu && !(await ask({ title: `✨ ${_pn(c)}`, peek: true, html: `Summon ${esc(CARDS[t.id].name)} instead of leaving it in the Trash?`, buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) return;
       if (await summonFree(c.p, t)) c.ctx.did = true;
     } } });
+
+/* v563 BURST_SPIRIT_PUNISH {}: "look at the contents of an opposing Burst, and if it's a Spirit card, discard it, and send an opposing Life to the Reserve" (BS71-059). A Burst that is safe from this effect is neither looked at nor discarded. */
+Object.assign(FX_ACTIONS, {
+  BURST_SPIRIT_PUNISH: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "look at the opposing Burst; if it's a Spirit card, discard it and send an opposing Life to the Reserve",
+    can: c => !!c.opp.burst,
+    run: async c => {
+      c.ctx.did = false; const b = c.opp.burst; if (!b || burstSetSafe(c.opp)) return;
+      log(`${_pn(c)}: the opposing Burst is looked at (${CARDS[b.id].name}).`);
+      if (CARDS[b.id].type !== 'Spirit') return;
+      if (await burstOnDiscard(c.opp, b)) return;
+      c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${_pn(c)}: the opposing Burst is discarded.`); c.ctx.did = true;
+      await FX_ACTIONS.LIFE_TO_RESERVE.run(c, { do: 'LIFE_TO_RESERVE', n: 1 });
+    } } });

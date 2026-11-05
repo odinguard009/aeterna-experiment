@@ -89,3 +89,14 @@ test('K-1199 P25-01: Cost Destruction limit grows per Scalostle Brave; own disca
     return { fc: k.partial === false, a, b, summoned: P.spirits.includes(x) || (P.nexus||[]).includes(x), inTrash: P.trash.includes(x) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.a, 1, JSON.stringify(r)); assert.equal(r.b, 0, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r));
 });
+
+test('K-1200 BS71-059: braved attack discards an opposing Spirit Burst and sends a Life to the Reserve; Mirage locks ending the attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const k = BS.CARDS['BS71-059']; const sp = BS.mkInst('BS71-059'); sp.cores = 3; P.spirits = [sp]; sp.brave = BS.mkInst(Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Brave'));
+    const bs = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && !!BS.CARDS[x].burst);
+    const b = BS.mkInst(bs); O.burst = b; O.trash = []; const life = O.life, res = O.reserve ? O.reserve.n : null;
+    await BS.fireFx(P, 'ATTACKS', sp, {});
+    return { fc: k.partial === false, burst: !!O.burst, inTrash: O.trash.includes(b), life: life - O.life, mir: !!(k.mirage && k.mirage.noEnd) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.burst, false, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r)); assert.equal(r.life, 1, JSON.stringify(r)); assert.equal(r.mir, true, JSON.stringify(r));
+});
