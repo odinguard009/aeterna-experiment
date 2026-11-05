@@ -92,3 +92,23 @@ test('K-1153 BS35-XX02 Type The End: Flash swap keeps cores/state and returns th
   assert.deepEqual(r.out, { onField: true, cores: 3, exh: true, back: true, removed: false, atk: true, gsCores: 0 }, JSON.stringify(r));
   assert.equal(r.unaff, true, JSON.stringify(r)); assert.equal(r.sy6, 6, JSON.stringify(r));
 });
+
+test('K-1154 BS46-10THX02 Type God: Seal from itself, God-Sechs treated as holding the Soul Core and unaffected while sealed, Rush 4 refreshes the family', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BS46-10THX02'], E = K.effects;
+    const me = BS.mkInst('BS46-10THX02'); me.cores = 3; me.soul = true; const gs = BS.mkInst('SD32-X02'); gs.cores = 3; P.spirits = [me, gs]; P.life = 3; P.lifeSoul = false;
+    const treatedOff = BS.fxIf(P, O, { selfSoul: true }, { selfInst: gs });
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    const sealed = BS.isSealed(P), lifeUp = P.life, soulGone = !me.soul;
+    const treatedOn = BS.fxIf(P, O, { selfSoul: true }, { selfInst: gs });
+    const foe = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token));
+    const unaff = BS.fxImmune(P, gs, { p: O, src: foe });
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)); w.cores = 1; O.spirits = [w];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: [E[3].actions[0]] });
+    const bounced = O.spirits.length === 0 && O.deck[O.deck.length - 1] === w;
+    return { treatedOff, sealed, lifeUp, soulGone, treatedOn, unaff, bounced, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.treatedOff, false, JSON.stringify(r));
+  assert.equal(r.sealed, true, JSON.stringify(r)); assert.equal(r.lifeUp, 4, JSON.stringify(r)); assert.equal(r.soulGone, true, JSON.stringify(r));
+  assert.equal(r.treatedOn, true, JSON.stringify(r)); assert.equal(r.unaff, true, JSON.stringify(r)); assert.equal(r.bounced, true, JSON.stringify(r));
+});

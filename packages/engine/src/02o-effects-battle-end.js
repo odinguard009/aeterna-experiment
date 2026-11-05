@@ -144,3 +144,5 @@ Object.assign(FX_ACTIONS, {
     } } });
 /* v535 SYM_ALL_COLORS (Six Heaven Rush 6, BS35-XX02): the attacker's symbols are fixed as one of each of the six colours (six symbols) */
 const symAllColorsOn = i => !!G && i.symLoseTurn !== G.turnNo && flagActive(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, 'SYM_ALL_COLORS', i);
+/* v535 STATIC SOUL_TREATED {to:'own', match, if}: "every <match> Spirit you control is treated as having the Soul Core on it" (BS46-10THX02); read by the selfSoul / srcSoul conditions only */
+const soulTreated = i => !!G && !!i && [G.p.player, G.p.opponent].some(o => o.spirits.includes(i) && flagActive(o, 'SOUL_TREATED', i));

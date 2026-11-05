@@ -62,8 +62,8 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02n-effects-void-destinations.js (82 lines, ~2.2k tokens)
 
 
-## packages/engine/src/02o-effects-battle-end.js (146 lines, ~3.1k tokens)
-endOfBattle, symAllColorsOn
+## packages/engine/src/02o-effects-battle-end.js (148 lines, ~3.2k tokens)
+endOfBattle, symAllColorsOn, soulTreated
 
 ## packages/engine/src/02p-effects-shared-shapes.js (621 lines, ~15k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtkTax, payBlockTax, blockedInferior, unblockableLow, shamanNoBlock, blockedByMark, rumbleNOf
@@ -74,7 +74,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02r-effects-actions-deck.js (146 lines, ~5.2k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (246 lines, ~6.6k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (246 lines, ~6.7k tokens)
 leaveHook
 
 ## packages/engine/src/02t-effects-actions-opp.js (329 lines, ~8.6k tokens)

@@ -84,9 +84,9 @@ Object.assign(FX_ACTIONS, {
       if (!t || !(await soulToNexus(c.p, t))) { c.ctx.did = false; return; }
     } },
   /* reveal n cards, summon/deploy one matching card among them (pay:true = paying its cost), from Lv add.lv add one card matching add.match to the Hand, the rest go to the bottom of the Deck */
-  SEAL: { chk: () => true, txt: () => 'Seal: send your Soul Core to your Life',
-    can: c => !isSealed(c.p) && soulSource(c.p) !== null,
-    run: async c => { c.ctx.did = soulToLife(c.p, soulSource(c.p)); io.view({ type: 'board' }); } },
+  SEAL: { chk: a => Object.keys(a).every(k => ['do', 'if', 'from'].includes(k)) && (a.from == null || a.from === 'self'), txt: a => a && a.from === 'self' ? 'Seal: send the Soul Core from this Spirit to your Life' : 'Seal: send your Soul Core to your Life',
+    can: (c, a) => !isSealed(c.p) && (a && a.from === 'self' ? !!c.src.soul && c.p.spirits.includes(c.src) && spare(c.src) >= 1 : soulSource(c.p) !== null),      // v535 from:'self' = "from this Spirit" (BS46-10THX02)
+    run: async (c, a) => { const h = a && a.from === 'self' ? (c.src.soul && c.p.spirits.includes(c.src) && spare(c.src) >= 1 ? c.src : null) : soulSource(c.p); c.ctx.did = soulToLife(c.p, h); io.view({ type: 'board' }); } },
   /* v0.48 "Thunder God Bombardment" (BS76-X02): reveal n from the decktop; per card whose name contains one of names (case-sensitive,
      so "Z" is the capital letter of "Z"-named cards), send an opposing Life to the Reserve; the revealed cards go to the Hand */
   /* v196 "Target one of your Spirits. Put any number of cores from it to this Spirit" (Re Awaken); any number = every spare core of that one Spirit */

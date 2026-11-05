@@ -27914,15 +27914,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS46-10THX02": [
-  "A_REFRESH",
-  "A_SEAL",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "S_UNAFFECTED",
-  "T_ATTACKS"
- ],
  "BS46-10THX03": [
   "A_BANISH",
   "A_VOID",

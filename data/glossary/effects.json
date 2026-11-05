@@ -1488,5 +1488,25 @@
     "status": "wired",
     "example": "{\"trigger\":\"STATIC\",\"flag\":\"SYM_ALL_COLORS\",\"to\":\"self\",\"if\":{\"symColorsGe\":6}}",
     "rule": "While you have six symbol colors the Spirit attacks with six symbols. Engine: SYM_ALL_COLORS (card text of BS35-XX02; the colors themselves are not tracked per attack symbol)."
+  },
+  {
+    "id": "K_SOUL_TREATED",
+    "kind": "phrase",
+    "meaning": "Every matching Spirit you control is treated as having the Soul Core on it",
+    "pattern": "is treated as having the .{0,6} on it",
+    "engine": "STATIC SOUL_TREATED {to:own, match, if}",
+    "status": "wired",
+    "example": "{\"trigger\":\"STATIC\",\"flag\":\"SOUL_TREATED\",\"to\":\"own\",\"match\":{\"name\":[\"God-Sechs\"]},\"if\":{\"sealed\":true}}",
+    "rule": "The listed Spirits satisfy \"if the Soul Core is on this Spirit\" conditions without holding it. Engine: SOUL_TREATED (card text of BS46-10THX02); only those conditions read it."
+  },
+  {
+    "id": "K_SEAL_FROM_SELF",
+    "kind": "phrase",
+    "meaning": "You can send the Soul Core from this Spirit to your Life",
+    "pattern": "send the .{0,6} from this spirit to your life",
+    "engine": "SEAL {from:\"self\"}",
+    "status": "wired",
+    "example": "{\"do\":\"SEAL\",\"from\":\"self\"}",
+    "rule": "Seal using the Soul Core that sits on this Spirit. Engine: SEAL from self (card text of BS46-10THX02)."
   }
 ]

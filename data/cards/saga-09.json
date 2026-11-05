@@ -15726,18 +15726,94 @@
   "mechanics": [
    "Seal"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] {{Seal|Seal}} (When Attacks)",
-   "You can send the  from this Spirit to your Life.",
-   "{{Seal|During Seal}} [LV1][LV2][LV3]",
-   "Every \"God-Sechs\"-named Spirit you control is treated as having the  on it, and is unaffected by opposing Spirit/Magic effects.",
-   "[LV2][LV3] (When Attacks)",
-   "Return an opposing Spirit/Ultimate to the deckbottom.",
-   "{{Seal|During Seal}} {{Six Heaven Rush|4}}",
-   "If you have four or more symbol colors, refresh every \"Heavenly Demon King\" family Spirit you control."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SEAL",
+      "from": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SOUL_TREATED",
+    "to": "own",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "if": {
+     "sealed": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "own",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "from": {
+     "types": [
+      "Spirit",
+      "Magic"
+     ]
+    },
+    "if": {
+     "sealed": true
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit"
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "all": true,
+      "match": {
+       "family": [
+        "Heavenly Demon King"
+       ]
+      },
+      "if": {
+       "sealed": true,
+       "symColorsGe": 4
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS46-10THX03",
