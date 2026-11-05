@@ -1958,5 +1958,15 @@
   "status": "done",
   "example": "BS72-X07",
   "rule": "Engine: the opponent chooses which cards go to the Trash; Hand cards unaffected by effects stay, and the check happens once when the effect starts."
+ },
+ {
+  "id": "K_EXHAUST_NEXUS_BRAVE_TRASH",
+  "kind": "action",
+  "meaning": "Exhaust a named Grandwalker Nexus, then summon a Brave from the Trash (cost at most your counters) straight onto a Spirit/Grandwalker Nexus.",
+  "pattern": "You can exhaust one of your Grandwalker Nexuses. When you have done so, summon a Brave from your Trash without paying the cost, directly braving it to your Spirit/Grandwalker Nexus.",
+  "engine": "EXHAUST_NEXUS_BRAVE_TRASH {nexusName, match}",
+  "status": "done",
+  "example": "BS72-051",
+  "rule": "Engine: only offered when a Nexus can be exhausted and a Brave from the Trash can combine; the Brave then triggers its Brave-summoned effects."
  }
 ]

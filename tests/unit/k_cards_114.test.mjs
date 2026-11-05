@@ -13,3 +13,15 @@ test('K-1211 BS72-X07: LV2 attack makes the opponent discard Hand + Removed down
     return { fc: BS.CARDS['BS72-X07'].partial === false, four, five }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.four, { tot: 4, trash: 0 }, JSON.stringify(r)); assert.deepEqual(r.five, { tot: 3, trash: 3 }, JSON.stringify(r));
 });
+
+test('K-1212 BS72-051: Main LV2 exhausts a Contractor Nuadha Nexus and braves a Scalostle Brave from the Trash (cost <= counters)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const bid = 'BS71-063';
+    const sp = BS.mkInst('BS72-051'); sp.cores = 3; const nx = BS.mkInst('BS71-CX03'); nx.cores = 2; P.spirits = [sp]; P.nexus = [nx];
+    const b = BS.mkInst(bid); P.trash = [b]; P.hand = []; P.count = 0;
+    await BS.fireFx(P, 'ACTIVATE', sp, {}); const lowCount = { brave: !!sp.brave, ex: nx.exhausted };
+    P.count = 5; await BS.fireFx(P, 'ACTIVATE', sp, {});
+    return { fc: BS.CARDS['BS72-051'].partial === false, bid, lowCount, brave: sp.brave && sp.brave.uid === b.uid, ex: nx.exhausted, trash: P.trash.length }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.lowCount, { brave: false, ex: false }, JSON.stringify(r)); assert.equal(r.brave, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
+});

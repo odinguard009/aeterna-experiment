@@ -2667,7 +2667,7 @@
   "image": "BS72-051.png",
   "block": "72",
   "saga": 16,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image. God reduction icon from Fandom (official list did not load BS71/BS72), v0.44.7.",
   "effects": [
    {
@@ -2690,11 +2690,29 @@
       "discard": 2
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     2
+    ],
+    "timing": [
+     "MAIN"
+    ],
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_NEXUS_BRAVE_TRASH",
+      "nexusName": "Contractor Nuadha",
+      "match": {
+       "family": [
+        "Scalostle"
+       ]
+      }
+     }
+    ]
    }
-  ],
-  "residual": [
-   "LV2 (Your Main Step): exhaust a Contractor Nuadha; summon from your Trash a Scalostle Brave with cost <= your counters, directly combined to your Spirit/Grandwalker Nexus",
-   "The draw trigger fires only when the Brave is summoned as a Spirit (a Brave summoned directly combined fires no summon trigger in this engine)"
   ],
   "bicon": [
    "12"

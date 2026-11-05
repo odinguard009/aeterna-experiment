@@ -231,6 +231,24 @@ FX_ACTIONS.DISCARD_OPP_HAND_REMOVED = {
     }
     c.ctx.did = k > 0; io.view({ type: 'board' });
   } };
+/* v571 EXHAUST_NEXUS_BRAVE_TRASH {nexusName, match} (BS72-051): "You can exhaust one of your <nexusName> Grandwalker Nexuses. When you've done so, you can summon from your Trash a <match> Brave card with a cost equal or inferior to your number of counters without paying the cost, directly braving it to your Spirit/Grandwalker Nexus."
+   The exhaust is the price (only offered when a Brave can be combined); the Brave goes from the Trash straight onto the chosen target, then the Brave-summoned triggers fire. */
+FX_ACTIONS.EXHAUST_NEXUS_BRAVE_TRASH = {
+  chk: a => typeof a.nexusName === 'string' && a.nexusName.length > 0 && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'nexusName', 'match'].includes(k)),
+  txt: a => `exhaust one of your "${a.nexusName}" Nexuses, then summon a matching Brave from your Trash (cost at most your counters) directly combined`,
+  nx: (c, a) => c.p.nexus.filter(n => !n.exhausted && fxMatch(CARDS[n.id], { name: a.nexusName })),
+  bv: (c, a) => c.p.trash.filter(b => CARDS[b.id].type === 'Brave' && fxMatch(CARDS[b.id], a.match) && CARDS[b.id].cost <= c.p.count && braveTargets(c.p, b).length > 0),
+  can: (c, a) => FX_ACTIONS.EXHAUST_NEXUS_BRAVE_TRASH.nx(c, a).length > 0 && FX_ACTIONS.EXHAUST_NEXUS_BRAVE_TRASH.bv(c, a).length > 0,
+  run: async (c, a) => {
+    const F = FX_ACTIONS.EXHAUST_NEXUS_BRAVE_TRASH, N = F.nx(c, a), B = F.bv(c, a);
+    if (!N.length || !B.length) { c.ctx.did = false; return; }
+    const n = await fxPickTarget(c, N, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap a Nexus to exhaust.`); if (!n) { c.ctx.did = false; return; }
+    const b = c.p.cpu ? B.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0] : await chooseCard(c, B, `✨ ${CARDS[c.src.id].name}`, 'Choose a Brave card from your Trash to summon.', false); if (!b) { c.ctx.did = false; return; }
+    const T = braveTargets(c.p, b), t = await fxPickTarget(c, T, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Spirit/Nexus to combine ${esc(CARDS[b.id].name)} with.`); if (!t) { c.ctx.did = false; return; }
+    n.exhausted = true; log(`${CARDS[n.id].name} is exhausted.`);
+    removeFrom(c.p.trash, b); b.viaFx = true; b.summonedTurn = G.turnNo; combineBrave(c.p, b, t); c.ctx.did = true;
+    io.view({ type: 'board' }); await braveSummonedFx(c.p, b);
+  } };
 /* v567 TRASH_PICK_THREE {nameHas, costLe} (BSC48-052): "from your Trash, either return a Cost N or less <name> to the Hand, or summon it without paying the cost, or immediately use its Change without paying the cost":
    picks a matching Spirit in the Trash, then one of the three modes (the CPU summons it when it can, else returns it). */
 FX_ACTIONS.TRASH_PICK_THREE = { chk: a => typeof a.nameHas === 'string' && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'nameHas', 'costLe'].includes(k)),
