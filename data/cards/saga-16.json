@@ -32604,19 +32604,82 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Advent2|Tenma Advent|Heavenly Demon King & Originally Cost 8/9/10|(Either Attack Step)}}",
-   "By either sending your (Soul Core) to the Trash, or putting a core from your \"Heavenly Demon King\" family Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.",
-   "[LV1][LV2][LV3] (When Advents/Attacks)",
-   "You can return opposing Spirit/Ultimate/Nexus, one of each, to the deckbottom.",
-   "During Advent [LV3] (Your Turn)",
-   "Every Spirit you control is unaffected by opposing Spirit/Nexus/Magic effects.",
-   "{{Six Heaven Rush|6}} (Activate if you have six symbol colors)",
-   "The symbols of your attacking Spirit are fixed as (Red Core) (Purple Core) (Green Core) (White Core) (Yellow Core) (Blue Core) (Red/Purple/Green/White/Yellow/Blue, one of each)."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "XX"
+  "rcode": "XX",
+  "contractAdvent": {
+   "family": [
+    "Heavenly Demon King"
+   ],
+   "costIn": [
+    8,
+    9,
+    10
+   ],
+   "orNexus": "Heavenly Demon King",
+   "turn": "EITHER"
+  },
+  "effects": [
+   {
+    "trigger": "ADVENT",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_OPP_SUN",
+      "to": "deckBottom"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_OPP_SUN",
+      "to": "deckBottom"
+     }
+    ],
+    "alsoBlocks": false
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "own",
+    "lv": [
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    },
+    "if": {
+     "oppTurn": false,
+     "underFamily": "Heavenly Demon King"
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SYM_ALL_COLORS",
+    "to": "self",
+    "if": {
+     "symColorsGe": 6
+    }
+   }
+  ]
  },
  {
   "id": "BSC49-001",

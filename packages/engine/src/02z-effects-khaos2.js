@@ -194,6 +194,22 @@ FX_ACTIONS.CHANGE_BOUNCE_OPP = { chk: a => a.to === 'deckBottom' && (a.noNexus =
     else if (b) { c.opp.burst = null; b.mirage = false; c.opp.deck.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst returns to the deckbottom.`); }
     else return;
     c.ctx.did = true; io.view({ type: 'board' }); } };
+/* v569 RETURN_OPP_SUN (BSC48-XX01): "return an opposing Spirit, Ultimate and Nexus, one of each, to the deckbottom" (each class optional; the human taps a target per class or skips). */
+FX_ACTIONS.RETURN_OPP_SUN = { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)),
+  txt: () => 'return an opposing Spirit, Ultimate and Nexus, one of each, to the deckbottom',
+  cls: c => [['Spirit', c.opp.spirits.filter(t => CARDS[t.id].type !== 'Ultimate')], ['Ultimate', c.opp.spirits.filter(t => CARDS[t.id].type === 'Ultimate')], ['Nexus', c.opp.nexus]].map(([n, L]) => [n, L.filter(t => !flagActive(c.opp, 'NO_RETURN', t) && !fxImmune(c.opp, t, { p: c.p, src: c.src }))]),
+  can: c => FX_ACTIONS.RETURN_OPP_SUN.cls(c).some(([, L]) => L.length > 0),
+  run: async (c, a) => {
+    c.ctx.did = false;
+    for (const n of ['Spirit', 'Ultimate', 'Nexus']) {
+      const L = FX_ACTIONS.RETURN_OPP_SUN.cls(c).find(x => x[0] === n)[1]; if (!L.length) continue;
+      let t;
+      if (c.p.cpu) t = L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0];
+      else { const uid = await pickFromField({ text: `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing ${n} to return to the deckbottom, or skip.`, uids: L.map(x => x.uid), buttons: [{ label: 'Skip', cls: 'cancel', value: 'none' }] }); t = L.find(x => x.uid === uid); }
+      if (!t) continue;
+      bounceCard(c.opp, t, 'deckBottom'); checkDepletion(c.opp); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns to the deckbottom.`); c.ctx.did = true;
+    }
+    if (c.ctx.did) io.view({ type: 'board' }); } };
 /* v567 TRASH_PICK_THREE {nameHas, costLe} (BSC48-052): "from your Trash, either return a Cost N or less <name> to the Hand, or summon it without paying the cost, or immediately use its Change without paying the cost":
    picks a matching Spirit in the Trash, then one of the three modes (the CPU summons it when it can, else returns it). */
 FX_ACTIONS.TRASH_PICK_THREE = { chk: a => typeof a.nameHas === 'string' && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'nameHas', 'costLe'].includes(k)),

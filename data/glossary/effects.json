@@ -1938,5 +1938,15 @@
   "status": "partial",
   "example": "{\"trigger\":\"ALLY_LEAVES\",\"lv\":[2,3],\"match\":{\"family\":[\"Awakened Dragon\"]},\"actions\":[]}",
   "rule": "Engine: queued when an opposing effect returns/destroys/depletes a Spirit; the effect resolves after the Spirit left, it does not prevent the leaving."
+ },
+ {
+  "id": "K_RETURN_OPP_SUN",
+  "kind": "action",
+  "meaning": "Return an opposing Spirit, an Ultimate and a Nexus (one of each) to the deckbottom.",
+  "pattern": "return opposing Spirit/Ultimate/Nexus, one of each, to the deckbottom",
+  "engine": "RETURN_OPP_SUN",
+  "status": "done",
+  "example": "BSC48-XX01",
+  "rule": "Each class is chosen separately and may be skipped; opposing immunity still applies."
  }
 ]

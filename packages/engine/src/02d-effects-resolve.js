@@ -194,18 +194,21 @@ function contractAdventTargets(p, inst, where) {
   if (p.count < (spec.counterGe || 0)) return [];
   if (!summonOK(p, CARDS[inst.id])) return [];
   if (spec.soulTo && !p.reserve.soul && !p.trashCores.soul) return [];      // v425 UTadvent: the Soul Core comes from the Reserve/Trash and goes to the target
-  return p.spirits.concat(spec.nexus && !p.cpu ? p.nexus : []).filter(sp => !isUlt(sp) && (spec.family === '*' || [].concat(spec.family).some(f => (CARDS[sp.id].families || []).includes(f))) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
+  return p.spirits.concat(spec.nexus && !p.cpu ? p.nexus : []).filter(sp => !isUlt(sp) && (spec.family === '*' || [].concat(spec.family).some(f => (CARDS[sp.id].families || []).includes(f))) && CARDS[sp.id].cost >= (spec.costGe || 0) && (!spec.costIn || spec.costIn.includes(CARDS[sp.id].cost)) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null || !!advNexus(p, spec))));
 }
+/* v568 contractAdvent.costIn (original cost list) / orNexus (family): Advent2 - "either send the Soul Core to the Trash, or put a core from your <family> Grandwalker Nexus to a Spirit" (the Soul Core is used when it can be taken, else the Nexus core goes onto the adventing card) */
+const advNexus = (p, spec) => spec.orNexus ? p.nexus.find(n => n.cores > 0 && isGW(n) && (CARDS[n.id].families || []).includes(spec.orNexus)) || null : null;
 async function doContractAdvent(p, adv, src, where) {
   if (!contractAdventTargets(p, adv, where || 'main').includes(src)) return false;
-  const free = !CARDS[adv.id].contractAdvent.soulTo && cadvFree(p, adv), sh = src.soul ? src : soulCoreHolder(p, null), toTarget = !!CARDS[adv.id].contractAdvent.soulTo;
-  if (free) { p.onceUsed = p.onceUsed || {}; p.onceUsed['cadvfree:' + CARDS[adv.id].name] = G.turnNo; }      // the Soul Core stays where it is
+  const nxc = !src.soul && !CARDS[adv.id].contractAdvent.soulTo && !cadvFree(p, adv) && soulCoreHolder(p, null) === null ? advNexus(p, CARDS[adv.id].contractAdvent) : null;
+  const free = !nxc && !CARDS[adv.id].contractAdvent.soulTo && cadvFree(p, adv), sh = src.soul ? src : soulCoreHolder(p, null), toTarget = !!CARDS[adv.id].contractAdvent.soulTo;
+  if (nxc) { /* the Nexus core is paid below */ } else if (free) { p.onceUsed = p.onceUsed || {}; p.onceUsed['cadvfree:' + CARDS[adv.id].name] = G.turnNo; }      // the Soul Core stays where it is
   else if (toTarget) { if (!src.soul) { if (p.reserve.soul) p.reserve.soul = false; else p.trashCores.soul = false; } }      // v425 the Soul Core ends up on the adventing card
   else if (CARDS[adv.id].contractAdvent.seal) soulToLife(p, sh); else soulToTrash(p, sh);   // v0.48 Seal Contract Advent: the Soul Core goes to the Life
   const fromSoul = p.soulState.includes(adv);
   removeFrom(p.hand, adv); removeFrom(p.soulState, adv); adv.inSoulState = false;
   const nx = p.nexus.indexOf(src), idx = nx >= 0 ? -1 : p.spirits.indexOf(src);
-  adv.cores = src.cores; adv.soul = toTarget || (free && src.soul); adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
+  adv.cores = src.cores + (nxc ? (nxc.cores--, 1) : 0); adv.soul = toTarget || (free && src.soul); adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
   adv.under = src.under.concat([src]); src.under = []; src.cores = 0; src.soul = false; src.exhausted = false; src.heavy = false; src.noAB = false; src.bpMod = 0;
   if (nx >= 0) { p.nexus.splice(nx, 1); p.spirits.push(adv); } else p.spirits[idx] = adv;
   if (src.brave) { adv.brave = src.brave; src.brave = null; braveRecheck(p, adv); }

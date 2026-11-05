@@ -204,3 +204,14 @@ test('K-1209 P25-05: Contract Advent data (Awakened Dragon, 4 counters, either s
     return { fc: K.partial === false, ca: K.contractAdvent, queued, cands, eff: K.effects.map(e => e.trigger).join() }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ca.counterGe, 4, JSON.stringify(r)); assert.equal(r.ca.soulTo, true, JSON.stringify(r)); assert.equal(r.queued, true, JSON.stringify(r)); assert.equal(r.cands, 0, JSON.stringify(r));
 });
+
+test('K-1210 BSC48-XX01: RETURN_OPP_SUN returns one Spirit, one Ultimate and one Nexus; Advent LV3 makes own Spirits unaffected', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const ult = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Ultimate'), nex = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus');
+    const x = BS.mkInst('BSC48-XX01'); x.cores = 5; P.spirits = [x];
+    const s1 = BS.mkInst('BS71-053'), s2 = BS.mkInst('BS71-054'), u = BS.mkInst(ult), n = BS.mkInst(nex); [s1, s2, u, n].forEach(i => { i.cores = 1; }); O.spirits = [s1, s2, u]; O.nexus = [n]; const d0 = O.deck.length;
+    await BS.runActions({ p: P, opp: O, src: x, ctx: {} }, { actions: [{ do: 'RETURN_OPP_SUN', to: 'deckBottom' }] });
+    return { fc: BS.CARDS['BSC48-XX01'].partial === false, sp: O.spirits.length, nx: O.nexus.length, deck: O.deck.length - d0, hasU: O.spirits.includes(u) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.sp, 1, JSON.stringify(r)); assert.equal(r.nx, 0, JSON.stringify(r)); assert.equal(r.deck, 3, JSON.stringify(r));
+});
