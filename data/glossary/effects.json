@@ -1947,6 +1947,6 @@
   "engine": "RETURN_OPP_SUN",
   "status": "done",
   "example": "BSC48-XX01",
-  "rule": "Each class is chosen separately and may be skipped; opposing immunity still applies."
+  "rule": "Engine: each class is chosen separately and may be skipped; opposing immunity still applies."
  }
 ]
