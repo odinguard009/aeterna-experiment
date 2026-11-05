@@ -32198,19 +32198,90 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|\"Contractor Dairokuten Maou\" & C3 or more|(Either Attack Step)}}",
-   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "[LV1][LV2][LV3]",
-   "This Spirit is unaffected by opposing Spirit/Nexus/Magic effects.",
-   "{{Six Heaven Rush|3}} (Activate if you have three or more symbol colors)",
-   "Every opposing Spirit/Ultimate/Grandwalker Nexus can't refresh.",
-   "[LV2][LV3] (When Attacks/Blocks)",
-   "You can send two cores from the opposing Field to the Trash."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). STATIC NO_REFRESH (to:opp) is read by refreshOne.",
+  "rcode": "X",
+  "manifest": {
+   "name": "Dairokuten Maou",
+   "counterGe": 3,
+   "turn": "EITHER_ATTACK"
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_REFRESH",
+    "to": "opp",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "anyOf": [
+      {
+       "type": "Spirit"
+      },
+      {
+       "type": "Ultimate"
+      },
+      {
+       "type": "Nexus",
+       "family": [
+        "Grandwalker"
+       ]
+      }
+     ]
+    },
+    "if": {
+     "symColorsGe": 3
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 2
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_TRASH",
+      "total": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-X09",

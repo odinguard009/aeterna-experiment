@@ -32,7 +32,7 @@ canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, 
 ## packages/engine/src/02d-effects-resolve.js (453 lines, ~10.2k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, adventFieldCores, manifestTargets, maniAlt, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, handDiscardedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
-## packages/engine/src/02e-effects-removed.js (168 lines, ~4.5k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
+## packages/engine/src/02e-effects-removed.js (169 lines, ~4.6k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
 
 ## packages/engine/src/02f-effects-mill-discard.js (171 lines, ~4.4k tokens)

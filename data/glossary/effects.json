@@ -1718,5 +1718,15 @@
     "status": "full",
     "example": "BSC48-CX02",
     "rule": "Engine: true for an empty Trash as well."
+  },
+  {
+    "id": "K_NO_REFRESH_OPP",
+    "kind": "effect",
+    "meaning": "Opposing Spirits/Ultimates/Nexuses can't refresh while this applies",
+    "pattern": "(Every )?opposing .{1,60} can't refresh",
+    "engine": "STATIC NO_REFRESH to:opp",
+    "status": "full",
+    "example": "BSC48-X08",
+    "rule": "Engine: refreshOne skips any card an active opposing NO_REFRESH static matches, in the Refresh Step and in refresh effects."
   }
 ]
