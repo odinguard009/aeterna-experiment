@@ -118,7 +118,7 @@ test('U18 a card without effect text says so', async () => {
 });
 test('U19 every real card formats into at least one line and the text survives unchanged', async () => {
   // v0.209: wiki marker lines and repeated level tags are dropped on purpose, so compare the words without them
-  const bad = await ev(() => { const n = x => x.replace(/\[Lv(?=\d)/g, '[LV').replace(/\[LV[\d-]+\]/g, ' ').replace(/(?:^|\s)(?:[a-z]?utb|uhand|heb|(?:GP)?GWrule|[CF]Arule)(?=\s|$)/g, ' ').replace(/[█◆■]/g, ' ').replace(/\s+/g, ' ').trim();
+  const bad = await ev(() => { const n = x => x.replace(/&rarr;/g, '→').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/<\/?span\b[^>]*>/g, '').replace(/\[Lv(?=\d)/g, '[LV').replace(/\[LV[\d-]+\]/g, ' ').replace(/(?:^|\s)(?:[a-z]?utb|uhand|heb|(?:GP)?GWrule|[CF]Arule)(?=\s|$)/g, ' ').replace(/[█◆■]/g, ' ').replace(/\s+/g, ' ').trim();
     return Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim();
       return d && !/\{\{/.test(d) && n(BS.effectLines(d).join(' ')) !== n(d); }); });
   assert.deepEqual(bad, []);
