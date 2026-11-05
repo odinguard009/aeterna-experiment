@@ -1157,11 +1157,9 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS73-TX04",
     "BS75-CP05"
    ],
    "order_cards": [
-    "BS73-TX04",
     "BS75-CP05"
    ]
   },
@@ -33509,7 +33507,7 @@
     "name": "The RoyalJewel Mega-Grandstone",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-052",
