@@ -144,3 +144,13 @@ test('K-1204 BS74-AX03: needs a white Grandwalker Nexus, costs -2 per Soul State
   if (r.noNx !== null) { assert.equal(r.noNx, false, JSON.stringify(r)); assert.equal(r.withNx, true, JSON.stringify(r)); }
   if (r.base !== null) assert.equal(r.base - r.cut, 4, JSON.stringify(r));
 });
+
+test('K-1205 SD32-006: LV2 Draw Step +1 card then a forced discard; colour and symbol also Purple', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2;
+    const K = BS.CARDS['SD32-006'], me = BS.mkInst('SD32-006'); me.cores = 1; P.nexus = [me];
+    P.hand = P.deck.splice(0, 4); const h0 = P.hand.length;
+    await BS.fireFx(P, 'DRAW_STEP', null, {});
+    return { fc: K.partial === false, d: h0 - P.hand.length, eff: (K.effects || []).length }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.d, 1, JSON.stringify(r)); assert.equal(r.eff, 3, JSON.stringify(r));
+});

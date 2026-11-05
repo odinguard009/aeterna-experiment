@@ -58725,6 +58725,9 @@
   "symbols": 0,
   "levels": [
    {
+    "cores": 0
+   },
+   {
     "cores": 1
    }
   ],
@@ -58733,13 +58736,50 @@
   "image": "SD32-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] This Nexus' color and symbol are also treated as Purple.",
-   "[LV2] (Your Draw Step) Increase the number of cards you draw by +1. After you draw, discard a card from your Hand."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "symbol": true,
+    "color": true,
+    "colors": [
+     "purple"
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "DRAW_PLUS",
+    "to": "self",
+    "n": 1,
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "DRAW",
+     "oppTurn": false
+    }
+   },
+   {
+    "trigger": "DRAW_STEP",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DISCARD_HAND",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD32-007",
