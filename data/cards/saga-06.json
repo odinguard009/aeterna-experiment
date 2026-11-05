@@ -16605,13 +16605,48 @@
   "image": "The HeavenlyDemonKing Advents.png",
   "block": "34",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return a Purple/White Spirit card from your Trash to the Hand.",
-   "Then, if there is any [The HeavenlyDemonKing God-Sechs] in your Trash, you can summon a [The HeavenlyDemonKing God-Sechs -Type Destroy-] from your Hand, without paying the cost."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Effects authored by hand (Lane K, priority list God-Sech group).",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "RETURN_TRASH",
+     "anyType": true,
+     "match": {
+      "type": "Spirit",
+      "color": [
+       "purple",
+       "white"
+      ]
+     }
+    },
+    {
+     "do": "SUMMON_HAND",
+     "from": "hand",
+     "match": {
+      "type": "Spirit",
+      "name": [
+       "The HeavenlyDemonKing God-Sechs -Type Destroy-"
+      ]
+     },
+     "if": {
+      "trashGe": {
+       "n": 1,
+       "match": {
+        "name": [
+         "The HeavenlyDemonKing God-Sechs"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS34-076",

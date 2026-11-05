@@ -18,3 +18,17 @@ test('K-1149 BS34-071 The World of Owari: God-Sechs Spirits count as highest lev
   assert.equal(r.lv1, 2, JSON.stringify(r)); assert.equal(r.lvNx, 2, JSON.stringify(r)); assert.equal(r.lvOff, 0, JSON.stringify(r));
   assert.equal(r.can, 1, JSON.stringify(r));
 });
+
+test('K-1150 BS34-075 The HeavenlyDemonKing Advents: returns a purple/white Spirit from the Trash, then summons Type Destroy from the Hand free when a God-Sechs is in the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const z = BS.mkInst('BS34-016'), d = BS.mkInst('BS34-XX02'); P.trash = [z]; P.hand = [d]; P.spirits = []; P.reserve.n = 10;
+    const m = BS.mkInst('BS34-075');
+    await BS.FX_ACTIONS.RETURN_TRASH.run({ p: P, opp: O, src: m, ctx: {} }, BS.CARDS['BS34-075'].magic.actions[0]);
+    const back = P.hand.some(h => h.id === 'BS34-016');
+    P.trash = [BS.mkInst('BS34-016')]; P.hand = [d];
+    const c = { p: P, opp: O, src: m, ctx: {} }; const a = BS.CARDS['BS34-075'].magic.actions[1];
+    await BS.runActions(c, { actions: [a] });
+    return { back, summoned: P.spirits.some(s => s.id === 'BS34-XX02'), partial: BS.CARDS['BS34-075'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r));
+});
