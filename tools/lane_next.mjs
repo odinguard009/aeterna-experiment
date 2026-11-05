@@ -43,7 +43,7 @@ export function nextLane(_changelog, roadmap) {
   if (/^- \*\*S1 /m.test(roadmap)) return k('S1 Standard Magic is still open');
   const q = uiQueue(roadmap);
   if (q.length) return { lane: 'U/I', why: `U/I queue first: ${q[0]} next, ${q.length} left` };
-  return k('U/I queue is empty: cards, Standard first');
+  return k('U/I queue is empty: cards; K ORDER = 1) the priority list (tools/priority_queue.py) until every group is complete, 2) only then the Grandwalker queue');
 }
 
 /* Windows note (2026-10-23): `file://` + a bare argv path never matched on Windows (no file:/// + slashes), so the tool

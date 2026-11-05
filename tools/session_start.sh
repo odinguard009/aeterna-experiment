@@ -67,7 +67,7 @@ LOOP_RC=0; npm run -s loop || LOOP_RC=$?   # v0.60.2: print the summary even whe
 echo "[session_start] version $(node -p "require('./package.json').version")"
 git log --oneline -5 | sed 's/^/[session_start]   /'
 grep -m1 -o '\*\*Next:.*' CLAUDE.md | cut -c1-400 | sed 's/^/[session_start] /' || true
-node tools/lane_next.mjs 2>/dev/null | sed 's/^/[session_start] /' || true   # lane order: F, S1 Standard Magic, U/I queue, then K Standard first (owner, 2026-10-21)
+node tools/lane_next.mjs 2>/dev/null | sed 's/^/[session_start] /' || true   # lane order: F, S1 Standard Magic, U/I queue, then K: priority list first, Grandwalker queue after (owner, 2026-11-05)
 python3 tools/priority_queue.py 2>/dev/null | sed 's/^/[session_start] /' || true   # Lane K priority 53 (owner, 2026-11-04)
 # Lane K release per 100 (owner, 2026-10-28): new complete cards since the last released version, and local commits older than 24 h
 # Baseline = the complete count printed in the newest CHANGELOG release ("1,368 -> 1,419 of 8,709"); the nearest git tag is wrong in a shallow
