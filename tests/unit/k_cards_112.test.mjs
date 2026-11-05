@@ -98,3 +98,15 @@ test('K-1183 SD57-003: reveals three, adds a HeavenlyDemon card and The Owari Wo
     return { fc: BS.CARDS['SD57-003'].partial === false, hand: P.hand.map(x => x.id).sort(), trashed: P.trash.length - t0, cost: handCostSet(P, BS.CARDS['SD32-X02']) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.hand.length, 2, JSON.stringify(r)); assert.ok(r.hand.includes('SD57-006'), JSON.stringify(r)); assert.equal(r.cost, 6, JSON.stringify(r));
 });
+
+test('K-1184 SD57-001: reveals three and adds the Tenma Nobunaga Nexus and an Evil Shadow Spirit (not itself); Main Step adds Red/White symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 4;
+    const me = BS.mkInst('SD57-001'); me.cores = 3; P.spirits = [me]; P.hand = [];
+    const other = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Evil Shadow') && k !== 'SD57-001' && BS.CARDS[k].name !== 'The Six Heaven Soldier');
+    P.deck = [BS.mkInst('SD57-CP01'), BS.mkInst('SD57-001'), BS.mkInst(other)].concat(P.deck);
+    await BS.fireFx(P, 'SUMMONED', me, {});
+    const sy = symbolsOn(P);
+    return { fc: BS.CARDS['SD57-001'].partial === false, hand: P.hand.map(x => x.id).sort(), other, red: !!sy.red, white: !!sy.white }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.ok(r.hand.includes('SD57-CP01') && r.hand.includes(r.other) && !r.hand.includes('SD57-001'), JSON.stringify(r));
+});
