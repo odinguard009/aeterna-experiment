@@ -30,3 +30,11 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[src.id].name}: Form Change into ${CARDS[t.id].name}.`);
       await summonFree(p, t, { formChange: true });
     } } });
+function costAltExhaustPick(p, a) { return p.nexus.find(n => isGW(n) && !n.exhausted && fxMatch(CARDS[n.id], a.exhaust.match)); }   // v547 costAlt.exhaust: "by exhausting one of your <match> Grandwalker Nexuses"
+function costAltActive(p, card) {                 // e.g. Wurm Draw: "(Once per Turn: Same Name) when using this card, if you control any Wurm, this card can become Cost 3"
+  const a = card.costAlt; if (!a || !G) return false;
+  if (a.once && p.onceUsed && p.onceUsed['costalt:' + card.name] === G.turnNo) return false;
+  if (a.bed && !fungalBeds(p).length) return false;
+  if (a.exhaust && !costAltExhaustPick(p, a)) return false;
+  return fxIf(p, G.p[other(p.key)], a.if);
+}

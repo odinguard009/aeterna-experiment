@@ -1668,5 +1668,15 @@
     "status": "full",
     "example": "BSC48-048",
     "rule": "Engine: while active, only opposing Spirits holding a Soul Core may block the matching attacker."
+  },
+  {
+    "id": "K_COSTALT_EXHAUST",
+    "kind": "effect",
+    "meaning": "cost becomes lower by exhausting one of your Grandwalker Nexuses",
+    "pattern": "by exhausting one of your .* Grandwalker Nexuses?, this card becomes Cost \\d+",
+    "engine": "costAlt.exhaust",
+    "status": "full",
+    "example": "BSC48-056",
+    "rule": "Engine: the alternate cost applies only if an untapped matching Grandwalker Nexus exists; casting exhausts it."
   }
 ]

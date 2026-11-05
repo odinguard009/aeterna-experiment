@@ -80029,16 +80029,6 @@
   "K_ULTIMATE",
   "M_THEN"
  ],
- "BSC48-056": [
-  "A_END_ATTACK",
-  "A_EXHAUST",
-  "A_SUMMON_FREE",
-  "K_BURST",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S_UNAFFECTED"
- ],
  "BSC48-057": [
   "A_DRAW",
   "A_SOUL_STATE",

@@ -31086,17 +31086,51 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card in Trash is unaffected by either player's effect.",
-   "When paying this card's cost, if you have six symbol colors, by exhausting one of your \"Heavenly Demon King\" family Grandwalker Nexuses, this card becomes Cost 4.",
-   "{{Burst|s|After your Life is reduced}}",
-   "You can summon a Cost 10 or less \"God-Sechs\" from your Hand/Trash, without paying the cost. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash",
-   "Immediately end the Attack Step."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Effects authored by hand (Lane K, priority list God-Sech group). costAlt.exhaust: exhaust one of your Heavenly Demon King Grandwalker Nexuses.",
+  "rcode": "C",
+  "trashUnaffected": true,
+  "costAlt": {
+   "cost": 4,
+   "if": {
+    "symColorsGe": 6
+   },
+   "exhaust": {
+    "match": {
+     "family": [
+      "Heavenly Demon King"
+     ]
+    }
+   }
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_NOW"
+    }
+   ]
+  },
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_HAND",
+     "from": "handOrTrash",
+     "match": {
+      "name": [
+       "God-Sechs"
+      ]
+     },
+     "costLe": 10
+    }
+   ],
+   "thenFlash": true
+  }
  },
  {
   "id": "BSC48-057",

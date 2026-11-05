@@ -230,12 +230,6 @@ function noBlockActive(D) {
   const src = fieldList(G.p[L.owner]).find(i => i.uid === L.uid);
   return !!src && lvNo(src) >= L.minLv;
 }
-function costAltActive(p, card) {                 // e.g. Wurm Draw: "(Once per Turn: Same Name) when using this card, if you control any Wurm, this card can become Cost 3"
-  const a = card.costAlt; if (!a || !G) return false;
-  if (a.once && p.onceUsed && p.onceUsed['costalt:' + card.name] === G.turnNo) return false;
-  if (a.bed && !fungalBeds(p).length) return false;
-  return fxIf(p, G.p[other(p.key)], a.if);
-}
 /* v0.40: STATIC EXTRA_REDUCTION of your Field cards ("all your Thunderive cards gain an extra yellow reduction symbol"): extra slots for the card being paid */
 function extraReduction(p, card) {
   const out = []; if (!G) return out; const opp = G.p[other(p.key)];
@@ -606,7 +600,7 @@ async function magicWallNegate(p, opp, inst) {
 async function castMagic(p, ch) {                         // ch = { inst, target, plan }
   const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
-  if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; if (card.costAlt.bed) bedPay(p); }
+  if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; if (card.costAlt.bed) bedPay(p); if (card.costAlt.exhaust) { const x = costAltExhaustPick(p, card.costAlt); if (x) { x.exhausted = true; log(`${CARDS[x.id].name} is exhausted to pay for the Magic.`); } } }
   if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
   inst.soulPaid = false;
   const smHolder = sm ? soulMagicHolder(p) : null;              // chosen before the card leaves the Hand (symbols stay as they are)

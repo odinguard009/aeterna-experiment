@@ -327,3 +327,15 @@ test('K-1171 BSC48-048: deploys from the Trash at the start of the Attack Step w
     return { deployed: P.nexus.includes(me), fc: K.fxComplete, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r));
 });
+test('K-1172 BSC48-056: costAlt.exhaust needs and exhausts a Heavenly Demon King Grandwalker Nexus; Flash ends the Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const K = BS.CARDS['BSC48-056'], nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Heavenly Demon King') && (BS.CARDS[k].families || []).includes('Grandwalker'));
+    const saved = K.costAlt.if; K.costAlt.if = null;
+    P.nexus = []; const none = BS.costAltActive(P, K);
+    const n = BS.mkInst(nx); P.nexus = [n]; const have = BS.costAltActive(P, K);
+    n.exhausted = true; const spent = BS.costAltActive(P, K); n.exhausted = false;
+    K.costAlt.if = saved; const gated = BS.costAltActive(P, K);
+    return { none, have, spent, gated, fc: K.partial === false, tu: K.trashUnaffected, burst: !!K.burst }; })()`);
+  assert.equal(r.none, false, JSON.stringify(r)); assert.equal(r.have, true, JSON.stringify(r)); assert.equal(r.spent, false, JSON.stringify(r)); assert.equal(r.gated, false, JSON.stringify(r)); assert.equal(r.fc, true); assert.equal(r.tu, true); assert.equal(r.burst, true);
+});

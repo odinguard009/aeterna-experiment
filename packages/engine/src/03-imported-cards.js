@@ -132,6 +132,7 @@ function parseCard(o) {
     const a = o.costAlt;
     if (!a || typeof a !== 'object' || !int(Number(a.cost), 0, 30)) return { errors: ['invalid "costAlt" (use {"cost":3,"if":{...},"once":true})'] };
     costAlt = /** @type {CostAlt} */ ({ cost: Number(a.cost), once: a.once === true, bed: a.bed === true });
+    if (a.exhaust != null) { if (!a.exhaust || typeof a.exhaust !== 'object' || !a.exhaust.match || typeof a.exhaust.match !== 'object') return { errors: ['invalid "costAlt.exhaust" (use {"match":{...}})'] }; costAlt.exhaust = { match: a.exhaust.match }; }
     if (a.if != null) { const cr = parseCond(a.if); if (cr.error) return { errors: [cr.error] }; costAlt.if = cr.cond; }
   }
   let costPer;

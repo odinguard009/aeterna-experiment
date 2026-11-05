@@ -91611,7 +91611,8 @@
   "K_BURST",
   "K_GRANDWALKER",
   "M_OPTIONAL",
-  "M_THEN"
+  "M_THEN",
+  "K_COSTALT_EXHAUST"
  ],
  "BSC48-057": [
   "T_ALLY_LOST",
