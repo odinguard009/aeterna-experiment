@@ -100,3 +100,9 @@ test('K-1200 BS71-059: braved attack discards an opposing Spirit Burst and sends
     return { fc: k.partial === false, burst: !!O.burst, inTrash: O.trash.includes(b), life: life - O.life, mir: !!(k.mirage && k.mirage.noEnd) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.burst, false, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r)); assert.equal(r.life, 1, JSON.stringify(r)); assert.equal(r.mir, true, JSON.stringify(r));
 });
+
+test('K-1201 BS71-083: Burst timing covers a Spirit lost by depletion as well as destruction', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const k = BS.CARDS['BS71-083']; return { fc: k.partial === false, when: k.burst.when, main: k.burst.thenMain, also: !!k.burst.also }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.when, 'ALLY_LOST', JSON.stringify(r)); assert.equal(r.main, true, JSON.stringify(r)); assert.equal(r.also, true, JSON.stringify(r));
+});

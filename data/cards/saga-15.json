@@ -20921,7 +20921,7 @@
    ]
   },
   "burst": {
-   "when": "ALLY_DESTROYED",
+   "when": "ALLY_LOST",
    "actions": [
     {
      "do": "DESTROY_TOTAL",
@@ -20947,11 +20947,8 @@
     }
    }
   },
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "v0.41: Main and the cost destruction of the Burst are wired (Burst timing uses \"your Spirit is destroyed\"; depleted is not covered). Not yet: paying the cost to use the Main effect after the Burst, and activating this set card when a Scalostle Brave is summoned.",
-  "residual": [
-   "Burst timing \"depleted\": only a destruction by the opponent activates it (the engine does not track who caused a depletion)"
-  ],
   "bicon": [
    "12"
   ],
