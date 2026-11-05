@@ -16,7 +16,7 @@
   BS.defBuiltin({ id: 'TST-MIR1', name: 'Mirage Wisp', symbol: 'red', cost: 3, reduction: { red: 1 }, levels: [{ cores: 1, bp: 3000 }, { cores: 2, bp: 5000 }], keywords: ['MIRAGE'],
     mirage: { cost: 2 }, implemented: false, desc: '[Mirage: pay 2] Set face up in the Burst Area.' });
   const mg = (id, name, cost, red, kw, magic, desc) => BS.defBuiltin({ id, name, type: 'Magic', symbol: 'red', cost, reduction: { red }, levels: [{ cores: 0 }], keywords: kw, magic, desc });
-  mg('TST-MG1', 'Flame Burst', 3, 1, [], { timing: ['MAIN'], effect: 'DESTROY_BP_LE', value: 6000 }, '[Main] Destroy 1 opposing Spirit with 6000 BP or less.');
+  mg('TST-MG1', 'Test Fireburst', 3, 1, [], { timing: ['MAIN'], effect: 'DESTROY_BP_LE', value: 6000 }, '[Main] Destroy 1 opposing Spirit with 6000 BP or less.');
   mg('TST-MG2', 'Scorch Ward', 2, 1, ['FLASH'], { timing: ['FLASH'], effect: 'BP_PLUS', value: 5000 }, '[Flash] 1 of your Spirits gets +5000 BP until the end of the turn.');
   mg('TST-MG3', 'Sudden Strike', 4, 2, ['FLASH'], { timing: ['MAIN', 'FLASH'], effect: 'DESTROY_BP_LE', value: 5000 }, '[Main][Flash] Destroy 1 opposing Spirit with 5000 BP or less.');
   mg('TST-MG4', 'Ember Insight', 2, 1, [], { timing: ['MAIN'], effect: 'DRAW', value: 2 }, '[Main] Draw 2 cards.');
