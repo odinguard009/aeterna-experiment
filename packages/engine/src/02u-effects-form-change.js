@@ -40,3 +40,15 @@ function costAltActive(p, card) {                 // e.g. Wurm Draw: "(Once per 
 }
 /* v549 STATIC SIX_HEAVEN_COLOR (Grand Field): "fulfill one symbol color for the conditions of your Six Heaven Rush/Rebirth": +1 colour for every symColorsGe check unless the condition says symColorsPlain */
 function grandFieldColors(p) { return p.nexus.filter(n => fxEntries(n).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'SIX_HEAVEN_COLOR' && (!e.lv || e.lv.includes(lvNo(n))))).length; }
+/* v550: moved here from 02a (part size budget B08) */
+const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || (card.mechanics || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || new RegExp('(^|[\\]\\)\\s])' + String(kw).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '') || new RegExp('\\(' + String(kw).replace(/[^A-Za-z ]/g, '') + '\\)', 'i').test(card.desc || card.text || '')
+  || (String(kw).toUpperCase() === 'LEGACY' && (card.legacy === true || /^\(Legacy\)/.test(card.desc || card.text || '')))      // v0.167 "Spirit with Legacy": the (Legacy) head line / legacy flag
+  || (String(kw).toUpperCase() === 'CURRENT' && /\{\{Current\|/.test(card.desc || card.text || ''))
+  || (String(kw).toUpperCase() === 'SIX HEAVEN RUSH' && /\{\{Six Heaven Rush\|/.test(card.desc || card.text || ''))      // v550 the head template also counts when the card lists another mechanic first (BS46-10THX02)
+  || (String(kw).toUpperCase() === 'SHAMANISM' && /\{\{Shaman\|/.test(card.desc || card.text || ''));      // v0.167 "Spirit with Shamanism": the {{Shaman|...}} holder template
+/* v550 MAGIC_SOUL_TAX_TURN {match}: "during this turn, while your <match> is attacking, unless the opponent sends their Soul Core to the Trash, they can't use Magic cards" (BSC48-CX02). p.magicTax = {turn, match}; noMagicHit locks Magic while it applies and the Soul Core cannot (or Magic cannot be afforded without it) be paid; otherwise castMagic pays it once (the lock is then lifted for the turn) */
+const magicTaxOn = p => { const t = p.magicTax, a = G.attacker, o = a && ownerOf(a); return !!(t && t.turn === G.turnNo && !t.paid && o && o !== p && fxMatch(CARDS[a.id], t.match, a)); };
+const magicTaxHit = (p, card) => magicTaxOn(p) && (soulCoreHolder(p, null) === null || effCost(p, card) > coresAvailable(p));
+const magicTaxPay = p => { if (magicTaxOn(p)) { p.magicTax.paid = true; soulToTrash(p, soulCoreHolder(p, null)); } };
+FX_ACTIONS.MAGIC_SOUL_TAX_TURN = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => "during this turn, while your matching Spirit is attacking, the opponent can't use Magic cards unless they send their Soul Core to the Trash",
+  run: async (c, a) => { c.opp.magicTax = { turn: G.turnNo, match: a.match }; c.ctx.did = true; log(`${_nm(c)}: ${poss(c.opp)} Magic is locked while the attack lasts, unless the Soul Core goes to the Trash.`); } };

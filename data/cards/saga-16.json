@@ -31611,19 +31611,169 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{tk|Neo-Core Charge:|(Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast/Vassal & Cost 2 or more)}}",
-   "◆When your target Spirit is summoned, you can +1 core to this Nexus.",
-   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
-   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
-   "Contract Field [LV1][LV2]",
-   "While every card in your Trash is \"God-Sechs\", or has the \"Heavenly Demon King\"/\"Vassal\" family, this Nexus' symbol is also treated as Red/Purple/Green/White/Yellow/Blue. Also, when your Spirits with Six Heaven Rush effect written on them are summoned, your counter can +3.",
-   "{{cs|5}} [LV2] (Start of Your Attacks Step)",
-   "(Once per Turn: Same Name, send five cores from this Nexus to the Void) During this turn, while your \"God-Sechs\" is attacking, unless the opponent sends their (Soul Core) to the Trash, they can't use Magic cards."
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). MAGIC_SOUL_TAX_TURN: Magic is locked while a God-Sechs attacks unless the Soul Core goes to the Trash (paid automatically on the first Magic cast).",
+  "rcode": "Contract X",
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "anyOf": [
+      {
+       "family": [
+        "Heavenly Demon King",
+        "Evil Shadow",
+        "Clever Machine",
+        "Machine Beast",
+        "Vassal"
+       ],
+       "costGe": 2,
+       "type": "Spirit"
+      },
+      {
+       "family": [
+        "Heavenly Demon King",
+        "Evil Shadow",
+        "Clever Machine",
+        "Machine Beast",
+        "Vassal"
+       ],
+       "costGe": 2,
+       "type": "Ultimate"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "do": "CORE_TO_SELF",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "anyOf": [
+        {
+         "family": [
+          "Heavenly Demon King",
+          "Evil Shadow",
+          "Clever Machine",
+          "Machine Beast",
+          "Vassal"
+         ],
+         "costGe": 2,
+         "type": "Spirit"
+        },
+        {
+         "family": [
+          "Heavenly Demon King",
+          "Evil Shadow",
+          "Clever Machine",
+          "Machine Beast",
+          "Vassal"
+         ],
+         "costGe": 2,
+         "type": "Ultimate"
+        }
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "symbol": true,
+    "colors": [
+     "red",
+     "purple",
+     "green",
+     "white",
+     "yellow",
+     "blue"
+    ],
+    "if": {
+     "trashAllMatch": {
+      "anyOf": [
+       {
+        "name": [
+         "God-Sechs"
+        ]
+       },
+       {
+        "family": [
+         "Heavenly Demon King",
+         "Vassal"
+        ]
+       }
+      ]
+     }
+    }
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "keyword": "Six Heaven Rush",
+     "type": "Spirit"
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 3,
+      "max": 15
+     }
+    ]
+   },
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "cost": {
+     "nexusToVoid": 5
+    },
+    "actions": [
+     {
+      "do": "MAGIC_SOUL_TAX_TURN",
+      "match": {
+       "name": [
+        "God-Sechs"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "Contract X"
+  "revive": true
  },
  {
   "id": "BSC48-CX03",

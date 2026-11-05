@@ -83,8 +83,9 @@ function parseCond(c) {
     const okTrash = k === 'trashGe' && !!v && typeof v === 'object' && Number.isInteger(v.n) && v.n >= 1 && v.n <= 20 && hasMatch(v.match);
     const okMagic = k === 'magicUsed' && !!v && typeof v === 'object' && [].concat(v.name || [], v.family || []).every(x => typeof x === 'string')
       && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe', 'team'].includes(y)) && (v.team == null || typeof v.team === 'string');   // v0.116 "if you used a <family> Magic card this turn"
+    const okTrashM = k === 'trashAllMatch' && hasMatch(v);
     const okOppCtrl = k === 'oppCtrlMatch' && hasMatch(v);      // v198 "If the opponent controls a Cost N or less Spirit"
-    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okOppCtrl && !okSym && !okOnlySym && !okMirCol) return { error: `unknown or invalid condition "${k}" (${[...FX_COND_KEYS].join(', ')})` };
+    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okOppCtrl && !okTrashM && !okSym && !okOnlySym && !okMirCol) return { error: `unknown or invalid condition "${k}" (${[...FX_COND_KEYS].join(', ')})` };
   }
   return { cond: Object.assign({}, c) };
 }

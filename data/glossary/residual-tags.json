@@ -80101,19 +80101,6 @@
   "T_ACTIVATE",
   "T_ALLY_SUMMONED"
  ],
- "BSC48-CX02": [
-  "A_CORE_TO_SELF",
-  "A_MILL",
-  "A_SOUL_STATE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_CONTRACT",
-  "K_REVIVE",
-  "M_OPTIONAL",
-  "T_ACTIVATE",
-  "T_ALLY_SUMMONED"
- ],
  "BSC48-CX03": [
   "A_CORE_TO_SELF",
   "A_MILL",

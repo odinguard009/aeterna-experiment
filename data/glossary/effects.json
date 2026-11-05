@@ -1698,5 +1698,25 @@
     "status": "full",
     "example": "BSC48-CP03",
     "rule": "Engine: each active Nexus with this flag adds one symbol color to every symbol-color-count condition (symColorsGe), except those marked symColorsPlain."
+  },
+  {
+    "id": "K_MAGIC_SOUL_TAX",
+    "kind": "effect",
+    "meaning": "During this turn, while your named Spirit attacks, the opponent cannot use Magic unless they send their Soul Core to the Trash",
+    "pattern": "while your .{1,30} is attacking, unless the opponent sends their .{0,12}Soul Core.{0,3} to the Trash, they can't use Magic cards",
+    "engine": "MAGIC_SOUL_TAX_TURN",
+    "status": "full",
+    "example": "BSC48-CX02",
+    "rule": "Engine: sets a per-turn lock read by the Magic-usable check; the first Magic cast while it applies pays the Soul Core once, which lifts the lock for the turn."
+  },
+  {
+    "id": "K_TRASH_ALL_MATCH",
+    "kind": "effect",
+    "meaning": "Condition: every card in your Trash matches a description",
+    "pattern": "While every card in your Trash is .{1,60}(God-Sechs|family)",
+    "engine": "if trashAllMatch",
+    "status": "full",
+    "example": "BSC48-CX02",
+    "rule": "Engine: true for an empty Trash as well."
   }
 ]

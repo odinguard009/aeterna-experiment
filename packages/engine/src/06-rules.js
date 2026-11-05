@@ -598,6 +598,7 @@ async function magicWallNegate(p, opp, inst) {
   return true;
 }
 async function castMagic(p, ch) {                         // ch = { inst, target, plan }
+  if (!ch.free) magicTaxPay(p);      // v550 MAGIC_SOUL_TAX_TURN
   const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
   if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; if (card.costAlt.bed) bedPay(p); if (card.costAlt.exhaust) { const x = costAltExhaustPick(p, card.costAlt); if (x) { x.exhausted = true; log(`${CARDS[x.id].name} is exhausted to pay for the Magic.`); } } }

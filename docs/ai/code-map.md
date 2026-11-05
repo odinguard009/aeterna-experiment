@@ -20,13 +20,13 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (495 lines, ~15k tokens) — EFFECT ENGINE
-FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, oppAttackLock, symZeroLocked, burstLocked, cantAttack, canBlockState, drawLocked, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, CHARGE_KINDS, chargeSum, chargeAction, flagActiveField, coreSafeMode, coreTakeCap, costDestroyBonus, coresSent, rumblePlusOf, staticBp, blocksAsAtkOn, exhaustCostRelief, activeLowAtk, lowAtkLocked, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
+## packages/engine/src/02a-effects-base.js (492 lines, ~14.8k tokens) — EFFECT ENGINE
+FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, oppAttackLock, symZeroLocked, burstLocked, cantAttack, canBlockState, drawLocked, fxIf, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, CHARGE_KINDS, chargeSum, chargeAction, flagActiveField, coreSafeMode, coreTakeCap, costDestroyBonus, coresSent, rumblePlusOf, staticBp, blocksAsAtkOn, exhaustCostRelief, activeLowAtk, lowAtkLocked, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (356 lines, ~12.4k tokens)
+## packages/engine/src/02c-effects-parse.js (357 lines, ~12.4k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (453 lines, ~10.2k tokens)
@@ -80,8 +80,8 @@ leaveHook
 ## packages/engine/src/02t-effects-actions-opp.js (330 lines, ~8.7k tokens)
 dtBoost, lifeGuardFx
 
-## packages/engine/src/02u-effects-form-change.js (42 lines, ~1k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
-fcCands, costAltExhaustPick, costAltActive, grandFieldColors
+## packages/engine/src/02u-effects-form-change.js (54 lines, ~1.6k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
+fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, magicTaxOn, magicTaxHit, magicTaxPay
 
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
@@ -116,7 +116,7 @@ DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, po
 ## packages/engine/src/05c-intent.js (290 lines, ~4.8k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
-## packages/engine/src/06-rules.js (674 lines, ~14.9k tokens) — RULES HELPERS
+## packages/engine/src/06-rules.js (675 lines, ~14.9k tokens) — RULES HELPERS
 fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, ignoreSumCond, alsoTreated, alsoSyms, ultSymbolExtra, spare, coresAvailable, isCountLv, _tl3, treatLv3, TH_IDS, thIds, _th, treatHighest, _lp, lvPlusStatic, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, symSetOn, attackSymbols, symAttrs, symbolAttrs, extraSymbolsOf, fieldSymbols, symbolsOn, reductionOf, noBlockActive, extraReduction, summonSymbols, hasExSym, legacyPlan, handCostSet, summonTaxOf, summonDiscountOf, trashSymsOn, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, trashHears, allyDiedHears, oppDiedHears, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, fireBurstSet, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, magicWallNegate, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
 ## packages/engine/src/07-turn.js (85 lines, ~1.7k tokens) — TURN FLOW
