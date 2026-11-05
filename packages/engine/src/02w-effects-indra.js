@@ -313,3 +313,20 @@ FX_ACTIONS.NO_BURST_TYPE_BATTLE = { chk: a => Object.keys(a).every(k => ['do', '
     else ty = await ask({ title: `✨ ${CARDS[c.src.id].name}`, html: "Choose a card type: the opponent can't activate Burst effects of that type this battle.", buttons: BURST_TYPES.map(t => ({ label: t, cls: 'primary', value: t })) });
     if (!ty) return; G.noBurstType = { key: c.opp.key, type: ty }; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${ty} Burst effects cannot be activated during this battle.`);
   } };
+
+/* v577 STATIC TRASH_LOCK (BS71-072 Nuadha's Bulwark Temple): while a Nexus with the flag is on a Field at an active level, a card in EITHER Trash whose
+   families miss every exceptFamily entry is unaffected by other effects (trashSafe, 02k) and its effects can't be used (fxEntries, 02a).
+   bySrc = the source of the acting effect: the locking Nexus itself is exempt ("other than this one"). Reads CARDS directly so it never recurses into fxEntries. */
+function trashLocked(f, bySrc) {
+  if (!G || !f || !f.id || !CARDS[f.id]) return false;
+  const fam = CARDS[f.id].families || [];
+  if (!G.p.player.trash.includes(f) && !G.p.opponent.trash.includes(f)) return false;
+  for (const side of [G.p.player, G.p.opponent]) for (const src of fieldList(side)) {
+    if (src === bySrc || !CARDS[src.id]) continue;
+    for (const e of (CARDS[src.id].effects || [])) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'TRASH_LOCK' || (e.lv && !e.lv.includes(lvNo(src)))) continue;
+      if (!e.exceptFamily.some(x => fam.includes(x))) return true;
+    }
+  }
+  return false;
+}

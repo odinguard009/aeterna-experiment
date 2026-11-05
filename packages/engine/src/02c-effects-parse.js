@@ -167,6 +167,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_BLOCK_SHAMAN needs a whole-number "costLe" (0-30)' };
         o.costLe = e.costLe;
       }
+      if (e.flag === 'TRASH_LOCK') {                               // v577 "cards without <family> in either Trash are unaffected by other effects and their effects can't be used"
+        if (!Array.isArray(e.exceptFamily) || !e.exceptFamily.length || e.exceptFamily.some(x => typeof x !== 'string')) return { error: 'TRASH_LOCK needs "exceptFamily" (a list of family names)' };
+        o.exceptFamily = e.exceptFamily.slice();
+      }
       if (e.flag === 'DESTROY_UNPREVENTABLE') {                    // v576 "your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects"
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'DESTROY_UNPREVENTABLE needs a whole-number "costLe" (0-30)' };
         o.costLe = e.costLe;

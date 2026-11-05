@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (362 lines, ~12.7k tokens)
+## packages/engine/src/02c-effects-parse.js (366 lines, ~12.8k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (457 lines, ~10.5k tokens)
@@ -50,7 +50,7 @@ highSpeedOK, fsNexus, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 ## packages/engine/src/02j-effects-accel.js (120 lines, ~2.1k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, immortalCands, immortalOffer, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
-## packages/engine/src/02k-effects-immunity.js (38 lines, ~0.7k tokens)
+## packages/engine/src/02k-effects-immunity.js (39 lines, ~0.7k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
 ## packages/engine/src/02l-effects-invoke.js (269 lines, ~7.2k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
@@ -86,8 +86,8 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (315 lines, ~7.2k tokens)
-symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, destroyUnpreventable, unprevPred, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect, BURST_TYPES
+## packages/engine/src/02w-effects-indra.js (332 lines, ~7.5k tokens)
+symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, destroyUnpreventable, unprevPred, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter, fxPickRaw, tenmaRedirect, BURST_TYPES, trashLocked
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.5k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay

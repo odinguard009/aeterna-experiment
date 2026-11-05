@@ -9,6 +9,7 @@
 const trashSafe = (t, c) => {
   const d = t && CARDS[t.id]; if (!d) return false;
   if (d.trashUnaffected) return true;
+  if (G && c && trashLocked(t, c.src)) return true;      // v577 TRASH_LOCK
   if (!c || !c.p || !G) return false;
   const own = G.p.player.trash.includes(t) ? G.p.player : G.p.opponent.trash.includes(t) ? G.p.opponent : null;
   if (!own || c.p === own) return false;

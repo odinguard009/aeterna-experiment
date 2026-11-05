@@ -2030,5 +2030,15 @@
   "rule": "Engine: checked where an effect picks its target; once per effect; the redirected target is not re-validated against the action filters."
  },
   {"id": "TRASH_MIRAGE_SET", "kind": "card field", "meaning": "Set this card from the Trash as a Mirage without paying, once per turn.", "pattern": "When this card is discarded from the Hand by your \"Scalostle\" family effect, or sent to the Trash from deck by the effect of your \"Contractor Nuadha\", you can set it without paying the cost. When you do, return your originally set Mirage to the Hand.", "engine": "trashTrigger {from, by, byFrom, mirageSet}", "status": "wired", "example": "BS74-064", "rule": "Engine: sentToTrashFx offers it; once per turn per card name; the set Mirage returns to the Hand first."},
-  {"id": "DESTROY_UNPREVENTABLE", "kind": "STATIC flag", "meaning": "Your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects.", "pattern": "Your \"Destruction Effects\" can't be prevented by opposing Cost 4 or less Spirit/Ultimate effects.", "engine": "STATIC DESTROY_UNPREVENTABLE {costLe} (Mirage zone)", "status": "partial", "example": "BS74-064", "rule": "Engine: removeSpirit ignores NO_DESTROY_OPP and REMAIN_DESTROY held by such Spirits/Ultimates; UNAFFECTED (target immunity) is not touched."}
+  {"id": "DESTROY_UNPREVENTABLE", "kind": "STATIC flag", "meaning": "Your Destruction Effects can't be prevented by opposing Cost N or less Spirit/Ultimate effects.", "pattern": "Your \"Destruction Effects\" can't be prevented by opposing Cost 4 or less Spirit/Ultimate effects.", "engine": "STATIC DESTROY_UNPREVENTABLE {costLe} (Mirage zone)", "status": "partial", "example": "BS74-064", "rule": "Engine: removeSpirit ignores NO_DESTROY_OPP and REMAIN_DESTROY held by such Spirits/Ultimates; UNAFFECTED (target immunity) is not touched."},
+  {
+    "id": "TRASH_LOCK",
+    "kind": "static",
+    "meaning": "While the Nexus is on a Field at an active level, cards in either Trash that lack the listed families are unaffected by other effects and their effects can't be used.",
+    "pattern": "Cards without \"X\" family in either player's Trash are unaffected by effects other than this one, and their effects can't be used.",
+    "engine": "STATIC flag TRASH_LOCK (exceptFamily, lv); trashLocked() in 02w, checked by trashSafe (02k) and fxEntries (02a)",
+    "status": "partial",
+    "example": "BS71-072",
+    "rule": "Engine: unaffected is enforced through the immunity wrapper on Trash-pick actions; unwrapped Trash-pick sites are not covered."
+  }
 ]

@@ -20563,9 +20563,21 @@
   "image": "BS71-072.png",
   "block": "71",
   "saga": 15,
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export; not yet checked against the card image. TRASH_LOCK: 'unaffected' is enforced where Trash cards are picked through the immunity wrapper (trashSafe) and for Trash effects/trashTrigger via fxEntries; a few unwrapped Trash-pick sites may still reach them.",
   "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "TRASH_LOCK",
+    "lv": [
+     1,
+     2
+    ],
+    "exceptFamily": [
+     "Celtica",
+     "Scalostle"
+    ]
+   },
    {
     "trigger": "STATIC",
     "flag": "COST_DESTROY_PLUS",
@@ -20579,9 +20591,6 @@
      "Scalostle"
     ]
    }
-  ],
-  "residual": [
-   "LV1/LV2: cards without the Celtica/Scalostle family in either Trash are unaffected by effects other than this one, and their effects cannot be used"
   ],
   "bicon": [
    "11"
