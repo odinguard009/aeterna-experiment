@@ -1817,6 +1817,6 @@
     "engine": "OPP_DESTROYED_FX bySrc.self + ALLY_DESTROYS self",
     "status": "done",
     "example": "BS71-057",
-    "rule": "Fires for the Spirit that caused the destruction, whether through its own effect or a battle win."
+    "rule": "Engine: fires for the Spirit that caused the destruction, through its own effect or a battle win."
   }
 ]
