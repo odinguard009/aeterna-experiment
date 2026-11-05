@@ -170,3 +170,14 @@ test('K-1189 SJ15-20: attack trashes 2 cores each from two opposing Spirits; eac
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.trash, 4, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r));
   assert.equal(r.dl, r.cols >= 3 ? 2 : 0, JSON.stringify(r));
 });
+
+test('K-1190 SD32-005: braved attack sends an opposing core to the Reserve, then a Void core goes to a White Spirit with Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const me = BS.mkInst('SD32-005'); me.cores = 1; const wh = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'white' && BS.CARDS[k].levels.length > 0);
+    const w = BS.mkInst(wh); w.cores = 2; w.soul = true; P.spirits = [me, w]; P.void = 3;
+    const t = BS.mkInst(wh); t.cores = 2; O.spirits = [t]; const rs = O.reserve.n;
+    me.brave = [BS.mkInst(wh)]; await BS.fireFx(P, 'ATTACKS', me, {});
+    return { fc: BS.CARDS['SD32-005'].partial === false, w: w.cores, v: P.void, t: t.cores, rs: O.reserve.n - rs }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.t, 1, JSON.stringify(r)); assert.equal(r.w, 3, JSON.stringify(r)); assert.equal(r.v, 2, JSON.stringify(r));
+});

@@ -2,7 +2,7 @@
 
 Standing list (owner 2026-11-04): groups top to bottom, all before the Grandwalker queue. Edit data/kb/lane-k-priority.json with the tool (`--add`, `--top`, `--after`, `--remove`).
 
-## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 43 of 53 complete
+## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 44 of 53 complete
 Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.
 
 | Card | Name | State |
@@ -16,7 +16,6 @@ Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-
 | SD57-RV004 | The HeavenlyDemonKing Advents | OPEN |
 | SD57-TX01 | The HeavenlyDemonKing God-Sechs -Type Earth- | OPEN |
 | SD57-X02 | The HeavenlyDemonKing God-Sechs -Type Shadow- | OPEN |
-| SJ15-20 | The HeavenlyDemonKing God-Sechs -Type Souldragon- | OPEN |
 
 ## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 24 of 26 complete
 Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.json.

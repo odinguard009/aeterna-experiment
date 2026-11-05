@@ -58596,16 +58596,40 @@
   "image": "SD32-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "When Braved (When Attacks) Send a core from any opposing Spirits to their Reserve. Then, put a core from the Void to your White Spirit with Soul Core on it."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U",
   "brave": {
    "bp": 4000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1
+    ],
+    "braved": true,
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     },
+     {
+      "do": "VOID_TO_MATCHING",
+      "targets": 1,
+      "match": {
+       "type": "Spirit",
+       "color": [
+        "white"
+       ],
+       "hasSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD32-006",
