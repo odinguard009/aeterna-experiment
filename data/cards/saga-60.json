@@ -74056,17 +74056,45 @@
   "image": "SD57-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Draw a card.",
-   "During Brave While braved to a \"God-Sechs\"-named Spirit, this Spirit's symbols are also treated as Red/Purple/Green/White/Yellow/Blue."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). selfNameHas (v553) = the host Spirit's name contains the text (braved to a God-Sechs-named Spirit).",
   "rcode": "R",
   "brave": {
    "bp": 3000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "braved": true,
+    "colors": [
+     "red",
+     "purple",
+     "green",
+     "white",
+     "yellow",
+     "blue"
+    ],
+    "symbol": true,
+    "if": {
+     "selfNameHas": "God-Sechs"
+    }
+   }
+  ]
  },
  {
   "id": "SD57-006",

@@ -34101,6 +34101,7 @@
   "C_OPP_TURN",
   "K_ACCEL",
   "K_BRAVE",
+  "K_BRAVED_TO_NAMED",
   "K_GRANDWALKER",
   "T_ATTACKS"
  ],
@@ -44404,6 +44405,7 @@
   "A_SYMBOL",
   "A_SYMBOL_PLUS",
   "K_BRAVE",
+  "K_BRAVED_TO_NAMED",
   "T_ATTACKS",
   "T_DURING_BRAVE"
  ],
@@ -93503,11 +93505,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "SD32-004": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BURST"
- ],
  "SD32-005": [
   "A_VOID",
   "M_THEN",
@@ -96179,19 +96176,6 @@
   "A_REVEAL_DECK",
   "C_LEVEL",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "SD57-004": [
-  "A_DESTROY_NEXUS",
-  "C_LEVEL",
-  "K_RUSH",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "SD57-005": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_DURING_BRAVE",
   "T_SUMMONED"
  ],
  "SD57-006": [

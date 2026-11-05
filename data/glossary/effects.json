@@ -1738,5 +1738,15 @@
     "status": "full",
     "example": "SD32-003",
     "rule": "Engine: ctrlCount counts only your Spirits that carry a Soul Core when the entry has soul:true; other:true leaves out the source Spirit."
+  },
+  {
+    "id": "K_BRAVED_TO_NAMED",
+    "kind": "effect",
+    "meaning": "During Brave: while braved to a Spirit with a given name",
+    "pattern": "While braved to an? .{1,40}-named Spirit",
+    "engine": "braved:true + if selfNameHas",
+    "status": "full",
+    "example": "SD57-005",
+    "rule": "Engine: a Brave effect marked braved:true reads the host Spirit as its context; selfNameHas checks that Spirit's name."
   }
 ]

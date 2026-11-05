@@ -79,3 +79,12 @@ test('K-1181 SD57-004: summon draws, then returns an opposing Spirit only while 
     return { fc: BS.CARDS['SD57-004'].partial === false, white: await run(wh), blue: await run(bl), sd: (BS.CARDS['SD57-004'].colors || []) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.white.drew, 1, JSON.stringify(r)); assert.equal(r.white.back, 1, JSON.stringify(r)); assert.equal(r.blue.back, 0, JSON.stringify(r));
 });
+
+test('K-1182 SD57-005: braved to a God-Sechs-named Spirit the host gains all six symbol colours, otherwise nothing', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const run = id => { const h = BS.mkInst(id); h.cores = 3; h.brave = BS.mkInst('SD57-005'); P.spirits = [h]; return Object.keys(symbolsOn(P)).length; };
+    const other = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].name.includes('God-Sechs') && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).length === 1 && BS.CARDS[k].levels.length > 0);
+    return { fc: BS.CARDS['SD57-005'].partial === false, god: run('SD32-X02'), other: run(other) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.god, 6, JSON.stringify(r)); assert.ok(r.other < 6, JSON.stringify(r));
+});
