@@ -40,3 +40,11 @@ test('K-1177 SD32-X02: a two-colour ally attacking sends two opposing cores to t
     return { fc: BS.CARDS['SD32-X02'].partial === false, withSoul: await run(true, two), noSoul: await run(false, two), mono: await run(true, one) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.withSoul, 2, JSON.stringify(r)); assert.equal(r.noSoul, 0, JSON.stringify(r)); assert.equal(r.mono, 0, JSON.stringify(r));
 });
+
+test('K-1178 SD32-002: only the exactly-named God-Sechs in Hand becomes Cost 6 (Type variants stay), and the colour is also Red', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const s = BS.mkInst('SD32-002'); s.cores = 2; P.spirits = [s];
+    return { fc: BS.CARDS['SD32-002'].partial === false, exact: handCostSet(P, BS.CARDS['SD32-X02']), variant: handCostSet(P, BS.CARDS['BS34-XX02']), red: BS.CARDS['SD32-002'].colors || BS.CARDS['SD32-002'].color }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.exact, 6, JSON.stringify(r)); assert.equal(r.variant, null, JSON.stringify(r));
+});
