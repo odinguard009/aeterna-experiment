@@ -1508,5 +1508,25 @@
     "status": "wired",
     "example": "{\"do\":\"SEAL\",\"from\":\"self\"}",
     "rule": "Seal using the Soul Core that sits on this Spirit. Engine: SEAL from self (card text of BS46-10THX02)."
+  },
+  {
+    "id": "K_SUMMON_SELF_PAY",
+    "kind": "phrase",
+    "meaning": "You can summon this card from the Hand by paying N cost",
+    "pattern": "summon this card from the hand by paying .{0,12}cost",
+    "engine": "SUMMON_SELF_PAY {pay, thenCore}",
+    "status": "wired",
+    "example": "{\"do\":\"SUMMON_SELF_PAY\",\"pay\":1,\"thenCore\":true}",
+    "rule": "Pay the stated cost to put this card from the Hand onto the Field; thenCore adds the Soul Core from the Trash or a Void core. Engine: SUMMON_SELF_PAY (card text of BS73-AX03)."
+  },
+  {
+    "id": "K_OPP_BOUNCE_OR_NOBLOCK",
+    "kind": "phrase",
+    "meaning": "Unless the opponent returns a Spirit they control to the deckbottom, they can't block",
+    "pattern": "unless the opponent returns a spirit they control to the deckbottom",
+    "engine": "OPP_BOUNCE_OR_NOBLOCK",
+    "status": "wired",
+    "example": "{\"do\":\"OPP_BOUNCE_OR_NOBLOCK\"}",
+    "rule": "The opponent may return one of their Spirits to the deckbottom; if they do not, the attacker cannot be blocked. Engine: OPP_BOUNCE_OR_NOBLOCK (card text of BS73-AX03); the CPU never returns a Spirit and the lock lasts the turn."
   }
 ]

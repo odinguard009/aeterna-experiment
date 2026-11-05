@@ -9804,16 +9804,85 @@
   "mechanics": [
    "Six Heaven Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Can't Stack) When your Cost 6 or more \"Machine\"/\"Force Fighter\" family Spirit attacks/blocks, you can summon this card from the Hand by paying one cost.",
-   "When you've done so, you can put a core from the Void to this Spirit, or send the  from your Trash to this Spirit.",
-   "[LV2][LV3] (Your Attack Step)",
-   "Unless the opponent returns a Spirit they control to the deckbottom, they can't block.",
-   "{{Six Heaven Rush|2}} (Activate if you have two or more symbol colors)",
-   "Your attacking \"Heavenly Demon King\"/ \"Machine\"/ \"Force Fighter\" family Spirits gain an extra White symbol."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "zone": "hand",
+    "noStack": true,
+    "match": {
+     "family": [
+      "Machine",
+      "Force Fighter"
+     ],
+     "costGe": 6
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_SELF_PAY",
+      "pay": 1,
+      "thenCore": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BLOCKS",
+    "zone": "hand",
+    "noStack": true,
+    "match": {
+     "family": [
+      "Machine",
+      "Force Fighter"
+     ],
+     "costGe": 6
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_SELF_PAY",
+      "pay": 1,
+      "thenCore": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_BOUNCE_OR_NOBLOCK"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "family": [
+      "Heavenly Demon King",
+      "Machine",
+      "Force Fighter"
+     ]
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_ATTACKER_PLUS",
+      "color": "white",
+      "if": {
+       "symColorsGe": 2
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-CP01",

@@ -136,3 +136,16 @@ test('K-1156 BS55-RV004 Type Five: also Green/Yellow/Blue, unaffected with five 
     return { few, refreshed: !me.exhausted, n: E.length, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.n, 5, JSON.stringify(r));
 });
+
+test('K-1157 BS73-AX03: summons from the Hand for 1 cost when a Cost 6+ Machine attacks, the opponent cannot block unless it returns a Spirit, attackers gain White', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BS73-AX03'], E = K.effects;
+    const me = BS.mkInst('BS73-AX03'); P.hand = [me]; P.spirits = []; P.void = 3; P.reserve.n = Math.max(P.reserve.n, 3);
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    const summoned = P.spirits.includes(me), cores = me.cores;
+    const att = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)); P.spirits.push(att);
+    await BS.runActions({ p: P, opp: O, src: me, ctx: { attacker: att } }, { actions: E[2].actions });
+    return { summoned, cores, noBlock: att.noBlockTurn === G.turnNo, n: E.length, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.noBlock, true, JSON.stringify(r)); assert.equal(r.n, 4, JSON.stringify(r));
+});

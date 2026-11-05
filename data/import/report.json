@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6070,
+  "cards": 6069,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,12 +17,12 @@
    "13": 381,
    "14": 418,
    "15": 322,
-   "16": 259,
+   "16": 258,
    "17": 104
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2636,
+  "skipped_curated": 2637,
   "nexus_levels_added": 643,
   "nexus_levels_missing": 38,
   "merged": 101,
@@ -32,7 +32,6 @@
   "odd_reduction": 748,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "number_conflicts": 1,
   "without_image": 381
  },
  "tokens": [
@@ -1883,6 +1882,7 @@
   "BS73-CX02",
   "BS73-AX01",
   "BS73-AX02",
+  "BS73-AX03",
   "BS74-001",
   "BS74-002",
   "BS74-004",

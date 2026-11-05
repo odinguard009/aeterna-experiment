@@ -62,7 +62,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02n-effects-void-destinations.js (82 lines, ~2.2k tokens)
 
 
-## packages/engine/src/02o-effects-battle-end.js (148 lines, ~3.2k tokens)
+## packages/engine/src/02o-effects-battle-end.js (176 lines, ~3.9k tokens)
 endOfBattle, symAllColorsOn, soulTreated
 
 ## packages/engine/src/02p-effects-shared-shapes.js (621 lines, ~15k tokens)

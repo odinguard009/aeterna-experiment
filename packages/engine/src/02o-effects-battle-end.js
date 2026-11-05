@@ -146,3 +146,31 @@ Object.assign(FX_ACTIONS, {
 const symAllColorsOn = i => !!G && i.symLoseTurn !== G.turnNo && flagActive(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, 'SYM_ALL_COLORS', i);
 /* v535 STATIC SOUL_TREATED {to:'own', match, if}: "every <match> Spirit you control is treated as having the Soul Core on it" (BS46-10THX02); read by the selfSoul / srcSoul conditions only */
 const soulTreated = i => !!G && !!i && [G.p.player, G.p.opponent].some(o => o.spirits.includes(i) && flagActive(o, 'SOUL_TREATED', i));
+
+Object.assign(FX_ACTIONS, {
+  /* v537 SUMMON_SELF_PAY {pay, thenCore}: "you can summon this card from the Hand by paying N cost" (BS73-AX03, zone hand). thenCore: "when you've done so, you can put a core from the Void to this Spirit, or send the Soul Core from your Trash to this Spirit" (the Soul Core first when it is in the Trash). */
+  SUMMON_SELF_PAY: { chk: a => Number.isInteger(a.pay) && a.pay >= 0 && a.pay <= 5 && (a.thenCore == null || a.thenCore === true) && Object.keys(a).every(k => ['do', 'if', 'pay', 'thenCore'].includes(k)),
+    txt: a => `pay ${a.pay} cost to summon this card from the Hand${a.thenCore ? '; then put a core from the Void, or the Soul Core from the Trash, onto it' : ''}`,
+    can: (c, a) => c.p.hand.includes(c.src) && coresAvailable(c.p) >= a.pay && canPlaceFree(c.p, c.src),
+    run: async (c, a) => {
+      c.ctx.did = false; if (!FX_ACTIONS.SUMMON_SELF_PAY.can(c, a)) return;
+      if (a.pay && !(await payInvokeCost(c.p, c.src, { pay: a.pay }))) return;
+      if (!c.p.hand.includes(c.src) || !canPlaceFree(c.p, c.src)) return;
+      if (!(await summonFree(c.p, c.src))) return;
+      c.ctx.did = true; if (!a.thenCore || !fieldList(c.p).includes(c.src)) return;
+      if (c.p.trashCores.soul && c.p.trashCores.n > 0 && !c.src.soul) { c.p.trashCores.soul = false; c.p.trashCores.n--; c.src.cores += 1; c.src.soul = true; log(`${CARDS[c.src.id].name} receives the Soul Core from the Trash.`); }
+      else if (c.p.void > 0) { c.p.void--; c.src.cores++; log(`${CARDS[c.src.id].name}: 1 core goes from the Void onto it.`); }
+      io.view({ type: 'board' }); } },
+  /* v537 OPP_BOUNCE_OR_NOBLOCK {}: "unless the opponent returns a Spirit they control to the deckbottom, they can't block" (BS73-AX03, ALLY_ATTACKS). The attacking card is marked unblockable for the turn (approximation of "this attack"); the CPU never returns a Spirit, a player may. */
+  OPP_BOUNCE_OR_NOBLOCK: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => "unless the opponent returns a Spirit they control to the deckbottom, they can't block",
+    can: c => !!(c.ctx && c.ctx.attacker),
+    run: async c => {
+      const att = c.ctx && c.ctx.attacker; c.ctx.did = false; if (!att) return;
+      let pay = null;
+      if (!c.opp.cpu && c.opp.spirits.length) {
+        const v = await ask({ title: `✨ ${_nm(c)}`, html: "Return one of your Spirits to the deckbottom to keep the right to block?", buttons: [{ label: 'Return a Spirit', value: 'y' }, { label: "Can't block", value: 'n' }] });
+        if (v === 'y') { const u = await ask({ title: `✨ ${_nm(c)}`, html: 'Choose a Spirit to return to the deckbottom.', buttons: c.opp.spirits.map(x => ({ label: CARDS[x.id].name, value: x.uid })) }); pay = c.opp.spirits.find(x => x.uid === u) || c.opp.spirits[0]; }
+      }
+      if (pay) { bounceCard(c.opp, pay, 'deckBottom'); checkDepletion(c.opp); log(`${poss(c.opp)} ${CARDS[pay.id].name} returns to the deckbottom.`); return; }
+      att.noBlockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[att.id].name} can't be blocked.`); io.view({ type: 'board' }); } } });
