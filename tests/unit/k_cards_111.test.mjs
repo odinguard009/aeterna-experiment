@@ -55,3 +55,21 @@ test('K-1151 BS34-XX02 Type Destroy: summoned free from the Hand by returning a 
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r));
   assert.equal(r.noRetNonExact, true, JSON.stringify(r)); assert.ok(r.nsym >= 4, JSON.stringify(r)); assert.equal(r.left, r.n0 - r.nsym, JSON.stringify(r));
 });
+
+test('K-1152 BS35-041 Type Five: also Green/Yellow, refreshes at the end of battle, Rush 5 makes the other God-Sechs unblockable this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const src = BS.mkInst('BS35-041'); src.cores = 2; P.spirits = [src];
+    const sy = BS.symbolsOn(P); const both = (sy.green || 0) >= 1 && (sy.yellow || 0) >= 1;
+    const E = BS.CARDS['BS35-041'].effects;
+    G.attacker = src; G.eob = []; src.exhausted = true;
+    await BS.runActions({ p: P, opp: O, src, ctx: {} }, { actions: E[1].actions });
+    await BS.endOfBattle(); const refreshed = !src.exhausted; G.eob = null; G.attacker = null;
+    const gs = BS.mkInst('SD32-X02'), other = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !/God-Sechs/.test(BS.CARDS[k].name) && BS.CARDS[k].symbols >= 1));
+    const byColor = {}; for (const k of Object.keys(BS.CARDS)) { const c = BS.CARDS[k]; if (c.type === 'Spirit' && !c.token && (c.colors || [c.symbol]).length === 1 && c.symbols >= 1 && !byColor[c.symbol]) byColor[c.symbol] = k; }
+    P.spirits = [src, gs, other].concat(Object.values(byColor).map(k => { const q = BS.mkInst(k); q.cores = 5; return q; }));
+    await BS.runActions({ p: P, opp: O, src, ctx: {} }, { actions: E[2].actions });
+    return { both, refreshed, gsFree: gs.noBlockTurn === G.turnNo, srcFree: src.noBlockTurn === G.turnNo, otherFree: other.noBlockTurn === G.turnNo, partial: BS.CARDS['BS35-041'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.both, true, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
+  assert.equal(r.gsFree, true, JSON.stringify(r)); assert.equal(r.srcFree, false, JSON.stringify(r)); assert.equal(r.otherFree, false, JSON.stringify(r));
+});
