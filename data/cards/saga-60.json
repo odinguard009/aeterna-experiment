@@ -58296,12 +58296,53 @@
   "image": "SD32-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Return an opposing Spirit to the Hand. When a Soul Core is on a Red Spirit of yours other than this Spirit, additionally draw a card from your deck. [LV1][LV2] This Spirit's color and symbol are also treated as Red."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). ctrl.soul (v552) = a Spirit with a Soul Core on it.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "kind": "spirit",
+      "to": "hand"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "type": "Spirit",
+        "colors": [
+         "red"
+        ],
+        "soul": true,
+        "other": true
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD32-004",

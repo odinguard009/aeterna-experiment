@@ -93503,16 +93503,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "SD32-002": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
- ],
- "SD32-003": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "SD32-004": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -93539,13 +93529,6 @@
   "M_REPLACEMENT",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD32-X02": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_NO_REFRESH_OPP",
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
  ],
  "SD33-005": [
   "A_BP_PLUS",

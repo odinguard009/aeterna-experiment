@@ -109802,7 +109802,8 @@
  ],
  "SD32-003": [
   "T_SUMMONED",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CTRL_SOUL_SPIRIT"
  ],
  "SD32-004": [
   "A_BP_PLUS",

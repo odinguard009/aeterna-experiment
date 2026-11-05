@@ -48,3 +48,13 @@ test('K-1178 SD32-002: only the exactly-named God-Sechs in Hand becomes Cost 6 (
     return { fc: BS.CARDS['SD32-002'].partial === false, exact: handCostSet(P, BS.CARDS['SD32-X02']), variant: handCostSet(P, BS.CARDS['BS34-XX02']), red: BS.CARDS['SD32-002'].colors || BS.CARDS['SD32-002'].color }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.exact, 6, JSON.stringify(r)); assert.equal(r.variant, null, JSON.stringify(r));
 });
+
+test('K-1179 SD32-003: summon bounces one opposing Spirit and draws only with ANOTHER red Spirit that has a Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const red = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).includes('red') && BS.CARDS[k].levels.length > 0 && k !== 'SD32-003');
+    const run = async (mode) => { const me = BS.mkInst('SD32-003'); me.cores = 3; const o = BS.mkInst(red); o.cores = 1; o.soul = mode === 'other'; me.soul = mode === 'self'; P.spirits = [me, o];
+      const t = BS.mkInst(red); t.cores = 2; O.spirits = [t]; O.hand = []; const h0 = P.hand.length; await BS.fireFx(P, 'SUMMONED', me, {}); return { drew: P.hand.length - h0, bounced: O.hand.length, left: O.spirits.length }; };
+    return { fc: BS.CARDS['SD32-003'].partial === false, other: await run('other'), self: await run('self'), none: await run('none') }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.other.drew, 1, JSON.stringify(r)); assert.equal(r.self.drew, 0, JSON.stringify(r)); assert.equal(r.none.drew, 0, JSON.stringify(r)); assert.equal(r.other.left, 0, JSON.stringify(r));
+});

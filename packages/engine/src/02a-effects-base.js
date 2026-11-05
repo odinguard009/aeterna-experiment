@@ -224,6 +224,7 @@ function fxIf(owner, opp, c, ctx) {
 const fxNoText = k => { const t = String(k.desc || k.text || '').trim(); return !t || t === 'Vanilla card (no effect text).'; };      // v0.167 ctrl.noText: "a Spirit with no printed effects"
 const ctrlCount = (owner, q, ctx) => owner.spirits.concat(q.nexus ? owner.nexus : []).filter(f => { const k = CARDS[f.id], u = k.type === 'Ultimate';
   if (q.other && ctx && ctx.selfUid === f.uid) return false;      // v0.150 "another / besides this Spirit"
+  if (q.soul && !f.soul) return false;      // v552 "a Spirit with a Soul Core on it"
   if (q.keyword && !cardHasKeyword(k, q.keyword)) return false;      // v0.150 "a Spirit with Evolution"
   return (q.type === 'Both' || (q.type === 'Ultimate') === u) && (!q.colors || q.colors.some(x => (k.colors || [k.symbol]).includes(x)))
     && (q.costIn == null || q.costIn.includes(k.cost)) && (q.costGe == null || k.cost >= q.costGe) && (q.costLe == null || k.cost <= q.costLe) && (q.bpGe == null || bpOf(f) >= q.bpGe) && (q.symbolsGe == null || (k.symbols || 0) >= q.symbolsGe) && (!q.noText || fxNoText(k)) && (!q.hasEx || k.exSymbols > 0) && (!q.braved || !!f.brave) && (!q.name || [].concat(q.name).some(n => k.name.includes(n))) && (!q.team || cardTeams(k).includes(q.team)) && (!q.family || [].concat(q.family).some(x => (k.families || []).includes(x))) && (!q.exhausted || f.exhausted) && (!q.refreshed || !f.exhausted); }).length;

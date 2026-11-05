@@ -1728,5 +1728,15 @@
     "status": "full",
     "example": "BSC48-X08",
     "rule": "Engine: refreshOne skips any card an active opposing NO_REFRESH static matches, in the Refresh Step and in refresh effects."
+  },
+  {
+    "id": "K_CTRL_SOUL_SPIRIT",
+    "kind": "effect",
+    "meaning": "Condition: a Spirit of yours has a Soul Core on it",
+    "pattern": "When a Soul Core is on a .{1,30}Spirit of yours( other than this Spirit)?",
+    "engine": "if ctrl {type:Spirit, soul:true, other?, colors?}",
+    "status": "full",
+    "example": "SD32-003",
+    "rule": "Engine: ctrlCount counts only your Spirits that carry a Soul Core when the entry has soul:true; other:true leaves out the source Spirit."
   }
 ]
