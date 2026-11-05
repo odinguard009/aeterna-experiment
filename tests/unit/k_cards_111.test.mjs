@@ -339,3 +339,14 @@ test('K-1172 BSC48-056: costAlt.exhaust needs and exhausts a Heavenly Demon King
     return { none, have, spent, gated, fc: K.partial === false, tu: K.trashUnaffected, burst: !!K.burst }; })()`);
   assert.equal(r.none, false, JSON.stringify(r)); assert.equal(r.have, true, JSON.stringify(r)); assert.equal(r.spent, false, JSON.stringify(r)); assert.equal(r.gated, false, JSON.stringify(r)); assert.equal(r.fc, true); assert.equal(r.tu, true); assert.equal(r.burst, true);
 });
+test('K-1173 BSC48-055: Burst takes one opposing core per own symbol color; Flash returns an opposing Spirit to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const K = BS.CARDS['BSC48-055'], me = BS.mkInst('BSC48-055');
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels && BS.CARDS[k].levels.length);
+    const o = BS.mkInst(sp[0]); o.cores = 5; O.spirits = [o]; const before = O.reserve.n;
+    const mine = BS.mkInst(sp[1]); P.spirits = [mine]; P.limbo = me;
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {}, burst: true }, { actions: K.burst.actions });
+    return { fc: K.partial === false, lost: 5 - o.cores, bt: !!K.burst && K.burst.when }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.bt, 'OPP_ATTACK', JSON.stringify(r)); assert.ok(r.lost >= 1 && r.lost <= 5, JSON.stringify(r));
+});

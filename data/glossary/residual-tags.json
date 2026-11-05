@@ -80020,15 +80020,6 @@
   "M_TRASH_TRIGGER",
   "T_ALLY_LOST"
  ],
- "BSC48-055": [
-  "A_OPP_CORES_TO_RESERVE",
-  "A_VOID",
-  "C_CONTROL",
-  "K_BURST",
-  "K_COND_CONTROL_LV2",
-  "K_ULTIMATE",
-  "M_THEN"
- ],
  "BSC48-057": [
   "A_DRAW",
   "A_SOUL_STATE",

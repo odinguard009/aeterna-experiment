@@ -1678,5 +1678,15 @@
     "status": "full",
     "example": "BSC48-056",
     "rule": "Engine: the alternate cost applies only if an untapped matching Grandwalker Nexus exists; casting exhausts it."
+  },
+  {
+    "id": "K_OPP_CORES_PER_SYMBOL_COLOR",
+    "kind": "effect",
+    "meaning": "send one opposing core to the Reserve for each symbol color you have",
+    "pattern": "For each symbol color you have, send a core from any opposing Spirits/Ultimates to the Reserve",
+    "engine": "OPP_CORES_TO_RESERVE perSource ownSymColors",
+    "status": "full",
+    "example": "BSC48-055",
+    "rule": "Engine: counts your distinct symbol colors on the Field and takes that many cores, one at a time, from opposing Spirits."
   }
 ]
