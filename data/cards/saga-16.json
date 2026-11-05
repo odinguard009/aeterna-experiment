@@ -30994,14 +30994,29 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "While you control \"Contractor Dairokuten Maou\", you can use this card from the Trash.",
-   "Flash",
-   "(Once per Turn: Same Name) From your Trash, either return a Cost 10 or less \"God-Sechs\" to the Hand, or summon it without paying the cost, or immediately use its Change without paying the cost. Then, if this card was used from the Trash, banish it."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "once": true,
+   "trashUse": {
+    "if": {
+     "hasName": "Contractor Dairokuten Maou"
+    }
+   },
+   "actions": [
+    {
+     "do": "TRASH_PICK_THREE",
+     "nameHas": "God-Sechs",
+     "costLe": 10
+    }
+   ]
+  }
  },
  {
   "id": "BSC48-053",
@@ -32400,18 +32415,110 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Once per Turn: Same Name) At the end of the attack of your \"God-Sechs\", you can pay one cost to use the following Change of this card from the Hand/Trash.",
-   "Flash - {{Change|Cost 6 ( (Red Core) (Purple Core) (White Core))}}",
-   "Return an opposing Spirit/Nexus/Burst to the deckbottom. After this effect resolves, either discard this card, or replace one of your Cost 9 or less \"Heavenly Demon King\" family Spirits with this card in refreshed state.",
-   "[LV1][LV2][LV3] (When Attacks)",
-   "You can draw two cards.",
-   "{{Six Heaven Rush|4}} (Activate while you have four or more symbol colors)",
-   "If there is (Soul Core) on this Spirit, you can destroy opposing Spirits/Grandwalker Nexuses, one of each."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "X"
+  "rcode": "X",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "alsoMagic": true,
+   "rtn": true,
+   "change": {
+    "cost": 6,
+    "reduction": {
+     "red": 1,
+     "purple": 1,
+     "white": 1
+    }
+   },
+   "actions": [
+    {
+     "do": "CHANGE_BOUNCE_OPP",
+     "to": "deckBottom"
+    },
+    {
+     "do": "CHANGE_REPLACE",
+     "family": "Heavenly Demon King",
+     "costLe": 9
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "zone": "hand",
+    "optional": true,
+    "once": true,
+    "sameName": true,
+    "onceKey": "chg",
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "actions": [
+     {
+      "do": "CHANGE_SELF",
+      "pay": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "zone": "trash",
+    "optional": true,
+    "once": true,
+    "sameName": true,
+    "onceKey": "chg",
+    "match": {
+     "name": [
+      "God-Sechs"
+     ]
+    },
+    "actions": [
+     {
+      "do": "CHANGE_SELF",
+      "pay": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 2
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "if": {
+     "symColorsGe": 4,
+     "selfSoul": true
+    },
+    "actions": [
+     {
+      "do": "DESTROY_OPP_SPIRIT_AND_GW"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BSC48-X10",

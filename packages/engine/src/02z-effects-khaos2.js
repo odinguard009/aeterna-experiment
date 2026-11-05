@@ -110,6 +110,7 @@ function ccost(card, inst) {
 
 /* v530 Field Flash: a resolved Magic marked inst.toBottom goes to the deckbottom, inst.toField onto the Field (p.fieldMag, activatable via zone:'field' ACTIVATE; cost {discardSelf:true} moves it to the Trash). */
 function magicRest(p, inst) {
+  if (inst.chg) return changeRep(p, inst);
   if (inst.toField) { inst.toField = false; p.fieldMag = p.fieldMag || []; p.fieldMag.push(inst); log(`${CARDS[inst.id].name} is put onto ${poss(p)} Field.`); }
   else { inst.toBottom = false; p.deck.push(inst); }
 }
@@ -136,3 +137,89 @@ FX_ACTIONS.BOUNCE_ALL_OTHERS = { chk: a => Object.keys(a).every(k => ['do', 'if'
     }
     if (!hit.length) return;
     checkDepletion(c.p); checkDepletion(c.opp); c.ctx.did = true; log(`${_nm(c)}: ${hit.length} other Spirit${hit.length === 1 ? '' : 's'} return${hit.length === 1 ? 's' : ''} to the deckbottom.`); io.view({ type: 'board' }); } };
+
+/* v567 Change (183 cards; BSC48-X09, BSC48-052): a Spirit with magic.change {cost, reduction} is used from the Hand in Flash like a Magic card (alsoMagic) at the Change's own cost/reduction (changeView + effCostM stand in for effCost on every Magic-side cost check).
+   CHANGE_SELF {pay}: "pay N cost to use this card's Change from the Hand/Trash" (castMagic with the cost already paid). CHANGE_REPLACE {family, costLe}: "after this effect resolves, either discard this card, or replace one of your <family> Spirits (cost N or less) with this card in refreshed state":
+   chooses the Spirit now (inst.chg), changeRep swaps it in when castMagic puts the card to rest (the replaced Spirit goes to the Trash with its Brave/under cards, its cores stay). A Change Spirit entering this way is not summoned. */
+const _chgView = new WeakMap();
+function changeView(card) {
+  const ch = card.magic && card.magic.change; if (!ch) return card;
+  let v = _chgView.get(card); if (!v) { v = Object.assign({}, card, { cost: ch.cost, reduction: ch.reduction || {}, costAlt: null, costPer: null }); _chgView.set(card, v); }
+  return v;
+}
+const effCostM = (p, card) => effCost(p, changeView(card));
+const _chgCands = (p, a) => p.spirits.filter(s => !isUlt(s) && (CARDS[s.id].families || []).includes(a.family) && CARDS[s.id].cost <= a.costLe);
+function changeRep(p, inst) {
+  const t = inst.chg; inst.chg = null;
+  if (!t || !p.spirits.includes(t)) return magicToTrash(p, inst);
+  const i = p.spirits.indexOf(t);
+  inst.cores = t.cores; inst.soul = t.soul; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.bpMod = 0; inst.fxUsed = {}; inst.viaFx = true; inst.summonedTurn = t.summonedTurn; inst.under = []; inst.brave = t.brave; t.brave = null;
+  for (const u of t.under) { u.under = []; p.trash.push(u); }
+  t.under = []; t.cores = 0; t.soul = false; t.exhausted = false; t.heavy = false; t.noAB = false; t.bpMod = 0; t.symBattle = 0;
+  p.spirits[i] = inst; p.trash.push(t);
+  if (G.attacker === t) G.attacker = inst; if (G.blocker === t) G.blocker = inst;
+  if (inst.brave) braveRecheck(p, inst);
+  log(`${CARDS[inst.id].name} replaces ${CARDS[t.id].name} (Change; the cores stay, refreshed).`); checkDepletion(p); io.view({ type: 'board' });
+}
+FX_ACTIONS.CHANGE_SELF = { chk: a => Number.isInteger(a.pay) && a.pay >= 0 && a.pay <= 5 && Object.keys(a).every(k => ['do', 'if', 'pay'].includes(k)),
+  txt: a => `pay ${a.pay} cost to use the Change of this card from the Hand/Trash`,
+  can: (c, a) => (c.p.hand.includes(c.src) || c.p.trash.includes(c.src)) && !!(CARDS[c.src.id].magic && CARDS[c.src.id].magic.change) && coresAvailable(c.p) >= a.pay,
+  run: async (c, a) => {
+    c.ctx.did = false; if (!FX_ACTIONS.CHANGE_SELF.can(c, a)) return;
+    if (a.pay && !(await payInvokeCost(c.p, c.src, { pay: a.pay }))) return;
+    log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'uses' : 'use'} its Change.`);
+    c.ctx.did = true; await castMagic(c.p, { inst: c.src, target: null, plan: null, ctx: 'flash', free: true }); io.view({ type: 'board' }); } };
+FX_ACTIONS.CHANGE_REPLACE = { chk: a => typeof a.family === 'string' && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'family', 'costLe'].includes(k)),
+  txt: a => `after this effect resolves, either discard this card, or replace one of your Cost ${a.costLe} or less "${a.family}" Spirits with this card in refreshed state`,
+  can: (c, a) => CARDS[c.src.id].type !== 'Magic' && c.p.limbo === c.src && _chgCands(c.p, a).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; if (!FX_ACTIONS.CHANGE_REPLACE.can(c, a)) return;
+    const L = _chgCands(c.p, a); let t;
+    if (c.p.cpu) t = L.slice().sort((x, y) => bpOf(x) - bpOf(y))[0];
+    else { const uid = await pickFromField({ text: `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Replace one of your Spirits with this card (Change), or discard it.`, uids: L.map(x => x.uid), buttons: [{ label: 'Discard this card', cls: 'cancel', value: 'none' }] }); t = L.find(x => x.uid === uid); }
+    if (t) { c.src.chg = t; c.ctx.did = true; } } };
+FX_ACTIONS.CHANGE_BOUNCE_OPP = { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)),
+  txt: () => 'return an opposing Spirit/Nexus/Burst to the deckbottom',
+  cands: c => c.opp.spirits.concat(c.opp.nexus).filter(t => !flagActive(c.opp, 'NO_RETURN', t) && !fxImmune(c.opp, t, { p: c.p, src: c.src })),
+  can: c => FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c).length > 0 || (!!c.opp.burst && !burstSetSafe(c.opp)),
+  run: async c => {
+    c.ctx.did = false; const L = FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c), b = c.opp.burst && !burstSetSafe(c.opp) ? c.opp.burst : null;
+    if (!L.length && !b) return;
+    let t = null;
+    if (L.length) {
+      if (b && !c.p.cpu) { const uid = await pickFromField({ text: `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing card to return, or the Burst.`, uids: L.map(x => x.uid), buttons: [{ label: 'Return the Burst', cls: 'primary', value: 'burst' }] }); t = uid === 'burst' ? null : L.find(x => x.uid === uid) || L[0]; }
+      else t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing card to return (glowing).`);
+    }
+    if (t) { bounceCard(c.opp, t, 'deckBottom'); checkDepletion(c.opp); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns to the deckbottom.`); }
+    else if (b) { c.opp.burst = null; b.mirage = false; c.opp.deck.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst returns to the deckbottom.`); }
+    else return;
+    c.ctx.did = true; io.view({ type: 'board' }); } };
+/* v567 TRASH_PICK_THREE {nameHas, costLe} (BSC48-052): "from your Trash, either return a Cost N or less <name> to the Hand, or summon it without paying the cost, or immediately use its Change without paying the cost":
+   picks a matching Spirit in the Trash, then one of the three modes (the CPU summons it when it can, else returns it). */
+FX_ACTIONS.TRASH_PICK_THREE = { chk: a => typeof a.nameHas === 'string' && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'nameHas', 'costLe'].includes(k)),
+  txt: a => `from the Trash, either return a Cost ${a.costLe} or less "${a.nameHas}" to the Hand, or summon it without paying the cost, or use its Change without paying the cost`,
+  cands: (c, a) => c.p.trash.filter(t => { const k = CARDS[t.id]; return k.type === 'Spirit' && !k.token && k.name.includes(a.nameHas) && k.cost <= a.costLe; }),
+  can: (c, a) => FX_ACTIONS.TRASH_PICK_THREE.cands(c, a).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; const L = FX_ACTIONS.TRASH_PICK_THREE.cands(c, a); if (!L.length) return;
+    const t = await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose a Cost ${a.costLe} or less "${a.nameHas}" from your Trash.`, false); if (!t) return;
+    const k = CARDS[t.id], canS = canPlaceFree(c.p, t), canC = !!(k.magic && k.magic.change) && FX_ACTIONS.CHANGE_BOUNCE_OPP.can(c);
+    let m = 'hand';
+    if (c.p.cpu) m = canS ? 'summon' : 'hand';
+    else { const v = await ask({ title: `✨ ${esc(k.name)}`, html: 'Return it to the Hand, summon it free, or use its Change free?', buttons: [{ label: 'Return to the Hand', cls: 'blue', value: 'hand' }].concat(canS ? [{ label: 'Summon free', cls: 'primary', value: 'summon' }] : [], canC ? [{ label: 'Use its Change', cls: 'primary', value: 'change' }] : []) }); m = v || 'hand'; }
+    c.ctx.did = true;
+    if (m === 'summon' && canS) { await summonFree(c.p, t); return; }
+    if (m === 'change' && canC) { await castMagic(c.p, { inst: t, target: null, plan: null, ctx: 'flash', free: true }); io.view({ type: 'board' }); return; }
+    removeFrom(c.p.trash, t); c.p.hand.push(t); handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${k.name} returns from the Trash to the Hand.`); io.view({ type: 'board' }); } };
+/* v567 DESTROY_OPP_SPIRIT_AND_GW (BSC48-X09): "destroy opposing Spirits/Grandwalker Nexuses, one of each": one opposing Spirit and one opposing Grandwalker Nexus (each only when a non-immune one exists). */
+FX_ACTIONS.DESTROY_OPP_SPIRIT_AND_GW = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'destroy one opposing Spirit and one opposing Grandwalker Nexus',
+  cands: c => [c.opp.spirits.filter(s => !fxImmune(c.opp, s, { p: c.p, src: c.src })), c.opp.nexus.filter(n => (CARDS[n.id].families || []).includes('Grandwalker') && !fxImmune(c.opp, n, { p: c.p, src: c.src }))],
+  can: c => FX_ACTIONS.DESTROY_OPP_SPIRIT_AND_GW.cands(c).some(L => L.length),
+  run: async c => {
+    c.ctx.did = false; const [S, N] = FX_ACTIONS.DESTROY_OPP_SPIRIT_AND_GW.cands(c);
+    const s = await fxPickTarget(c, S, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to destroy (glowing).`);
+    if (s) { removeSpirit(c.opp, s, 'destroyed', true); checkDepletion(c.opp); c.ctx.did = true; }
+    const n = await fxPickTarget(c, N.filter(x => c.opp.nexus.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Grandwalker Nexus to destroy (glowing).`);
+    if (n) { removeNexus(c.opp, n, 'destroyed'); c.ctx.did = true; }
+    io.view({ type: 'board' }); } };

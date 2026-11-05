@@ -64,7 +64,7 @@ const uniqById = L => { const seen = new Set(); return L.filter(x => (seen.has(x
 /* target + payment for a human Magic cast; returns { inst, target, plan } or null when cancelled */
 async function prepareHumanMagic(p, inst, ctx, free) {
   ctx = ctx || 'main';
-  const card = CARDS[inst.id], c = free ? 0 : effCost(p, card), m = magicFx(card, ctx);
+  const card = CARDS[inst.id], c = free ? 0 : effCostM(p, card), m = magicFx(card, ctx);
   let target = null;
   const tg = magicTargets(p, inst, ctx);
   if (tg) {
@@ -97,7 +97,7 @@ async function humanFlashChoice(p, attKey, att, blk) {
     if (!usable.length && !acts.length && !cadv.length && !mani.length && !hsp.length && !acc.length) return null;
     const ctx = `${esc(CARDS[att.id].name)} (${bpOf(att)} BP) is attacking` + (blk ? `, blocked by ${esc(CARDS[blk.id].name)} (${bpOf(blk)} BP)` : '') + '.';
     const v = await ask({ title: '⚡ Flash Timing', peek: true, wide: true, html: `${ctx}<br>Cast a [Flash] Magic card or use a Flash effect?`, cards: cardIds(uniqById(usable.concat(cadv, mani, hsp, acc.map(x => x.inst)))), cardsHead: 'Cards you can use',
-      buttons: usable.map(h => ({ label: `${CARDS[h.id].name}${p.trash.includes(h) ? ' [from the Trash]' : magicFromSoul(p, h) ? ' [from Soul State]' : ''} (Pay ${effCost(p, CARDS[h.id])}) — ${magicText(CARDS[h.id]).replace(/^(\[[^\]]*\])+ /, '')}`, cls: 'purple', value: h.uid })).concat(cadv.map(h => ({ label: `✨ Contract Advent: ${CARDS[h.id].name}`, cls: 'purple', value: 'c:' + h.uid }))).concat(mani.map(h => ({ label: `✨ Manifest: ${CARDS[h.id].name}`, cls: 'purple', value: 'm:' + h.uid }))).concat(hsp.map(h => ({ label: `⚡ High Speed: summon ${CARDS[h.id].name} (Pay ${effCost(p, CARDS[h.id])} from the Reserve)`, cls: 'primary', value: 'h:' + h.uid }))).concat(acc.map(x => ({ label: accelLabel(p, x), cls: 'primary', value: `x:${x.inst.uid}:${x.idx}` }))).concat(acts.map(x => ({ label: `⚡ ${CARDS[x.f.id].name}: ${fxDescribe(x.e)}`.slice(0, 140), cls: 'primary', value: `a:${x.f.uid}:${x.idx}` }))).concat([{ label: 'Pass', cls: 'cancel', value: null }]) });
+      buttons: usable.map(h => ({ label: `${CARDS[h.id].name}${p.trash.includes(h) ? ' [from the Trash]' : magicFromSoul(p, h) ? ' [from Soul State]' : ''} (Pay ${effCostM(p, CARDS[h.id])}) — ${magicText(CARDS[h.id]).replace(/^(\[[^\]]*\])+ /, '')}`, cls: 'purple', value: h.uid })).concat(cadv.map(h => ({ label: `✨ Contract Advent: ${CARDS[h.id].name}`, cls: 'purple', value: 'c:' + h.uid }))).concat(mani.map(h => ({ label: `✨ Manifest: ${CARDS[h.id].name}`, cls: 'purple', value: 'm:' + h.uid }))).concat(hsp.map(h => ({ label: `⚡ High Speed: summon ${CARDS[h.id].name} (Pay ${effCost(p, CARDS[h.id])} from the Reserve)`, cls: 'primary', value: 'h:' + h.uid }))).concat(acc.map(x => ({ label: accelLabel(p, x), cls: 'primary', value: `x:${x.inst.uid}:${x.idx}` }))).concat(acts.map(x => ({ label: `⚡ ${CARDS[x.f.id].name}: ${fxDescribe(x.e)}`.slice(0, 140), cls: 'primary', value: `a:${x.f.uid}:${x.idx}` }))).concat([{ label: 'Pass', cls: 'cancel', value: null }]) });
     if (v == null) return null;
     if (typeof v === 'string' && v.startsWith('c:')) { const h = cadv.find(x => x.uid === Number(v.slice(2))); if (h) return { cadv: h }; return null; }
     if (typeof v === 'string' && v.startsWith('h:')) { const h = hsp.find(x => x.uid === Number(v.slice(2))); if (h) return { hs: h }; return null; }

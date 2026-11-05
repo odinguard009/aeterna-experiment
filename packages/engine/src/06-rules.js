@@ -563,7 +563,7 @@ function magicUsable(p, inst, ctx, free) {   // free: "without paying the cost" 
   if (ctx === 'flash' && !timing.includes('FLASH')) return false;
   if (ctx !== 'flash' && card.magic && card.magic.noMain) return false;   // v0.44 (Can't Use in Main)
   if (card.magic && card.magic.once && p.onceUsed && p.onceUsed['magic:' + card.name] === G.turnNo) return false;      // v303 once per turn
-  if (!free && effCost(p, card) > coresAvailable(p) && !soulMagicOK(p, card) && !nsfOK(p, card)) return false;   // v0.64: Soul Magic pays with the Soul Core only
+  if (!free && effCostM(p, card) > coresAvailable(p) && !soulMagicOK(p, card) && !nsfOK(p, card)) return false;   // v0.64: Soul Magic pays with the Soul Core only
   if (magicFromTrash(p, inst) && !magicTrashOK(p, inst)) return false;
   const fm = magicFxAt(p, inst, ctx); if (card.magic && card.magic.by && !fm) return false;
   if (fm && fm.if && !fxIf(p, G.p[other(p.key)], fm.if)) return false;
@@ -600,7 +600,7 @@ async function magicWallNegate(p, opp, inst) {
 }
 async function castMagic(p, ch) {                         // ch = { inst, target, plan }
   if (!ch.free) magicTaxPay(p);      // v550 MAGIC_SOUL_TAX_TURN
-  const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
+  const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCostM(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
   if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; if (card.costAlt.bed) bedPay(p); if (card.costAlt.exhaust) { const x = costAltExhaustPick(p, card.costAlt); if (x) { x.exhausted = true; log(`${CARDS[x.id].name} is exhausted to pay for the Magic.`); } } }
   if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
@@ -632,7 +632,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     if (sa && (p.cpu || await ask({ title: '✨ ' + esc(card.name), html: 'Summon this card without paying the cost?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] }))) {
       if (card.magic.summonOnce) { p.onceUsed = p.onceUsed || {}; p.onceUsed['sumafter:' + card.name] = G.turnNo; }
       await summonFree(p, inst);
-    } else if (inst.toBottom || inst.toField) magicRest(p, inst); else magicToTrash(p, inst);
+    } else if (inst.toBottom || inst.toField || inst.chg) magicRest(p, inst); else magicToTrash(p, inst);
   }
   if (G && G.attacker && G.battleMagic) G.battleMagic.push({ key: p.key, inst });      // v0.78 Brilliance: Magic used during this battle
   /* v0.116 "When you use a <family>/<colour> Magic card": the Magic is in the Trash by now; a Burst is not a use of a Magic card */

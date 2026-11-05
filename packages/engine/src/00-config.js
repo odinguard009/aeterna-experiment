@@ -60,6 +60,7 @@ const KEYWORD_GLOSSARY = {
   'MANIFEST': 'Flash: by sending your Soul Core to the Trash and paying one core from the target Nexus, summon this card from your Hand. It needs the target and counters the card names.',
   'CONTRACT': 'Contract cards: only one type (up to 3 copies) per deck, and one can be added to your starting Hand. When it would leave the Field because of the opponent, it may enter Soul State instead.',
   'BURST': 'Set face down in the Burst Area once per turn from your Hand (no cost). When its condition is met, flip it and use its effect without paying the cost.',
+  'Change': 'Change <cost>: from the Hand or Trash this Spirit can be used as Magic for the Change cost; it then replaces one of your Spirits.',
   'MIRAGE': 'Set face up in the Burst Area once per turn (pay the Mirage cost) to use its Mirage effect.',
   'HEAVY_EXHAUST': 'Card turned upside down. It cannot attack or block, and one Refresh turns it into a normal Exhausted card.',
   'FLASH': 'An effect usable in your Main Step and in the Flash Timing during battle.',

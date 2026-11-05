@@ -44,6 +44,12 @@ function parseMagicOf(o, type, text, err2, int) {
       if (m.alsoMagic === true && type === 'Spirit') magic.alsoMagic = true;
       if (m.summonAfter === true && type === 'Spirit' && m.alsoMagic === true) { magic.summonAfter = true; if (m.summonOnce === true) magic.summonOnce = true; if (m.trashReturnFlash === true) magic.trashReturnFlash = true; }      // v373 "After this effect resolves, you can summon this card without paying the cost" (summonOnce: Once per Turn: Same Name)
       if (m.nsf != null) { if (!m.nsf || !hasMatch(m.nsf.match)) err2.push('"magic.nsf" must look like {"match":{"name":[...]}}'); else magic.nsf = { match: m.nsf.match }; }      // v464 Magma Breaker: once per turn from the Hand, send the Soul Core from a matching Nexus to the Trash to use it free
+      if (m.change != null) {                                // v567 Change: a Spirit used from the Hand in Flash at the Change's own cost / reduction (CHANGE_SELF / CHANGE_REPLACE)
+        const ch = m.change;
+        if (m.alsoMagic !== true || type !== 'Spirit' || !ch || !Number.isInteger(ch.cost) || ch.cost < 1 || ch.cost > 30 || (ch.reduction != null && (typeof ch.reduction !== 'object' || Array.isArray(ch.reduction)))) err2.push('"magic.change" must look like {"cost":6,"reduction":{"red":1}} on an alsoMagic Spirit');
+        else magic.change = { cost: ch.cost, reduction: ch.reduction || {} };
+      }
+      if (m.rtn === true) magic.rtn = true;                  // v567 also without oppAttackHand (a Change used from the Trash goes back to the Trash)
       if (m.soulUse === true) magic.soulUse = true;         // v429 "You can use this card from Soul State"
       if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
       if (m.once === true) magic.once = true;               // v303 "(This effect can only be used once per turn.)": one use per card name per turn

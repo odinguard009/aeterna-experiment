@@ -154,3 +154,15 @@ test('K-1205 SD32-006: LV2 Draw Step +1 card then a forced discard; colour and s
     return { fc: K.partial === false, d: h0 - P.hand.length, eff: (K.effects || []).length }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.d, 1, JSON.stringify(r)); assert.equal(r.eff, 3, JSON.stringify(r));
 });
+
+test('K-1206 BSC48-X09: Change cost view is 6, CHANGE_BOUNCE_OPP sends an opposing Spirit to the deckbottom, CHANGE_REPLACE swaps the chosen Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const K = BS.CARDS['BSC48-X09']; const view = BS.changeView(K);
+    const ids = Object.keys(BS.CARDS).filter(x => BS.CARDS[x].type === 'Spirit' && !BS.CARDS[x].effects).slice(0, 2);
+    const a = BS.mkInst(ids[0]); a.cores = 1; O.spirits = [a]; const od0 = O.deck.length;
+    const me = BS.mkInst('BSC48-X09');
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: [{ do: 'CHANGE_BOUNCE_OPP', to: 'deckBottom' }] });
+    return { fc: K.partial === false, cost: view.cost, orig: K.cost, left: O.spirits.length, od: O.deck.length - od0 }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.cost, 6, JSON.stringify(r)); assert.equal(r.orig, 10, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.od, 1, JSON.stringify(r));
+});

@@ -1034,7 +1034,9 @@
   "id": "kw:rumble",
   "name": "Rumble",
   "status": "done",
-  "glossary": ["K_RUMBLE"],
+  "glossary": [
+   "K_RUMBLE"
+  ],
   "prep": {
    "rules": "Fandom keyword page \"Rumble\" (FAQ 31592-31594, 31621)",
    "data": "Fandom export text ({{Rumble|X}} in 26RBS01 / 26RBS02)",
@@ -2279,5 +2281,16 @@
   },
   "verified": true,
   "note": "v0.68.0: Invoke heads, five cost kinds, BP_TARGET / SYMBOL_TARGET; open: conditional costs, core moves, F Change / Amplify / Current / Magirrate templates (Standard activations; v0.64.0 prep)"
+ },
+ {
+  "id": "kw:change",
+  "name": "Change",
+  "status": "partial",
+  "glossary": [
+   "K_CHANGE"
+  ],
+  "prep": {
+   "rules": "Spirit usable as Magic for the Change cost; the cast replaces one of the owner's Spirits. Rebirth is a separate mechanic and is not in the engine."
+  }
  }
 ]

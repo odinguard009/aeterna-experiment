@@ -1918,5 +1918,15 @@
   "status": "done",
   "example": "{\"trigger\":\"STATIC\",\"flag\":\"UNAFFECTED\",\"exceptOwn\":true}",
   "rule": "Engine: the immunity filter in the target pick also drops candidates that carry this flag, even when the source is a friendly card."
+ },
+ {
+  "id": "K_CHANGE",
+  "kind": "keyword",
+  "meaning": "a Spirit that can also be cast as Magic with a different cost; the cast replaces one of your Spirits",
+  "pattern": "{{Change|<cost>|<colours>}} ... Change",
+  "engine": "magic.change {cost,reduction} + CHANGE_BOUNCE_OPP / CHANGE_REPLACE / CHANGE_SELF",
+  "status": "partial",
+  "example": "{\"magic\":{\"alsoMagic\":true,\"change\":{\"cost\":6,\"reduction\":{\"red\":1}}}}",
+  "rule": "Engine: the Magic-side cost uses the Change cost; the cast Spirit takes the place of the chosen Spirit (cores carried over). Soul Magic and the CPU own choice ignore Change."
  }
 ]

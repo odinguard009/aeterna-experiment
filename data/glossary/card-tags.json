@@ -31841,7 +31841,8 @@
   "T_ATTACKS",
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-004": [
   "T_ATTACKS",
@@ -31855,17 +31856,20 @@
   "C_LEVEL",
   "M_UP_TO",
   "A_DESTROY_TOTAL",
-  "A_SELF_TO_HAND"
+  "A_SELF_TO_HAND",
+  "K_CHANGE"
  ],
  "CB04-006": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-007": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB04-008": [
   "T_ATTACKS",
@@ -31898,7 +31902,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_UP_TO",
-  "A_DESTROY_TOTAL"
+  "A_DESTROY_TOTAL",
+  "K_CHANGE"
  ],
  "CB04-012": [
   "T_ATTACKS",
@@ -31906,7 +31911,8 @@
   "A_VOID",
   "A_EXHAUST",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB04-013": [
   "T_ATTACKS",
@@ -32004,7 +32010,8 @@
  "CB04-028": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-029": [
   "T_ATTACKS",
@@ -32031,14 +32038,16 @@
   "A_REFRESH",
   "A_VOID",
   "A_LIFE_TO_RESERVE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-033": [
   "T_SUMMONED",
   "A_BP_PLUS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-034": [
   "T_ATTACKS",
@@ -32072,24 +32081,28 @@
  ],
  "CB04-038": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-039": [
   "T_ATTACKS",
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-040": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-041": [
   "T_ATTACKS",
   "A_BOUNCE",
   "A_REFRESH",
   "C_LEVEL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB04-042": [
   "T_ATTACKS",
@@ -32099,7 +32112,8 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB04-043": [
   "A_VOID",
@@ -32114,7 +32128,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB04-045": [
   "A_REFRESH",
@@ -32122,7 +32137,8 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "K_BRAVE",
-  "K_ARMOR"
+  "K_ARMOR",
+  "K_CHANGE"
  ],
  "CB04-046": [
   "T_ADVENT",
@@ -32139,7 +32155,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-048": [
   "T_ATTACKS",
@@ -32147,7 +32164,8 @@
   "A_REFRESH",
   "A_VOID",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-049": [
   "T_SUMMONED",
@@ -32163,7 +32181,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "CB04-051": [
   "T_ATTACKS",
@@ -32318,12 +32337,14 @@
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB04-X02": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB04-X03": [
   "T_ATTACKS",
@@ -37818,7 +37839,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB05-053": [
   "C_LEVEL",
@@ -37934,7 +37956,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB06-001": [
   "T_SUMMONED",
@@ -37956,7 +37979,8 @@
   "T_ATTACKS",
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-004": [
   "T_SUMMONED",
@@ -37974,25 +37998,29 @@
  ],
  "CB06-006": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-007": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB06-008": [
   "A_REFRESH",
   "M_UP_TO",
-  "A_DESTROY_TOTAL"
+  "A_DESTROY_TOTAL",
+  "K_CHANGE"
  ],
  "CB06-009": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB06-010": [
   "T_ATTACKS",
@@ -38001,18 +38029,21 @@
   "M_BY_DOING",
   "M_IF_YOU_DO",
   "M_UP_TO",
-  "A_DESTROY_TOTAL"
+  "A_DESTROY_TOTAL",
+  "K_CHANGE"
  ],
  "CB06-011": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB06-012": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-013": [
   "T_ATTACKS",
@@ -38021,7 +38052,8 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB06-014": [
   "T_SUMMONED",
@@ -38044,7 +38076,8 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB06-017": [
   "T_SUMMONED",
@@ -38073,14 +38106,16 @@
  "CB06-020": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-021": [
   "T_ATTACKS",
   "T_ALLY_LIFE_HIT",
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-022": [
   "A_REFRESH",
@@ -38088,7 +38123,8 @@
   "C_LEVEL",
   "T_DESTROYED",
   "M_BY_DOING",
-  "T_DESTROYED_OPP"
+  "T_DESTROYED_OPP",
+  "K_CHANGE"
  ],
  "CB06-023": [
   "T_SUMMONED",
@@ -38151,7 +38187,8 @@
   "C_LEVEL",
   "T_DESTROYED",
   "M_OPTIONAL",
-  "T_DESTROYED_OPP"
+  "T_DESTROYED_OPP",
+  "K_CHANGE"
  ],
  "CB06-031": [
   "T_ATTACKS",
@@ -38177,12 +38214,14 @@
   "T_ATTACKS",
   "T_ALLY_LIFE_HIT",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-035": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-036": [
   "A_SUMMON_FREE",
@@ -38326,14 +38365,16 @@
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB06-056": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "S_UNAFFECTED",
-  "K_BURST"
+  "K_BURST",
+  "K_CHANGE"
  ],
  "CB06-057": [
   "T_SUMMONED",
@@ -38365,20 +38406,23 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-061": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "K_CHANGE"
  ],
  "CB06-062": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_BURST"
+  "K_BURST",
+  "K_CHANGE"
  ],
  "CB06-063": [
   "T_ATTACKS",
@@ -38399,13 +38443,15 @@
  "CB06-065": [
   "A_REFRESH",
   "A_EXHAUST",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB06-066": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "A_CANT_ATTACK_BLOCK"
+  "A_CANT_ATTACK_BLOCK",
+  "K_CHANGE"
  ],
  "CB06-067": [
   "T_ATTACKS",
@@ -38482,7 +38528,8 @@
  "CB06-CP01": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB06-CP02": [
   "A_VOID",
@@ -38512,7 +38559,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE",
-  "A_LIFE_TO_TRASH"
+  "A_LIFE_TO_TRASH",
+  "K_CHANGE"
  ],
  "CB06-X03": [
   "T_SUMMONED",
@@ -39130,7 +39178,8 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB07-X04": [
   "T_ADVENT",
@@ -39170,7 +39219,8 @@
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_UP_TO"
+  "M_UP_TO",
+  "K_CHANGE"
  ],
  "CB08-001": [
   "T_SUMMONED",
@@ -39183,7 +39233,8 @@
   "A_DESTROY_BP",
   "A_REFRESH",
   "M_THEN",
-  "A_MILL"
+  "A_MILL",
+  "K_CHANGE"
  ],
  "CB08-003": [
   "T_SUMMONED",
@@ -39210,20 +39261,23 @@
   "A_REVEAL_DECK",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "CB08-007": [
   "T_ALLY_SUMMONED",
   "A_DESTROY_BP",
   "A_REFRESH",
   "A_SUMMON_FREE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB08-008": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB08-009": [
   "T_ATTACKS",
@@ -39231,13 +39285,15 @@
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB08-010": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB08-011": [
   "T_ATTACKS",
@@ -39253,13 +39309,15 @@
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "A_LIFE_TO_RESERVE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB08-013": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB08-014": [
   "T_ATTACKS",
@@ -39450,7 +39508,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB08-036": [
   "T_ATTACKS",
@@ -39587,7 +39646,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "A_CANT_ATTACK_BLOCK",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB08-053": [
   "T_SUMMONED",
@@ -39595,20 +39655,23 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB08-054": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "K_CHANGE"
  ],
  "CB08-055": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "A_VOID_TO_LIFE"
+  "A_VOID_TO_LIFE",
+  "K_CHANGE"
  ],
  "CB08-056": [
   "T_ATTACKS",
@@ -39616,7 +39679,8 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "M_BY_DOING",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "K_CHANGE"
  ],
  "CB08-057": [
   "T_SUMMONED",
@@ -39639,13 +39703,15 @@
   "A_REFRESH",
   "C_LEVEL",
   "S_UNAFFECTED",
-  "M_THEN"
+  "M_THEN",
+  "K_CHANGE"
  ],
  "CB08-061": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB08-062": [
   "T_ATTACKS",
@@ -39653,10 +39719,12 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL",
-  "A_NO_BURST"
+  "A_NO_BURST",
+  "K_CHANGE"
  ],
  "CB08-063": [
-  "A_REFRESH"
+  "A_REFRESH",
+  "K_CHANGE"
  ],
  "CB08-064": [
   "A_TRASH_TO_RESERVE",
@@ -39672,7 +39740,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL",
-  "M_IF_YOU_DO"
+  "M_IF_YOU_DO",
+  "K_CHANGE"
  ],
  "CB08-066": [
   "T_ADVENT",
@@ -39696,7 +39765,8 @@
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "S_OPP_NO_BLOCK"
+  "S_OPP_NO_BLOCK",
+  "K_CHANGE"
  ],
  "CB08-069": [
   "T_ATTACKS",
@@ -39799,7 +39869,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB08-X05": [
   "T_ATTACKS",
@@ -44905,7 +44976,8 @@
   "A_REVEAL_DECK",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "CB09-009": [
   "T_ATTACKS",
@@ -44928,7 +45000,8 @@
   "T_ATTACKS",
   "A_DRAW",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB09-012": [
   "T_SUMMONED",
@@ -44967,11 +45040,13 @@
   "A_SYMBOL_PLUS"
  ],
  "CB09-018": [
-  "A_REFRESH"
+  "A_REFRESH",
+  "K_CHANGE"
  ],
  "CB09-019": [
   "A_REFRESH",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB09-020": [
   "T_SUMMONED",
@@ -45033,7 +45108,8 @@
  "CB09-026": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB09-027": [
   "T_ADVENT",
@@ -45053,7 +45129,8 @@
  "CB09-029": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB09-030": [
   "T_ATTACKS",
@@ -45067,7 +45144,8 @@
  ],
  "CB09-031": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB09-032": [
   "T_SUMMONED",
@@ -45205,14 +45283,16 @@
   "A_VOID",
   "C_LEVEL",
   "K_BRAVE",
-  "T_DURING_BRAVE"
+  "T_DURING_BRAVE",
+  "K_CHANGE"
  ],
  "CB09-050": [
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL",
   "K_BRAVE",
-  "T_DURING_BRAVE"
+  "T_DURING_BRAVE",
+  "K_CHANGE"
  ],
  "CB09-051": [
   "T_ATTACKS",
@@ -45220,7 +45300,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_BRAVE",
-  "T_DURING_BRAVE"
+  "T_DURING_BRAVE",
+  "K_CHANGE"
  ],
  "CB09-052": [
   "T_ATTACKS",
@@ -45238,7 +45319,8 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "K_BRAVE",
-  "T_DURING_BRAVE"
+  "T_DURING_BRAVE",
+  "K_CHANGE"
  ],
  "CB09-054": [
   "T_SUMMONED",
@@ -45258,7 +45340,8 @@
   "A_REFRESH",
   "A_SYMBOL",
   "C_LEVEL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB09-056": [
   "T_SUMMONED",
@@ -45286,17 +45369,20 @@
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB09-060": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB09-061": [
   "A_REFRESH",
   "K_ULTIMATE",
   "A_REMOVED_ZONE",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB09-062": [
   "T_ATTACKS",
@@ -45457,7 +45543,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB09-X02": [
   "T_ATTACKS",
@@ -45515,7 +45602,8 @@
   "A_REFRESH",
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "K_CHANGE"
  ],
  "CB10-001": [
   "T_ATTACKS",
@@ -45610,7 +45698,8 @@
   "A_SUMMON_FREE",
   "A_SYMBOL",
   "C_LEVEL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB10-013": [
   "A_REVEAL_DECK",
@@ -45697,7 +45786,8 @@
  "CB10-026": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-027": [
   "T_SUMMONED",
@@ -45739,7 +45829,8 @@
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB10-033": [
   "T_SUMMONED",
@@ -45762,11 +45853,13 @@
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-036": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-037": [
   "T_SUMMONED",
@@ -45827,7 +45920,8 @@
   "A_BANISH",
   "A_REFRESH",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-045": [
   "T_SUMMONED",
@@ -45840,7 +45934,8 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "K_BURST"
+  "K_BURST",
+  "K_CHANGE"
  ],
  "CB10-047": [
   "A_REFRESH",
@@ -45848,7 +45943,8 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_BY_DOING",
-  "M_UP_TO"
+  "M_UP_TO",
+  "K_CHANGE"
  ],
  "CB10-048": [
   "T_SUMMONED",
@@ -45863,7 +45959,8 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB10-050": [
   "T_ATTACKS",
@@ -45871,7 +45968,8 @@
   "A_BP_PLUS",
   "A_REFRESH",
   "A_LIFE_TO_RESERVE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-051": [
   "T_ADVENT",
@@ -45952,24 +46050,28 @@
   "C_LEVEL",
   "K_BRAVE",
   "K_ULTIMATE",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB10-060": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "C_ONCE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-061": [
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB10-062": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB10-063": [
   "T_ATTACKS",
@@ -45978,7 +46080,8 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_THEN",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB10-064": [
   "T_ATTACKS",
@@ -46133,7 +46236,8 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_ULTIMATE",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB10-XX01": [
   "T_ATTACKS",
@@ -46384,7 +46488,8 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_THEN",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB12-001": [
   "T_SUMMONED",
@@ -46408,33 +46513,38 @@
   "A_REFRESH",
   "A_VOID",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB12-004": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "K_GRANDWALKER"
+  "K_GRANDWALKER",
+  "K_CHANGE"
  ],
  "CB12-005": [
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "A_DISCARD_HAND"
+  "A_DISCARD_HAND",
+  "K_CHANGE"
  ],
  "CB12-006": [
   "T_ATTACKS",
   "A_DESTROY_BP",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB12-007": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB12-008": [
   "T_SUMMONED",
@@ -46564,7 +46674,8 @@
   "K_BRAVE",
   "M_OPTIONAL",
   "A_REMOVED_ZONE",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "CB12-023": [
   "T_SUMMONED",
@@ -46705,14 +46816,16 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_GRANDWALKER",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB12-X04": [
   "T_ATTACKS",
   "T_ACTIVATE",
   "A_REFRESH",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB12-XX01": [
   "T_SUMMONED",
@@ -50753,7 +50866,8 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "M_UP_TO",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB13-X05": [
   "T_ATTACKS",
@@ -51484,7 +51598,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "K_CHANGE"
  ],
  "CB15-012": [
   "T_SUMMONED",
@@ -51541,7 +51656,8 @@
  ],
  "CB15-020": [
   "A_REFRESH",
-  "A_EXHAUST"
+  "A_EXHAUST",
+  "K_CHANGE"
  ],
  "CB15-021": [
   "T_SUMMONED",
@@ -51585,7 +51701,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_THEN",
-  "A_LIFE_TO_TRASH"
+  "A_LIFE_TO_TRASH",
+  "K_CHANGE"
  ],
  "CB15-027": [
   "T_ALLY_ATTACKS",
@@ -51613,7 +51730,8 @@
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "K_GRANDWALKER"
+  "K_GRANDWALKER",
+  "K_CHANGE"
  ],
  "CB15-031": [
   "T_ATTACKS",
@@ -51648,7 +51766,8 @@
   "A_REFRESH",
   "A_VOID",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB15-036": [
   "T_ATTACKS",
@@ -51728,7 +51847,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_BURST",
-  "A_NO_BURST"
+  "A_NO_BURST",
+  "K_CHANGE"
  ],
  "CB15-047": [
   "T_ATTACKS",
@@ -51755,7 +51875,8 @@
   "A_REFRESH",
   "A_VOID",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB15-050": [
   "T_SUMMONED",
@@ -51772,7 +51893,8 @@
   "A_SUMMON_FREE",
   "A_EXHAUST",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB15-052": [
   "T_SUMMONED",
@@ -51799,11 +51921,13 @@
  "CB15-055": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB15-056": [
   "A_REFRESH",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB15-057": [
   "A_EXHAUST",
@@ -52755,7 +52879,8 @@
   "C_LEVEL",
   "M_THEN",
   "M_UP_TO",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "K_CHANGE"
  ],
  "CB17-001": [
   "T_SUMMONED",
@@ -53138,7 +53263,8 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "A_CANT_ATTACK_BLOCK",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "K_CHANGE"
  ],
  "CB17-047": [
   "T_SUMMONED",
@@ -53414,7 +53540,8 @@
   "C_LEVEL",
   "K_BRAVE",
   "M_BY_DOING",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "K_CHANGE"
  ],
  "CB17-X03": [
   "T_ATTACKS",
@@ -57657,7 +57784,8 @@
   "A_REFRESH",
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB18-023": [
   "T_SUMMONED",
@@ -57749,7 +57877,8 @@
  "CB18-034": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB18-035": [
   "T_SUMMONED",
@@ -57776,7 +57905,8 @@
   "A_VOID",
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
-  "T_BLOCKS"
+  "T_BLOCKS",
+  "K_CHANGE"
  ],
  "CB18-038": [
   "T_SUMMONED",
@@ -58032,7 +58162,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB18-XX01": [
   "A_CORE_TO_SELF",
@@ -58792,14 +58923,16 @@
   "A_VOID",
   "C_LEVEL",
   "K_GRANDWALKER",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB20-005": [
   "A_BP_PLUS",
   "A_REFRESH",
   "A_END_ATTACK",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB20-006": [
   "T_SUMMONED",
@@ -58844,20 +58977,23 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "A_DISCARD_HAND"
+  "A_DISCARD_HAND",
+  "K_CHANGE"
  ],
  "CB20-011": [
   "T_ATTACKS",
   "T_ALLY_LIFE_HIT",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB20-012": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB20-013": [
   "T_SUMMONED",
@@ -58936,7 +59072,8 @@
   "A_REVEAL_DECK",
   "K_BURST",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB20-022": [
   "A_REFRESH",
@@ -59731,14 +59868,16 @@
   "A_VOID",
   "C_LEVEL",
   "K_GRANDWALKER",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB22-007": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "S_MUST_BLOCK",
-  "K_ARMOR"
+  "K_ARMOR",
+  "K_CHANGE"
  ],
  "CB22-008": [
   "T_SUMMONED",
@@ -59760,7 +59899,8 @@
  "CB22-010": [
   "A_REFRESH",
   "C_LEVEL",
-  "A_LIFE_TO_TRASH"
+  "A_LIFE_TO_TRASH",
+  "K_CHANGE"
  ],
  "CB22-011": [
   "T_SUMMONED",
@@ -60066,28 +60206,32 @@
   "A_DISCARD_OPP",
   "C_CONTROL",
   "C_LEVEL",
-  "M_THEN"
+  "M_THEN",
+  "K_CHANGE"
  ],
  "CB22-047": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "K_CHANGE"
  ],
  "CB22-048": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "CB22-049": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_SYMBOL",
   "C_LEVEL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "CB22-050": [
   "T_ATTACKS",
@@ -65253,7 +65397,8 @@
   "C_LEVEL",
   "S_MUST_BLOCK",
   "S_CANT_PREVENT",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB24-008": [
   "T_ATTACKS",
@@ -65275,12 +65420,14 @@
   "S_MUST_BLOCK",
   "S_CANT_PREVENT",
   "K_BRAVE",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB24-010": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "CB24-011": [
   "T_SUMMONED",
@@ -65326,7 +65473,8 @@
   "A_REFRESH",
   "M_OPTIONAL",
   "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "K_CHANGE"
  ],
  "CB24-017": [
   "T_ADVENT",
@@ -66245,7 +66393,8 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
-  "M_UP_TO"
+  "M_UP_TO",
+  "K_CHANGE"
  ],
  "CB25-028": [
   "T_SUMMONED",
@@ -73687,7 +73836,8 @@
   "C_LEVEL",
   "M_UP_TO",
   "M_REPLACEMENT",
-  "A_CANT_ATTACK_BLOCK"
+  "A_CANT_ATTACK_BLOCK",
+  "K_CHANGE"
  ],
  "CB29-009": [
   "T_ATTACKS",
@@ -74563,7 +74713,8 @@
   "C_LEVEL",
   "S_MUST_BLOCK",
   "S_CANT_PREVENT",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "K_CHANGE"
  ],
  "CB30-006": [
   "T_ADVENT",
@@ -83083,7 +83234,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "K_CHANGE"
  ],
  "CB31-RV007": [
   "T_SUMMONED",
@@ -83945,7 +84097,8 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_UP_TO",
-  "A_DESTROY_COST"
+  "A_DESTROY_COST",
+  "K_CHANGE"
  ],
  "CB33-001": [
   "T_SUMMONED",
@@ -85776,7 +85929,8 @@
   "A_REFRESH",
   "A_SUMMON_FREE",
   "C_LEVEL",
-  "K_BURST"
+  "K_BURST",
+  "K_CHANGE"
  ],
  "CB34-RV009": [
   "T_SUMMONED",
@@ -85892,7 +86046,8 @@
   "C_LEVEL",
   "K_GRANDWALKER",
   "K_ULTIMATE",
-  "M_THEN"
+  "M_THEN",
+  "K_CHANGE"
  ],
  "SD69-CX01": [
   "T_ALLY_ATTACKS",
@@ -91869,7 +92024,8 @@
   "C_LEVEL",
   "K_BURST",
   "K_GRANDWALKER",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_CHANGE"
  ],
  "BSC48-X10": [
   "T_ATTACKS",
@@ -102561,7 +102717,8 @@
   "T_ATTACKS",
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "P17-EXG01": [
   "T_SUMMONED",
@@ -102617,7 +102774,8 @@
   "A_REVEAL_DECK",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "P18-02": [
   "T_SUMMONED",
@@ -102654,7 +102812,8 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "P18-07": [
   "T_ATTACKS",
@@ -102741,14 +102900,16 @@
   "A_BP_PLUS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "P19-10": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_SUMMON_FREE",
   "C_LEVEL",
-  "K_BURST"
+  "K_BURST",
+  "K_CHANGE"
  ],
  "P19-11": [
   "A_REFRESH",
@@ -104359,7 +104520,8 @@
   "C_LEVEL",
   "K_BURST",
   "K_ULTIMATE",
-  "A_NO_BURST"
+  "A_NO_BURST",
+  "K_CHANGE"
  ],
  "PB18-U03": [
   "T_ATTACKS",
@@ -104367,7 +104529,8 @@
   "C_CONTROL",
   "C_LEVEL",
   "K_ULTIMATE",
-  "A_DESTROY_COST"
+  "A_DESTROY_COST",
+  "K_CHANGE"
  ],
  "PB18-U04": [
   "T_SUMMONED",
@@ -105953,7 +106116,8 @@
   "A_REFRESH",
   "C_OPP_TURN",
   "C_LEVEL",
-  "S_UNAFFECTED"
+  "S_UNAFFECTED",
+  "K_CHANGE"
  ],
  "PC04-006": [
   "T_ATTACKS",
@@ -110713,7 +110877,8 @@
   "C_LEVEL"
  ],
  "SD42-004": [
-  "A_REFRESH"
+  "A_REFRESH",
+  "K_CHANGE"
  ],
  "SD42-005": [
   "T_ATTACKS",
@@ -110731,7 +110896,8 @@
  "SD42-007": [
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "SD42-008": [
   "T_ATTACKS",
@@ -110751,7 +110917,8 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_UP_TO",
-  "A_DESTROY_TOTAL"
+  "A_DESTROY_TOTAL",
+  "K_CHANGE"
  ],
  "SD42-011": [
   "T_ATTACKS",
@@ -110834,19 +111001,22 @@
   "C_LEVEL",
   "K_BRAVE",
   "M_OPTIONAL",
-  "A_REVEAL_ADD"
+  "A_REVEAL_ADD",
+  "K_CHANGE"
  ],
  "SD42-CP09": [
   "A_REFRESH",
   "A_SYMBOL",
   "C_LEVEL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "K_CHANGE"
  ],
  "SD42-CP10": [
   "T_ATTACKS",
   "A_REFRESH",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_CHANGE"
  ],
  "SD42-X01": [
   "T_ADVENT",
