@@ -78070,16 +78070,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "BS74-059": [
-  "A_DRAW",
-  "A_SUMMON_FREE",
-  "C_CONTROL",
-  "C_LEVEL",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_SUMMONED"
- ],
  "BS74-060": [
   "A_DRAW",
   "A_REVEAL_DECK",

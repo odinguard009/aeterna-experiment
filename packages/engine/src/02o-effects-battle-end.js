@@ -176,6 +176,16 @@ Object.assign(FX_ACTIONS, {
       att.noBlockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[att.id].name} can't be blocked.`); io.view({ type: 'board' }); } } });
 Object.assign(FX_ACTIONS, {
   /* v537 BOUNCE_DECKBOTTOM_PIERCE {pierceName}: "return an opposing Spirit/Nexus to the deckbottom; if you control any LV2 <name>, this effect can only be prevented by Heavy Armor/Ultra Heavy Armor" (BS73-X05). With the LV2 card on the Field a target is skipped only when it is immune AND has Heavy Armor / Ultra Heavy Armor (other immunity is ignored); otherwise a plain immunity check. The CPU returns the highest BP Spirit. */
+  /* v539 DESTROY_PIERCE_ARMOR {costLe}: "destroy an opposing Cost N or less Spirit. This effect can only be prevented by 'Armor'-named effects" (BS74-059). A target is skipped only when it is immune AND has an Armor-named keyword; any other immunity is pierced. */
+  DESTROY_PIERCE_ARMOR: { chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
+    txt: a => `destroy an opposing Cost ${a.costLe} or less Spirit; only Armor-named effects can prevent it`,
+    cands: (c, a) => c.opp.spirits.filter(t => CARDS[t.id].cost <= a.costLe && !(fxImmune(c.opp, t, { p: c.p, src: c.src }) && ['Armor', 'Heavy Armor', 'Ultra Heavy Armor'].some(k => cardHasKeyword(CARDS[t.id], k)))),
+    can: (c, a) => FX_ACTIONS.DESTROY_PIERCE_ARMOR.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.DESTROY_PIERCE_ARMOR.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to destroy (glowing).`);
+      if (!t) return;
+      removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); c.ctx.did = true; log(`${_nm(c)}: ${CARDS[t.id].name} is destroyed.`); io.view({ type: 'board' }); } },
   BOUNCE_DECKBOTTOM_PIERCE: { chk: a => typeof a.pierceName === 'string' && !!a.pierceName && Object.keys(a).every(k => ['do', 'if', 'pierceName'].includes(k)),
     txt: a => `return an opposing Spirit/Nexus to the deckbottom; with an LV2 "${a.pierceName}" it can only be prevented by Heavy Armor/Ultra Heavy Armor`,
     cands: (c, a) => { const pierce = c.p.spirits.some(s => lvNo(s) === 2 && CARDS[s.id].name.includes(a.pierceName));

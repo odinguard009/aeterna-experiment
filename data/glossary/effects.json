@@ -1538,5 +1538,15 @@
     "status": "wired",
     "example": "{\"do\":\"BOUNCE_DECKBOTTOM_PIERCE\",\"pierceName\":\"Dairokuten Maou\"}",
     "rule": "Other immunity is ignored while the named LV2 card is on your Field; only Heavy Armor / Ultra Heavy Armor stops it. Engine: BOUNCE_DECKBOTTOM_PIERCE (card text of BS73-X05)."
+  },
+  {
+    "id": "K_DESTROY_PIERCE_ARMOR",
+    "kind": "phrase",
+    "meaning": "Destroy an opposing Spirit of a cost limit; only Armor-named effects can prevent it",
+    "pattern": "this effect can only be prevented by \"armor\"-named effects",
+    "engine": "DESTROY_PIERCE_ARMOR",
+    "status": "wired",
+    "example": "{\"do\":\"DESTROY_PIERCE_ARMOR\",\"costLe\":4}",
+    "rule": "Engine: a target is skipped only when it is immune and carries an Armor, Heavy Armor or Ultra Heavy Armor keyword; every other immunity is pierced."
   }
 ]

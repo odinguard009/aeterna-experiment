@@ -161,3 +161,18 @@ test('K-1158 BS73-X05: Mani by returning a Heavenly Demon King card from the Tra
     return { bounced: O.spirits.length === 0 && O.deck[O.deck.length - 1] === w, tu: K.trashUnaffected, man: K.manifest && K.manifest.altReturn, partial: K.partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.bounced, true, JSON.stringify(r)); assert.equal(r.man, 'Heavenly Demon King', JSON.stringify(r));
 });
+
+test('K-1159 BS74-059: deploys a cost 4 or less Vassal Nexus from the Hand/Trash, loots, destroys a cost 4 or less Spirit when a Nexus is deployed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BS74-059'], E = K.effects;
+    const me = BS.mkInst('BS74-059'); me.cores = 2; P.spirits = [me];
+    const nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && BS.CARDS[k].cost <= 4 && (BS.CARDS[k].families || []).some(f => f === 'Vassal' || f === 'Heavenly Demon King'));
+    const n1 = BS.mkInst(nx); P.hand = []; P.trash = [n1]; P.nexus = [];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[0].actions });
+    const deployed = P.nexus.includes(n1);
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 4)); w.cores = 1; O.spirits = [w];
+    await BS.runActions({ p: P, opp: O, src: me, ctx: {} }, { actions: E[1].actions });
+    return { deployed, destroyed: O.spirits.length === 0, trig: E[1].trigger, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.destroyed, true, JSON.stringify(r));
+});
