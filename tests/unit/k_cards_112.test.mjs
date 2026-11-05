@@ -198,3 +198,13 @@ test('K-1191 SD32-007: Burst refreshes one Spirit per symbol colour; Flash retur
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ex0 - r.ex1, Math.min(r.cols, r.ex0), JSON.stringify(r));
   assert.equal(r.opp, 0, JSON.stringify(r)); assert.equal(r.oh, 1, JSON.stringify(r));
 });
+
+test('K-1192 SD57-RV004: returns a Purple/White Spirit from the Trash, then summons God-Sechs -Type Destroy- from the Hand when God-Sechs is in the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const pu = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'purple' && BS.CARDS[k].levels.length > 0);
+    const m = BS.mkInst('SD57-RV004'); P.hand = [m, BS.mkInst('BS34-XX02')]; P.trash = [BS.mkInst(pu), BS.mkInst('SD32-X02')]; P.spirits = []; P.reserve.n = 12; P.spirits = [];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { fc: BS.CARDS['SD57-RV004'].partial === false, hand: P.hand.map(x => x.id), sp: P.spirits.map(x => x.id) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.ok(r.sp.includes('BS34-XX02'), JSON.stringify(r)); assert.ok(r.hand.length >= 1, JSON.stringify(r));
+});

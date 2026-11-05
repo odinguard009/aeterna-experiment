@@ -74864,13 +74864,51 @@
   "image": "SD57-RV004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return a Purple/White Spirit card from your Trash to the Hand.",
-   "Then, if there is any [The HeavenlyDemonKing God-Sechs] in your Trash, you can summon a [The HeavenlyDemonKing God-Sechs -Type Destroy-] from your Hand, without paying the cost."
-  ],
-  "note": "Reprint of BS34-075 (same name and stats), added v0.210.0 from the official product list."
+  "fxComplete": true,
+  "note": "Reprint of BS34-075 (same name and stats), added v0.210.0 from the official product list.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "RETURN_TRASH",
+     "match": {
+      "type": "Spirit",
+      "color": [
+       "purple",
+       "white"
+      ]
+     },
+     "n": 1
+    },
+    {
+     "do": "SUMMON_HAND",
+     "from": "hand",
+     "match": {
+      "name": [
+       "God-Sechs -Type Destroy-"
+      ]
+     },
+     "if": {
+      "trashGe": {
+       "n": 1,
+       "match": {
+        "name": [
+         "The HeavenlyDemonKing God-Sechs"
+        ],
+        "notName": [
+         "-Type",
+         "Sechs X"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD57-RV005",
