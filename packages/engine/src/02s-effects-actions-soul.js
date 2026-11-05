@@ -223,6 +223,7 @@ function leaveHook(p, s, why, battle) {
   if (!G || !p.spirits.includes(s)) return false;
   const q = G.p[other(p.key)], oppFx = !battle && !!G.fxBy && G.fxBy !== p.key;
   if (!oppFx && !battle) return false;
+  if (oppFx && rebirthLeave(p, s)) return true;      // v573 Return to Prime
   for (const src of fieldList(p)) for (const { e } of fxEntries(src)) {
     if (e.trigger !== 'STATIC' || e.flag !== 'LEAVE_VOID_LIFE' || (e.lv && !e.lv.includes(lvNo(src))) || (src.leaveTurn != null && src.leaveTurn === G.turnNo) || p.void < 1 || !fxMatch(CARDS[s.id], e.match, s)) continue;
     src.leaveTurn = G.turnNo; takeFromVoid(p, 1); p.life++; log(`${CARDS[src.id].name}: a core moves from the Void to ${poss(p)} Life.`);

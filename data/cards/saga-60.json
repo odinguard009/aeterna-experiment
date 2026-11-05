@@ -74725,20 +74725,151 @@
   "bicon": [
    "7"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth3",
-   "When your Spirit with two colors or more attacks, or this Nexus would leave the Field by an opposing effect, you can flip this Nexus, putting your onto it.",
-   "[LV1]",
-   "When you're summoning a \"God-Sechs\"/\"Six Heaven\"-named card, this Nexus's symbols are also treated as Red/Purple/Green/White/Yellow/Blue.",
-   "[LV1] (Your Attack Step)",
-   "Every \"God-Sechs\"-named Spirit you control is treated as being on its highest level."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "fxComplete": true,
   "rcode": "Awaken R",
   "rebirthTo": "SD57-006B",
   "mechanics": [
    "Rebirth"
+  ],
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1
+    ],
+    "match": {
+     "type": "Spirit",
+     "colorsGe": 2
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "red",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "purple",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "green",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "white",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "yellow",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "color": "blue",
+    "n": 1,
+    "match": {
+     "name": [
+      "God-Sechs",
+      "Six Heaven"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_HIGHEST",
+    "to": "own",
+    "lv": [
+     1
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "God-Sechs"
+     ],
+     "type": "Spirit"
+    }
+   }
   ]
  },
  {

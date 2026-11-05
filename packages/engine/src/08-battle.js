@@ -232,6 +232,7 @@ async function flushBursts() {                         // queued Bursts and even
     else if (ev.type === 'SOUL_DEPLOY') await soulDeployOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVE_SUMMON') await leaveSummonOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'ALLY_LEAVES') await fireFx(G.p[ev.key], 'ALLY_LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: true });
+    else if (ev.type === 'REBORN') await rebirthAfter(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });
     else if (ev.type === 'BATTLE_WIN') await fireFxMulti([{ owner: G.p[ev.key], trigger: 'BATTLE_WIN', src: ev.inst, ctx: { subject: ev.inst, attacking: !!ev.att, victimId: ev.vic } }, { owner: G.p[ev.key], trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: ev.inst, attacking: !!ev.att } }]), winRiderRun(ev);   // v0.78 also "... with your X Spirit" on other cards
     else if (ev.type === 'DESTROYS') await fireFx(G.p[ev.key], 'ALLY_DESTROYS', null, { attacker: ev.inst, subject: ev.inst });

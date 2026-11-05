@@ -136,15 +136,37 @@
   "text": "Count +1\n\n[LV1] (When Reborn)\nReturn an opposing Spirit to the deckbottom.\n{{Six Heaven Rush|5}}\nIf you have five or more symbol colors, destroy five opposing non-\"Primal\" family Grandwalker Nexuses.\n\n[LV1] Return to Prime\nWhen it would leave the Field due to an opposing effect, you can flip and deploy it.",
   "image": "SD57-006(B).png",
   "rebirthSide": true,
-  "fxComplete": false,
-  "residual": [
-   "Count +1",
-   "[LV1] (When Reborn)",
-   "Return an opposing Spirit to the deckbottom.",
-   "{{Six Heaven Rush|5}}",
-   "If you have five or more symbol colors, destroy five opposing non-\"Primal\" family Grandwalker Nexuses.",
-   "[LV1] Return to Prime",
-   "When it would leave the Field due to an opposing effect, you can flip and deploy it."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit"
+     },
+     {
+      "do": "DESTROY_OPP_GW_NEXUS",
+      "n": 5,
+      "notFamily": "Primal",
+      "if": {
+       "symColorsGe": 5
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   }
   ]
  }
 ]

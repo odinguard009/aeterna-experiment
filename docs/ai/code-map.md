@@ -20,7 +20,7 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (495 lines, ~15k tokens) — EFFECT ENGINE
+## packages/engine/src/02a-effects-base.js (496 lines, ~15k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, oppAttackLock, symZeroLocked, burstLocked, cantAttack, canBlockState, drawLocked, fxIf, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, CHARGE_KINDS, chargeSum, chargeAction, flagActiveField, coreSafeMode, coreTakeCap, costDestroyBonus, coresSent, rumblePlusOf, staticBp, blocksAsAtkOn, exhaustCostRelief, activeLowAtk, lowAtkLocked, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
@@ -74,7 +74,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02r-effects-actions-deck.js (146 lines, ~5.2k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (246 lines, ~6.7k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (247 lines, ~6.7k tokens)
 leaveHook
 
 ## packages/engine/src/02t-effects-actions-opp.js (330 lines, ~8.7k tokens)
@@ -86,8 +86,8 @@ fcCands, costAltExhaustPick, costAltActive, grandFieldColors, cardHasKeyword, ma
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.8k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (240 lines, ~5.3k tokens)
-symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced
+## packages/engine/src/02w-effects-indra.js (255 lines, ~5.7k tokens)
+symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer, symReplaced, rebirthAfter
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
@@ -104,8 +104,8 @@ COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
 
 
-## packages/engine/src/03b-rebirth.js (35 lines, ~0.6k tokens)
-REBIRTH_B_IDS, registerRebirthB, rebirthTarget, rebirthFlip, rebirthSweep
+## packages/engine/src/03b-rebirth.js (55 lines, ~1.1k tokens)
+REBIRTH_B_IDS, registerRebirthB, rebirthTarget, rebirthFlip, rebirthUnflip, rebirthLeave, rebirthSweep
 
 ## packages/engine/src/04-decks.js (208 lines, ~9.9k tokens) — DECK STORAGE AND VALIDATION
 deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, eternalDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor
@@ -125,7 +125,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (85 lines, ~1.7k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endMainHas, endMainFx, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (243 lines, ~6.3k tokens) — BATTLE
+## packages/engine/src/08-battle.js (244 lines, ~6.4k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, lifeFlashDiscard, maybeBurst1, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (175 lines, ~3.1k tokens) — CPU

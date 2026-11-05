@@ -1978,5 +1978,25 @@
   "status": "done",
   "example": "SD57-TX01",
   "rule": "Engine: the card is swapped for its back face (keeps cores and exhaust state), the owner gets Count +1, then the back face's When Reborn effects run; the face reverts when the card leaves the Field. Only one Rebirth at a time is not enforced."
+ },
+ {
+  "id": "REBIRTH_ON_LEAVE",
+  "kind": "flag",
+  "meaning": "Rebirth replacement: when this card would leave the Field due to an opposing effect, it flips (and is deployed) instead.",
+  "pattern": "When this Nexus would leave the Field by an opposing effect, you can flip this Nexus. / Return to Prime: When it would leave the Field due to an opposing effect, you can flip and deploy it.",
+  "engine": "STATIC REBIRTH_ON_LEAVE",
+  "status": "done",
+  "example": "SD57-006",
+  "rule": "Engine: checked in removeNexus (destroyed) and leaveHook (destroyed/depleted/returned) when the opposing effect acts; a Nexus becomes its Spirit back face (Soul Core put onto it), a flipped Spirit goes back to its Nexus front. The choice is automatic (no prompt). Count +1 and the back face's When Reborn effects resolve right after the effect."
+ },
+ {
+  "id": "DESTROY_OPP_GW_NEXUS",
+  "kind": "action",
+  "meaning": "Destroy a number of opposing Grandwalker Nexuses of other families.",
+  "pattern": "Destroy five opposing non-\"Primal\" family Grandwalker Nexuses.",
+  "engine": "DESTROY_OPP_GW_NEXUS {n, notFamily}",
+  "status": "done",
+  "example": "SD57-006B",
+  "rule": "Engine: up to N matching opposing Nexuses are destroyed, the ones with most cores first; not a target."
  }
 ]

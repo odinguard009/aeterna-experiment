@@ -438,6 +438,7 @@ function releaseCores(p, i) {                          // official: a Grandwalke
 }
 function removeNexus(p, n, why) {
   if (why === 'destroyed' && nexusShielded(p, n)) return;
+  if (why === 'destroyed' && rebirthLeave(p, n)) return;
   if (!removeFrom(p.nexus, n)) return;
   if (why === 'destroyed' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: n, byOppFx: !!G.fxBy && G.fxBy !== p.key });
   releaseCores(p, n);

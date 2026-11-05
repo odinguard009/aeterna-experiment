@@ -235,6 +235,21 @@ FX_ACTIONS.REBIRTH_FLIP = { chk: a => (a.ask == null || a.ask === true) && (a.li
     }
     const src = c.src; if (!rebirthFlip(c.p, src)) { c.ctx.did = false; return; }
     if (a.lifeTrashSym && fxIf(c.p, c.opp, { symColorsGe: a.lifeTrashSym }, { selfInst: src }) && FX_ACTIONS.OPP_LIFE_TO_TRASH) await FX_ACTIONS.OPP_LIFE_TO_TRASH.run({ p: c.p, opp: c.opp, src, ctx: { did: true } }, { do: 'OPP_LIFE_TO_TRASH', n: 1 });
-    if (c.p.void >= 1) { takeFromVoid(c.p, 1); c.p.count += 1; log(`${CARDS[src.id].name}: counter +1 (Count +1).`); await fireFx(c.p, 'COUNTER_UP', null, { by: src }); }
-    c.ctx.did = true; if (!G.over) await fireFx(c.p, 'REBORN', src, {});
+    c.ctx.did = true; await rebirthAfter(c.p, src);
+  } };
+STATIC_FLAGS.push('REBIRTH_ON_LEAVE');      // v573 "when it would leave the Field due to an opposing effect, you can flip (and deploy) it": Nexus -> Spirit and Return to Prime (rebirthLeave, 03b)
+/** after a flip: Count +1 (one core from the Void becomes a counter) and the back face's (When Reborn) effects */
+async function rebirthAfter(p, src) {
+  if (p.void >= 1) { takeFromVoid(p, 1); p.count += 1; log(`${CARDS[src.id].name}: counter +1 (Count +1).`); await fireFx(p, 'COUNTER_UP', null, { by: src }); }
+  if (!G.over) await fireFx(p, 'REBORN', src, {});
+}
+/* v573 DESTROY_OPP_GW_NEXUS {n, notFamily}: "destroy N opposing non-<family> Grandwalker Nexuses" (Six Heaven Rush 5, SD57-006B). Not a target: the strongest (most cores) go first when there are more than N. */
+FX_ACTIONS.DESTROY_OPP_GW_NEXUS = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && (a.notFamily == null || (typeof a.notFamily === 'string' && !!a.notFamily)) && Object.keys(a).every(k => ['do', 'if', 'n', 'notFamily'].includes(k)),
+  txt: a => `destroy ${a.n} opposing ${a.notFamily ? 'non-"' + a.notFamily + '" family ' : ''}Grandwalker Nexuses`,
+  cands: (c, a) => c.opp.nexus.filter(n => isGW(n) && !(a.notFamily && (CARDS[n.id].families || []).includes(a.notFamily)) && !fxImmune(c.opp, n)).sort((x, y) => y.cores - x.cores),
+  can: (c, a) => FX_ACTIONS.DESTROY_OPP_GW_NEXUS.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.DESTROY_OPP_GW_NEXUS.cands(c, a).slice(0, a.n); c.ctx.did = false;
+    for (const n of L) { log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[n.id].name} is destroyed.`); removeNexus(c.opp, n, 'destroyed'); c.ctx.did = true; }
+    io.view({ type: 'board' });
   } };

@@ -96105,11 +96105,6 @@
   "S_UNAFFECTED",
   "T_ATTACKS"
  ],
- "SD57-006": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_ATTACKS"
- ],
  "SD57-RV005": [
   "A_REFRESH",
   "K_BURST",

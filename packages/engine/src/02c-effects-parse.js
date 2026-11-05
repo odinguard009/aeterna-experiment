@@ -122,7 +122,7 @@ function parseBurst(b) {
 }
 function parseEffects(arr) {
   if (arr == null) return { effects: null };
-  if (!Array.isArray(arr) || arr.length > 8) return { error: '"effects" must be a list of up to 8 effects' };
+  if (!Array.isArray(arr) || arr.length > 10) return { error: '"effects" must be a list of up to 10 effects' };
   const out = [];
   for (const e of arr) {
     if (!e || typeof e !== 'object' || !FX_TRIGGERS.includes(e.trigger)) return { error: `effect trigger must be one of ${FX_TRIGGERS.join(', ')}` };
