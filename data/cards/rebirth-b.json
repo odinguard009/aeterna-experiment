@@ -168,5 +168,387 @@
     ]
    }
   ]
+ },
+ {
+  "id": "BS73-026B",
+  "name": "The FungalBeast SheeSheep -Battle Form-",
+  "name_jp": "菌獣シーシープ -戦闘態-",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Fungal Tree"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn/Attacks)\nYou can put a core from the Void to any of your \"Fungal Tree\" family Spirit/Nexus. Then, once per turn, if you have six counters or more, return an opposing exhausted Spirit/Ultimate to the deckbottom.\n\n[LV2] Flash - (Either Attack Step)\nOnce per turn, by destroying one of your \"Fungal Bed\", exhaust an opposing Spirit/Ultimate, or return an opposing exhausted Spirit/Ultimate to the deckbottom.",
+  "image": "BS73-026b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Back face of BS73-026 (v579). Count +1 is done by the flip. The Flash 'or' is two Invoke effects sharing one once-per-turn key.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyCard",
+      "match": {
+       "family": [
+        "Fungal Tree"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyCard",
+      "match": {
+       "family": [
+        "Fungal Tree"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "six",
+    "if": {
+     "counterGe": 6
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "six",
+    "if": {
+     "counterGe": 6
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "onceKey": "fl",
+    "cost": {
+     "destroyOwn": {
+      "kind": "nexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "onceKey": "fl",
+    "cost": {
+     "destroyOwn": {
+      "kind": "nexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "BS73-028B",
+  "name": "The FungalBeast GoriGorilla -Battle Form-",
+  "name_jp": "菌獣ゴリゴリラ -戦闘態-",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 5,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Fungal Tree"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Attacks)\nYou can send out one of your \"Fungal Bed\" Tokens. When you've done so, you can put one core from the Void each to two \"Fungal Bed\" you control. Then, you can heavy exhaust an opposing Spirit/Ultimate. \n\n[LV2][LV3] (Either Attack Step)\nWhile your \"Devotee\"/\"Fungal Tree\" family Spirit is attacking/blocking, the opponent can't activate Burst effects.",
+  "image": "BS73-028b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Back face of BS73-028 (v579). Count +1 is done by the flip. Two cores go to Fungal Beds without enforcing two different Beds.",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SEND_TOKEN",
+      "token": "BS73-T001",
+      "n": 1,
+      "ask": true
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyNexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      },
+      "if": {
+       "prev": true
+      }
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyNexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      },
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_OPP_BURST",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "family": [
+      "Devotee",
+      "Fungal Tree"
+     ]
+    },
+    "mode": "battling"
+   }
+  ]
+ },
+ {
+  "id": "BS73-067B",
+  "name": "The GreatMushroomMan Oninarada",
+  "name_jp": "大茸人オニナラダ",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 5,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Fungal Tree"
+  ],
+  "text": "Count +1\n\n[LV1][LV2]\n(Can't Stack) Once per turn, when your counter increases, if you control four or less \"Fungal Bed\", you can send out one of your \"Fungal Bed\" Tokens.\n\n[LV1][LV2] (When Depleted/Destroyed by the Opponent)\nThe opponent discards cards from their Hand until their Hand is four. \n\n[LV2]\nWhile you control three or more \"Fungal Bed\", this Spirit gains +10000 BP, and its symbol is fixed as two Green symbols.",
+  "image": "BS73-067b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Back face of BS73-067 (v579). Count +1 by the flip. The REBORN core to self models 'put a core to this Reborn Spirit'.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "COUNTER_UP",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "noStack": true,
+    "optional": true,
+    "if": {
+     "not": {
+      "bedsGe": 5
+     }
+    },
+    "actions": [
+     {
+      "do": "SEND_TOKEN",
+      "token": "BS73-T001",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "alsoDepleted": true,
+    "actions": [
+     {
+      "do": "OPP_DISCARD",
+      "downTo": 4
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "bp": 10000,
+    "to": "self",
+    "if": {
+     "bedsGe": 3
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "EXTRA_SYMBOL",
+    "color": "green",
+    "to": "self",
+    "if": {
+     "bedsGe": 3
+    }
+   }
+  ]
  }
 ]

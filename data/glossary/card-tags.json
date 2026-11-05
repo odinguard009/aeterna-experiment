@@ -1786,7 +1786,8 @@
  ],
  "BS04-050": [
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "OPP_END_STEP"
  ],
  "BS04-051": [
   "T_ATTACKS",
@@ -3616,7 +3617,8 @@
  "BS08-058": [
   "A_VOID",
   "C_LEVEL",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "OPP_END_STEP"
  ],
  "BS08-059": [
   "T_SUMMONED",
@@ -4049,7 +4051,8 @@
  ],
  "BS09-058": [
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS09-059": [
   "A_BP_PLUS",
@@ -6769,7 +6772,8 @@
  ],
  "BS14-089": [
   "C_OPP_TURN",
-  "C_LEVEL"
+  "C_LEVEL",
+  "OPP_END_STEP"
  ],
  "BS14-090": [
   "C_LEVEL",
@@ -7034,7 +7038,8 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "OPP_END_STEP"
  ],
  "BS15-018": [
   "A_BP_PLUS",
@@ -8499,7 +8504,8 @@
  "BS18-016": [
   "C_LEVEL",
   "K_BURST",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS18-017": [
   "T_ALLY_LOST",
@@ -17354,7 +17360,8 @@
  "BS31-040": [
   "A_BP_PLUS",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "OPP_END_STEP"
  ],
  "BS31-041": [
   "C_LEVEL",
@@ -17387,7 +17394,8 @@
   "A_BOUNCE",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS31-046": [],
  "BS31-047": [
@@ -17646,7 +17654,8 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "BS31-093": [
   "A_VOID",
@@ -18617,7 +18626,8 @@
   "S_UNAFFECTED",
   "K_BURST",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS33-041": [
   "C_LEVEL",
@@ -18784,7 +18794,8 @@
  "BS33-070": [
   "A_VOID",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "OPP_END_STEP"
  ],
  "BS33-071": [
   "T_OPP_HAND_UP",
@@ -19129,7 +19140,8 @@
  "BS34-037": [
   "A_BP_PLUS",
   "C_LEVEL",
-  "T_BLOCKS"
+  "T_BLOCKS",
+  "OPP_END_STEP"
  ],
  "BS34-038": [
   "C_LEVEL",
@@ -21336,7 +21348,8 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "K_BURST",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "OPP_END_STEP"
  ],
  "BS35-044": [
   "A_BOUNCE",
@@ -23153,7 +23166,8 @@
   "C_LEVEL",
   "K_BURST",
   "T_BLOCKS",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS38-031": [
   "T_ATTACKS",
@@ -26867,7 +26881,8 @@
   "K_ADVENT",
   "K_BRAVE",
   "M_OPTIONAL",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "OPP_END_STEP"
  ],
  "BS40-CP02": [
   "T_ATTACKS",
@@ -26887,7 +26902,8 @@
   "C_LEVEL",
   "K_ADVENT",
   "M_OPTIONAL",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "OPP_END_STEP"
  ],
  "BS40-CP04": [
   "T_ADVENT",
@@ -27691,7 +27707,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS41-077": [
   "C_LEVEL",
@@ -27701,14 +27718,16 @@
  "BS41-078": [
   "A_VOID",
   "C_LEVEL",
-  "K_ADVENT"
+  "K_ADVENT",
+  "OPP_END_STEP"
  ],
  "BS41-079": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
   "M_OPTIONAL",
   "M_IF_YOU_DO",
-  "M_UP_TO"
+  "M_UP_TO",
+  "OPP_END_STEP"
  ],
  "BS41-080": [
   "A_BP_PLUS",
@@ -28043,7 +28062,8 @@
  "BS41-XX02": [
   "A_DISCARD_OPP",
   "C_LEVEL",
-  "S_UNAFFECTED"
+  "S_UNAFFECTED",
+  "OPP_END_STEP"
  ],
  "BS42-001": [
   "A_BP_PLUS",
@@ -30259,7 +30279,8 @@
   "C_LEVEL",
   "K_ADVENT",
   "M_OPTIONAL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "OPP_END_STEP"
  ],
  "BSC30-X04": [
   "T_ATTACKS",
@@ -33673,7 +33694,8 @@
  "BS45-045": [
   "T_SUMMONED",
   "C_LEVEL",
-  "S_UNAFFECTED"
+  "S_UNAFFECTED",
+  "OPP_END_STEP"
  ],
  "BS45-046": [
   "T_SUMMONED",
@@ -38877,7 +38899,8 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "K_BRAVE",
-  "K_ARMOR"
+  "K_ARMOR",
+  "OPP_END_STEP"
  ],
  "CB07-031": [
   "A_EXHAUST",
@@ -43148,7 +43171,8 @@
  "BS51-003": [
   "A_VOID",
   "C_LEVEL",
-  "A_DISCARD_HAND"
+  "A_DISCARD_HAND",
+  "OPP_END_STEP"
  ],
  "BS51-004": [
   "A_VOID",
@@ -43506,7 +43530,8 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "K_BRAVE",
-  "K_ARMOR"
+  "K_ARMOR",
+  "OPP_END_STEP"
  ],
  "BS51-049": [
   "C_LEVEL",
@@ -43532,7 +43557,8 @@
   "K_BRAVE",
   "K_ULTIMATE",
   "K_ARMOR",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS51-052": [
   "A_EXHAUST",
@@ -46575,7 +46601,8 @@
   "M_OPTIONAL",
   "A_DESTROY_COST",
   "T_OPP_REMOVED",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "OPP_END_STEP"
  ],
  "CB12-012": [
   "T_SUMMONED",
@@ -51220,7 +51247,8 @@
   "A_VOID",
   "A_EXHAUST",
   "C_LEVEL",
-  "S_UNAFFECTED"
+  "S_UNAFFECTED",
+  "OPP_END_STEP"
  ],
  "CB14-036": [
   "T_ATTACKS",
@@ -53139,7 +53167,8 @@
   "A_BANISH",
   "A_VOID",
   "C_LEVEL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "OPP_END_STEP"
  ],
  "CB17-033": [
   "T_SUMMONED",
@@ -56795,7 +56824,8 @@
   "T_MIRAGE_LIFE",
   "A_LIFE_TO_RESERVE",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "OPP_END_STEP"
  ],
  "BS59-073": [
   "T_START_ATTACK",
@@ -63503,7 +63533,8 @@
   "C_LEVEL",
   "K_ADVENT",
   "M_OPTIONAL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "OPP_END_STEP"
  ],
  "BS63-028": [
   "T_ALLY_LOST",
@@ -67650,7 +67681,8 @@
  "CB26-072": [
   "A_DRAW",
   "C_ONCE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "OPP_END_STEP"
  ],
  "CB26-073": [
   "T_MIRAGE_LIFE",
@@ -71606,7 +71638,8 @@
   "K_ADVENT",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "K_BURST_THEN_MAIN"
+  "K_BURST_THEN_MAIN",
+  "OPP_END_STEP"
  ],
  "BS67-007": [
   "T_ATTACKS",
@@ -72393,7 +72426,8 @@
   "K_ADVENT",
   "K_ULTIMATE",
   "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "BS67-CX03": [
   "A_COUNTER",
@@ -72472,7 +72506,8 @@
   "M_BY_DOING",
   "M_UNSTACKABLE",
   "T_DURING_BRAVE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "BS67-X06": [
   "T_ATTACKS",
@@ -84686,7 +84721,8 @@
   "K_MIRAGE",
   "M_UNSTACKABLE",
   "A_REMOVED_ZONE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "CB33-052": [
   "T_SUMMONED",
@@ -84695,7 +84731,8 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_BY_DOING",
-  "M_THEN"
+  "M_THEN",
+  "OPP_END_STEP"
  ],
  "CB33-053": [
   "T_ATTACKS",
@@ -84863,7 +84900,8 @@
   "K_MIRAGE",
   "K_ADVENT",
   "M_OPTIONAL",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "OPP_END_STEP"
  ],
  "CB33-069": [
   "A_BP_PLUS",
@@ -87453,7 +87491,8 @@
   "C_CONTROL",
   "C_LEVEL",
   "M_OPTIONAL",
-  "M_THEN"
+  "M_THEN",
+  "BEDS_GE"
  ],
  "BS73-029": [
   "T_SUMMONED",
@@ -87866,7 +87905,8 @@
   "M_OPTIONAL",
   "M_UNSTACKABLE",
   "A_SEND_TOKEN",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "BS73-068": [
   "T_OPP_HAND_UP",
@@ -91461,7 +91501,8 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "M_THEN",
-  "K_BURST_THEN_MAIN"
+  "K_BURST_THEN_MAIN",
+  "OPP_END_STEP"
  ],
  "BSC48-020": [
   "T_START_ATTACK",
@@ -91686,7 +91727,8 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "BSC48-043": [
   "A_REFRESH",
@@ -100252,7 +100294,8 @@
   "K_BRAVE",
   "M_OPTIONAL",
   "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
+  "F_OTHER_NOSTACK",
+  "OPP_END_STEP"
  ],
  "CBX01-002": [
   "T_SUMMONED",
@@ -110670,7 +110713,8 @@
  "SD39-012": [
   "T_SUMMONED",
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "OPP_END_STEP"
  ],
  "SD39-013": [
   "T_ALLY_LOST",

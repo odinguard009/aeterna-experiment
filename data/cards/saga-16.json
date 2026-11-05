@@ -6469,17 +6469,120 @@
    "12"
   ],
   "rebirthTo": "BS73-026B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned/Attacks)",
-   "Put a core from the Void to this Spirit.",
-   "Then, once per turn, your counter +1.",
-   "[LV1][LV2] Rebirth1m",
-   "When your \"Fungal Bed\" is destroyed, or this Spirit would leave the Field due to opposing effects, including being in Soul State, if you control any \"Contractor Yum-Kaax\", you can flip this Spirit.",
-   "[LV2] Flash - (Either Attack Step)",
-   "By sending your to the Trash, flip this Spirit."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "Rebirth1m (v579): the flip needs a Fungal Bed destroyed (any cause) or an opposing effect that would remove it, while you control a card named Contractor Yum-Kaax; the once-per-turn Counter is shared between Summoned and Attacks (onceKey). Assumed: the Soul State clause is not modelled separately.",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "cnt",
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "cnt",
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_NEXUS_DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "name": [
+      "Fungal Bed"
+     ]
+    },
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    }
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "lv": [
+     2
+    ],
+    "cost": {
+     "soulToTrash": true
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-027",
@@ -6634,17 +6737,77 @@
    "12"
   ],
   "rebirthTo": "BS73-028B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Rebirth4m",
-   "When this Spirit attacks, or would leave the Field due to opposing effects, including being in Soul State, if you control any \"Contractor Yum-Kaax\", you can flip this Spirit.",
-   "[LV1][LV2] (When Attacks)",
-   "Once per turn, if you control any \"Contractor Yum-Kaax\", you can put two cores from the Void to this Spirit.",
-   "Then, if you control three or more \"Fungal Bed\", you can heavy exhaust an opposing Spirit.",
-   "[LV2] (When Attacks)",
-   "Once per turn, this Spirit can refresh."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "v579: Rebirth flip on attack or when leaving by opposing effects (Soul State not modelled separately). Two cores to self then heavy exhaust if 3+ Fungal Beds.",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 2,
+      "to": "self"
+     },
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "bedsGe": 3
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    }
+   }
+  ]
  },
  {
   "id": "BS73-029",
@@ -8970,15 +9133,62 @@
    "12"
   ],
   "rebirthTo": "BS73-067B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth2m",
-   "When your \"Fungal Bed\" is destroyed, or this Nexus would leave the Field due to opposing effects, including being in Soul State, if you control any \"Contractor Yum-Kaax\", you can flip this Nexus.",
-   "When you do, put a core from the Void to this Reborn Spirit.",
-   "[LV1] (Opposing End Step)",
-   "(Can't Stack) Including being in Soul State, if you control any \"Contractor Yum-Kaax\", and you control four or less \"Fungal Bed\", you can send out one of your \"Fungal Bed\" Tokens."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "v579: flip when a Fungal Bed is destroyed or on opposing leave (Soul State not modelled). The core put on the Reborn Spirit is done by the back face REBORN effect.",
+  "effects": [
+   {
+    "trigger": "ALLY_NEXUS_DESTROYED",
+    "lv": [
+     1
+    ],
+    "match": {
+     "name": [
+      "Fungal Bed"
+     ]
+    },
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    }
+   },
+   {
+    "trigger": "OPP_END_STEP",
+    "lv": [
+     1
+    ],
+    "noStack": true,
+    "optional": true,
+    "if": {
+     "controlName": "Contractor Yum-Kaax",
+     "not": {
+      "bedsGe": 5
+     }
+    },
+    "actions": [
+     {
+      "do": "SEND_TOKEN",
+      "token": "BS73-T001",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-068",

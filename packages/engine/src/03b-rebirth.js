@@ -36,7 +36,7 @@ function rebirthUnflip(p, s) {
 /** v573 STATIC REBIRTH_ON_LEAVE: "when it would leave the Field due to an opposing effect, you can flip (and deploy) it" (a replacement; the flip is automatic). True = the card stays. */
 function rebirthLeave(p, s) {
   if (!G || !G.fxBy || G.fxBy === p.key || !(p.spirits.includes(s) || p.nexus.includes(s))) return false;
-  if (!fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'REBIRTH_ON_LEAVE' && (!e.lv || e.lv.includes(lvNo(s))))) return false;
+  if (!fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'REBIRTH_ON_LEAVE' && (!e.lv || e.lv.includes(lvNo(s))) && (!e.if || fxIf(p, G.p[other(p.key)], e.if, { selfInst: s })))) return false;      // v579 `if` (BS73-026: "if you control Contractor Yum-Kaax")
   const back = !!s.baseId, ok = back ? rebirthUnflip(p, s) : !!rebirthTarget(s) && rebirthFlip(p, s);
   if (ok && !back && G.evQ) G.evQ.push({ type: 'REBORN', key: p.key, inst: s });      // Count +1 and (When Reborn) resolve after the effect (08-battle)
   return ok;

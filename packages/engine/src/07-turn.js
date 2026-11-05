@@ -37,7 +37,7 @@ const endMainHas = p => fieldList(p).some(f => (CARDS[f.id].effects || []).some(
 async function endMainFx(p) { if (G.over || !endMainHas(p)) return; await fireFx(p, 'END_MAIN', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }      // v513 "(End of Your Main Step)" effects: the first Main Step only, before the Attack Step
 async function endStep(key) {
   setStep(G.steps.length - 1);
-  if (!G.over) { await fireFx(G.p[key], 'END_STEP', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); }      // v0.169 "(Your End Step)" effects, before the "during this turn" effects end
+  if (!G.over) { await fireFx(G.p[key], 'END_STEP', null, {}); await flushBursts(); await fireFx(G.p[other(key)], 'OPP_END_STEP', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); }      // v0.169 + v579 "(Opposing End Step)" fires right after "(Your End Step)" effects, before the "during this turn" effects end
   if (G.over) return;
   for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.bpMod = 0; f.lv2Turn = false; f.lvHighTurn = false; f.lv1Turn = false; f.lvPlusTurn = false; if (f.noABTurn != null) { f.noAB = false; f.noABTurn = null; } }   // v0.88 S1: "during this turn, can't attack/block" ends
   log(`${who(G.p[key])} ${G.p[key].cpu ? 'ends' : 'end'} the turn.`);

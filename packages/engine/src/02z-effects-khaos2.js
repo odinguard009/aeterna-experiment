@@ -284,3 +284,5 @@ FX_TRIGGER_TEXT.ALLY_LEAVES = 'When your X Spirits would leave the Field due to 
 function allyLeaves(p, s, byOppFx) {
   if (byOppFx && G && G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_LEAVES'))) G.evQ.push({ type: 'ALLY_LEAVES', key: p.key, inst: s });
 }
+/* v579 condition bedsGe N: "if you control N or more Fungal Bed" */
+function bedsGeOk(p, n) { return p.nexus.filter(x => !x.noFx && isFungalBed(x)).length >= n; }

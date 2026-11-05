@@ -20,7 +20,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 14 | small | BS69-CX01 The AstralMaterContractor Gaia | complete | Reptile Beast | 41 | 21 | open |
 | 15 | small | BS69-CX02 The SwiftContractor Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 16 | small | BS69-CX03 The RagingGaleContractor Huracan | OPEN, first | Roaring Azure | 40 | 1 | open |
-| 17 | small | BS68-CX03 The ToolcraftContractor Kinich-Ahau | OPEN, first | Puppet Beast | 28 | 1 | open |
+| 17 | small | BS68-CX03 The ToolcraftContractor Kinich-Ahau | complete | Puppet Beast | 28 | 1 | open |
 | 18 | small | BS61-X09 Grandwalker Tezcatlipoca | OPEN, first | Armored Beast | 33 | 2 | open |
 | 19 | small | BS59-X09 Grandwalker Chronos | OPEN, first | Chrownos | 29 | 1 | open |
 | 20 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 46 | 4 | open |
