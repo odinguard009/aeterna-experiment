@@ -4959,17 +4959,64 @@
   "mechanics": [
    "Burst"
   ],
-  "fxComplete": false,
-  "residual": [
-   "When your \"Scalostle\" family Brave is summoned, if you have five counters or more, you can immediately activate this set card.",
-   "{{Burst|After an opposing Spirit/Nexus' (When Summoned/Deployed) effect resolves}}",
-   "Summon this card without paying the cost.",
-   "Then, you can summon a \"Scalostle\" family Brave card from your Hand/Trash without paying the cost.",
-   "When you've done so, destroy an opposing Spirit/Ultimate with the highest cost.",
-   "[LV2][LV3] (When Attacks)",
-   "If the opposing Hand + Removed Zone has a total of five or more cards, the opponent must discard cards from their Hand + Removed Zone until three or less cards remain in total."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "burst": {
+   "when": "OPP_SUMMON_FX",
+   "also": {
+    "when": "BRAVE_SUMMONED",
+    "match": {
+     "family": [
+      "Scalostle"
+     ],
+     "type": "Brave"
+    },
+    "if": {
+     "counterGe": 5
+    }
+   },
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    },
+    {
+     "do": "SUMMON_HAND",
+     "from": "handOrTrash",
+     "match": {
+      "family": [
+       "Scalostle"
+      ]
+     },
+     "allowBrave": true,
+     "types": [
+      "Brave"
+     ]
+    },
+    {
+     "do": "DESTROY",
+     "costRank": "highest",
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DISCARD_OPP_HAND_REMOVED",
+      "geTotal": 5,
+      "leaveTotal": 3
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS72-X08",

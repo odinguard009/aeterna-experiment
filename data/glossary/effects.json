@@ -1948,5 +1948,15 @@
   "status": "done",
   "example": "BSC48-XX01",
   "rule": "Engine: each class is chosen separately and may be skipped; opposing immunity still applies."
+ },
+ {
+  "id": "K_DISCARD_OPP_HAND_REMOVED",
+  "kind": "action",
+  "meaning": "If the opposing Hand + Removed Zone hold five or more cards in total, the opponent discards from both until three or less remain.",
+  "pattern": "If the opposing Hand + Removed Zone has a total of five or more cards, the opponent must discard cards from their Hand + Removed Zone until three or less cards remain in total.",
+  "engine": "DISCARD_OPP_HAND_REMOVED {geTotal, leaveTotal}",
+  "status": "done",
+  "example": "BS72-X07",
+  "rule": "Engine: the opponent chooses which cards go to the Trash; Hand cards unaffected by effects stay, and the check happens once when the effect starts."
  }
 ]

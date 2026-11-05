@@ -210,6 +210,27 @@ FX_ACTIONS.RETURN_OPP_SUN = { chk: a => a.to === 'deckBottom' && Object.keys(a).
       bounceCard(c.opp, t, 'deckBottom'); checkDepletion(c.opp); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns to the deckbottom.`); c.ctx.did = true;
     }
     if (c.ctx.did) io.view({ type: 'board' }); } };
+/* v570 DISCARD_OPP_HAND_REMOVED {geTotal, leaveTotal} (BS72-X07): "If the opposing Hand + Removed Zone has a total of five or more cards, the opponent must discard cards from their Hand + Removed Zone until three or less remain in total."
+   The opponent chooses which cards go to the Trash (the CPU gives up its cheapest); cards unaffected in the Hand stay. */
+FX_ACTIONS.DISCARD_OPP_HAND_REMOVED = {
+  chk: a => Number.isInteger(a.geTotal) && a.geTotal >= 1 && a.geTotal <= 10 && Number.isInteger(a.leaveTotal) && a.leaveTotal >= 0 && a.leaveTotal < a.geTotal && Object.keys(a).every(k => ['do', 'if', 'geTotal', 'leaveTotal'].includes(k)),
+  txt: a => `if the opposing Hand + Removed Zone has ${a.geTotal} or more cards in total, the opponent discards from them until ${a.leaveTotal} or less remain`,
+  can: (c, a) => c.opp.hand.length + c.opp.removed.length >= a.geTotal,
+  run: async (c, a) => {
+    const nm = CARDS[c.src.id].name, o = c.opp; let k = 0;
+    if (o.hand.length + o.removed.length < a.geTotal) { c.ctx.did = false; return; }
+    while (o.hand.length + o.removed.length > a.leaveTotal) {
+      const L = o.hand.filter(x => !handSafe(x, o, c)).map(x => ({ x, z: 'hand' })).concat(o.removed.map(x => ({ x, z: 'removed' })));
+      if (!L.length) break;
+      let d;
+      if (o.cpu) d = L.slice().sort((u, v) => CARDS[u.x.id].cost - CARDS[v.x.id].cost)[0];
+      else { const v = await ask({ title: `✨ ${nm}`, peek: true, html: `Choose a card from your Hand or Removed Zone to discard (${o.hand.length + o.removed.length - a.leaveTotal} more).`, buttons: L.slice(0, 14).map(u => ({ label: `${CARDS[u.x.id].name} (${u.z === 'hand' ? 'Hand' : 'Removed'})`, cls: 'primary', value: u.x.uid })) }, o.key || 'player'); d = L.find(u => u.x.uid === v) || L[0]; }
+      removeFrom(d.z === 'hand' ? o.hand : o.removed, d.x); o.trash.push(d.x); k++;
+      log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.x.id].name} from ${d.z === 'hand' ? 'the Hand' : 'the Removed Zone'}.`);
+      if (d.z === 'hand') await handDiscardedFx(o, d.x);
+    }
+    c.ctx.did = k > 0; io.view({ type: 'board' });
+  } };
 /* v567 TRASH_PICK_THREE {nameHas, costLe} (BSC48-052): "from your Trash, either return a Cost N or less <name> to the Hand, or summon it without paying the cost, or immediately use its Change without paying the cost":
    picks a matching Spirit in the Trash, then one of the three modes (the CPU summons it when it can, else returns it). */
 FX_ACTIONS.TRASH_PICK_THREE = { chk: a => typeof a.nameHas === 'string' && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'nameHas', 'costLe'].includes(k)),
