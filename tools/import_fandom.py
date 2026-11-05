@@ -177,7 +177,7 @@ def convert(r, image):
     if t_fixed == 'Spirit' and not lv and re.match(r'^(Main|Flash)\s*\n', r.get('effect') or ''):
         t_fixed = 'Magic'                          # v0.51.2: Magic cards typed "Spirit" in the export (no levels, Main/Flash text)
     return {
-        'id': r['id'], 'name': r['name'], 'name_jp': r.get('name_jp'), 'type': t_fixed,
+        'id': r['id'], 'name': re.sub(r'\s+', ' ', r['name']).strip(), 'name_jp': r.get('name_jp'), 'type': t_fixed,
         'color': colors[0] if colors else None, 'colors': colors,
         'set': r['set'], 'cost': r.get('cost'),
         'reduction': reduction_of(r),
