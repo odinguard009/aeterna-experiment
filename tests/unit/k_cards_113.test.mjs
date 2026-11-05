@@ -48,3 +48,13 @@ test('K-1196 BS72-074: End Step LV2 draws two with Contractor Nuadha then discar
     return { fc: BS.CARDS['BS72-074'].partial === false, noNuadha, after: P.hand.length, trash: P.trash.length }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.noNuadha, 3, JSON.stringify(r)); assert.equal(r.after, 3, JSON.stringify(r)); assert.equal(r.trash, 2, JSON.stringify(r));
 });
+
+test('K-1197 BS71-063: braved Spirit refreshes by exhausting a Nexus with six or more counters, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const sp = BS.mkInst('BS71-054'); sp.cores = 1; sp.exhausted = true; sp.brave = BS.mkInst('BS71-063'); const nx = BS.mkInst('BS72-074'); nx.cores = 2; P.spirits = [sp]; P.nexus = [nx];
+    P.count = 5; await BS.fireFx(P, 'ATTACKS', sp, {}); const low = { ex: sp.exhausted, nx: nx.exhausted };
+    P.count = 6; await BS.fireFx(P, 'ATTACKS', sp, {});
+    return { fc: BS.CARDS['BS71-063'].partial === false, low, ex: sp.exhausted, nx: nx.exhausted }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.deepEqual(r.low, { ex: true, nx: false }, JSON.stringify(r)); assert.equal(r.ex, false, JSON.stringify(r)); assert.equal(r.nx, true, JSON.stringify(r));
+});

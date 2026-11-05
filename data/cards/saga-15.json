@@ -20098,7 +20098,7 @@
    "Contract Skill",
    "Grandwalker Nexus"
   ],
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image. God reduction icon from Fandom (official list did not load BS71/BS72), v0.44.7.",
   "brave": {
    "bp": 3000,
@@ -20131,10 +20131,22 @@
       "costRank": "highest"
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "braved": true,
+    "optional": true,
+    "once": true,
+    "if": {
+     "counterGe": 6
+    },
+    "actions": [
+     {
+      "do": "ASSAULT",
+      "n": 1
+     }
+    ]
    }
-  ],
-  "residual": [
-   "During Spirit Brave (When Attacks): once per turn, with six or more counters, exhaust one of your Nexuses/Grandwalker Nexuses to refresh this Spirit"
   ],
   "bicon": [
    "11"
