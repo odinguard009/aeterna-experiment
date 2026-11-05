@@ -55,7 +55,7 @@ function fxValid(it) {
   if (!isMir && !fromHand && !fromTrash && e.lv && !e.lv.includes(dead ? f.lostLv + lvBase(CARDS[f.id]) : lvNo(f))) return false;
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
-  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'SPIRIT_DIED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED' || trg === 'OPP_MAGIC_USED' || trg === 'AMPLIFY') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
+  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'SPIRIT_DIED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED' || trg === 'OPP_MAGIC_USED' || trg === 'AMPLIFY' || trg === 'ALLY_LEAVES') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
   if ((trg === 'COUNTER_UP' || trg === 'OWN_DISCARD') && e.match && !(ctx.by && fxMatch(CARDS[ctx.by.id], e.match))) return false;      // v485 "via your <X>'s effect"
   if (trg === 'BP_REACHED' && e.match && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;      // v217
   if (trg === 'OPP_DIED' && e.match) {      // v192 the destroyed Spirit's BP when it was destroyed (ctx.bp), not its coreless instance

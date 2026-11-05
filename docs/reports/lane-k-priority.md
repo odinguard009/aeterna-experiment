@@ -12,12 +12,8 @@ Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-
 | SD57-TX01 | The HeavenlyDemonKing God-Sechs -Type Earth- | OPEN |
 | SD57-X02 | The HeavenlyDemonKing God-Sechs -Type Shadow- | OPEN |
 
-## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 25 of 26 complete
+## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 26 of 26 complete - DONE
 Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.json.
-
-| Card | Name | State |
-|---|---|---|
-| P25-05 | The RevelationDragon Bahattar | OPEN |
 
 ## 3. Awakened Dragon family (awakened-dragon-family): 0 of 0 complete - DONE
 Added 2026-11-05. Every card whose families list holds Awakened Dragon (not cards that only have it in the name).

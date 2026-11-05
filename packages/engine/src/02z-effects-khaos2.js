@@ -178,12 +178,12 @@ FX_ACTIONS.CHANGE_REPLACE = { chk: a => typeof a.family === 'string' && Number.i
     if (c.p.cpu) t = L.slice().sort((x, y) => bpOf(x) - bpOf(y))[0];
     else { const uid = await pickFromField({ text: `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Replace one of your Spirits with this card (Change), or discard it.`, uids: L.map(x => x.uid), buttons: [{ label: 'Discard this card', cls: 'cancel', value: 'none' }] }); t = L.find(x => x.uid === uid); }
     if (t) { c.src.chg = t; c.ctx.did = true; } } };
-FX_ACTIONS.CHANGE_BOUNCE_OPP = { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)),
+FX_ACTIONS.CHANGE_BOUNCE_OPP = { chk: a => a.to === 'deckBottom' && (a.noNexus == null || a.noNexus === true) && Object.keys(a).every(k => ['do', 'if', 'to', 'noNexus'].includes(k)),
   txt: () => 'return an opposing Spirit/Nexus/Burst to the deckbottom',
-  cands: c => c.opp.spirits.concat(c.opp.nexus).filter(t => !flagActive(c.opp, 'NO_RETURN', t) && !fxImmune(c.opp, t, { p: c.p, src: c.src })),
-  can: c => FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c).length > 0 || (!!c.opp.burst && !burstSetSafe(c.opp)),
-  run: async c => {
-    c.ctx.did = false; const L = FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c), b = c.opp.burst && !burstSetSafe(c.opp) ? c.opp.burst : null;
+  cands: (c, a) => c.opp.spirits.concat(a && a.noNexus ? [] : c.opp.nexus).filter(t => !flagActive(c.opp, 'NO_RETURN', t) && !fxImmune(c.opp, t, { p: c.p, src: c.src })),
+  can: (c, a) => FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c, a).length > 0 || (!!c.opp.burst && !burstSetSafe(c.opp)),
+  run: async (c, a) => {
+    c.ctx.did = false; const L = FX_ACTIONS.CHANGE_BOUNCE_OPP.cands(c, a), b = c.opp.burst && !burstSetSafe(c.opp) ? c.opp.burst : null;
     if (!L.length && !b) return;
     let t = null;
     if (L.length) {
@@ -223,3 +223,9 @@ FX_ACTIONS.DESTROY_OPP_SPIRIT_AND_GW = { chk: a => Object.keys(a).every(k => ['d
     const n = await fxPickTarget(c, N.filter(x => c.opp.nexus.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Grandwalker Nexus to destroy (glowing).`);
     if (n) { removeNexus(c.opp, n, 'destroyed'); c.ctx.did = true; }
     io.view({ type: 'board' }); } };
+
+/* v567 trigger ALLY_LEAVES (BSC48-P25-05): "when your <family> Spirits would leave the Field due to an opposing effect" (match on the leaving Spirit). Fires after the leave like LEAVES (the effect is a reaction here, not a replacement). */
+FX_TRIGGER_TEXT.ALLY_LEAVES = 'When your X Spirits would leave the Field due to an opposing effect';
+function allyLeaves(p, s, byOppFx) {
+  if (byOppFx && G && G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_LEAVES'))) G.evQ.push({ type: 'ALLY_LEAVES', key: p.key, inst: s });
+}

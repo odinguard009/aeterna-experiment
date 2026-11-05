@@ -1928,5 +1928,15 @@
   "status": "partial",
   "example": "{\"magic\":{\"alsoMagic\":true,\"change\":{\"cost\":6,\"reduction\":{\"red\":1}}}}",
   "rule": "Engine: the Magic-side cost uses the Change cost; the cast Spirit takes the place of the chosen Spirit (cores carried over). Soul Magic and the CPU own choice ignore Change."
+ },
+ {
+  "id": "K_ALLY_LEAVES",
+  "kind": "trigger",
+  "meaning": "your Spirit of a family leaves the Field because of an opposing effect",
+  "pattern": "When your \"X\" family Spirits would leave the Field due to an opposing effect",
+  "engine": "trigger ALLY_LEAVES with match.family",
+  "status": "partial",
+  "example": "{\"trigger\":\"ALLY_LEAVES\",\"lv\":[2,3],\"match\":{\"family\":[\"Awakened Dragon\"]},\"actions\":[]}",
+  "rule": "Engine: queued when an opposing effect returns/destroys/depletes a Spirit; the effect resolves after the Spirit left, it does not prevent the leaving."
  }
 ]

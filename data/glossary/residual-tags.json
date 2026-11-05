@@ -87956,18 +87956,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "P25-05": [
-  "A_AWAKEN",
-  "A_VOID",
-  "C_COUNTER",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_BURST",
-  "M_BY_DOING",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "T_ADVENT"
- ],
  "P25-06": [
   "A_DRAW",
   "A_REFRESH",

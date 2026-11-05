@@ -24044,17 +24044,96 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Contract Advent|Awakened Dragon & C4 or more|(Either Attack Step)}}",
-   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
-   "[LV1][LV2][LV3] (When Advents/Attacks)",
-   "You can return an opposing Spirit/Burst to the deckbottom. When you've done so, you can put a core from the Void to your Spirits/Reserve.",
-   "[LV2][LV3]",
-   "When your \"Awakened Dragon\" family Spirits would leave the Field due to an opposing effect, you can activate this Spirit's (When Advents) effect."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
-  "rcode": "P"
+  "rcode": "P",
+  "contractAdvent": {
+   "family": "Awakened Dragon",
+   "counterGe": 4,
+   "turn": "EITHER",
+   "soulTo": true
+  },
+  "effects": [
+   {
+    "trigger": "ADVENT",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CHANGE_BOUNCE_OPP",
+      "to": "deckBottom",
+      "noNexus": true
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "orReserve": true,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CHANGE_BOUNCE_OPP",
+      "to": "deckBottom",
+      "noNexus": true
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "orReserve": true,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LEAVES",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CHANGE_BOUNCE_OPP",
+      "to": "deckBottom",
+      "noNexus": true
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "orReserve": true,
+      "if": {
+       "prev": true
+      }
+     }
+    ],
+    "match": {
+     "family": [
+      "Awakened Dragon"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "P25-06",

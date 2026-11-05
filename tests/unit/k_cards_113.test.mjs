@@ -190,3 +190,17 @@ test('K-1208 BSC48-052: usable from the Trash when a Contractor Dairokuten Maou 
     return { fc: K.partial === false, moved: !P.trash.includes(t), where: P.hand.includes(t) ? 'hand' : (P.spirits.includes(t) ? 'field' : 'other'), tu: !!(K.magic && K.magic.trashUse) }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.moved, true, JSON.stringify(r)); assert.equal(r.tu, true, JSON.stringify(r));
 });
+
+test('K-1209 P25-05: Contract Advent data (Awakened Dragon, 4 counters, either step, Soul Core); an opposing effect returning an ally Awakened Dragon queues ALLY_LEAVES; the bounce skips Nexuses', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key;
+    const K = BS.CARDS['P25-05']; const me = BS.mkInst('P25-05'); me.cores = 3;
+    const ad = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && (BS.CARDS[x].families || []).includes('Awakened Dragon') && x !== 'P25-05');
+    const ally = BS.mkInst(ad); ally.cores = 1; P.spirits = [me, ally]; G.evQ = [];
+    G.fxBy = O.key; BS.bounceCard(P, ally, 'hand'); G.fxBy = null;
+    const queued = G.evQ.some(e => e.type === 'ALLY_LEAVES' && e.inst === ally);
+    const nx = BS.mkInst(Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Nexus')); O.nexus = [nx]; O.spirits = [];
+    const cands = BS.FX_ACTIONS.CHANGE_BOUNCE_OPP.cands({ p: P, opp: O, src: me, ctx: {} }, { noNexus: true }).length;
+    return { fc: K.partial === false, ca: K.contractAdvent, queued, cands, eff: K.effects.map(e => e.trigger).join() }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ca.counterGe, 4, JSON.stringify(r)); assert.equal(r.ca.soulTo, true, JSON.stringify(r)); assert.equal(r.queued, true, JSON.stringify(r)); assert.equal(r.cands, 0, JSON.stringify(r));
+});
