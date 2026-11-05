@@ -23,3 +23,14 @@ test('K-1194 BS71-053: Void core goes to this Spirit and a Scalostle Spirit with
     return { fc: BS.CARDS['BS71-053'].partial === false, sc: sc.cores, al: al.cores, plain: plain.cores }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.plain, 1, JSON.stringify(r)); assert.ok(r.al === 2 || r.sc === 2, JSON.stringify(r));
 });
+
+test('K-1195 BS71-057: Brave LV2 core to Nuadha and once-per-turn refresh when this Spirit destroys by effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const m = BS.mkInst('BS71-057'); m.cores = 3; m.brave = BS.mkInst('BS71-063'); m.exhausted = true; const nx = BS.mkInst('BS71-CX03'); nx.cores = 2; P.spirits = [m]; P.nexus = [nx]; P.void = P.void || { n: 0 }; if (typeof P.void.n === 'number') P.void.n = 9;
+    const mk = () => { const t = BS.mkInst('BS71-053'); t.cores = 1; return t; };
+    await BS.fireFx(P, 'OPP_DESTROYED_FX', null, { bp: 3000, fxSrc: m }); const c1 = nx.cores, ex1 = m.exhausted;
+    await BS.fireFx(P, 'OPP_DESTROYED_FX', null, { bp: 3000, fxSrc: {} });
+    return { fc: BS.CARDS['BS71-057'].partial === false, c1, ex1, c2: nx.cores }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.ex1, false, JSON.stringify(r)); assert.ok(r.c1 > 2, JSON.stringify(r)); assert.equal(r.c2, r.c1, JSON.stringify(r));
+});

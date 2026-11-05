@@ -1808,5 +1808,15 @@
     "status": "full",
     "example": "SD32-007",
     "rule": "Engine: counts your symbol colours and refreshes that many of your exhausted Spirits, one pick each."
+  },
+  {
+    "id": "K_DESTROYS_SELF",
+    "kind": "trigger",
+    "meaning": "When this Spirit destroys an opposing Spirit (by its effect or in battle)",
+    "pattern": "When this Spirit destroys any opposing Spirit/Ultimate",
+    "engine": "OPP_DESTROYED_FX bySrc.self + ALLY_DESTROYS self",
+    "status": "done",
+    "example": "BS71-057",
+    "rule": "Fires for the Spirit that caused the destruction, whether through its own effect or a battle win."
   }
 ]

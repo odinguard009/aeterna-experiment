@@ -19583,7 +19583,7 @@
   "image": "BS71-057.png",
   "block": "71",
   "saga": 15,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image. God reduction icon from Fandom (official list did not load BS71/BS72), v0.44.7.",
   "effects": [
    {
@@ -19621,10 +19621,81 @@
      }
     ],
     "optional": true
+   },
+   {
+    "trigger": "OPP_DESTROYED_FX",
+    "lv": [
+     2
+    ],
+    "braved": true,
+    "bySrc": {
+     "self": true
+    },
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "name": [
+        "Contractor Nuadha"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "OPP_DESTROYED_FX",
+    "lv": [
+     2
+    ],
+    "braved": true,
+    "bySrc": {
+     "self": true
+    },
+    "once": true,
+    "onceKey": "musk",
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_DESTROYS",
+    "lv": [
+     2
+    ],
+    "braved": true,
+    "self": true,
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "name": [
+        "Contractor Nuadha"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_DESTROYS",
+    "lv": [
+     2
+    ],
+    "braved": true,
+    "self": true,
+    "once": true,
+    "onceKey": "musk",
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     }
+    ]
    }
-  ],
-  "residual": [
-   "During Brave LV2: when this Spirit destroys an opposing Spirit/Ultimate, +1 core to a Contractor Nuadha, then once per turn this Spirit refreshes"
   ],
   "bicon": [
    "11"

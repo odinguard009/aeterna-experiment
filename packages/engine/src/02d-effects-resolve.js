@@ -64,7 +64,7 @@ function fxValid(it) {
     if (e.match.bpLe != null && !(ctx.bp != null ? ctx.bp <= e.match.bpLe : (subj && bpOf(subj) <= e.match.bpLe))) return false;
   }
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
-  if (e.self && subj !== f && (trg === 'BP_REACHED' || trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BATTLE_END')) return false;
+  if (e.self && subj !== f && (trg === 'BP_REACHED' || trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BATTLE_END' || trg === 'ALLY_DESTROYS')) return false;
   if (e.other && subj === f) return false;
   if (e.diffName && subj && CARDS[subj.id].name === CARDS[f.id].name) return false;      // v0.197
   if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
@@ -79,7 +79,8 @@ function fxValid(it) {
   if (trg === 'OPP_DESTROYED_FX' || trg === 'EXHAUSTED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card
     if (e.zeroBp && ctx.bp !== 0) return false;
     const sc = ctx.fxSrc && CARDS[ctx.fxSrc.id];
-    if (e.bySrc && !(sc && (!e.bySrc.type || sc.type === e.bySrc.type) && (!e.bySrc.family || (sc.families || []).some(x => e.bySrc.family.includes(x))))) return false;
+    if (e.bySrc && e.bySrc.self && ctx.fxSrc !== f) return false;      // v559 bySrc.self: destroyed by this very card's effect
+    if (e.bySrc && !e.bySrc.self && !(sc && (!e.bySrc.type || sc.type === e.bySrc.type) && (!e.bySrc.family || (sc.families || []).some(x => e.bySrc.family.includes(x))))) return false;
   }
   if (trg === 'BP_REACHED' && !(subj && bpOf(subj) >= e.bpGe && !(ctx.bpFrom >= e.bpGe))) return false;
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
