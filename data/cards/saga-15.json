@@ -19340,16 +19340,47 @@
   "image": "BS71-054.png",
   "block": "71",
   "saga": 15,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); gaps the export lacks (Neo-Core Charge target, Brave BP+ and combine condition, Nexus levels) filled from cardrush-bs.jp; not yet checked against the card image.",
-  "residual": [
-   "Once per turn, when your Saga Brave is summoned, return this card from your Trash to the Hand",
-   "LV2: your Contractor Nuadha Grandwalker Nexuses are unaffected by opposing Cost 3 or less effects"
-  ],
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "zone": "trash",
+    "once": true,
+    "optional": true,
+    "match": {
+     "type": "Brave",
+     "family": [
+      "Saga"
+     ]
+    },
+    "actions": [
+     {
+      "do": "TRASH_SELF_TO_HAND"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "lv": [
+     2
+    ],
+    "to": "own",
+    "match": {
+     "name": [
+      "Contractor Nuadha"
+     ]
+    },
+    "from": {
+     "costLe": 3
+    }
+   }
+  ]
  },
  {
   "id": "BS71-055",
