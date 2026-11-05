@@ -192,3 +192,18 @@ Object.assign(FX_ACTIONS, {
       }
       if (!k) c.ctx.did = false; io.view({ type: 'board' });
     } } });
+
+/* v562 SUMMON_DISCARDED {match}: "when a <X> card in your Hand would be discarded by your effect, you can summon it instead" (P25-01). Fired from OWN_DISCARD (the discard already happened):
+   the first matching card of ctx.discarded still in the Trash is summoned (Braves as a Spirit, Lv1) without paying the cost. A human may decline. */
+Object.assign(FX_ACTIONS, {
+  SUMMON_DISCARDED: { chk: a => !!a.match && typeof a.match === 'object' && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
+    txt: () => 'summon a matching card that your effect discarded from the Hand instead of leaving it in the Trash', can: c => (c.ctx.discarded || []).length > 0,
+    run: async (c, a) => {
+      c.ctx.did = false;
+      const L = (c.ctx.discarded || []).filter(x => c.p.trash.includes(x) && fxMatch(CARDS[x.id], a.match) && (CARDS[x.id].type === 'Brave' ? canPlaceBraveFree(c.p, x) : canPlaceFree(c.p, x)));
+      if (!L.length) return;
+      const t = c.p.cpu || L.length === 1 ? L[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'Choose the discarded card to summon instead.', false);
+      if (!t) return;
+      if (!c.p.cpu && !(await ask({ title: `✨ ${_pn(c)}`, peek: true, html: `Summon ${esc(CARDS[t.id].name)} instead of leaving it in the Trash?`, buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) return;
+      if (await summonFree(c.p, t)) c.ctx.did = true;
+    } } });

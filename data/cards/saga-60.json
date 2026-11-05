@@ -23775,15 +23775,50 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks)",
-   "Destroy an opposing Cost 3 or less Spirit/Ultimate. For each of your \"Scalostle\" family Braves, increase this \"Cost Destruction effect\" limit by +1.",
-   "[LV2][LV3] (Your Turn)",
-   "(Once per turn: same name) When one of your \"Spirit Armor\" and \"Scalostle\" family Brave cards in your Hand would be discarded by your effect, you can summon it instead of putting it in the Trash."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
-  "rcode": "P"
+  "rcode": "P",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLeBraves": {
+       "base": 3,
+       "family": [
+        "Scalostle"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "OWN_DISCARD",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "once": true,
+    "sameName": true,
+    "actions": [
+     {
+      "do": "SUMMON_DISCARDED",
+      "match": {
+       "type": "Brave",
+       "family": [
+        "Scalostle",
+        "Spirit Armor"
+       ]
+      }
+     }
+    ],
+    "if": {
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "P25-02",

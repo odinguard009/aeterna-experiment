@@ -73,3 +73,19 @@ test('K-1198 BS71-NX03: Flash summon needs five cores on a Blue Contractor and p
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.cost, 1, JSON.stringify(r)); assert.equal(r.oppLeft, r.big ? 1 : 0, JSON.stringify(r));
   assert.equal(r.hand, 3, JSON.stringify(r));
 });
+
+test('K-1199 P25-01: Cost Destruction limit grows per Scalostle Brave; own discard of a Scalostle Brave summons it instead', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const k = BS.CARDS['P25-01']; const br = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Brave' && (BS.CARDS[x].families || []).includes('Scalostle'));
+    const sp = BS.mkInst('P25-01'); sp.cores = 2; P.spirits = [sp]; P.nexus = [];
+    const by = Object.keys(BS.CARDS).find(x => BS.CARDS[x].type === 'Spirit' && BS.CARDS[x].cost === 4);
+    const o4 = BS.mkInst(by); o4.cores = 2; O.spirits = [o4]; O.hand = [];
+    await BS.fireFx(P, 'ATTACKS', sp, {}); const a = O.spirits.length;
+    sp.brave = BS.mkInst(br); const o4b = BS.mkInst(by); o4b.cores = 2; O.spirits = [o4b];
+    await BS.fireFx(P, 'ATTACKS', sp, {}); const b = O.spirits.length; sp.brave = null;
+    const x = BS.mkInst(br); P.hand = []; P.trash = [x]; P.reserve = P.reserve || {}; 
+    await BS.fireFx(P, 'OWN_DISCARD', null, { by: sp, discarded: [x] });
+    return { fc: k.partial === false, a, b, summoned: P.spirits.includes(x) || (P.nexus||[]).includes(x), inTrash: P.trash.includes(x) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.a, 1, JSON.stringify(r)); assert.equal(r.b, 0, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r));
+});

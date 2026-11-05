@@ -1848,5 +1848,25 @@
     "status": "done",
     "example": "BS71-NX03",
     "rule": "Engine: true when one card on your field that matches has at least N cores on it."
+  },
+  {
+    "id": "K_COST_LE_BRAVES",
+    "kind": "condition",
+    "meaning": "Cost N or less, +1 for each of your <family> family Braves",
+    "pattern": "increase this \"Cost Destruction effect\" limit by \\+1",
+    "engine": "DESTROY costLeBraves",
+    "status": "done",
+    "example": "{\"do\":\"DESTROY\",\"costLeBraves\":{\"base\":3,\"family\":[\"Scalostle\"]}}",
+    "rule": "Engine: the cost limit of the destruction is the base plus the number of your Braves of that family attached to your Spirits or Nexuses."
+  },
+  {
+    "id": "K_SUMMON_DISCARDED",
+    "kind": "condition",
+    "meaning": "summon the discarded card instead of leaving it in the Trash",
+    "pattern": "would be discarded by your effect, you can summon it instead",
+    "engine": "SUMMON_DISCARDED",
+    "status": "done",
+    "example": "{\"trigger\":\"OWN_DISCARD\",\"actions\":[{\"do\":\"SUMMON_DISCARDED\",\"match\":{\"type\":\"Brave\"}}]}",
+    "rule": "Engine: runs from OWN_DISCARD after the discard; the first matching discarded card is summoned from the Trash without paying its cost."
   }
 ]

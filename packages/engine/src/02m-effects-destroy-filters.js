@@ -6,19 +6,20 @@
    Exactly one of them stands in for the bound; each needs the opposing Spirit/Ultimate to be a legal effect target (fxImmune). */
 (() => {
   const D = FX_ACTIONS.DESTROY, dChk = D.chk, dCands = D.cands, dTxt = D.txt;
-  const NEW = ['bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer', 'costIn', 'bpPerLegacy'];
+  const NEW = ['bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer', 'costIn', 'bpPerLegacy', 'costLeBraves'];
   const has = a => NEW.some(k => a[k] != null);
   const okNew = a => (a.bpLeSelf == null || a.bpLeSelf === true) && (a.bpEqSelf == null || a.bpEqSelf === true)
     && (a.symbolsGe == null || (Number.isInteger(a.symbolsGe) && a.symbolsGe >= 1 && a.symbolsGe <= 5)) && (a.costLePer == null || perOk(a.costLePer))
     && (a.costIn == null || (Array.isArray(a.costIn) && a.costIn.length >= 1 && a.costIn.length <= 4 && a.costIn.every(x => Number.isInteger(x) && x >= 0 && x <= 30)))      // v0.168 "Cost 1/2" = cost 1 or 2
     && (a.bpPerLegacy == null || (!!a.bpPerLegacy && Number.isInteger(a.bpPerLegacy.n) && a.bpPerLegacy.n >= 1000 && a.bpPerLegacy.n <= 5000 && Array.isArray(a.bpPerLegacy.family) && a.bpPerLegacy.family.length > 0 && a.bpPerLegacy.family.every(f => typeof f === 'string' && f)))      // v193 "the targeting BP gets +N per EX Symbol of <family> banished via this Legacy"
+    && (a.costLeBraves == null || (!!a.costLeBraves && Number.isInteger(a.costLeBraves.base) && a.costLeBraves.base >= 0 && a.costLeBraves.base <= 9 && Array.isArray(a.costLeBraves.family) && a.costLeBraves.family.length > 0 && a.costLeBraves.family.every(f => typeof f === 'string')))
     && NEW.filter(k => a[k] != null && k !== 'bpPerLegacy').length <= 1 && !a.all && !a.nexus;
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; o.bpLe = 1e9; return o; };      // the old checks see an open bound
   D.chk = a => has(a) ? okNew(a) && dChk(base(a)) : dChk(a);
   const legacyCount = (c, fam) => (c.src && Array.isArray(c.src.legacyCards) ? c.src.legacyCards.filter(id => CARDS[id] && (CARDS[id].families || []).some(f => fam.includes(f))).length : 0);      // v193
   D.cands = (c, a) => {
     if (!has(a)) return dCands(c, a);
-    const gone = c.src.lostLv >= 0 && !c.p.spirits.includes(c.src), me = gone ? CARDS[c.src.id].levels[c.src.lostLv].bp + (c.src.bpMod || 0) : ownerOf(c.src) ? bpOf(c.src) : null, lim = a.costLePer ? perCount(c.p, a.costLePer) : null;
+    const gone = c.src.lostLv >= 0 && !c.p.spirits.includes(c.src), me = gone ? CARDS[c.src.id].levels[c.src.lostLv].bp + (c.src.bpMod || 0) : ownerOf(c.src) ? bpOf(c.src) : null, lim = a.costLePer ? perCount(c.p, a.costLePer) : a.costLeBraves ? a.costLeBraves.base + fieldList(c.p).filter(f => f.brave && CARDS[f.brave.id] && (CARDS[f.brave.id].families || []).some(x => a.costLeBraves.family.includes(x))).length : null;
     return dCands(c, base(a)).filter(t => !fxImmune(c.opp, t)
       && (!a.bpLeSelf || (me != null && bpOf(t) <= me)) && (!a.bpEqSelf || (me != null && bpOf(t) === me))
       && (a.symbolsGe == null || CARDS[t.id].symbols >= a.symbolsGe) && (lim == null || CARDS[t.id].cost <= lim) && (a.costIn == null || a.costIn.includes(CARDS[t.id].cost))
@@ -27,6 +28,7 @@
   D.txt = a => {
     if (!has(a)) return dTxt(a);
     const q = a.costLePer;
+    if (a.costLeBraves) return `destroy 1 opposing Spirit/Ultimate with cost ${a.costLeBraves.base} or less, +1 for each of your ${a.costLeBraves.family.join('/')} family Braves`;
     if (a.costIn) return 'destroy 1 opposing ' + (a.exhaustedOnly ? 'exhausted ' : '') + 'Spirit/Ultimate with cost ' + a.costIn.join('/') + (a.thenDraw ? ', then draw ' + a.thenDraw : '') + (a.noFx ? "; the effects of the destroyed target can't activate" : '');
     const f = a.bpLeSelf ? "BP equal or inferior to this Spirit's" : a.bpEqSelf ? 'the same BP as this Spirit' : a.symbolsGe != null ? a.symbolsGe + ' or more symbols'
       : a.bpPerLegacy ? `BP equal or less than ${a.bpLe || 0} plus ${a.bpPerLegacy.n} per EX Symbol banished via Legacy`
