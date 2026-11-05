@@ -67,3 +67,29 @@ Added 2026-11-05. Every card whose families list holds Awakened Dragon (not card
 |---|---|---|
 | BS74-AX03 | The RevelationGreatDeity Ultimate-Amaterasu-Dragon | OPEN |
 | P25-05 | The RevelationDragon Bahattar | OPEN |
+
+## 4. Grandwalker Nuadha + Scalostle family (nuadha): 8 of 28 complete
+Added 2026-11-05. owner 2026-11-05
+
+| Card | Name | State |
+|---|---|---|
+| BS71-053 | The Dana Scout | OPEN |
+| BS71-054 | The Dana Shielder | OPEN |
+| BS71-057 | The Dana Musketeer | OPEN |
+| BS71-058 | The ArmyMedic Dian | OPEN |
+| BS71-059 | The Dana Magic Soldier | OPEN |
+| BS71-060 | The TwinHeaded Brodeur | OPEN |
+| BS71-063 | Dana Standard Beam Spear | OPEN |
+| BS71-072 | Nuadha's Bulwark Temple | OPEN |
+| BS71-083 | Dana Draw | OPEN |
+| BS71-NX03 | The Tyrant Bres | OPEN |
+| BS71-X09 | The SilverArmDivineEmperor Agateram | OPEN |
+| BS72-051 | The DivineBlacksmith Goibniu | OPEN |
+| BS72-054 | The RedWitch Vaha | OPEN |
+| BS72-066 | Nuadha's Sword | OPEN |
+| BS72-074 | The Boyne Circular Ruins | OPEN |
+| BS72-X07 | The GodEmperor Dagda | OPEN |
+| BS74-064 | The Dana Sniper | OPEN |
+| BS74-067 | Dana Standard Railgun | OPEN |
+| P25-01 | The Dana Corporal | OPEN |
+| BS71-CX03 | The SilverArmContractor Nuadha | OPEN |

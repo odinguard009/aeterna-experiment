@@ -83,6 +83,18 @@
      "Awakened Dragon"
     ]
    }
+  },
+  {
+   "id": "nuadha",
+   "title": "Grandwalker Nuadha + Scalostle family",
+   "added": "2026-11-05",
+   "note": "owner 2026-11-05",
+   "select": {
+    "families": [
+     "Scalostle"
+    ],
+    "nexus": "BS71-CX03"
+   }
   }
  ]
 }
