@@ -13779,9 +13779,6 @@
   "T_ALLY_SUMMONED",
   "T_START_ATTACK"
  ],
- "BS34-071": [
-  "C_LEVEL"
- ],
  "BS34-073": [
   "A_DESTROY_TOTAL",
   "A_REFRESH",
@@ -13791,13 +13788,6 @@
  "BS34-074": [
   "K_BURST",
   "K_ULTIMATE",
-  "M_THEN"
- ],
- "BS34-075": [
-  "A_RETURN_TRASH",
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "M_OPTIONAL",
   "M_THEN"
  ],
  "BS34-076": [
@@ -13941,13 +13931,6 @@
  "BS34-XX01": [
   "A_BANISH",
   "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
- "BS34-XX02": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
@@ -74482,6 +74465,7 @@
   "C_ONCE",
   "K_ADVENT",
   "K_MIRAGE",
+  "K_SUMMON_SELF_BY_RETURN",
   "M_OPTIONAL"
  ],
  "CB33-033": [

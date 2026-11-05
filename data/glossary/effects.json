@@ -1448,5 +1448,25 @@
     "status": "wired",
     "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"FLASH\"],\"when\":\"duringAttackBlock\",\"once\":true,\"oncePer\":\"battle\",\"lv\":[2],\"cost\":{\"pay\":1},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":1000,\"to\":\"self\",\"battle\":true,\"per\":{\"type\":\"Spirit\",\"family\":\"Leucomyst\"}}]}",
     "rule": "Standard keyword (Fandom \"Amplify\" page): the {{Amplify|family +N}} head reads 'for each [family] Spirit you control, during this battle, this Spirit gains +N BP'. Engine: BP_TARGET {battle:true, per:{type:'Spirit',family}}."
+  },
+  {
+    "id": "K_SUMMON_SELF_BY_RETURN",
+    "kind": "phrase",
+    "meaning": "By returning one of your matching Spirits to the Hand, summon this card from the Hand/Trash without paying the cost (at the end of the battle of your named Spirit)",
+    "pattern": "by returning one .* to the Hand, summon this card",
+    "engine": "SUMMON_SELF_BY_RETURN {match} on an ALLY_BATTLE_END effect with zone 'hand' / 'trash'",
+    "status": "wired",
+    "example": "{\"trigger\":\"ALLY_BATTLE_END\",\"zone\":\"hand\",\"optional\":true,\"match\":{\"name\":[\"X\"]},\"actions\":[{\"do\":\"SUMMON_SELF_BY_RETURN\",\"match\":{\"name\":[\"X\"]}}]}",
+    "rule": "The owner returns one matching Spirit (the attacker may be chosen) to the Hand, then this card enters the Field free; nothing happens if no other matching Spirit is on the Field. Engine: SUMMON_SELF_BY_RETURN (card text of BS34-XX02)."
+  },
+  {
+    "id": "K_DESTROY_PER_SYMBOL_COLOR",
+    "kind": "phrase",
+    "meaning": "Destroy opposing Spirits/Ultimates with the same colors as your symbols, one of each color",
+    "pattern": "same colors as your symbols, one of each color",
+    "engine": "DESTROY_PER_SYMBOL_COLOR {} (Six Heaven Rush clause, with if {symColorsGe, selfSoul})",
+    "status": "wired",
+    "example": "{\"do\":\"DESTROY_PER_SYMBOL_COLOR\",\"if\":{\"symColorsGe\":4,\"selfSoul\":true}}",
+    "rule": "For each color you have a symbol of, one opposing Spirit/Ultimate of that color is destroyed; a card is never counted for two colors. Engine: DESTROY_PER_SYMBOL_COLOR (card text of BS34-XX02)."
   }
 ]

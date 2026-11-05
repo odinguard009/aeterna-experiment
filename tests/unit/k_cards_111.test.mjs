@@ -32,3 +32,26 @@ test('K-1150 BS34-075 The HeavenlyDemonKing Advents: returns a purple/white Spir
     return { back, summoned: P.spirits.some(s => s.id === 'BS34-XX02'), partial: BS.CARDS['BS34-075'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r));
 });
+
+test('K-1151 BS34-XX02 Type Destroy: summoned free from the Hand by returning a God-Sechs after its attack; Rush 4 destroys one opposing Spirit per symbol colour', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const gs = BS.mkInst('SD32-X02'); gs.cores = 2; P.spirits = [gs]; const d = BS.mkInst('BS34-XX02'); P.hand = [d]; P.reserve.n = 10;
+    await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: gs, attacker: gs });
+    const summoned = P.spirits.some(s => s.id === 'BS34-XX02'), back = P.hand.some(h => h.id === 'SD32-X02');
+    const d2 = BS.mkInst('BS34-XX02'); P.hand = [];  P.trash = [d2]; P.spirits = [BS.mkInst('BS34-XX02')];
+    const sp = P.spirits[0]; const fromTrashBefore = P.trash.length;
+    await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: sp, attacker: sp });
+    const noRetNonExact = P.trash.length === fromTrashBefore;
+    const cols = ['red','purple','green','yellow','blue','white'];
+    const byColor = {}; for (const k of Object.keys(BS.CARDS)) { const c = BS.CARDS[k]; if (c.type === 'Spirit' && !c.token && (c.colors || [c.symbol]).length === 1 && c.symbols >= 1 && !byColor[c.symbol]) byColor[c.symbol] = k; }
+    O.spirits = cols.filter(k => byColor[k]).map(k => BS.mkInst(byColor[k]));
+    const n0 = O.spirits.length;
+    const src = BS.mkInst('BS34-XX02'); src.soul = true; P.spirits = [src].concat(Object.values(byColor).map(k => { const q = BS.mkInst(k); q.cores = 5; return q; }));
+    const syms = BS.symbolsOn(P); const nsym = cols.filter(k => (syms[k] || 0) >= 1).length;
+    O.burst = BS.mkInst('BS34-016');
+    await BS.runActions({ p: P, opp: O, src, ctx: { selfInst: src } }, { actions: [BS.CARDS['BS34-XX02'].effects[2].actions[1]] });
+    return { summoned, back, noRetNonExact, n0, left: O.spirits.length, nsym, partial: BS.CARDS['BS34-XX02'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r));
+  assert.equal(r.noRetNonExact, true, JSON.stringify(r)); assert.ok(r.nsym >= 4, JSON.stringify(r)); assert.equal(r.left, r.n0 - r.nsym, JSON.stringify(r));
+});

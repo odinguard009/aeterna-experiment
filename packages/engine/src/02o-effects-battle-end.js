@@ -86,3 +86,38 @@ async function endOfBattle() {
   await flushDerived();
   await flushBursts();
 }
+Object.assign(FX_ACTIONS, {
+  /* v533 "by returning one of your X Spirits to the Hand, summon this card (from the Hand/Trash) without paying the cost" (BS34-XX02). The CPU returns the attacker when it matches, else the first match. */
+  SUMMON_SELF_BY_RETURN: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+    txt: () => 'by returning one of your matching Spirits to the Hand, summon this card without paying the cost',
+    cands: (c, a) => c.p.spirits.filter(s => s !== c.src && fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => (c.p.hand.includes(c.src) || c.p.trash.includes(c.src)) && FX_ACTIONS.SUMMON_SELF_BY_RETURN.cands(c, a).length > 0,
+    run: async (c, a) => {
+      if (!FX_ACTIONS.SUMMON_SELF_BY_RETURN.can(c, a)) { c.ctx.did = false; return; }
+      const L = FX_ACTIONS.SUMMON_SELF_BY_RETURN.cands(c, a), atk = c.ctx && c.ctx.attacker;
+      const t = c.p.cpu ? (L.includes(atk) ? atk : L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to return to the Hand (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      bounceCard(c.p, t, 'hand'); checkDepletion(c.p); handUp(c.p, 1);
+      log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns to the Hand.`);
+      if (!canPlaceFree(c.p, c.src)) { c.ctx.did = false; return; }
+      await summonFree(c.p, c.src); c.ctx.did = fieldList(c.p).includes(c.src);
+      io.view({ type: 'board' });
+    } } });
+Object.assign(FX_ACTIONS, {
+  /* v533 "destroy opposing Spirits/Ultimates with the same colors as your symbols, one of each color" (Six Heaven Rush 4, BS34-XX02): for each color you have a symbol of, destroy one opposing Spirit/Ultimate of that color (one card is never counted twice; the CPU picks the cheapest). */
+  DESTROY_PER_SYMBOL_COLOR: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'destroy opposing Spirits/Ultimates with the same colors as your symbols, one of each color',
+    can: c => COLORS.some(k => (symbolsOn(c.p)[k] || 0) >= 1 && c.opp.spirits.some(s => fxMatch(CARDS[s.id], { color: [k] }, s))),
+    run: async c => {
+      const gone = [];
+      for (const k of COLORS.filter(k => (symbolsOn(c.p)[k] || 0) >= 1)) {
+        const cands = c.opp.spirits.filter(s => !gone.includes(s) && !fxImmune(c.opp, s) && fxMatch(CARDS[s.id], { color: [k] }, s));
+        if (!cands.length) continue;
+        const t = c.p.cpu ? cands.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await fxPickTarget(c, cands, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing ${k} Spirit/Ultimate to destroy (glowing).`);
+        if (!t) continue;
+        gone.push(t); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} is destroyed (${k}).`);
+        removeSpirit(c.opp, t, 'destroyed', true);
+      }
+      checkDepletion(c.opp); c.ctx.did = gone.length > 0;
+      io.view({ type: 'board' });
+    } } });

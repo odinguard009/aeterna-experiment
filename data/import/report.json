@@ -1,13 +1,13 @@
 {
  "stats": {
-  "cards": 6076,
+  "cards": 6075,
   "per_saga": {
    "1": 458,
    "2": 251,
    "3": 324,
    "4": 299,
    "5": 574,
-   "6": 309,
+   "6": 308,
    "7": 456,
    "8": 428,
    "9": 442,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2630,
+  "skipped_curated": 2631,
   "nexus_levels_added": 643,
   "nexus_levels_missing": 38,
   "merged": 101,
@@ -1327,6 +1327,7 @@
   "BS34-072",
   "BS34-075",
   "BS34-077",
+  "BS34-XX02",
   "BS35-001",
   "BS35-002",
   "BS35-003",
