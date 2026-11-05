@@ -629,5 +629,256 @@
     ]
    }
   ]
+ },
+ {
+  "id": "BS73-051B",
+  "name": "The PearlHolyFaeKnight Pearel",
+  "name_jp": "真珠の妖聖騎士パーレル",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 10,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 2,
+    "bp": 16000
+   },
+   {
+    "cores": 3,
+    "bp": 24000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Prismwing"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can reveal five cards from your decktop. Immediately activate one of the Flash effects of a \"Prismwing\" family Magic card among them, without paying the cost. Return any remaining cards to the deckbottom.\n\n[LV2][LV3] (Your Attack Step)\nAfter your Magic effects resolves, you can return an opposing LV1/LV3 Spirit/Ultimate to the deckbottom.",
+  "image": "BS73-051b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_FLASH",
+      "n": 5,
+      "match": {
+       "family": [
+        "Prismwing"
+       ],
+       "type": "Magic"
+      },
+      "rest": "bottom",
+      "free": true,
+      "max": 1
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "lv": [
+       1,
+       3
+      ],
+      "ultLv": [
+       1,
+       3
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "BS73-043B",
+  "name": "The CitrineMajewelGirl Citri",
+  "name_jp": "黄水晶の魔宝少女シトリィー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Prismwing"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can reveal three cards from your decktop. Among them, add a Yellow Rebirth card to the Hand. Discard any remaining cards.\n\n[LV2][LV3] (Either Attack Step)\nWhen opposing Spirits are brought to 0 BP, you can send four cores from any opposing Grandwalker Nexuses to the Void.",
+  "image": "BS73-043b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "keyword": "Rebirth",
+       "color": "yellow"
+      },
+      "rest": "trash"
+     }
+    ]
+   },
+   {
+    "trigger": "OPP_DIED",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "bpLe": 0
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_VOID",
+      "family": "Grandwalker",
+      "n": 4,
+      "spread": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "BS73-048B",
+  "name": "The GarnetMajewelSwordsman Garneta",
+  "name_jp": "柘榴石の魔宝剣士ガーネッタ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Prismwing"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP, and destroy it when it is brought to 0 BP. If you have five counters or more, the target of this \"BP- Effect\" gets +2. \n\n[LV2][LV3] (Your Turn)\nWhen summoning your \"Prismwing\" family Spirit cards without paying the cost, the effects of every opposing Spirit/Nexus can't activate.",
+  "image": "BS73-048b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Assumed: 'the target of this BP- Effect gets +2' means two more targets (3 at 5+ counters). 'Without paying the cost' is read as any summon through an effect (subjViaEffect).",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "counterGe": 5
+    },
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 10000,
+      "targets": 3
+     }
+    ]
+   },
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "not": {
+      "counterGe": 5
+     }
+    },
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 10000
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "family": [
+      "Prismwing"
+     ],
+     "type": "Spirit"
+    },
+    "if": {
+     "subjViaEffect": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "OPP_FX_LOCK_TURN"
+     }
+    ]
+   }
+  ]
  }
 ]

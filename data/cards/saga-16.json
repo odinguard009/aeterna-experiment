@@ -7715,16 +7715,80 @@
    "12"
   ],
   "rebirthTo": "BS73-043B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned)",
-   "If you control any \"Contractor Morrigan\", your counter +1, and draw a card.",
-   "[LV1][LV2][LV3] Rebirth2m",
-   "When your other \"Prismwing\" family Spirit attacks, or this Spirit would leave the Field due to opposing effects, you can flip this Spirit.",
-   "[LV2][LV3] (Either Attack Step)",
-   "When opposing Spirits are brought to 0 BP, you can send two cores from any opposing Grandwalker Nexuses to the Void."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "Rebirth2m: flips when another Prismwing Spirit attacks (ALLY_ATTACKS, ask) or when it would leave the Field to an opposing effect. 'Brought to 0 BP' is read as an opposing Spirit destroyed while at 0 BP (OPP_DIED bpLe 0).",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "controlName": "Contractor Morrigan"
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "family": [
+      "Prismwing"
+     ]
+    },
+    "other": true,
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "OPP_DIED",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "bpLe": 0
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_VOID",
+      "family": "Grandwalker",
+      "n": 2,
+      "spread": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-044",
@@ -8112,16 +8176,65 @@
    "12"
   ],
   "rebirthTo": "BS73-048B",
-  "fxComplete": false,
-  "residual": [
-   "When your \"Prismwing\" family Spirit attacks, if you have four counters or more, you can immediately activate this set card.",
-   "Burst: After your Spirit is destroyed by the Opponent",
-   "Besides \"The GarnetWanderwelFairy Garneta\", return a \"Prismwing\"/\"Celtica\" family card from your Trash to the Hand.",
-   "After this effect resolves, summon this card without paying the cost.",
-   "[LV1][LV2][LV3] Rebirth3m",
-   "When your Spirit attacks, or this Spirit would leave the Field due to opposing effects, you can flip this Spirit."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "Rebirth3m: flips when any of your Spirits attacks (ALLY_ATTACKS, ask) or when it would leave the Field to an opposing effect; the Rebirth cost is not modelled separately. The set-card activation from a Prismwing attack uses burst.also ALLY_ATTACK (counters 4+).",
+  "burst": {
+   "when": "ALLY_DESTROYED",
+   "actions": [
+    {
+     "do": "RETURN_TRASH",
+     "match": {
+      "family": [
+       "Prismwing",
+       "Celtica"
+      ],
+      "notName": [
+       "The GarnetWanderwelFairy Garneta"
+      ]
+     }
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ],
+   "also": {
+    "when": "ALLY_ATTACK",
+    "match": {
+     "family": [
+      "Prismwing"
+     ]
+    },
+    "if": {
+     "counterGe": 4
+    }
+   }
+  },
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-049",
@@ -8355,16 +8468,74 @@
    "12"
   ],
   "rebirthTo": "BS73-051B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Rebirth4m",
-   "When your Spirit attacks, or this Spirit would leave the Field due to opposing effects, you can flip this Spirit.",
-   "[LV1][LV2][LV3] (When Attacks)",
-   "Your counter +1, and +1 core to one of your Yellow Grandwalker Nexuses.",
-   "[LV2][LV3] (When Attacks)",
-   "If you control any \"Contractor Morrigan\", during this turn, effects of every opposing Nexus/Grandwalker Nexus can't activate."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "Rebirth4m: flips when any of your Spirits attacks (ALLY_ATTACKS, ask) or when it would leave the Field to an opposing effect; the Rebirth cost (4 cores on the Nexus) is not modelled separately. NEXUS_LOCK lasts until your next Start Step instead of only this turn.",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "family": [
+        "Grandwalker"
+       ],
+       "color": "yellow"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "controlName": "Contractor Morrigan"
+    },
+    "actions": [
+     {
+      "do": "NEXUS_LOCK",
+      "costLe": 20
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-052",

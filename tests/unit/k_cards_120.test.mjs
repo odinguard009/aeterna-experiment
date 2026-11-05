@@ -82,3 +82,16 @@ test('K-1711 BS75-CP03 is complete and EXHAUST_UNPREVENTABLE only applies to Fun
   const j = JSON.stringify(r);
   assert.deepEqual(r, { complete: true, tree: true, other: false, none: false }, j);
 });
+
+test('K-1712 Prismwing cards BS73-043/048/051 (+B) and P25-04 are complete; Rebirth keyword matches Rebirth cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${setup}
+    const ids = ['BS73-043', 'BS73-043B', 'BS73-048', 'BS73-048B', 'BS73-051', 'BS73-051B', 'P25-04'];
+    const res = { incomplete: ids.filter(id => !BS.CARDS[id] || BS.CARDS[id].partial !== false) };
+    res.hits = ['BS73-051', 'BS73-043'].filter(id => fxMatch(BS.CARDS[id], { keyword: 'Rebirth', color: 'yellow' })).length;
+    return res;
+  })()`);
+  const j = JSON.stringify(r);
+  assert.deepEqual(r.incomplete, [], j);
+  assert.equal(r.hits, 2, j);
+});

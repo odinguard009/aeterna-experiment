@@ -23997,16 +23997,52 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card is also treated as a Magic card.",
-   "Flash (You can't use this effect while it's on Field)",
-   "Return an opposing LV2/LV4 Spirit/Ultimate to the Hand. After this effect resolves, (Once per Turn: Same Name) you can summon this card without paying the cost.",
-   "[LV2][LV3] (When Attacks)",
-   "This Spirit can't be blocked by opposing Lv1/Lv3 Spirits/Ultimates."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
-  "rcode": "P"
+  "rcode": "P",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "alsoMagic": true,
+   "summonAfter": true,
+   "summonOnce": true,
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "lv": [
+      2,
+      4
+     ],
+     "ultLv": [
+      2,
+      4
+     ]
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "levels": [
+       1,
+       3
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "P25-05",

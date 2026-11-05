@@ -1066,12 +1066,8 @@
     "BS75-CP03"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS75-CP03"
-   ],
-   "order_cards": [
-    "BS75-CP03"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS73-CX02",
@@ -1161,20 +1157,12 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS73-043",
-    "BS73-048",
-    "BS73-051",
     "BS73-TX04",
-    "BS75-CP05",
-    "P25-04"
+    "BS75-CP05"
    ],
    "order_cards": [
-    "BS73-043",
-    "BS73-048",
-    "BS73-051",
     "BS73-TX04",
-    "BS75-CP05",
-    "P25-04"
+    "BS75-CP05"
    ]
   },
   {
@@ -29576,7 +29564,7 @@
     "name": "The CitrineJewelFairy Citri",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-045",
@@ -29604,7 +29592,7 @@
     "name": "The GarnetWanderwelFairy Garneta",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-050",
@@ -29618,7 +29606,7 @@
     "name": "The PearlFairyPriest Pearel",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-055",
@@ -30150,7 +30138,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Vertex Form-",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-CP05",
@@ -30894,7 +30882,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Vertex Form-",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-CP04",
@@ -33414,7 +33402,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Vertex Form-",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    }
   ],
   "彩羽": [
@@ -33430,7 +33418,7 @@
     "name": "The CitrineJewelFairy Citri",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-044",
@@ -33458,7 +33446,7 @@
     "name": "The GarnetWanderwelFairy Garneta",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-049",
@@ -33479,7 +33467,7 @@
     "name": "The PearlFairyPriest Pearel",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-052",
@@ -33584,7 +33572,7 @@
     "name": "The SpinelSpearFairy Sphinel",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    }
   ],
   "動器": [
