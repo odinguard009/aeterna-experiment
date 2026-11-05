@@ -58,3 +58,13 @@ test('K-1179 SD32-003: summon bounces one opposing Spirit and draws only with AN
     return { fc: BS.CARDS['SD32-003'].partial === false, other: await run('other'), self: await run('self'), none: await run('none') }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.other.drew, 1, JSON.stringify(r)); assert.equal(r.self.drew, 0, JSON.stringify(r)); assert.equal(r.none.drew, 0, JSON.stringify(r)); assert.equal(r.other.left, 0, JSON.stringify(r));
 });
+
+test('K-1180 SD32-004: +3000 BP to two-colour allies only while the Soul Core is on the source (Lv2+)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const two = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].colors || []).length === 2 && BS.CARDS[k].levels.length > 0 && !(BS.CARDS[k].effects || []).length);
+    const one = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).length === 1 && BS.CARDS[k].levels.length > 0 && !(BS.CARDS[k].effects || []).length);
+    const run = (soul, id) => { const src = BS.mkInst('SD32-004'); src.cores = 3; src.soul = soul; const al = BS.mkInst(id); al.cores = 1; P.spirits = [src, al]; const b0 = bpOf(al); P.spirits = [al]; const b1 = bpOf(al); P.spirits = [src, al]; return bpOf(al) - b1; };
+    return { fc: BS.CARDS['SD32-004'].partial === false, withSoul: run(true, two), noSoul: run(false, two), mono: run(true, one) }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.withSoul, 3000, JSON.stringify(r)); assert.equal(r.noSoul, 0, JSON.stringify(r)); assert.equal(r.mono, 0, JSON.stringify(r));
+});

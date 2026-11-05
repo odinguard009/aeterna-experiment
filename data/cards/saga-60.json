@@ -58379,13 +58379,55 @@
   "image": "SD32-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "S Burst: After your Spirit is removed/destroyed by an opponent Return an opposing Spirit to the Hand. After this effect, summon this Spirit card without paying its cost. [LV1][LV2][LV3] This Spirit's color and symbol are also treated as Red/Purple.",
-   "[LV2][LV3] While a {soulcore} (Soul Core) is on this Spirit, all your Spirits with 2 or more colors gain +3000 BP."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "M"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). Burst when ALLY_LOST (removed/destroyed by the opponent).",
+  "rcode": "M",
+  "burst": {
+   "when": "ALLY_LOST",
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "kind": "spirit",
+     "to": "hand"
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "colors": [
+     "red",
+     "purple"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "colorsGe": 2
+    },
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "srcSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "SD32-005",
