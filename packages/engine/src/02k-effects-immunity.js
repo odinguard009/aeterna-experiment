@@ -29,7 +29,8 @@ for (const A of actions) {
     const a = rest.find(x => x && typeof x === 'object' && typeof x.do === 'string');
     const opp = G.p[other(c.p.key)], oppField = fieldList(opp);
     return L.filter(x => !(x && ((G.p.player.trash.includes(x) || G.p.opponent.trash.includes(x)) && trashSafe(x, c)))
-      && !(x && !(a && a.ignoreImmune === true) && oppField.includes(x) && (fxImmune(opp, x, c) || camouBlocks(opp, x, c))));
+      && !(x && !(a && a.ignoreImmune === true) && oppField.includes(x) && (fxImmune(opp, x, c) || camouBlocks(opp, x, c)))
+      && !(x && !(a && a.ignoreImmune === true) && c.src !== x && fieldList(c.p).includes(x) && flagActive(c.p, 'UNAFFECTED', x, e => e.exceptOwn === true)));      // v566 exceptOwn: also the owner's other effects skip it
   };
   A.cands.immunityWrapped = true;
 }

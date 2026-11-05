@@ -84374,17 +84374,6 @@
   "S_CANT_PREVENT",
   "T_SUMMONED"
  ],
- "BS74-AX03": [
-  "A_SOUL_STATE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "S_UNAFFECTED",
-  "T_SUMMONED"
- ],
  "BS74-CP02": [
   "A_EXHAUST",
   "A_MILL",

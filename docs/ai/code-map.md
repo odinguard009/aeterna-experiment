@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.3k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (357 lines, ~12.5k tokens)
+## packages/engine/src/02c-effects-parse.js (358 lines, ~12.6k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (454 lines, ~10.3k tokens)
@@ -50,7 +50,7 @@ highSpeedOK, fsNexus, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 ## packages/engine/src/02j-effects-accel.js (120 lines, ~2.1k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, immortalCands, immortalOffer, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
-## packages/engine/src/02k-effects-immunity.js (37 lines, ~0.7k tokens)
+## packages/engine/src/02k-effects-immunity.js (38 lines, ~0.7k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
 ## packages/engine/src/02l-effects-invoke.js (269 lines, ~7.2k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
@@ -92,13 +92,13 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (464 lines, ~15k tokens)
+## packages/engine/src/02y-effects-khaos.js (465 lines, ~15k tokens)
 burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed, fungalBeds, useFungalBeds, magicToTrash, bedPay, _sendBedToken, _deployPool
 
-## packages/engine/src/02z-effects-khaos2.js (124 lines, ~4.1k tokens)
+## packages/engine/src/02z-effects-khaos2.js (138 lines, ~4.4k tokens)
 coreFloorMark, lifeBedSave, coreMoveLocked, lifeSym2Cap, nexusGuarded, magicDiscount, ccost, magicRest, _csEff
 
-## packages/engine/src/03-imported-cards.js (258 lines, ~8.1k tokens) — IMPORTED CARD DATA
+## packages/engine/src/03-imported-cards.js (258 lines, ~8.2k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)

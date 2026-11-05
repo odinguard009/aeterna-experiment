@@ -128,3 +128,19 @@ test("K-1203 BS72-066: a Nexus holding this Brave taxes opposing low-cost attack
     return { fc: k.partial === false, broke, paid, free, left: O.reserve.n }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.broke, false, JSON.stringify(r)); assert.equal(r.paid, true, JSON.stringify(r)); assert.equal(r.free, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
 });
+
+test('K-1204 BS74-AX03: needs a white Grandwalker Nexus, costs -2 per Soul State card, returns all other Spirits, unaffected by effects but its own', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const k = BS.CARDS['BS74-AX03']; const ult = BS.mkInst('BS74-AX03'); ult.cores = 5;
+    P.nexus = []; const noNx = BS.summonOK ? BS.summonOK(P, k) : null; P.nexus = [BS.mkInst('BS74-CX03')]; const withNx = BS.summonOK ? BS.summonOK(P, k) : null;
+    const base = BS.effCost ? BS.effCost(P, k) : null; P.soulState = [BS.mkInst('BS74-CX03'), BS.mkInst('BS74-CX03')]; const cut = BS.effCost ? BS.effCost(P, k) : null; P.soulState = [];
+    const ids = Object.keys(BS.CARDS).filter(x => BS.CARDS[x].type === 'Spirit' && !BS.CARDS[x].effects).slice(0, 3);
+    const mine = BS.mkInst(ids[0]), a = BS.mkInst(ids[1]), b = BS.mkInst(ids[2]); mine.cores = a.cores = b.cores = 1; P.spirits = [ult, mine]; O.spirits = [a, b];
+    const d0 = P.deck.length, od0 = O.deck.length;
+    await BS.fireFx(P, 'SUMMONED', ult, {});
+    return { fc: k.partial === false, noNx, withNx, base, cut, left: P.spirits.length, oppLeft: O.spirits.length, pd: P.deck.length - d0, od: O.deck.length - od0, ult: P.spirits[0] === ult }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.oppLeft, 0, JSON.stringify(r)); assert.equal(r.pd, 1, JSON.stringify(r)); assert.equal(r.od, 2, JSON.stringify(r)); assert.equal(r.ult, true, JSON.stringify(r));
+  if (r.noNx !== null) { assert.equal(r.noNx, false, JSON.stringify(r)); assert.equal(r.withNx, true, JSON.stringify(r)); }
+  if (r.base !== null) assert.equal(r.base - r.cut, 4, JSON.stringify(r));
+});

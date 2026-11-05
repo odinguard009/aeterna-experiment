@@ -212,7 +212,7 @@ FX_ACTIONS.CORE_SELF_OR_NEXUS = { chk: a => hasMatch(a.match) && Object.keys(a).
     if (self && nx.length && !c.p.cpu) nexus = await ask({ title: `✨ ${esc(_nm(c))}`, html: 'Put a core from the Void onto…', buttons: [{ label: 'This Spirit', cls: 'primary', value: false }, { label: 'A Nexus', cls: 'blue', value: true }] });
     if (nexus) await FX_ACTIONS.CORE_TO_NEXUS.run(c, { do: 'CORE_TO_NEXUS', n: 1, match: a.match }); else if (self) await FX_ACTIONS.VOID_TO_CARD.run(c, { do: 'VOID_TO_CARD', n: 1, to: 'self' }); else c.ctx.did = false;
   } };
-/* v494 STATIC flag FREE_REDUCTION {n, match, lv}: "when you're summoning/deploying a <match> card, fulfill n of its reduction symbols" (BS69-068/072 Sealed Lands); effCost: r reduction already earned of `tot` slots, this adds n more (capped at tot) */
+/* v494 STATIC flag FREE_REDUCTION {n, match, lv}: "when you're summoning/deploying a <match> card, fulfill n of its reduction symbols" (BS69-068/072 Sealed Lands); effCost: r earned of `tot` slots, adds n more (cap tot) */
 function freeRed(p, card, r, tot) {
   let n = 0; if (!G || tot < 1) return 0;
   for (const src of fieldList(p)) { const L = lvNo(src); for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'FREE_REDUCTION' && (!e.lv || e.lv.includes(L)) && fxMatch(card, e.match)) n += e.n || 1; }
@@ -222,6 +222,7 @@ function freeRed(p, card, r, tot) {
 function costPerCount(p, t) {
   const o = G.p[other(p.key)];
   if (t.oppCantAB) return o.spirits.filter(s => s.noAB).length;
+  if (t.soulState) return p.soulState.length;
   if (t.nexusTrash) return p.nexus.length + p.trash.concat(o.trash).filter(x => CARDS[x.id].type === 'Nexus').length;
   return p.spirits.filter(s => (CARDS[s.id].families || []).includes(t.family)).length;
 }

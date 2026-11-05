@@ -3090,15 +3090,60 @@
   "image": "BS74-AX03.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{sumcon|You control one or more White-only Contract Grandwalker Nexus}}",
-   "When summoning this card, it gets -2 cost for each Soul State card you have.",
-   "[LV3][LV4][LV5] (When Summoned) (Once per Turn: Same Name) You can return all other Spirits/Ultimates to the deckbottom.",
-   "[LV3][LV4][LV5] This Ultimate can't be braved, and is unaffected by any effects except its own effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "AX"
+  "rcode": "AX",
+  "summonIf": {
+   "nexusGe": {
+    "n": 1,
+    "colors": [
+     "white"
+    ],
+    "family": "Grandwalker"
+   }
+  },
+  "costPer": {
+   "soulState": true,
+   "n": 2,
+   "max": 10
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     3,
+     4,
+     5
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "BOUNCE_ALL_OTHERS"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_BRAVE",
+    "lv": [
+     3,
+     4,
+     5
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "exceptOwn": true,
+    "lv": [
+     3,
+     4,
+     5
+    ]
+   }
+  ]
  },
  {
   "id": "BS74-CP02",

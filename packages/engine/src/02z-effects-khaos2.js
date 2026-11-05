@@ -122,3 +122,17 @@ const _csEff = (c, a) => { for (const n of c.p.nexus) if (CARDS[n.id].name.toLow
 FX_ACTIONS.CONTRACT_SKILL_RUN = { chk: a => typeof a.name === 'string' && a.name.length > 0 && Object.keys(a).every(k => ['do', 'if', 'name'].includes(k)),
   txt: a => `immediately activate a Contract Skill of your "${a.name}" Nexus, ignoring once per turn, treating the cores as sent to the Void`, can: (c, a) => !!_csEff(c, a),
   run: async (c, a) => { const x = _csEff(c, a); c.ctx.did = !!x; if (!x) return; log(`${CARDS[c.src.id].name}: activates the Contract Skill of ${CARDS[x.n.id].name}.`); await runActions({ p: c.p, opp: c.opp, src: x.n, ctx: {} }, x.e, 'ACTIVATE'); } };
+
+/* v566 BOUNCE_ALL_OTHERS (BS74-AX03): "You can return all other Spirits/Ultimates to the deckbottom": every Spirit/Ultimate on both Fields except the source goes to its owner's deckbottom;
+   an opposing one that is unaffected by this effect (or has NO_RETURN) stays. The own side is hit as well, as printed. */
+FX_ACTIONS.BOUNCE_ALL_OTHERS = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'return all other Spirits/Ultimates on both Fields to the deckbottom', can: c => c.p.spirits.concat(c.opp.spirits).some(s => s !== c.src),
+  run: async (c, a) => {
+    c.ctx.did = false;
+    const hit = [];
+    for (const side of [c.p, c.opp]) for (const t of side.spirits.slice()) {
+      if (t === c.src || flagActive(side, 'NO_RETURN', t) || (side === c.opp && fxImmune(side, t, { p: c.p, src: c.src }))) continue;
+      bounceCard(side, t, 'deckBottom'); hit.push(t);
+    }
+    if (!hit.length) return;
+    checkDepletion(c.p); checkDepletion(c.opp); c.ctx.did = true; log(`${_nm(c)}: ${hit.length} other Spirit${hit.length === 1 ? '' : 's'} return${hit.length === 1 ? 's' : ''} to the deckbottom.`); io.view({ type: 'board' }); } };

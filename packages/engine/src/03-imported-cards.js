@@ -138,8 +138,8 @@ function parseCard(o) {
   let costPer;
   if (o.costPer != null) {            // v0.196 {"family":"Abyssen","n":2,"max":8}: "For each <family> Spirit you control, the cost of this card in Hand gets -n (Max. -max)"
     const t = o.costPer;
-    if (!t || typeof t !== 'object' || (t.oppCantAB !== true && t.nexusTrash !== true && (typeof t.family !== 'string' || !t.family.trim())) || !int(Number(t.n), 1, 10) || !int(Number(t.max), 1, 30)) return { errors: ['invalid "costPer" (use {"family":"Abyssen","n":2,"max":8})'] };
-    costPer = { family: t.oppCantAB === true || t.nexusTrash === true ? undefined : t.family.trim(), oppCantAB: t.oppCantAB === true || undefined, nexusTrash: t.nexusTrash === true || undefined, n: Number(t.n), max: Number(t.max) };      // v422 oppCantAB: per opposing Spirit under can't attack/block
+    if (!t || typeof t !== 'object' || (t.oppCantAB !== true && t.nexusTrash !== true && t.soulState !== true && (typeof t.family !== 'string' || !t.family.trim())) || !int(Number(t.n), 1, 10) || !int(Number(t.max), 1, 30)) return { errors: ['invalid "costPer" (use {"family":"Abyssen","n":2,"max":8})'] };
+    costPer = { soulState: t.soulState === true || undefined, family: t.oppCantAB === true || t.nexusTrash === true || t.soulState === true ? undefined : t.family.trim(), oppCantAB: t.oppCantAB === true || undefined, nexusTrash: t.nexusTrash === true || undefined, n: Number(t.n), max: Number(t.max) };      // v422 oppCantAB: per opposing Spirit under can't attack/block
   }
   let tribute;
   if (o.tribute != null) {            // {"costGe":3,"to":"void"} or {"family":"Astral Soul","to":"trash"}: after paying, send all cores from one of your matching Spirits there
@@ -176,7 +176,7 @@ function parseCard(o) {
     && (x.colors == null || (Array.isArray(x.colors) && x.colors.length && x.colors.every(y => COLORS.includes(y)))) && (x.costGe == null || int(x.costGe, 0, 20)) && (x.family == null || (typeof x.family === 'string' && x.family))
     && Object.keys(x).every(k => ['n', 'type', 'colors', 'costGe', 'family'].includes(k)));   // v0.56
   let summonIf = null;
-  if (o.summonIf != null) { const a = o.summonIf, ok = ['controlName', 'counterGe', 'lifeLe', 'lifeGe', 'soulGe', 'ctrl']; if (!a || typeof a !== 'object' || !Object.keys(a).length || Object.keys(a).some(k => !ok.includes(k)) || (a.ctrl != null && !ctrlOK(a.ctrl))) return { errors: ['invalid "summonIf" (keys: ' + ok.join(', ') + ')'] }; summonIf = Object.assign({}, a); }
+  if (o.summonIf != null) { const a = o.summonIf, ok = ['controlName', 'counterGe', 'lifeLe', 'lifeGe', 'soulGe', 'ctrl', 'nexusGe']; if (!a || typeof a !== 'object' || !Object.keys(a).length || Object.keys(a).some(k => !ok.includes(k)) || (a.ctrl != null && !ctrlOK(a.ctrl))) return { errors: ['invalid "summonIf" (keys: ' + ok.join(', ') + ')'] }; summonIf = Object.assign({}, a); }
   const fx = parseEffects(o.effects); if (fx.error) return { errors: [fx.error] };
   let burst = null;
   if (o.burst != null) { const r = parseBurst(o.burst); if (r.error) return { errors: [r.error] }; burst = r.burst; }

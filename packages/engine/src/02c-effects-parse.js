@@ -139,6 +139,7 @@ function parseEffects(arr) {
     if (e.trigger === 'STATIC' && e.flag != null) {
       if (!STATIC_FLAGS.includes(e.flag)) return { error: `STATIC "flag" must be one of ${STATIC_FLAGS.join(', ')}` };
       o.flag = e.flag; if (e.zone === 'mirage') o.zone = 'mirage'; if (e.to === 'opp' && e.flag !== 'CANT_ATTACK' && e.flag !== 'CANT_BLOCK' && e.flag !== 'FX_SUMMON_EXHAUSTED' && e.flag !== 'SUMMON_EXHAUSTED' && e.flag !== 'OPP_DESTROY_NO_FX' && e.flag !== 'NO_REFRESH') return { error: 'STATIC "to":"opp" is only for CANT_ATTACK / CANT_BLOCK / FX_SUMMON_EXHAUSTED / SUMMON_EXHAUSTED / NO_REFRESH' }; o.to = e.to === 'own' || e.to === 'all' || e.to === 'opp' ? e.to : 'self'; if (e.braved === true) o.braved = true;      // v0.60 [When Braved] static effects
+      if (e.flag === 'UNAFFECTED' && e.exceptOwn === true) o.exceptOwn = true;      // v566 unaffected by every effect except its own (own side too)
       if (e.flag === 'UNAFFECTED' && e.soulToo === true) o.soulToo = true;      // v460 also while in Soul State
       if (e.flag === 'CORE_SAFE') {                               // v190 "the cores can't be moved / can't be brought to less than one"
         if (!['move', 'floor', 'floor3'].includes(e.mode)) return { error: 'CORE_SAFE "mode" must be "move", "floor" or "floor3"' };

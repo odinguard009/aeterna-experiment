@@ -1898,5 +1898,25 @@
   "status": "done",
   "example": "{\"trigger\":\"STATIC\",\"flag\":\"ATK_TAX\",\"nexusBrave\":true,\"costLe\":30,\"pay\":1}",
   "rule": "Engine: the Nexus reads the Brave's nexusBrave effects; payAtkTax checks them on the defender's fields before an attack."
+ },
+ {
+  "id": "K_BOUNCE_ALL_OTHERS",
+  "kind": "action",
+  "meaning": "when summoned, return every other Spirit on both Fields to the bottom of its owner's deck",
+  "pattern": "When this Spirit is summoned, return all other Spirits to the bottom of the deck",
+  "engine": "SUMMONED BOUNCE_ALL_OTHERS",
+  "status": "done",
+  "example": "{\"trigger\":\"SUMMONED\",\"action\":\"BOUNCE_ALL_OTHERS\",\"optional\":true}",
+  "rule": "Engine: bounceCard to deckBottom for each other Spirit; no-return cards stay and immune opposing cards are skipped."
+ },
+ {
+  "id": "K_UNAFFECTED_EXCEPT_OWN",
+  "kind": "condition",
+  "meaning": "this Spirit is unaffected by effects of other cards, only its own effects still apply",
+  "pattern": "This Spirit is unaffected by the effects of other Spirits",
+  "engine": "STATIC UNAFFECTED with exceptOwn:true",
+  "status": "done",
+  "example": "{\"trigger\":\"STATIC\",\"flag\":\"UNAFFECTED\",\"exceptOwn\":true}",
+  "rule": "Engine: the immunity filter in the target pick also drops candidates that carry this flag, even when the source is a friendly card."
  }
 ]
